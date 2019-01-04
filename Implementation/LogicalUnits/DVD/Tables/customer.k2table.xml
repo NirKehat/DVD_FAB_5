@@ -21,11 +21,5 @@
   <IndexesList>
     <Index id="1" unique="true" instanceOnly="true" columnsIdsList="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
   </IndexesList>
-  <EnrichmentList>
-    <Enrichment>
-      <Name>fnWriLuData2File</Name>
-      <Type>Function</Type>
-      <TableName>customer</TableName>
-    </Enrichment>
-  </EnrichmentList>
+  <EnrichmentList />
 </TableObject>

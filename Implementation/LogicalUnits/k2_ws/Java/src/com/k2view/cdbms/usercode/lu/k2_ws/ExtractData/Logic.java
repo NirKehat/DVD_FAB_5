@@ -31,7 +31,7 @@ public class Logic extends WebServiceUserCode {
 	public static void wsLu2File(String lu_name, String iid, String path_to_save_file) throws Exception {
 		List<String> luTableList = new ArrayList<String>();
 		luTableList.add("CUSTOMER");
-		new k2Studio.usershared.LU2File("excel", null, getLuType().luName, getInstanceID(), "C:\\K2View", "fabric", luTableList);
+		fnWriLuData2File("excel", null, getLuType().luName, getInstanceID(), "C:\\K2View", "fabric", luTableList);
 	}
 
 

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<VirtualDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="4.1.1.3">
+<VirtualDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="5.0.0.10">
   <Name>vdb</Name>
   <RootView>customer</RootView>
   <LuLazyDataUpdate syncMethod="None" performEvery="1.00:00:00" />
@@ -55,9 +55,7 @@
       </Populations>
     </TableProperties>
   </TablesProperties>
-  <EnrichmentsOrderList>
-    <Item order="1" active="true" name="customer" columnName="fnWriLuData2File" type="Table" />
-  </EnrichmentsOrderList>
+  <EnrichmentsOrderList />
   <ReferencesList>
     <Item active="true" name="city" />
     <Item active="true" name="country" />
@@ -99,7 +97,7 @@
   <Indexes />
   <LudbProperties />
   <DiagramGraph>
-    <Graph version="4.1.1.3" name="vdb.k2vdb.xml" lastPartID="14562">
+    <Graph version="5.0.0.10" name="vdb.k2vdb.xml" lastPartID="14726">
       <Node id="0" partID="500" name="rental" isRootView="false" pos="313 12.5" size="257 139" listGroupSize="250 103" viewType="Table">
         <TableProperties>{"TableName":"rental","TablePopulationPropertiesList":[{"ID":"query_public_rental","Name":"query_public_rental","Order":2,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
       </Node>
