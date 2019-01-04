@@ -37,9 +37,6 @@ public class Logic extends UserCode {
 	@out(name = "rental_id", type = Integer.class, desc = "")
 	@out(name = "staff_id", type = Integer.class, desc = "")
 	public static void fnPopPaymentFromCass(Long customer_id) throws Exception {
-		List<String> luTableList = new ArrayList<String>();
-		luTableList.add("CUSTOMER");
-		fnWriLuData2File("excel", null, getLuType().luName, getInstanceID(), "C:\\K2View", "ludb", luTableList);
 		
 		boolean runPars = fnSyncByCron("0 0 11 ? * * *","fnPopPaymentFromCass_" + getInstanceID(), "cass_local", false, false);
 		if(runPars){

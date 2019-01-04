@@ -39,7 +39,7 @@
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>Table Name to be used </Comment>
-      <GridColumnProperties width="100" />
+      <GridColumnProperties width="98" />
     </Column>
     <Column>
       <Title>columns_list</Title>
@@ -78,7 +78,44 @@
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>If you wish to have date in your file name you can use -&gt; {your_format_here} for exmaple - C:\K2View\payment_{yyyymmdd_HHmmss}.csv</Comment>
-      <GridColumnProperties width="324" />
+      <GridColumnProperties width="73" />
+    </Column>
+    <Column>
+      <Title>file_name</Title>
+      <ColumnName>file_name</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>50</Length>
+      <Format />
+      <Index>5</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="176" />
+    </Column>
+    <Column>
+      <Title>file_type</Title>
+      <ColumnName>file_type</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>5</Length>
+      <Format />
+      <Index>6</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>txt/csv/xls</Comment>
+      <GridColumnProperties width="100" />
+    </Column>
+    <Column>
+      <Title>delimiter</Title>
+      <ColumnName>delimiter</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>1</Length>
+      <Format />
+      <Index>7</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="100" />
     </Column>
     <Column>
       <Title>headers</Title>
@@ -87,7 +124,7 @@
       <Type>Boolean</Type>
       <Length>1</Length>
       <Format />
-      <Index>5</Index>
+      <Index>8</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>if you want to have headers in your file</Comment>
@@ -100,7 +137,7 @@
       <Type>Boolean</Type>
       <Length>1</Length>
       <Format />
-      <Index>6</Index>
+      <Index>9</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>if you want to append data to your file</Comment>
@@ -113,7 +150,7 @@
       <Type>Boolean</Type>
       <Length>1</Length>
       <Format />
-      <Index>7</Index>
+      <Index>10</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>active yes or no</Comment>
@@ -167,6 +204,27 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
+                  <xs:element name="file_name" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="file_type" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="5" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="delimiter" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
                   <xs:element name="headers" type="xs:boolean" minOccurs="0" />
                   <xs:element name="append" type="xs:boolean" minOccurs="0" />
                   <xs:element name="active" type="xs:boolean" minOccurs="0" />
@@ -189,7 +247,10 @@
           <table_name>CUSTOMER</table_name>
           <columns_list>customer_id,store_id</columns_list>
           <sql></sql>
-          <file_full_path>C:\K2View\example.csv</file_full_path>
+          <file_full_path>C:\K2View</file_full_path>
+          <file_name>example</file_name>
+          <file_type>csv</file_type>
+          <delimiter></delimiter>
           <headers>true</headers>
           <append>true</append>
           <active>true</active>
@@ -199,9 +260,11 @@
           <db_name></db_name>
           <table_name></table_name>
           <columns_list></columns_list>
-          <sql>SELECT * FROM PAYMENT where PAYMENT.CUSTOMER_ID = 1</sql>
-          <file_full_path>C:\K2View\payment_{yyyymmdd_HHmmss}.csv</file_full_path>
-          <active>false</active>
+          <sql>SELECT * FROM RENTAL</sql>
+          <file_full_path>C:\K2View</file_full_path>
+          <file_name>payment_{yyyymmdd_HHmmss}</file_name>
+          <file_type>xls</file_type>
+          <active>true</active>
         </trnWriTbl2File>
       </DocumentElement>
     </diffgr:diffgram>
