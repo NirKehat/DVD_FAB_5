@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Translation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>trnFixedLengthFileDet</Name>
+  <InputNotFoundAction>Use_Default</InputNotFoundAction>
+  <SchemaColumns>
+    <Column>
+      <Title>file_name</Title>
+      <ColumnName>file_name</ColumnName>
+      <Direction>Input</Direction>
+      <Type>Text</Type>
+      <Length>100</Length>
+      <Format />
+      <Index>0</Index>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="266" />
+    </Column>
+    <Column>
+      <Title>col_length_arr</Title>
+      <ColumnName>col_length_arr</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>20</Length>
+      <Format />
+      <Index>0</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="81" />
+    </Column>
+    <Column>
+      <Title>header_ind</Title>
+      <ColumnName>header_ind</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>1</Length>
+      <Format />
+      <Index>1</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="100" />
+    </Column>
+    <Column>
+      <Title>zip_ind</Title>
+      <ColumnName>zip_ind</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>1</Length>
+      <Format />
+      <Index>2</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="100" />
+    </Column>
+  </SchemaColumns>
+  <IsImportFromSQL>false</IsImportFromSQL>
+  <IsDynamicData>false</IsDynamicData>
+  <ColumnMapping />
+  <TranslationData>
+    <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+      <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="trnFixedLengthFileDet" msdata:UseCurrentLocale="true">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="trnFixedLengthFileDet">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="file_name" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="col_length_arr" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="20" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="header_ind" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="zip_ind" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+      <DocumentElement>
+        <trnFixedLengthFileDet diffgr:id="trnFixedLengthFileDet1" msdata:rowOrder="0">
+          <file_name>Fixed*</file_name>
+          <col_length_arr>8,16,16,12,14,16,7</col_length_arr>
+          <header_ind>Y</header_ind>
+          <zip_ind>N</zip_ind>
+        </trnFixedLengthFileDet>
+      </DocumentElement>
+    </diffgr:diffgram>
+  </TranslationData>
+  <DataRowsHeight>20</DataRowsHeight>
+</Translation>

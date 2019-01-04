@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DBConn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="DBConnPostgreSQL" name="TDM" type="PostgreSQL" version="4.0.4.2">
+  <Active>true</Active>
+  <DataSource>10.211.55.6</DataSource>
+  <PortNum>5432</PortNum>
+  <DataBase>TDMDB</DataBase>
+  <UserId>k2app</UserId>
+  <Password>+GTUUuNCCv/a3fD4nZwylxgYpcBmiXcSbYllNGzRAu0=:6V+7ikX7skRyWSUDu0XvlD6cUL2OCU6EZdUcoHsq6+c=</Password>
+  <MinConnectionsNumber>0</MinConnectionsNumber>
+  <MaxConnectionsNumber>60</MaxConnectionsNumber>
+  <ConnectionStringClient>Server='10.211.55.6';Port=5432;Database='TDMDB';User Id='k2app';Password='[PASSWORD]';</ConnectionStringClient>
+  <ConnectionStringServerSide>jdbc:postgresql://10.211.55.6:5432/TDMDB?stringtype=unspecified</ConnectionStringServerSide>
+  <UseSelectAsteriskInAutoCreatedQueries>true</UseSelectAsteriskInAutoCreatedQueries>
+  <CommandList />
+  <DBSourceList />
+  <ProviderType>Npgsql</ProviderType>
+</DBConn>

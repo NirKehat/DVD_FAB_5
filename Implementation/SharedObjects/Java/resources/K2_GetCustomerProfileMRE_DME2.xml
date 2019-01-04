@@ -1,0 +1,1396 @@
+<p:InquireUnifiedCustomerServiceProfileResponse xmlns:p="http://ccrr.att.com/InquireUnifiedCustomerServiceProfileResponse.xsd" xmlns="http://ccrr.att.com/CCRRUHVDataModel.xsd" xmlns:xdb="http://xmlns.oracle.com/xdb">
+	[[[Q1= SELECT loc.* from uhv_location loc
+	<p:CustomerLocationProfile>		
+		<householdCustomerName>${Q1.HSHLD_CUST_FULL_NM}</householdCustomerName>
+		<HouseholdAddress>
+		<addressLine1>${Q1.HSHLD_STR_ADDR_TXT}</addressLine1>
+		<city>${Q1.HSHLD_CTY_NM}</city>
+		<state>${Q1.HSHLD_ST_CD}</state>
+		<Zip> 
+			<zipCode>${Q1.HSHLD_ZIP_CD}</zipCode>
+			<zipCodeExtension>${Q1.HSHLD_ZIP_SUFX_CD}</zipCodeExtension>
+		</Zip> 
+		</HouseholdAddress>
+		<customerLocationId>${Q1.rpstry_aflt_cust_loc_id}</customerLocationId>
+		<DominantAccountDetails>
+			<treatmentCode>${Q1.DMNT_ACCT_TRTMNT_CD}</treatmentCode>
+			[[[ALL{"Q1.dmnt_acct_vnblt_ind":"Y"}
+				<vulnerabilityIndicator>true</vulnerabilityIndicator>
+			]]]
+			[[[NONE{"Q1.dmnt_acct_vnblt_ind":"Y"}
+				<vulnerabilityIndicator>false</vulnerabilityIndicator>
+			]]]
+		</DominantAccountDetails>
+		<CustomerDemographics>
+			<HouseholdIndicators>
+			<estimatedIncomeRange>${Q1.ESTM_INCME_RNG_CD}</estimatedIncomeRange>
+			<householdAgeCode>${Q1.HSHLD_AGE_CD}</householdAgeCode>
+			<genderCode>${Q1.GNDR_CD}</genderCode>
+			<adultQuantity>${Q1.ADLT_PRSNT_QTY_CD}</adultQuantity>
+			<ethnicCode>${Q1.ETHNC_CD}</ethnicCode>
+			<occupationCode>${Q1.OCPTN_CD}</occupationCode>
+			<householdCompositionCode>${Q1.HSHLD_CMPST_CD}</householdCompositionCode>
+			
+			[[[ NONE{"Q1.HSLD_CHLD_AGE_GRP_0_2_CD":null}
+				<ChildPresentProbability>
+					<ageGroup>1</ageGroup>
+					<indicator>${Q1.HSLD_CHLD_AGE_GRP_0_2_CD}</indicator>
+				</ChildPresentProbability>
+			]]]	
+			[[[ NONE{"Q1.HSLD_CHLD_AGE_GRP_3_5_CD":null}
+				<ChildPresentProbability>
+					<ageGroup>2</ageGroup>
+					<indicator>${Q1.HSLD_CHLD_AGE_GRP_3_5_CD}</indicator>
+				</ChildPresentProbability>
+			]]]	    
+			[[[ NONE{"Q1.HSLD_CHLD_AGE_GRP_6_10_CD":null}
+				<ChildPresentProbability>
+					<ageGroup>3</ageGroup>
+					<indicator>${Q1.HSLD_CHLD_AGE_GRP_6_10_CD}</indicator>
+				</ChildPresentProbability>
+			]]]	
+			[[[ NONE{"Q1.HSLD_CHLD_AGE_GRP_11_15_CD":null}
+				<ChildPresentProbability>
+					<ageGroup>4</ageGroup>
+					<indicator>${Q1.HSLD_CHLD_AGE_GRP_11_15_CD}</indicator>
+				</ChildPresentProbability>		
+			]]]	
+			
+			[[[ NONE{"Q1.HSLD_CHLD_AGE_GRP_16_17_CD":null}
+				<ChildPresentProbability>
+					<ageGroup>5</ageGroup>
+					<indicator>${Q1.HSLD_CHLD_AGE_GRP_16_17_CD}</indicator>
+				</ChildPresentProbability>		
+			]]]
+			</HouseholdIndicators>		   
+			<GeograhicZoneIndicators>
+				<offer>Solutions</offer>
+				[[[ALL{"Q1.SLTN_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.SLTN_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>RepairPlan</offer> 
+				[[[ALL{"Q1.RPR_PLN_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.RPR_PLN_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>AdvantagePlan</offer> 
+				[[[ALL{"Q1.ADVTG_PLN_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.ADVTG_PLN_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>Works</offer> 
+				[[[ALL{"Q1.WRKS_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.WRKS_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>	
+				<GeograhicZoneIndicators>
+				<offer>Basic</offer> 
+				[[[ALL{"Q1.BSC_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.BSC_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>SBC_LD_Both</offer> 
+				[[[ALL{"Q1.SBC_LONG_DSTN_BTH_CMPTV_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.SBC_LONG_DSTN_BTH_CMPTV_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>SBC_LD_DNHLD</offer> 
+				[[[ALL{"Q1.SBC_LNDIST_DNHLD_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.SBC_LNDIST_DNHLD_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>SBC_LD_HLD</offer> 
+				[[[ALL{"Q1.SBC_LNDIST_HLD_CMPTV_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.SBC_LNDIST_HLD_CMPTV_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>LocalToll</offer> 
+				[[[ALL{"Q1.LOCL_TOLL_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.LOCL_TOLL_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>DSL</offer> 
+				[[[ALL{"Q1.DSL_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.DSL_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>Yahoo</offer> 
+				[[[ALL{"Q1.YAHOO_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.YAHOO_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>Wireless</offer> 
+				[[[ALL{"Q1.CNGLR_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.CNGLR_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>	
+			<GeograhicZoneIndicators>
+				<offer>ADL</offer> 
+				[[[ALL{"Q1.ADL_CMPTV_GEO_ZONE_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.ADL_CMPTV_GEO_ZONE_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>DishNetwork</offer> 
+				[[[ALL{"Q1.SATLT_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.SATLT_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>AutoPayment</offer> 
+				[[[ALL{"Q1.AUTO_PMT_SRV_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.AUTO_PMT_SRV_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>EconomyPlan</offer> 
+				[[[ALL{"Q1.ECNMY_PLN_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.ECNMY_PLN_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>	
+			<GeograhicZoneIndicators>
+				<offer>VoiceMail</offer> 
+				[[[ALL{"Q1.VM_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.VM_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>PrivacyManager</offer> 
+				[[[ALL{"Q1.PVTY_MGR_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.PVTY_MGR_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>CPE</offer> 
+				[[[ALL{"Q1.CPE_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.CPE_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+			<GeograhicZoneIndicators>
+				<offer>TotalConnection</offer> 
+				[[[ALL{"Q1.TOT_CNCTN_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>true</indicator>
+				]]]
+				[[[NONE{"Q1.TOT_CNCTN_CMPTV_GEO_ZN_IND":"Y"} 
+					<indicator>false</indicator>
+				]]]
+			</GeograhicZoneIndicators>
+		</CustomerDemographics>
+	
+	[[[Q2 = Select uhv_acct.*, cpacct.acct_nbr, substr(uhv_acct.bl_cyc_start_dt,0,11) as bl_cyc_start_dt, substr(uhv_acct.bl_cyc_end_dt,0,11) as bl_cyc_end_dt ,substr(uhv_acct.CMBND_BL_EFF_DT,0,11) as CMBND_BL_EFF_DT,fnReplaceAtEnd(uhv_acct.uvrs_ppv_spndg_lmt_amt,'.0','') as uvrs_ppv_spndg_lmt_amt ,fnReplaceAtEnd(uhv_acct.uvrs_vod_spndg_lmt_amt,'.0','') as uvrs_vod_spndg_lmt_amt, fnReplaceAtEnd(uhv_acct.mrc_amt,'.0','') as mrc_amt,fnReplaceAtEnd(uhv_acct.nrf_paid_amt,'.0','') as nrf_paid_amt  ,CASE WHEN length(tlg_acct.default_sub_market) >=3 THEN substr(tlg_acct.default_sub_market,1,3) WHEN length(uhv_acct.site_cd) >=3 THEN substr(uhv_acct.site_cd,1,3) ELSE NULL END as "billingSubMarket", lpd.acctid, tlg_acct.market, tlg_acct.default_sub_market,tlg_acct.start_service_date, tlg_acct.col_waiver_ind, tlg_acct.AMOUNT_DISPUTED, tlg_acct.BILL_DATE_DISPUTED, tlg_acct.bmg_ind, tlg_acct.ENTERPRISE_TYPE, tlg_acct.bmg_ind, acct_mre.acctbmgliability, acct_mre.acctvoicetreatmentid, acct_mre.acctdatatreatmentid, acct_mre.acctbalspastdue, acct_mre.acctbalscurrentdue, acct_mre.acctagebucket130, acct_mre.acctagebucket3160, acct_mre.acctagebucket6190, acct_mre.acctagebucket91plus, ifnull(CASE WHEN tlg_acct.ban_status ='O' THEN 'A' ELSE tlg_acct.ban_status END ,CASE WHEN uhv_acct.acct_sts_cd ='O' THEN 'A' ELSE uhv_acct.acct_sts_cd END) as "status"  from uhv_location loc LEFT OUTER JOIN uhv_account uhv_acct on loc.rpstry_aflt_cust_loc_id = uhv_acct.rpstry_aflt_cust_loc_id LEFT OUTER JOIN cpsync_sync_dti_ccr_tbl cpacct ON uhv_acct.bus_aflt_acct_nbr = cpacct.acct_nbr and uhv_acct.aflt_co_cd = cpacct.affiliate_co_cd LEFT OUTER JOIN (SELECT acctid  FROM mps_loyaltyprogacctassoc where end_date_gmt is null UNION SELECT  acctid  FROM mps_loyaltyofferacceptance where end_date_gmt is null ) lpd ON uhv_acct.bus_aflt_acct_nbr = lpd.acctid LEFT OUTER JOIN tlg_billing_account tlg_acct ON uhv_acct.bus_aflt_acct_nbr = tlg_acct.customer_id LEFT OUTER JOIN (select distinct ban, mkt_cd, site_cd, ifnull(cnvrgd_bl_ind,'N') cnvrgd_bl_ind, acctnum, acctbalspastdue, acctagebucket130, acctagebucket3160, acctagebucket6190, acctagebucket91plus, acctbalscurrentdue, acctdatatreatmentid, acctvoicetreatmentid, acctbmgliability, ifnull(acctineligibilityflag, 'N') acctineligibilityflag from(select ba.ban, ba.market MKT_CD, ba.default_sub_market SITE_CD, ba.cnvrgd_bl_ind, atb.acctnum, atb.acctbalspastdue, atb.acctagebucket130, atb.acctagebucket3160, atb.acctagebucket6190, atb.acctagebucket91plus, atb.acctbalscurrentdue, fi.data_trmt_id acctdatatreatmentid, fi.voice_trmt_id acctvoicetreatmentid, substr(fi.fan_lbl_type, 1, 1) acctbmgliability, ifnull((select 'Y' from tlg_service_agreement s where (s.subscriber_no = '0000000000' or s.subscriber_no is null) and s.ban = ba.ban and exists (select null from tlg_ref_generic_codes g where g.gen_code = trim(s.soc) and (DATE('now') BETWEEN s.soc_effective_date AND ifnull(s.expiration_date,'4712-12-31')) OR DATE('now') BETWEEN s.effective_date AND ifnull(s.expiration_date,'4712-12-31') and gen_type like 'EON%')), 'N') acctineligibilityflag, ba.last_bal_upd_date as updatedtime from tlg_billing_account ba left outer join (select ban acctnum, (sum(ifnull(ar_balance, 0)) - sum(ifnull(age_bucket_0, 0))) acctbalspastdue, sum(ifnull(age_bucket_1_30, 0)) acctagebucket130, sum(ifnull(age_bucket_31_60, 0)) acctagebucket3160, sum(ifnull(age_bucket_61_90, 0)) acctagebucket6190, sum(ifnull(age_bucket_91_plus, 0)) acctagebucket91plus, sum(ifnull(age_bucket_0, 0)) acctbalscurrentdue from (select ban, actv_date, ar_balance, age_bucket_1_30, age_bucket_31_60, age_bucket_61_90, age_bucket_91_plus, age_bucket_0, max(actv_date) max_actv_date from tlg_atb_history_a where ban in (select distinct * from (select bus_aflt_acct_nbr from ban_list ))) where actv_date = max_actv_date group by ban, actv_date) atb on ba.ban = atb.acctnum left outer join tlg_fan_info fi on fi.fan_id = ba.fan_id and fi.market = 'NBI' and ((fan_expiration_dt is null or fan_expiration_dt > date('now')) and fan_effective_dt < date('now')) where ba.ban in (select distinct * from (select bus_aflt_acct_nbr from ban_list )) UNION ALL select ba.ban, ba.market MKT_CD, ba.default_sub_market SITE_CD, ba.cnvrgd_bl_ind, atb.acctnum, atb.acctbalspastdue, atb.acctagebucket130, atb.acctagebucket3160, atb.acctagebucket6190, atb.acctagebucket91plus, atb.acctbalscurrentdue, fi.data_trmt_id acctdatatreatmentid, fi.voice_trmt_id acctvoicetreatmentid, substr(fi.fan_lbl_type, 1, 1) acctbmgliability, ifnull((select 'Y' from tlg_service_agreement s where (s.subscriber_no = '0000000000' or s.subscriber_no is null) and s.ban = ba.ban and exists (select null from tlg_ref_generic_codes g where g.gen_code = trim(s.soc) and (DATE('now') BETWEEN s.soc_effective_date AND ifnull(s.expiration_date,'4712-12-31')) OR DATE('now') BETWEEN s.effective_date AND ifnull(s.expiration_date,'4712-12-31') and gen_type like 'EON%')), 'N') acctineligibilityflag, ba.last_bal_upd_date as updatedtime from tlg_billing_account ba left outer join (select ban acctnum, (sum(ifnull(ar_balance, 0)) - sum(ifnull(age_bucket_0, 0))) acctbalspastdue, sum(ifnull(age_bucket_1_30, 0)) acctagebucket130, sum(ifnull(age_bucket_31_60, 0)) acctagebucket3160, sum(ifnull(age_bucket_61_90, 0)) acctagebucket6190, sum(ifnull(age_bucket_91_plus, 0)) acctagebucket91plus, sum(ifnull(age_bucket_0, 0)) acctbalscurrentdue from (select ban, actv_date, ar_balance, age_bucket_1_30, age_bucket_31_60, age_bucket_61_90, age_bucket_91_plus, age_bucket_0, max(actv_date) max_actv_date from tlg_atb_history_b where ban in (select distinct * from (select bus_aflt_acct_nbr from ban_list ))) where actv_date = max_actv_date group by ban, actv_date) atb on ba.ban = atb.acctnum left outer join tlg_fan_info fi on fi.fan_id = ba.fan_id and fi.market = 'NBI' and ((fan_expiration_dt is null or fan_expiration_dt > date('now')) and fan_effective_dt < date('now')) where ba.ban in (select distinct * from (select bus_aflt_acct_nbr from ban_list )) UNION ALL select ba.ban, ba.market MKT_CD, ba.default_sub_market SITE_CD, ba.cnvrgd_bl_ind, atb.acctnum, atb.acctbalspastdue, atb.acctagebucket130, atb.acctagebucket3160, atb.acctagebucket6190, atb.acctagebucket91plus, atb.acctbalscurrentdue, fi.data_trmt_id acctdatatreatmentid, fi.voice_trmt_id acctvoicetreatmentid, substr(fi.fan_lbl_type, 1, 1) acctbmgliability, ifnull((select 'Y' from tlg_service_agreement s where (s.subscriber_no = '0000000000' or s.subscriber_no is null) and s.ban = ba.ban and exists (select null from tlg_ref_generic_codes g where g.gen_code = trim(s.soc) and (DATE('now') BETWEEN s.soc_effective_date AND ifnull(s.expiration_date,'4712-12-31')) OR DATE('now') BETWEEN s.effective_date AND ifnull(s.expiration_date,'4712-12-31') and gen_type like 'EON%')), 'N') acctineligibilityflag, ba.last_bal_upd_date as updatedtime from tlg_billing_account ba left outer join (select ban acctnum, (sum(ifnull(ar_balance, 0)) - sum(ifnull(age_bucket_0, 0))) acctbalspastdue, sum(ifnull(age_bucket_1_30, 0)) acctagebucket130, sum(ifnull(age_bucket_31_60, 0)) acctagebucket3160, sum(ifnull(age_bucket_61_90, 0)) acctagebucket6190, sum(ifnull(age_bucket_91_plus, 0)) acctagebucket91plus, sum(ifnull(age_bucket_0, 0)) acctbalscurrentdue from (select ban, actv_date, ar_balance, age_bucket_1_30, age_bucket_31_60, age_bucket_61_90, age_bucket_91_plus, age_bucket_0, max(actv_date) max_actv_date from tlg_atb_history_c where ban in (select distinct * from (select bus_aflt_acct_nbr from ban_list ))) where actv_date = max_actv_date group by ban, actv_date) atb on ba.ban = atb.acctnum left outer join tlg_fan_info fi on fi.fan_id = ba.fan_id and fi.market = 'NBI' and ((fan_expiration_dt is null or fan_expiration_dt > date('now')) and fan_effective_dt < date('now')) where ba.ban in (select distinct * from (select bus_aflt_acct_nbr from ban_list )) UNION ALL select ba.ban, ba.market MKT_CD, ba.default_sub_market SITE_CD, ba.cnvrgd_bl_ind, atb.acctnum, atb.acctbalspastdue, atb.acctagebucket130, atb.acctagebucket3160, atb.acctagebucket6190, atb.acctagebucket91plus, atb.acctbalscurrentdue, fi.data_trmt_id acctdatatreatmentid, fi.voice_trmt_id acctvoicetreatmentid, substr(fi.fan_lbl_type, 1, 1) acctbmgliability, ifnull((select 'Y' from tlg_service_agreement s where (s.subscriber_no = '0000000000' or s.subscriber_no is null) and s.ban = ba.ban and exists (select null from tlg_ref_generic_codes g where g.gen_code = trim(s.soc) and (DATE('now') BETWEEN s.soc_effective_date AND ifnull(s.expiration_date,'4712-12-31')) OR DATE('now') BETWEEN s.effective_date AND ifnull(s.expiration_date,'4712-12-31') and gen_type like 'EON%')), 'N') acctineligibilityflag, ba.last_bal_upd_date as updatedtime from tlg_billing_account ba left outer join (select ban acctnum, (sum(ifnull(ar_balance, 0)) - sum(ifnull(age_bucket_0, 0))) acctbalspastdue, sum(ifnull(age_bucket_1_30, 0)) acctagebucket130, sum(ifnull(age_bucket_31_60, 0)) acctagebucket3160, sum(ifnull(age_bucket_61_90, 0)) acctagebucket6190, sum(ifnull(age_bucket_91_plus, 0)) acctagebucket91plus, sum(ifnull(age_bucket_0, 0)) acctbalscurrentdue from (select ban, actv_date, ar_balance, age_bucket_1_30, age_bucket_31_60, age_bucket_61_90, age_bucket_91_plus, age_bucket_0, max(actv_date) max_actv_date from tlg_atb_history_d where ban in (select distinct * from (select bus_aflt_acct_nbr from ban_list ))) where actv_date = max_actv_date group by ban, actv_date) atb on ba.ban = atb.acctnum left outer join tlg_fan_info fi on fi.fan_id = ba.fan_id and fi.market = 'NBI' and ((fan_expiration_dt is null or fan_expiration_dt > date('now')) and fan_effective_dt < date('now')) where ba.ban in (select distinct * from (select bus_aflt_acct_nbr from ban_list ))) ) acct_mre ON tlg_acct.market = acct_mre.mkt_cd AND tlg_acct.customer_id = acct_mre.ban OR acct_mre.ban IS NULL
+		<AffiliateAccountProfile>
+			<businessAffiliateAccountId>${Q2.RPSTRY_AFLT_ACCT_ID}</businessAffiliateAccountId>
+			<businessAffiliateAccountNumber>${Q2.BUS_AFLT_ACCT_NBR}</businessAffiliateAccountNumber>
+			<affiliateTypeCode>${Q2.AFLT_TYPE_CD}</affiliateTypeCode>
+			<customerTypeCode>${Q2.CUST_TYPE_CD}</customerTypeCode>
+			<billingCustomerName>${Q2.BLNG_FULL_NM}</billingCustomerName>
+			[[[NONE{"Q2.BLNG_FRST_NM":null, "Q2.BLNG_LST_NM":null}
+				<BillingName>
+					<firstName>${Q2.BLNG_FRST_NM}</firstName>
+					<middleName>${Q2.BLNG_MID_NM}</middleName>
+					<lastName>${Q2.BLNG_LST_NM}</lastName>
+				</BillingName>
+			]]]
+			<BillingAddress>
+				<addressLine1>${Q2.blng_str_addr_txt}</addressLine1>
+				<city>${Q2.blng_cty_nm}</city>
+				<state>${Q2.blng_st_cd}</state>
+				[[[NONE{"Q2.blng_zip_cd":null, "Q2.blng_zip_sufx_cd":null}
+					<Zip>  
+						<zipCode>${Q2.blng_zip_cd}</zipCode>
+						<zipCodeExtension>${Q2.blng_zip_sufx_cd}</zipCodeExtension>
+					</Zip>
+				]]] 
+			</BillingAddress>
+			[[[ S = Select CASE WHEN (( '${Q2.aflt_type_cd}' = "W"  OR '${Q2.aflt_type_cd}' = "X" ) AND ${Q2.acct_nbr} IS NOT NULL) THEN (Select CASE WHEN ifnull(calc_cpni_elec_cd, "X") = "C" THEN "Y" ELSE calc_cpni_elec_cd END from cpsync_sync_dti_ccr_tbl cpacct1 where cpacct1.acct_nbr = '${Q2.bus_aflt_acct_nbr}' and cpacct1.affiliate_co_cd = '${Q2.aflt_co_cd}' limit 1) WHEN ( '${Q2.aflt_type_cd}' = "W"  and ${Q2.acct_nbr} IS NOT  NULL) THEN (CASE WHEN  '${Q2.cpni_cd}' =  "C" THEN "Y" ELSE ifnull('${Q2.cpni_cd}', "X") END) WHEN ( "X" = '${Q2.aflt_type_cd}' and ${Q2.acct_nbr} IS NULL) THEN "X" ELSE (CASE WHEN '${Q2.cpni_cd}' = "C" THEN "Y" WHEN   '${Q2.cpni_cd}' = "*" THEN "X" ELSE ifnull('${Q2.cpni_cd}', "X") END) END as "cpniCode" 
+				<cpniCode>${S.cpniCode}</cpniCode>
+			]]]
+			<accountPrimaryEmailAddress>${Q2.acct_prim_eml_add_txt}</accountPrimaryEmailAddress>
+			<accountSecondaryEmailAddress>${Q2.acct_sec_eml_add_txt}</accountSecondaryEmailAddress>
+			<mrcAmount>${Q2.mrc_amt}</mrcAmount>
+			[[[NONE{"Q2.aflt_type_cd":null, "Q2.aflt_type_cd":"W"}
+				<AffiliateAccountProfileWireline>
+					<wirelineRegionCode>${Q2.rgn_cd}</wirelineRegionCode>
+					<wirelineTreatmentCode>${Q2.trtmnt_cd}</wirelineTreatmentCode>
+					<WirelineServiceAddress> 
+						<addressLine1>${Q2.srv_str_addr_txt}</addressLine1>
+						<city>${Q2.srv_cty_nm}</city>
+						<state>${Q2.srv_st_cd}</state>
+						<Zip>  
+							<zipCode>${Q2.srv_zip_cd}</zipCode>
+							<zipCodeExtension>${Q2.srv_zip_sufx_cd}</zipCodeExtension>
+						</Zip>
+					</WirelineServiceAddress>
+					<nrfPaidAmount>${Q2.nrf_paid_amt}</nrfPaidAmount>
+					[[[S5 = Select uhv_fwrln.PRD_CD as "code" ,uhv_fwrln.PRD_GRP_CD as "serviceCode" ,uhv_fwrln.PRD_QTY as "quantity" ,uhv_fwrln.PRD_ESTB_DT as "establishDate" from uhv_feature_wireline uhv_fwrln where uhv_fwrln.bid_aflt_acct_id = '${Q2.bid_aflt_acct_id}' and uhv_fwrln.bid_sub_id = 0
+					<USOC>
+						<code>${S5.code}</code>
+						<serviceCode>${S5.serviceCode}</serviceCode>
+						<quantity>${S5.quantity}</quantity>
+						<establishDate>${S5.establishDate}</establishDate>
+					</USOC>
+					]]]
+				[[[ALL{"Q2.aflt_type_cd":"S"}
+					<AffiliateSatellitePackage>  
+						<SatellitePackage>
+							<packageCode>${Q2.satlt_srv_pckg_cd}</packageCode>
+							<description>${Q2.satlt_srv_pckg_nm}</description>
+							[[[ALL{"Q2.aflt_co_cd":"K"}	
+								<productCode>DIRECTV</productCode>
+							]]]
+							[[[NONE{"Q2.aflt_co_cd":"K"}	
+								<productCode>DISH</productCode>
+							]]]
+						</SatellitePackage>
+					<satelliteHomeZoneInServiceStatusCode>${Q2.satlt_srv_hm_zn_in_srv_sts_cd}</satelliteHomeZoneInServiceStatusCode>
+					[[[NONE{"Q2.satlt_srv_contrct_start_dt":null}
+					[[[S2= Select date('${Q2.satlt_srv_contrct_start_dt}')||'Z' as satelliteContractStartDate 
+						<satelliteContractStartDate>${S2.satelliteContractStartDate}</satelliteContractStartDate>
+					]]]
+					]]]
+					[[[NONE{"Q2.satlt_srv_contrct_end_dt":null}
+					[[[S3= Select date('${Q2.satlt_srv_contrct_end_dt}')||'Z' as satelliteContractEndDate 
+						<satelliteContractEndDate>${S3.satelliteContractEndDate}</satelliteContractEndDate>
+					]]]
+					]]]
+					[[[ALL{"Q2.aflt_type_cd":"S", "Q2.aflt_co_cd":"K"}
+					<AffiliateDTVPackage>
+						<dtvCombinedBillCode>${Q2.ANCHR_ACCT_NBR_TYPE_CD}</dtvCombinedBillCode>
+						<combinedBillAccountNumber>${Q2.ANCHR_ACCT_NBR}</combinedBillAccountNumber>
+						<accountCommittmentEndDate>${Q2.ACCT_CMTNT_END_DT}</accountCommittmentEndDate>
+						<programCommittmentEndDate>${Q2.PGM_CMTNT_END_DT}</programCommittmentEndDate>
+						<hardwareCommittmentEndDate>${Q2.HRDWR_CMTNT_END_DT}</hardwareCommittmentEndDate>
+						<billCycleStartDate>${Q2.bl_cyc_start_dt}</billCycleStartDate>
+					    <billCycleEndDate>${Q2.bl_cyc_end_dt}</billCycleEndDate>
+						<combinedBillEffectiveDate>${Q2.CMBND_BL_EFF_DT}</combinedBillEffectiveDate>
+						<contactWorkAreaCode>${Q2.WRK_PHN_CONTCT_AREA_CD}</contactWorkAreaCode>
+						<contactWorkPhoneNumber>${Q2.WRK_PHN_CONTCT_PHN_NBR}</contactWorkPhoneNumber>
+						<contactWorkExt>${Q2.WRK_PHN_CONTCT_EXTN_TXT}</contactWorkExt>
+						<contactHomeAreaCode>${Q2.HM_PHN_CONTCT_AREA_CD}</contactHomeAreaCode>
+						<contactHomePhoneNumber>${Q2.HM_PHN_CONTCT_PHN_NBR}</contactHomePhoneNumber>
+						<contactHomeExt>${Q2.HM_PHN_CONTCT_EXTN_TXT}</contactHomeExt>
+					</AffiliateDTVPackage>
+					]]]
+					</AffiliateSatellitePackage>
+				]]]
+				[[[ALL{"Q2.aflt_type_cd":"I"}
+				<AffiliateDslPackage>
+					<DslPackage> 
+					<packageCode>${Q2.dsl_speed_cd}</packageCode>
+					<description>${Q2.dsl_speed_nm}</description>
+					[[[ALL{"Q2.dry_loop_ind":"Y"}
+						<productCode>DIRECTV</productCode>
+					]]]
+					[[[NONE{"Q2.dry_loop_ind":"Y"}
+						<productCode>DISH</productCode>
+					]]]
+					</DslPackage>
+					<maxspeed>${Q2.dsl_max_speed_nbr_txt}</maxspeed>
+				</AffiliateDslPackage>
+				]]]
+				
+				[[[ANY{"Q2.aflt_type_cd":"T", "Q2.aflt_type_cd":"L"}
+				<AffiliateAccessLinePackage>
+					<AccountDetails>
+						<accountStatus>${Q2.acct_sts_cd}</accountStatus>
+						<accountCreationDate>${Q2.acct_create_date}</accountCreationDate>
+					</AccountDetails>
+					<companyCode>${Q2.aflt_co_cd}</companyCode>
+					<acnaCode>${Q2.accs_carr_nm_abbr_cd}</acnaCode>
+					<creditClass>${Q2.crdt_cls_cd}</creditClass>
+					<classOfService>${Q2.cls_of_srv_cd}</classOfService>
+					<consumerMarketSegmentCode>${Q2.cnsmr_mkt_sgmnt_cd}</consumerMarketSegmentCode>
+					[[[NONE{"Q2.srv_prd_cd":null}
+					<AccessLinePackage> 
+						<packageCode>${Q2.srv_prd_cd}</packageCode>
+						<productCode>TELCO</productCode>
+					</AccessLinePackage>
+					
+					]]]
+					<AccountIndicators> 
+						[[[All{"Q2.wirls_ftprnt_ind":"Y"}		
+						<wirelessFootprintIndicator>true</wirelessFootprintIndicator>
+						]]]
+						[[[NONE{"Q2.wirls_ftprnt_ind":"Y"}
+						<wirelessFootprintIndicator>false</wirelessFootprintIndicator>
+						]]]
+						[[[All{"Q2.yahoo_dial_up_sub_ind":"Y"}
+						<yahooDialupIndicator>true</yahooDialupIndicator>
+						]]]
+						[[[NONE{"Q2.yahoo_dial_up_sub_ind":"Y"}
+						<yahooDialupIndicator>false</yahooDialupIndicator>
+						]]]
+						[[[All{"Q2.dry_loop_ind":"Y"}
+						<dryLoopIndicator>true</dryLoopIndicator>
+						]]]
+						[[[NONE{"Q2.dry_loop_ind":"Y"}
+						<dryLoopIndicator>flase</dryLoopIndicator>
+						]]]
+					</AccountIndicators>
+					<treatmentHistoryCode>${Q2.trtmnt_hist_arry_cd}</treatmentHistoryCode>
+					<preferredLanguageCode>${Q2.acct_pref_lang_cd}</preferredLanguageCode>
+				</AffiliateAccessLinePackage>
+				]]]
+				
+				[[[NONE{"Q2.iptv_pckg_cd":null}
+				[[[ALL{"Q2.aflt_type_cd": "X"}
+				<AffiliateUversePackage>
+				<UversePackage>
+					<packageCode>${Q2.iptv_pckg_cd}</packageCode>
+					<description>${Q2.iptv_pckg_nm}</description>
+					<productCode>UIPTV</productCode>
+				</UversePackage>
+				<NetworkDetails> 
+					<uverseLoopDistance>0.0</uverseLoopDistance>
+					<networkAccessDeviceCode>${Q1.NTWRK_ACCS_DVC_CD}</networkAccessDeviceCode>
+					<voipLineQuantity>${Q2.voip_ln_qty}</voipLineQuantity>
+				</NetworkDetails>
+				<PaymentDetails>
+					[[[All{"Q2.adv_pay_reqd_ind":"Y"}
+						<advancedPayRequiredIndicator>true</advancedPayRequiredIndicator>
+					]]]
+					[[[NONE{"Q2.adv_pay_reqd_ind":"Y"}
+						<advancedPayRequiredIndicator>false</advancedPayRequiredIndicator>
+					]]]
+					[[[All{"Q2.adv_pay_paid_ind":"Y"}
+						<advancedPayPaidIndicator>true</advancedPayPaidIndicator>
+					]]]
+					[[[NONE{"Q2.adv_pay_paid_ind":"Y"}
+						<advancedPayPaidIndicator>flase</advancedPayPaidIndicator>
+					]]]
+				</PaymentDetails>
+				
+				[[[NONE{"Q2.uvrs_drcty_lstn_cd": null}
+				[[[S = Select substr('${Q2.uvrs_drcty_lstn_cd}', 1, 1) as col1
+					<directoryListing>${S.col1}</directoryListing>
+				]]]
+				]]]
+					
+				<SpendingLimits>  
+					<videoOnDemand>${Q2.uvrs_vod_spndg_lmt_amt}</videoOnDemand>
+					<payPerView>${Q2.uvrs_ppv_spndg_lmt_amt}</payPerView>
+				</SpendingLimits>
+					<billCycleStartDate>${Q2.bl_cyc_start_dt}</billCycleStartDate>
+					<billCycleEndDate>${Q2.bl_cyc_end_dt}</billCycleEndDate>
+				</AffiliateUversePackage>
+				
+				]]]
+				]]]
+				
+				[[[NONE{"Q2.uvrs_hsi_speed_cd":null}
+					[[[ALL{"Q2.aflt_type_cd": "X"}
+					<AffiliateUversePackage>
+						<UversePackage>
+							<packageCode>${Q2.uvrs_hsi_speed_cd}</packageCode>
+							<description>${Q2.uvrs_hsi_speed_nm}</description>
+							<productCode>UHSI</productCode>
+						</UversePackage>
+						<NetworkDetails> 
+							<uverseLoopDistance>0.0</uverseLoopDistance>
+							<networkAccessDeviceCode>${Q1.NTWRK_ACCS_DVC_CD}</networkAccessDeviceCode>
+							<voipLineQuantity>${Q2.voip_ln_qty}</voipLineQuantity>
+						</NetworkDetails>
+						<PaymentDetails>
+						[[[All{"Q2.adv_pay_reqd_ind":"Y"}
+							<advancedPayRequiredIndicator>true</advancedPayRequiredIndicator>
+						]]]
+						[[[NONE{"Q2.adv_pay_reqd_ind":"Y"}
+							<advancedPayRequiredIndicator>false</advancedPayRequiredIndicator>
+						]]]
+						[[[All{"Q2.adv_pay_paid_ind":"Y"}
+							<advancedPayPaidIndicator>true</advancedPayPaidIndicator>
+						]]]
+						[[[NONE{"Q2.adv_pay_paid_ind":"Y"}
+							<advancedPayPaidIndicator>false</advancedPayPaidIndicator>
+						]]]	
+						</PaymentDetails>
+						[[[S = Select substr('${Q2.uvrs_drcty_lstn_cd}', 1, 1) as col1
+							<directoryListing>${S.col1}</directoryListing>
+						]]]
+						<SpendingLimits>  
+							<videoOnDemand>${Q2.uvrs_vod_spndg_lmt_amt}</videoOnDemand>
+							<payPerView>${Q2.uvrs_ppv_spndg_lmt_amt}</payPerView>
+						</SpendingLimits>
+						<billCycleStartDate>${Q2.bl_cyc_start_dt}</billCycleStartDate>
+						<billCycleEndDate>${Q2.bl_cyc_end_dt}</billCycleEndDate>
+					</AffiliateUversePackage>
+					]]]
+				]]]
+				
+				[[[NONE{"Q2.uvrs_voip_pln_cd":null}
+					[[[ALL{"Q2.aflt_type_cd": "X"}
+						<AffiliateUversePackage>
+							<UversePackage>
+								<packageCode>${Q2.uvrs_voip_pln_cd}</packageCode>
+								<description>${Q2.uvrs_voip_pln_nm}</description>
+								<productCode>UVOIP</productCode>
+							</UversePackage>
+							<NetworkDetails> 
+								<uverseLoopDistance>0.0</uverseLoopDistance>
+								<networkAccessDeviceCode>${Q1.NTWRK_ACCS_DVC_CD}</networkAccessDeviceCode>
+								<voipLineQuantity>${Q2.voip_ln_qty}</voipLineQuantity>
+							</NetworkDetails>
+							<PaymentDetails>
+							[[[All{"Q2.adv_pay_reqd_ind":"Y"}
+								<advancedPayRequiredIndicator>true</advancedPayRequiredIndicator>
+							]]]
+							[[[NONE{"Q2.adv_pay_reqd_ind":"Y"}
+								<advancedPayRequiredIndicator>false</advancedPayRequiredIndicator>
+							]]]
+							[[[All{"Q2.adv_pay_paid_ind":"Y"}
+								<advancedPayPaidIndicator>true</advancedPayPaidIndicator>
+							]]]
+							[[[NONE{"Q2.adv_pay_paid_ind":"Y"}
+								<advancedPayPaidIndicator>false</advancedPayPaidIndicator>
+							]]]	
+							</PaymentDetails>
+							[[[S = Select substr('${Q2.uvrs_drcty_lstn_cd}', 1, 1) as col1
+								<directoryListing>${S.col1}</directoryListing>
+							]]]
+							<SpendingLimits>  
+								<videoOnDemand>${Q2.uvrs_vod_spndg_lmt_amt}</videoOnDemand>
+								<payPerView>${Q2.uvrs_ppv_spndg_lmt_amt}</payPerView>
+							</SpendingLimits>
+							<billCycleStartDate>${Q2.bl_cyc_start_dt}</billCycleStartDate>
+							<billCycleEndDate>${Q2.bl_cyc_end_dt}</billCycleEndDate>
+						</AffiliateUversePackage>			
+					]]]
+				]]]
+				</AffiliateAccountProfileWireline>
+			]]]
+			[[[ALL{"Q2.aflt_type_cd": "W"}
+			<AffiliateAccountProfileWireless>
+			<telcoCombinedBillIndicator>${Q2.cmbnd_bl_ind}</telcoCombinedBillIndicator>
+			[[[NONE{"Q2.ent_acct_type_cd": "*"}
+			<enterpriseAccountTypeCode>${Q2.ent_acct_type_cd}</enterpriseAccountTypeCode>
+			]]]
+			<BillingMarket>
+			
+			[[[NONE{"Q2.market": null}
+			<billingMarket>${Q2.market}</billingMarket>
+			]]]
+			[[[ALL{"Q2.market": null}
+			<billingMarket>${Q2.mkt_cd}</billingMarket>
+			]]]
+			<billingSubMarket>${Q2.billingSubMarket}</billingSubMarket>
+			</BillingMarket>
+			[[[ALL{"Q2.prepd_ind": "Y"}
+			<productCode>PREPAID</productCode>
+			]]]
+			[[[NONE{"Q2.prepd_ind": "Y"}
+			<productCode>POSTPAID</productCode>
+			]]]
+			<accountTypeCode>${Q2.acct_type_cd}</accountTypeCode>
+			<accountSubTypeCode>${Q2.acct_sub_type_cd}</accountSubTypeCode>
+			<billingSystemGeoId>${Q2.bill_sys_geo_id}</billingSystemGeoId>
+			<BMG>
+			[[[ANY{"Q2.bmg_ind": "YS", "Q2.bmg_ind": "YU"}
+			<bmgIndicator>true</bmgIndicator>
+			]]]
+			[[[NONE{"Q2.bmg_ind": "YS", "Q2.bmg_ind": "YU"}
+			<bmgIndicator>false</bmgIndicator>
+			]]]
+			<fan>${Q2.fan_nbr}</fan>
+			<fanDescription>${Q2.fan_nm}</fanDescription>
+			[[[R = Select fnReplaceAtEnd(${Q2.fan_disc_amt},'.0','') as fan_disc_amt
+			<fanDiscount>${R.fan_disc_amt}</fanDiscount>
+			]]]
+			[[[ANY{"Q2.acctbmgliability": "CLB", "Q2.acctbmgliability": "C"}
+			<bmgLiabilityType>CRU</bmgLiabilityType>
+			]]]
+			[[[ANY{"Q2.acctbmgliability": "ILB", "Q2.acctbmgliability": "I"}
+			<bmgLiabilityType>IRU</bmgLiabilityType>
+			]]]
+			<upgradeVoiceTreatmentID>${Q2.acctvoicetreatmentid}</upgradeVoiceTreatmentID>
+			<upgradeDataTreatmentID>${Q2.acctdatatreatmentid}</upgradeDataTreatmentID>
+			<bmgEnterpriseType>${Q2.ENTERPRISE_TYPE}</bmgEnterpriseType>
+			</BMG>
+			<Billing> 
+			[[[NONE{"Q2.ltst_bl_dt": null}
+			[[[S = Select date('${Q2.ltst_bl_dt}')||'Z' as latestBillDate 
+			<latestBillDate>${S.latestBillDate}</latestBillDate>
+			]]]
+			]]]
+			[[[S = Select ifnull(substr('${Q2.blng_lang_cd}', 1, 1), 'E') as billingLanguage
+			<billingLanguage>${S.billingLanguage}</billingLanguage>
+			]]]
+			[[[R = Select fnReplaceAtEnd(${Q2.tot_past_due_amt},'.0','') as tot_past_due_amt
+			<totalAmountPastDue>${R.tot_past_due_amt}</totalAmountPastDue>
+			]]]
+			<AccountBalanceDetails>
+			<currentAmountDue>${Q2.acctbalscurrentdue}</currentAmountDue>
+			<amountUnder30Days>${Q2.acctagebucket130}</amountUnder30Days>
+			<amountOver30Days>${Q2.acctagebucket3160}</amountOver30Days>
+			<amountOver60Days>${Q2.acctagebucket6190}</amountOver60Days>
+			<amountOver90Days>${Q2.acctagebucket91plus}</amountOver90Days>
+			</AccountBalanceDetails>
+			<pastDueBalance>${Q2.acctbalspastdue}</pastDueBalance>
+			<isPaperlessBillSetup>${Q2.pprls_bl_enrl_ind}</isPaperlessBillSetup>
+			<isAutopaySetup>${Q2.atpy_ind}</isAutopaySetup>
+			
+			[[[NONE{"Q2.amount_disputed": null, "Q2.bill_date_disputed":null}
+			<DisputeBill>
+			<disputedAmount>${Q2.amount_disputed}</disputedAmount>
+			<disputedDate>${Q2.bill_date_disputed}</disputedDate>
+			</DisputeBill>
+			]]]
+			
+			<preferredPaymentMethod>${Q2.bl_pmt_mthd_cd}</preferredPaymentMethod>
+			</Billing> 
+			<AccountStartDate>  
+			[[[NONE{"Q2.start_service_date": null}
+			[[[S= Select date('${Q2.start_service_date}')||'Z' as effectiveDate
+			<effectiveDate>${S.effectiveDate}</effectiveDate>
+			]]]
+			]]]
+			[[[NONE{"Q2.acct_orgnl_srv_dt": null}
+			[[[S= Select date('${Q2.acct_orgnl_srv_dt}')||'Z' as effectiveDate
+			<effectiveDate>${S.effectiveDate}</effectiveDate>
+			]]]
+			]]]
+			</AccountStartDate>
+			[[[R = Select fnReplaceAtEnd(${Q2.actv_mobl_qty},'.0','') as actv_mobl_qty
+			<numberOfMobiles>${R.actv_mobl_qty}</numberOfMobiles>	
+			]]]
+			[[[NONE{"Q2.acct_note_1_prior_ind": null, "Q2.acct_note_1_txt": null}
+			<AccountNotes>
+			[[[ALL{"Q2.acct_note_1_prior_ind": "Y"}
+			<noteType>P</noteType>
+			]]]
+			[[[ALL{"Q2.acct_note_1_prior_ind": "N"}
+			<noteType>R</noteType>
+			]]]
+			
+			[[[NONE{"Q2.acct_note_1_dt": null}
+			[[[S = select date('${Q2.acct_note_1_dt}')||'T'|| fnFormatDate('${Q2.acct_note_1_dt}','yyyy-MM-dd HH:mm:ss', 'hh:mm:ss')||'Z' as dateTimeEntered
+			<dateTimeEntered>${S.dateTimeEntered}</dateTimeEntered>
+			]]]
+			]]]
+			<noteText>${Q2.acct_note_1_txt}</noteText>
+			</AccountNotes>
+			]]]
+			
+			[[[NONE{"Q2.acct_note_2_prior_ind": null, "Q2.acct_note_2_txt": null}
+			<AccountNotes>
+			[[[ALL{"Q2.acct_note_2_prior_ind": "Y"}
+			<noteType>P</noteType>
+			]]]
+			[[[ALL{"Q2.acct_note_2_prior_ind": "N"}
+			<noteType>R</noteType>
+			]]]
+			[[[NONE{"Q2.acct_note_2_dt": null}
+			[[[S = select date('${Q2.acct_note_2_dt}')||'T'||fnFormatDate('${Q2.acct_note_2_dt}','yyyy-MM-dd HH:mm:ss', 'hh:mm:ss')||'Z' as dateTimeEntered
+			<dateTimeEntered>${S.dateTimeEntered}</dateTimeEntered>
+			]]]
+			]]]
+			<noteText>${Q2.acct_note_2_txt}</noteText>
+			</AccountNotes>
+			]]]
+			[[[NONE{"Q2.acct_note_3_prior_ind": null, "Q2.acct_note_3_txt": null}
+			<AccountNotes>
+			[[[ALL{"Q2.acct_note_3_prior_ind": "Y"}
+			<noteType>P</noteType>
+			]]]
+			[[[ALL{"Q2.acct_note_3_prior_ind": "N"}
+			<noteType>R</noteType>
+			]]]
+			[[[NONE{"Q2.acct_note_3_dt": null}
+			[[[S = select date('${Q2.acct_note_3_dt}')||'T'|| fnFormatDate('${Q2.acct_note_3_dt}','yyyy-MM-dd HH:mm:ss', 'hh:mm:ss')||'Z' as dateTimeEntered
+			<dateTimeEntered>${S.dateTimeEntered}</dateTimeEntered>
+			]]]
+			]]]
+			<noteText>${Q2.acct_note_3_txt}</noteText>
+			</AccountNotes>
+			]]]
+			[[[NONE{"Q2.acct_note_4_prior_ind": null, "Q2.acct_note_4_txt": null}
+			<AccountNotes>
+			[[[ALL{"Q2.acct_note_4_prior_ind": "Y"}
+			<noteType>P</noteType>
+			]]]
+			[[[ALL{"Q2.acct_note_4_prior_ind": "N"}
+			<noteType>R</noteType>
+			]]]
+			[[[NONE{"Q2.acct_note_4_dt": null}
+			[[[S = select date('${Q2.acct_note_4_dt}')||'T'||fnFormatDate('${Q2.acct_note_4_dt}','yyyy-MM-dd HH:mm:ss', 'hh:mm:ss')||'Z' as dateTimeEntered
+			<dateTimeEntered>${S.dateTimeEntered}</dateTimeEntered>
+			]]]
+			]]]
+			<noteText>${Q2.acct_note_4_txt}</noteText>
+			</AccountNotes>
+			]]]
+			[[[NONE{"Q2.acct_note_5_prior_ind": null, "Q2.acct_note_5_txt": null}
+				<AccountNotes>
+				[[[ALL{"Q2.acct_note_5_prior_ind": "Y"}
+				<noteType>P</noteType>
+				]]]
+				[[[ALL{"Q2.acct_note_5_prior_ind": "N"}
+				<noteType>R</noteType>
+				]]]
+				[[[NONE{"Q2.acct_note_5_dt": null}
+				[[[S = select date('${Q2.acct_note_5_dt}')||'T'|| fnFormatDate('${Q2.acct_note_5_dt}','yyyy-MM-dd HH:mm:ss', 'hh:mm:ss')||'Z' as dateTimeEntered
+				<dateTimeEntered>${S.dateTimeEntered}</dateTimeEntered>
+				]]]
+				]]]
+				<noteText>${Q2.acct_note_5_txt}</noteText>
+				</AccountNotes>
+			]]]
+			[[[NONE{"Q2.acct_note_6_prior_ind": null, "Q2.acct_note_6_txt": null}
+				<AccountNotes>
+				[[[ALL{"Q2.acct_note_6_prior_ind": "Y"}
+				<noteType>P</noteType>
+				]]]
+				[[[ALL{"Q2.acct_note_6_prior_ind": "N"}
+				<noteType>R</noteType>
+				]]]
+				[[[NONE{"Q2.acct_note_6_dt": null}
+				[[[S = select date('${Q2.acct_note_6_dt}')||'T'|| fnFormatDate('${Q2.acct_note_6_dt}','yyyy-MM-dd HH:mm:ss', 'hh:mm:ss')||'Z' as dateTimeEntered
+				<dateTimeEntered>${S.dateTimeEntered}</dateTimeEntered>
+				]]]
+				]]]
+				<noteText>${Q2.acct_note_6_txt}</noteText>
+				</AccountNotes>
+			]]]
+			[[[NONE{"Q2.acct_note_7_prior_ind": null, "Q2.acct_note_7_txt": null}
+				<AccountNotes>
+					[[[ALL{"Q2.acct_note_7_prior_ind": "Y"}
+						<noteType>P</noteType>
+					]]]
+					[[[ALL{"Q2.acct_note_7_prior_ind": "N"}
+						<noteType>R</noteType>
+					]]]
+					[[[NONE{"Q2.acct_note_7_dt": null}
+					[[[S = select date('${Q2.acct_note_7_dt}')||'T'|| fnFormatDate('${Q2.acct_note_7_dt}','yyyy-MM-dd HH:mm:ss', 'hh:mm:ss')||'Z' as dateTimeEntered
+					<dateTimeEntered>${S.dateTimeEntered}</dateTimeEntered>
+					]]]
+					]]]
+					<noteText>${Q2.acct_note_7_txt}</noteText>
+				</AccountNotes>
+			]]]
+			[[[NONE{"Q2.acct_note_8_prior_ind": null, "Q2.acct_note_8_txt": null}
+				<AccountNotes>
+				[[[ALL{"Q2.acct_note_8_prior_ind": "Y"}
+				<noteType>P</noteType>
+				]]]
+				[[[ALL{"Q2.acct_note_8_prior_ind": "N"}
+				<noteType>R</noteType>
+				]]]
+				[[[NONE{"Q2.acct_note_8_dt": null}
+				[[[S = select date('${Q2.acct_note_8_dt}')||'T'|| fnFormatDate('${Q2.acct_note_8_dt}','yyyy-MM-dd HH:mm:ss', 'hh:mm:ss')||'Z' as dateTimeEntered
+				<dateTimeEntered>${S.dateTimeEntered}</dateTimeEntered>
+				]]]
+				]]]
+				<noteText>${Q2.acct_note_8_txt}</noteText>
+				</AccountNotes>
+			]]]
+			[[[NONE{"Q2.acct_note_9_prior_ind": null, "Q2.acct_note_9_txt": null}
+			<AccountNotes>
+			[[[ALL{"Q2.acct_note_9_prior_ind": "Y"}
+			<noteType>P</noteType>
+			]]]
+			[[[ALL{"Q2.acct_note_9_prior_ind": "N"}
+			<noteType>R</noteType>
+			]]]
+			[[[NONE{"Q2.acct_note_9_dt": null}
+			[[[S = select date('${Q2.acct_note_9_dt}')||'T'|| fnFormatDate('${Q2.acct_note_9_dt}','yyyy-MM-dd HH:mm:ss', 'hh:mm:ss')||'Z' as dateTimeEntered
+			<dateTimeEntered>${S.dateTimeEntered}</dateTimeEntered>
+			]]]
+			]]]
+			<noteText>${Q2.acct_note_9_txt}</noteText>
+			</AccountNotes>
+			]]]
+			[[[NONE{"Q2.acct_note_10_prior_ind": null, "Q2.acct_note_10_txt": null}
+			<AccountNotes>
+			[[[ALL{"Q2.acct_note_10_prior_ind": "Y"}
+			<noteType>P</noteType>
+			]]]
+			[[[ALL{"Q2.acct_note_10_prior_ind": "N"}
+			<noteType>R</noteType>
+			]]]
+			[[[NONE{"Q2.acct_note_10_dt": null}
+			[[[S = select date('${Q2.acct_note_10_dt}')||'T'|| fnFormatDate('${Q2.acct_note_10_dt}','yyyy-MM-dd HH:mm:ss', 'hh:mm:ss')||'Z' as dateTimeEntered
+			<dateTimeEntered>${S.dateTimeEntered}</dateTimeEntered>
+			]]]
+			]]]
+			<noteText>${Q2.acct_note_10_txt}</noteText>
+			</AccountNotes>
+			]]]
+			<AccountStatus>
+			<status>${Q2.status}</status>
+			</AccountStatus>
+			
+			
+			[[[NONE{"Q2.acctineligibilityflag": null}
+			[[[ALL{"S.col1":"N"}
+			<eligibilityIndicator>true</eligibilityIndicator>
+			]]]
+			[[[NONE{"S.col1":"N"}
+			<eligibilityIndicator>false</eligibilityIndicator>
+			]]]
+			]]]
+			
+			[[[ALL{"Q2.acctineligibilityflag": null}
+			<eligibilityIndicator>true</eligibilityIndicator>
+			]]]
+			
+			
+			<treatmentCode>${Q2.col_waiver_ind}</treatmentCode>
+			<repositoryAffiliateAccountID>${Q2.rpstry_aflt_acct_id}</repositoryAffiliateAccountID>
+			<Revenue>
+			<averageRevenue>
+			[[[S = Select printf('%g', round(${Q2.intnl_dial_rvnu_3_mnth_avg_amt},2)) as col1
+			<internationalDialingRevenue>${S.col1}</internationalDialingRevenue>
+			]]]
+			[[[S = Select printf('%g', round(${Q2.intnl_roam_rvnu_3_mnth_avg_amt},2)) as col1
+			<internationalRoamingRevenue>${S.col1}</internationalRoamingRevenue>
+			]]]
+			</averageRevenue>
+			<currentRevenue>
+			[[[R = Select fnReplaceAtEnd(${Q2.intnl_dial_rvnu_amt},'.0','') as intnl_dial_rvnu_amt, fnReplaceAtEnd(${Q2.intnl_roam_rvnu_amt},'.0','') as intnl_roam_rvnu_amt
+			<internationalDialingRevenue>${R.intnl_dial_rvnu_amt}</internationalDialingRevenue>
+			<internationalRoamingRevenue>${R.intnl_roam_rvnu_amt}</internationalRoamingRevenue>
+			]]]
+			</currentRevenue>
+			</Revenue>	
+			[[[ALL{"Q2.cnvrgd_bl_ind": "Y"}
+			<cnvrg_bl_ind>true</cnvrg_bl_ind>
+			]]]
+			[[[NONE{"Q2.cnvrgd_bl_ind": "Y"}
+			<cnvrg_bl_ind>false</cnvrg_bl_ind>
+			]]]
+			</AffiliateAccountProfileWireless>
+			]]]
+			[[[Q3 = Select ifnull(tlg_serv_agg.subrmobileineligibilityflag,'N') as upgradeEligibilityIndicator , ifnull(cv.ltv_value,uhv_sub.ltv_scr_cd) as lifetimeValueScore , uhv_sub.*, fnReplaceAtEnd(?,'.0','') as cmpnt_mrc_amt, tlg_sub_nrt.sub_status, tlg_sub_nrt.unit_esn, CASE WHEN length(tlg_acct.default_sub_market) >=3 THEN substr(tlg_acct.default_sub_market,1,3) WHEN length(uhv_acct.site_cd) >=3 THEN substr(uhv_acct.site_cd,1,3) ELSE NULL END as "billingSubMarket", tlg_sub_nrt.imei_type, tlg_sub_nrt.nfc_cap, tlg_sub_nrt.manf_name, tlg_sub_nrt.item_sdesc, tlg_sub_nrt.tech_type, tlg_sub_nrt.commit_start_date, tlg_sub_nrt.commit_end_date, tlg_sub_nrt.init_activation_date, tlg_serv_agg.subrmobileineligibilityflag, tlg_serv_agg.subreonsoc, tlg_contract.subrlastearlyupgradedate, tlg_contract.subrlastupgradedate, tlg_contract.subrnumberofupgradein12months, cv.ltv_value, tlg_bill_subr.subrctnnumoffnetminscycle1, tlg_bill_subr.subrctnnumoffnetminscycle2, tlg_bill_subr.subrctnnumoffnetminscycle3, tlg_bill_ac.subrnetwork, tlg_sub_nrt.subrltetype  from (uhv_account uhv_acct LEFT OUTER JOIN uhv_subscriber uhv_sub on uhv_acct.bid_aflt_acct_id = uhv_sub.bid_aflt_acct_id and uhv_acct.bid_aflt_acct_id = '${Q2.bid_aflt_acct_id}' and CASE WHEN uhv_acct.aflt_type_cd = 'X' and uhv_acct.CMBND_BL_IND = 'Y' and uhv_sub.srv_type_cd = 'DTV' THEN 'N' else 'Y' end = 'Y' and uhv_sub.accs_mthd_type_cd = 'C') LEFT OUTER JOIN tlg_billing_account tlg_acct ON tlg_acct.customer_id = uhv_acct.bus_aflt_acct_nbr LEFT OUTER JOIN (SELECT tlg_sub.subscriber_no, tlg_sub.customer_id, tlg_sub.market, tlg_sub.sub_status, tlg_sub.commit_start_date, tlg_sub.commit_end_date, tlg_pd.unit_esn, tlg_imei.imei_type, tlg_imei.nfc_cap, tlg_sub.init_activation_date, tlg_manf.manf_name, tlg_id.item_sdesc, ccr_sub.subrdevicefirstondate, tlg_sub.sub_status_rsn_code, ccr_sub.subrdevimeiserialnum , ccr_sub.subrdevbearertech, ccr_sub.subrltetype , case when tlg_sub.tech_type = "G" then "GSM" when tlg_sub.tech_type = "GU" then "GSM-UMTS" when tlg_sub.tech_type = "C" then "GSM" when tlg_sub.tech_type = "GG" then "GSM-GAIT" when tlg_sub.tech_type = "CG" then "GSM" when tlg_sub.tech_type = "GL" then "lte" else null end as "tech_type" FROM (SELECT max_ctn_seq_no, cnt_max_ctn_seq_no, max_sub_status_date, cnt_max_sub_status_date, subscriber_no, customer_id, market, commit_start_date, commit_end_date, sub_status, init_activation_date, sub_status_rsn_code, tech_type From (Select Max(sr.ctn_seq_no) max_ctn_seq_no, Count(sr.ctn_seq_no) cnt_max_ctn_seq_no, Max(sr.sub_status_date) max_sub_status_date, Count(sr.sub_status_date) cnt_max_sub_status_date, sr.subscriber_no, customer_id, market, migration_market, commit_start_date, commit_end_date, sub_status, init_activation_date, sub_status_rsn_code, tech_type, sub_status_date, ctn_seq_no From tlg_subscriber sr Where customer_id In (Select bus_aflt_acct_nbr From ban_list) And subscriber_no In (Select rpstry_aflt_srv_accs_nbr From subr_list))Where (cnt_max_ctn_seq_no = 1 And ctn_seq_no = max_ctn_seq_no) Or (cnt_max_ctn_seq_no > 1 And cnt_max_sub_status_date = 1 And ctn_seq_no = max_ctn_seq_no And sub_status_date = max_sub_status_date) Or (cnt_max_ctn_seq_no > 1 And cnt_max_sub_status_date > 1 And market = migration_market And ctn_seq_no = max_ctn_seq_no And sub_status_date = max_sub_status_date)) tlg_sub JOIN tlg_physical_device tlg_pd ON tlg_sub.sub_status IN ('A', 'S') AND tlg_pd.customer_id = tlg_sub.customer_id AND tlg_pd.subscriber_no = tlg_sub.subscriber_no AND tlg_pd.market = tlg_sub.market AND tlg_pd.expiration_date IS NULL AND tlg_pd.equ_type = "I" LEFT OUTER JOIN ( select subrnum ,subrdevicefirstondate, subrdevimeiserialnum , subrdevbearertech , subrltetype ,subrmkt from ccr_subscriber union select subrnum ,subrdevicefirstondate, subrdevimeiserialnum , null , subrltetype,null from ccr_device_subrnum d left join ccr_stage_device_firston s on d.subrimei=s.imei) ccr_sub ON tlg_sub.SUBSCRIBER_NO = ccr_sub.SUBRNUM AND tlg_sub.market = ccr_sub.subrmkt LEFT OUTER JOIN tlg_ref_imei_frequency tlg_imei ON tlg_pd.unit_esn BETWEEN tlg_imei.from_imei AND tlg_imei.to_imei AND tlg_imei.frequency = '1900' LEFT OUTER JOIN tlg_ref_item_definition tlg_id ON ifnull(tlg_pd.item_id, -1) = tlg_id.item_id AND ifnull(tlg_pd.equ_type, -1) = tlg_id.equ_type AND ifnull(tlg_pd.market, -1) = tlg_id.market LEFT OUTER JOIN tlg_ref_manufacturer tlg_manf ON ifnull(tlg_id.manf_cd, -1) = tlg_manf.manf_cd) tlg_sub_nrt ON uhv_sub.rpstry_aflt_srv_accs_nbr = tlg_sub_nrt.subscriber_no and tlg_sub_nrt.subscriber_no = tlg_acct.customer_id LEFT OUTER JOIN (select tlg_sub.customer_id, tlg_sub.subscriber_no, case when ifnull(tlg_sub.awe_blue_prov, NULL) = 'Y' then 'BLUE' else (case when ifnull(tlg_sub.sub_network, NULL) = 'D' then 'RED' else NULL end) end as "subrnetwork" from (select sr.subscriber_no, sr.customer_id, sr.sub_status, sr.awe_blue_prov, sr.sub_network, case when sr.market = sr.migration_market then '0' else '1' end as "rank" from tlg_subscriber sr where sr.subscriber_no IN (select rpstry_aflt_srv_accs_nbr from subr_list ) AND sr.sub_status IN ('A', 'S') group by sr.subscriber_no order by sr.sub_status_date desc, sr.ctn_seq_no desc)tlg_sub where "rank" = 1) tlg_bill_ac ON uhv_sub.rpstry_aflt_srv_accs_nbr = tlg_bill_ac.subscriber_no and tlg_acct.customer_id = tlg_bill_ac.customer_id LEFT OUTER JOIN ( select ban , subscriber_no, ctn_num_off_net_mins, max(case when "rank" = 1 then ctn_num_off_net_mins else null end) as "subrctnnumoffnetminscycle1" , max(case when "rank" = 2 then ctn_num_off_net_mins else null end) as "subrctnnumoffnetminscycle2", max(case when "rank" = 3 then ctn_num_off_net_mins else null end) as "subrctnnumoffnetminscycle3" from (select ban, ctn_num_off_net_mins, subscriber_no, (select count(*)+1 from tlg_bill_subscriber b where a.ban = b.ban and a.subscriber_no = b.subscriber_no and a.bill_seq_no < b.bill_seq_no) as "rank" from tlg_bill_subscriber a order by a.ban, a.subscriber_no, a.bill_seq_no desc) where "rank" <= 3 group by ban) tlg_bill_subr on tlg_bill_subr.subscriber_no = uhv_sub.rpstry_aflt_srv_accs_nbr and tlg_bill_subr.ban = tlg_acct.customer_id LEFT OUTER JOIN (SELECT DISTINCT 'Y' EON_IND, 'Y' SUBRMOBILEINELIGIBILITYFLAG, 'Y' SUBREONSOC, s.BAN,s.SUBSCRIBER_NO FROM tlg_service_agreement s WHERE EXISTS (SELECT NULL FROM tlg_ref_generic_codes g WHERE g.gen_code = TRIM (s.soc) AND (DATE('now') BETWEEN s.soc_effective_date AND ifnull(s.expiration_date,'4712-12-31')) OR DATE('now') BETWEEN s.effective_date AND ifnull(s.expiration_date,'4712-12-31') AND gen_type LIKE 'EON%') AND s.ban IN ( SELECT bus_aflt_acct_nbr FROM ban_list ) AND s.subscriber_no IN ( SELECT rpstry_aflt_srv_accs_nbr FROM subr_list ))tlg_serv_agg on tlg_serv_agg.subscriber_no = uhv_sub.rpstry_aflt_srv_accs_nbr and tlg_serv_agg.ban = tlg_acct.customer_id LEFT OUTER JOIN (select subrnumberofupgradein12months ,subrlastearlyupgradedate ,subrlastupgradedate ,currmaxcntseqno ,ban ,subscriber_no ,cnt_seq_no from (select SUM ( CASE WHEN commit_reason_cd IN ('EEU','EQU','EXC','DSC') AND ((julianday(date('now')) - julianday(date(last_upgrade_date)))/31) <= 12 THEN 1 ELSE 0 END )as subrnumberofupgradein12months, MAX (CASE WHEN commit_reason_cd = 'EEU' THEN last_upgrade_date ELSE NULL END) as subrlastearlyupgradedate, MAX ( last_upgrade_date) as subrlastupgradedate, MAX ( cnt_seq_no) as currmaxcntseqno, c.ban, c.subscriber_no, c.cnt_seq_no FROM tlg_contract c group by c.subscriber_no, c.ban) where cnt_seq_no = currmaxcntseqno)tlg_contract ON uhv_sub.rpstry_aflt_srv_accs_nbr = tlg_contract.subscriber_no and tlg_contract.ban = tlg_acct.customer_id LEFT OUTER JOIN (SELECT DISTINCT cv.LTV_VALUE, cv.BAN, cv.SUBSCRIBER_NO FROM tlg_churn_value CV WHERE DATE('now') BETWEEN CV.effective_date AND ifnull(expiration_date,'4712-12-30') AND cv.ban IN (select bus_aflt_acct_nbr from ban_list) AND cv.subscriber_no IN (select rpstry_aflt_srv_accs_nbr from subr_list ))cv on cv.subscriber_no = uhv_sub.rpstry_aflt_srv_accs_nbr and cv.ban = tlg_acct.customer_id  
+	<ServiceAccessProfile>
+		<telephoneNumber>${Q3.rpstry_aflt_srv_accs_nbr}</telephoneNumber>
+		<accessMethodTypeCode>${Q3.accs_mthd_type_cd}</accessMethodTypeCode>
+		<subscriberPrimaryEmailAddress>${Q3.sub_prim_eml_add_txt}</subscriberPrimaryEmailAddress>
+		<subscriberSecondaryEmailAddress>${Q3.sub_sec_eml_add_txt}</subscriberSecondaryEmailAddress>
+		[[[ALL{"Q3.accs_mthd_type_cd": "W", "Q3.srv_type_cd":null}
+			<ServiceAccessProfileWireline>
+				<mrcAmount>${Q3.cmpnt_mrc_amt}</mrcAmount>
+				<dslInServiceStatusCode>${Q3.dsl_in_srv_sts_cd}</dslInServiceStatusCode>
+				<longDistanceInServiceStatusCode>${Q3.long_dist_in_srv_sts_cd}</longDistanceInServiceStatusCode>
+				<SubscriberIndicators>
+					[[[ALL{"Q3.dsl_avail_ind":"Y"}
+						<dslAvailabilityIndicator>true</dslAvailabilityIndicator>
+					]]]
+					<dslAvailabilityIndicator>false</dslAvailabilityIndicator>
+					[[[ALL{"Q3.toll_rstn_ind":"Y"}
+						<tollRestrictionIndicator>true</tollRestrictionIndicator>
+					]]]
+					<tollRestrictionIndicator>false</tollRestrictionIndicator>
+					[[[ALL{"Q3.rpr_plan_ind":"Y"}
+						<repairPlanIndicator>true</repairPlanIndicator>
+					]]]
+					<repairPlanIndicator>false</repairPlanIndicator>
+					[[[NONE{"Q3.lndist_msk_cd": null}
+						<longDistanceMaskingIndicator>true</longDistanceMaskingIndicator>
+					]]]
+					<longDistanceMaskingIndicator>false</longDistanceMaskingIndicator>
+				</SubscriberIndicators>
+				<sbcInterlataCode>${Q3.sbc_ilata_cd}</sbcInterlataCode>
+				<bopsPromotionCode>${Q3.bops_promo_cd}</bopsPromotionCode>
+				<bopsBundleCode>${Q3.bops_bndl_cd}</bopsBundleCode>			
+				[[[S = Select PRD_CD, PRD_GRP_CD, PRD_QTY, PRD_ESTB_DT from uhv_subscriber uhv_sub LEFT OUTER JOIN uhv_feature_wireline uhv_fwrln on uhv_sub.bid_aflt_acct_id = uhv_fwrln.bid_aflt_acct_id and uhv_sub.bid_sub_id = uhv_fwrln.bid_sub_id
+				<USOC>
+					<code>${S.PRD_CD}</code>
+					<serviceCode>${S.PRD_GRP_CD}</serviceCode>  
+					<quantity>${S.PRD_QTY}</quantity>
+					<establishDate>${S.PRD_ESTB_DT}</establishDate>
+				</USOC>
+				]]]
+				<srv_type_cd>${Q3.srv_type_cd}</srv_type_cd>
+			</ServiceAccessProfileWireline>
+		]]]
+		[[[ALL{"Q3.accs_mthd_type_cd":"C"}
+			<ServiceAccessProfileWireless>
+				<BillingMarket>
+					<billingMarket>${Q3.mkt_cd}</billingMarket>
+					<billingSubMarket>${Q3.billingSubMarket}</billingSubMarket>
+				</BillingMarket>
+			<billingSystemId>${Q3.bl_sys_nm}</billingSystemId>
+			[[[ALL{"Q3.prim_acct_hldr_ind":"Y"}
+				<primaryAccountHolderIndicator>true</primaryAccountHolderIndicator>
+			]]]
+			[[[NONE{"Q3.prim_acct_hldr_ind":"Y"}
+				<primaryAccountHolderIndicator>false</primaryAccountHolderIndicator>
+			]]]
+			[[[ALL{"Q3.prepd_ind":"Y"}
+				<prepaidIndicator>true</prepaidIndicator>
+			]]]
+			[[[NONE{"Q3.prepd_ind":"Y"}
+				<prepaidIndicator>false</prepaidIndicator>
+			]]]
+			[[[ALL{"Q3.iru_ind":"Y"}
+				<iruIndicator>true</iruIndicator>
+			]]]
+			[[[NONE{"Q3.iru_ind":"Y"}
+				<iruIndicator>false</iruIndicator>
+			]]]		
+			[[[NONE{"Q3.sub_status": null}
+				<subsciberStatus>${Q3.sub_status}</subsciberStatus>
+			]]]
+			[[[ALL{"Q3.sub_status": null}
+			[[[ANY{"Q3.sub_sts_cd":"T", "Q3.sub_sts_cd":"V"}
+				<subsciberStatus>S</subsciberStatus>
+			]]]
+			[[[NONE{"Q3.sub_sts_cd":"T", "Q3.sub_sts_cd":"V"}
+				<subsciberStatus>${Q3.sub_sts_cd}</subsciberStatus>
+			]]]
+			]]]--ALL
+			<customerSatisfactionScore>${Q3.cust_satsfn_scr_cd}</customerSatisfactionScore>
+			<PricePlan>  
+				<code>${Q3.prc_pln_cd}</code>
+				[[[ALL{"Q3.grp_pln_ind":"Y"}
+					<groupPlanIndicator>true</groupPlanIndicator>
+				]]]
+				[[[NONE{"Q3.grp_pln_ind":"Y"}
+					<groupPlanIndicator>false</groupPlanIndicator>
+				]]]
+				[[[ S = Select sec_prd_cd , feat_cd from (SELECT uhv_fwrls.bid_sub_id,uhv_fwrls.prim_prd_cd, sec_prd_cd,uhv_fwrls.feat_cd from uhv_feature_wireless uhv_fwrls where uhv_fwrls.bid_sub_id IN (select bid_sub_id from subr_list)) uhv_fwrls, uhv_subscriber uhv_sub where uhv_fwrls.bid_sub_id = uhv_sub.bid_sub_id and uhv_fwrls.prim_prd_cd = uhv_sub.prc_pln_cd and uhv_fwrls.sec_prd_cd IS NOT NULL GROUP BY uhv_fwrls.sec_prd_cd
+				<BundledOfferings>
+					<code>${S.sec_prd_cd}</code>
+					<featureCode>${S.feat_cd}</featureCode>
+				</BundledOfferings> 
+				]]]
+			</PricePlan>
+			[[[ S5 =  Select uhv_fwrls.prim_prd_cd as "code", uhv_fwrls.feat_cd as "featureCode" from (SELECT uhv_fwrls.bid_sub_id,uhv_fwrls.prim_prd_cd, sec_prd_cd,uhv_fwrls.feat_cd from uhv_feature_wireless uhv_fwrls where uhv_fwrls.bid_sub_id IN (select bid_sub_id from subr_list)) uhv_fwrls, uhv_subscriber uhv_sub where uhv_fwrls.bid_sub_id = uhv_sub.bid_sub_id and uhv_fwrls.sec_prd_cd IS NULL and uhv_fwrls.prim_prd_cd IS NOT NULL group by uhv_fwrls.prim_prd_cd
+			<AdditionalOfferings>
+				<code>${S5.code}</code>
+				<featureCode>${S5.featureCode}</featureCode>
+			</AdditionalOfferings>
+			]]]
+			<DeviceDetails>			
+			[[[NONE{"Q3.unit_esn":null}
+				<IMEI>${Q3.unit_esn}</IMEI>
+			]]]
+			[[[ALL{"Q3.unit_esn":null}
+				<IMEI>${Q3.dvc_ser_nbr_txt}</IMEI>
+			]]]			
+			<IMEIType>${Q3.imei_type}</IMEIType>
+			<nfcCapability>${Q3.nfc_cap}</nfcCapability>
+			<manufacturer>
+				[[[NONE{"Q3.manf_name":null}
+					<make>${Q3.manf_name}</make>
+				]]]
+				[[[ALL{"Q3.manf_name":null}
+					<make>${Q3.dvc_mk_nm}</make>
+				]]]
+				
+				[[[NONE{"Q3.item_sdesc": null}
+					<model>${Q3.item_sdesc}</model>
+				]]]
+				[[[ALL{"Q3.item_sdesc": null}
+					<model>${Q3.dvc_model_nm}</model>
+				]]]
+			</manufacturer>
+			[[[S = Select date('now')||'Z' as col1
+				<firstUseDate>${S.col1}</firstUseDate>
+			]]]
+			<technologyType>${Q3.tech_type}</technologyType>
+			</DeviceDetails>
+			<Contract>
+			[[[NONE{"Q3.contrct_start_dt":null}
+			[[[S1 = Select date('${Q3.contrct_start_dt}')||'Z' as contractStartDate
+				<contractStartDate>${S1.contractStartDate}</contractStartDate>			
+			]]]
+			]]]			
+			[[[NONE{"Q3.commit_start_date":null}
+			[[[S1 = Select date('${Q3.commit_start_date}')||'Z' as contractStartDate
+				<contractStartDate>${S1.contractStartDate}</contractStartDate>			
+			]]]
+			]]]			
+			[[[NONE{"Q3.commit_end_date":null}
+			[[[S1 = Select date('${Q3.commit_end_date}')||'Z' as contractEndDate
+				<contractEndDate>${S1.contractEndDate}</contractEndDate>			
+			]]]
+			]]]
+			[[[NONE{"Q3.contrct_end_dt":null}
+			[[[S1 = Select date('${Q3.contrct_end_dt}')||'Z' as contractEndDate
+				<contractEndDate>${S1.contractEndDate}</contractEndDate>
+			]]]
+			]]]
+			</Contract>
+			[[[NONE{"Q3.init_activation_date":null}
+			[[[S1 = Select date('${Q3.init_activation_date}')||'Z' as activationDate
+				<activationDate>${S1.activationDate}</activationDate>
+			]]]
+			]]]
+			[[[NONE{"Q3.sub_dvc_initial_actvt_dt":null}
+			[[[S1 = Select date('${Q3.sub_dvc_initial_actvt_dt}')||'Z' as activationDate
+				<activationDate>${S1.activationDate}</activationDate>			
+			]]]
+			]]]
+			<UsageSummary>
+				<UnbilledSummary>
+					<UnbilledVoiceSummary>
+					[[[R = Select fnReplaceAtEnd(${Q3.anytm_allct_cnt},'.0','') as anytm_allct_cnt, fnReplaceAtEnd(${Q3.anytm_usge_unbld_cnt},'.0','') as anytm_usge_unbld_cnt
+						<allotedUnits>${R.anytm_allct_cnt}</allotedUnits>
+						<usedUnits>${R.anytm_usge_unbld_cnt}</usedUnits>
+					]]]
+					</UnbilledVoiceSummary>
+					<UnbilledSmsSummary>
+					[[[ R = Select fnReplaceAtEnd(${Q3.sms_allct_cnt},'.0','') as sms_allct_cnt  ,fnReplaceAtEnd(${Q3.sms_usge_unbld_cnt},'.0','') as sms_usge_unbld_cnt
+						<allotedUnits>${R.sms_allct_cnt}</allotedUnits>
+						<usedUnits>${R.sms_usge_unbld_cnt}</usedUnits>
+					]]]
+					</UnbilledSmsSummary>
+					<UnbilledMmsSummary>
+					[[[ R = Select fnReplaceAtEnd(${Q3.mms_allct_cnt},'.0','') as mms_allct_cnt,fnReplaceAtEnd(${Q3.mms_usge_unbld_cnt},'.0','') as mms_usge_unbld_cnt
+						<allotedUnits>${R.mms_allct_cnt}</allotedUnits>
+						<usedUnits>${R.mms_usge_unbld_cnt}</usedUnits>
+					]]]
+					</UnbilledMmsSummary>
+					<UnbilledDataSummary>
+					[[[R = Select '${Q3.data_pln_uom_cd}' as data_pln_uom_cd, fnReplaceAtEnd(${Q3.data_pln_allct_vol},'.0','') as data_pln_allct_vol, fnReplaceAtEnd(${Q3.data_usge_unbld_vol},'.0','') as data_usge_unbld_vol
+						<UnitOfMeasure>${R.data_pln_uom_cd}</UnitOfMeasure>
+						<allotedUnits>${R.data_pln_allct_vol}</allotedUnits>
+					<usedUnits>${R.data_usge_unbld_vol}</usedUnits>
+					]]]
+					</UnbilledDataSummary>
+				</UnbilledSummary>
+				<BilledSummary1MonthPrevious>
+					<BilledVoiceSummary>
+					[[[ R = select fnReplaceAtEnd(${Q3.anytm_usge_prev_mnth_1_cnt},'.0','') as anytm_usge_prev_mnth_1_cnt, fnReplaceAtEnd(${Q3.anytm_ovrg_prev_mnth_1_cnt},'.0','') as anytm_ovrg_prev_mnth_1_cnt	
+						<usedUnits>${R.anytm_usge_prev_mnth_1_cnt}</usedUnits>
+						<overageUnits>${R.anytm_ovrg_prev_mnth_1_cnt}</overageUnits>
+					]]]
+					</BilledVoiceSummary>
+					<BilledSmsSummary>	
+					[[[ R  = Select fnReplaceAtEnd(${Q3.sms_usge_prev_mnth_1_cnt},'.0','') as sms_usge_prev_mnth_1_cnt, fnReplaceAtEnd(${Q3.sms_ovrg_prev_mnth_1_cnt},'.0','') as sms_ovrg_prev_mnth_1_cnt
+						<usedUnits>${R.sms_usge_prev_mnth_1_cnt}</usedUnits>
+						<overageUnits>${R.sms_ovrg_prev_mnth_1_cnt}</overageUnits>
+					]]]
+					</BilledSmsSummary>
+					<BilledMmsSummary>
+					[[[ R = Select fnReplaceAtEnd(${Q3.mms_usge_prev_mnth_1_cnt},'.0','') as mms_usge_prev_mnth_1_cnt, fnReplaceAtEnd(${Q3.mms_ovrg_prev_mnth_1_cnt},'.0','') as mms_ovrg_prev_mnth_1_cnt
+						<usedUnits>${R.mms_usge_prev_mnth_1_cnt}</usedUnits>
+						<overageUnits>${R.mms_ovrg_prev_mnth_1_cnt}</overageUnits>
+					]]]
+					</BilledMmsSummary>
+					<BilledDataSummary>
+					[[[ R = Select '${Q3.data_pln_uom_cd}' as data_pln_uom_cd, fnReplaceAtEnd(${Q3.data_usge_prev_mnth_1_vol},'.0','') as data_usge_prev_mnth_1_vol, fnReplaceAtEnd(${Q3.data_ovrg_prev_mnth_1_vol},'.0','') as data_ovrg_prev_mnth_1_vol
+						<UnitOfMeasure>${R.data_pln_uom_cd}</UnitOfMeasure>
+						<usedUnits>${R.data_usge_prev_mnth_1_vol}</usedUnits>
+						<overageUnits>${R.data_ovrg_prev_mnth_1_vol}</overageUnits>
+					]]]
+					</BilledDataSummary>
+				</BilledSummary1MonthPrevious>
+				<BilledSummary2MonthPrevious>
+					<BilledVoiceSummary>
+					[[[ R = Select fnReplaceAtEnd(${Q3.anytm_usge_prev_mnth_2_cnt},'.0','') as anytm_usge_prev_mnth_2_cnt, fnReplaceAtEnd(${Q3.anytm_ovrg_prev_mnth_2_cnt},'.0','') as anytm_ovrg_prev_mnth_2_cnt			
+						<usedUnits>${R.anytm_usge_prev_mnth_2_cnt}</usedUnits>
+						<overageUnits>${R.anytm_ovrg_prev_mnth_2_cnt}</overageUnits>
+					]]]
+					</BilledVoiceSummary>
+					<BilledSmsSummary>
+					[[[R = Select fnReplaceAtEnd(${Q3.sms_usge_prev_mnth_2_cnt},'.0','') as sms_usge_prev_mnth_2_cnt, fnReplaceAtEnd(${Q3.sms_ovrg_prev_mnth_2_cnt},'.0','') as sms_ovrg_prev_mnth_2_cnt				
+						<usedUnits>${R.sms_usge_prev_mnth_2_cnt}</usedUnits>
+						<overageUnits>${R.sms_ovrg_prev_mnth_2_cnt}</overageUnits>
+					]]]
+					</BilledSmsSummary>
+					<BilledMmsSummary>
+					[[[ R = Select fnReplaceAtEnd(${Q3.mms_usge_prev_mnth_2_cnt},'.0','') as mms_usge_prev_mnth_2_cnt, fnReplaceAtEnd(${Q3.mms_ovrg_prev_mnth_2_cnt},'.0','') as mms_ovrg_prev_mnth_2_cnt				
+						<usedUnits>${R.mms_usge_prev_mnth_2_cnt}</usedUnits>
+						<overageUnits>${R.mms_ovrg_prev_mnth_2_cnt}</overageUnits>
+					]]]
+					</BilledMmsSummary>
+					<BilledDataSummary>
+					[[[ R = Select '${Q3.data_pln_uom_cd}' as data_pln_uom_cd , fnReplaceAtEnd(${Q3.data_usge_prev_mnth_2_vol},'.0','') as data_usge_prev_mnth_2_vol, fnReplaceAtEnd(${Q3.data_ovrg_prev_mnth_2_vol},'.0','') as data_ovrg_prev_mnth_2_vol
+						<UnitOfMeasure>${R.data_pln_uom_cd}</UnitOfMeasure>
+						<usedUnits>${R.data_usge_prev_mnth_2_vol}</usedUnits>
+						<overageUnits>${R.data_ovrg_prev_mnth_2_vol}</overageUnits>
+					]]]
+					</BilledDataSummary>
+				</BilledSummary2MonthPrevious>
+				<BilledSummary3MonthPrevious>
+					<BilledVoiceSummary>
+					[[[ R= Select fnReplaceAtEnd(${Q3.anytm_usge_prev_mnth_3_cnt},'.0','') as anytm_usge_prev_mnth_3_cnt, fnReplaceAtEnd(${Q3.anytm_ovrg_prev_mnth_3_cnt},'.0','') as anytm_ovrg_prev_mnth_3_cnt				
+						<usedUnits>${R.anytm_usge_prev_mnth_3_cnt}</usedUnits>
+						<overageUnits>${R.anytm_ovrg_prev_mnth_3_cnt}</overageUnits>
+					]]]
+					</BilledVoiceSummary>
+					<BilledSmsSummary>
+					[[[ R = Select fnReplaceAtEnd(${Q3.sms_usge_prev_mnth_3_cnt},'.0','') as sms_usge_prev_mnth_3_cnt, fnReplaceAtEnd(${Q3.sms_ovrg_prev_mnth_3_cnt},'.0','') as sms_ovrg_prev_mnth_3_cnt
+						<usedUnits>${R.sms_usge_prev_mnth_3_cnt}</usedUnits>
+						<overageUnits>${R.sms_ovrg_prev_mnth_3_cnt}</overageUnits>
+					]]]
+					</BilledSmsSummary>
+					<BilledMmsSummary>
+					[[[ R = Select fnReplaceAtEnd(${Q3.mms_usge_prev_mnth_3_cnt},'.0','') as mms_usge_prev_mnth_3_cnt, fnReplaceAtEnd(${Q3.mms_ovrg_prev_mnth_3_cnt},'.0','') as mms_ovrg_prev_mnth_3_cnt				
+						<usedUnits>${R.mms_usge_prev_mnth_3_cnt}</usedUnits>
+						<overageUnits>${R.mms_ovrg_prev_mnth_3_cnt}</overageUnits>
+					]]]
+					</BilledMmsSummary>
+					<BilledDataSummary>
+					[[[ R= Select '${Q3.data_pln_uom_cd}' as data_pln_uom_cd, fnReplaceAtEnd(${Q3.data_usge_prev_mnth_3_vol},'.0','') as data_usge_prev_mnth_3_vol, fnReplaceAtEnd(${Q3.data_ovrg_prev_mnth_3_vol},'.0','') as data_ovrg_prev_mnth_3_vol
+						<UnitOfMeasure>${R.data_pln_uom_cd}</UnitOfMeasure>
+						<usedUnits>${R.data_usge_prev_mnth_3_vol}</usedUnits>
+						<overageUnits>${R.data_ovrg_prev_mnth_3_vol}</overageUnits>
+					]]]
+					</BilledDataSummary>
+				</BilledSummary3MonthPrevious>
+				</UsageSummary>
+			<UpgradeDetails>			
+				[[[ R= select case when '${Q3.upgradeEligibilityIndicator}' = 'N' then 'true' else 'false' end as upgradeEligibilityIndicator
+				 <upgradeEligibilityIndicator>${R.upgradeEligibilityIndicator}</upgradeEligibilityIndicator>
+				 ]]]			
+				[[[NONE{"Q3.subreonsoc": null}
+					<excessiveOffNetworkUsageSOC>${Q3.subreonsoc}</excessiveOffNetworkUsageSOC>
+				]]]
+				[[[ALL{"Q3.subreonsoc": null}
+					<excessiveOffNetworkUsageSOC>N</excessiveOffNetworkUsageSOC>
+				]]]		
+			</UpgradeDetails>
+			<UpgradeHistory>
+				<lastEarlyUpgradeDate>${Q3.subrlastearlyupgradedate}</lastEarlyUpgradeDate>
+				<lastUpgradeDate>${Q3.subrlastupgradedate}</lastUpgradeDate>
+				<numberOfUpgrades>${Q3.subrnumberofupgradein12months}</numberOfUpgrades>
+			</UpgradeHistory>
+			<churnScore>${Q3.custr_churn_scr_txt}</churnScore>		
+			<lifetimeValueScore>${Q3.lifetimeValueScore}</lifetimeValueScore>		
+			[[[ R = Select fnReplaceAtEnd(${Q3.dep_amt},'.0','') as dep_amt
+				<depositAmount>${R.dep_amt}</depositAmount>
+			]]]
+			<OffNetMinutes>
+				[[[NONE{"Q3.subrctnnumoffnetminscycle1": null}
+					<cycle1Minutes>${Q3.subrctnnumoffnetminscycle1}</cycle1Minutes>
+				]]]
+				[[[ALL{"Q3.subrctnnumoffnetminscycle1": null}
+					<cycle1Minutes>0</cycle1Minutes>
+				]]]
+				[[[NONE{"Q3.subrctnnumoffnetminscycle2": null}
+					<cycle2Minutes>${Q3.subrctnnumoffnetminscycle2}</cycle2Minutes>
+				]]]
+				[[[ALL{"Q3.subrctnnumoffnetminscycle2": null}
+					<cycle2Minutes>0</cycle2Minutes>
+				]]]
+				[[[NONE{"Q3.subrctnnumoffnetminscycle3": null}
+					<cycle3Minutes>${Q3.subrctnnumoffnetminscycle3}</cycle3Minutes>
+				]]]
+				[[[ALL{"Q3.subrctnnumoffnetminscycle3": null}
+					<cycle3Minutes>0</cycle3Minutes>
+				]]]
+			</OffNetMinutes>
+			<Revenue>
+				<averageRevenue>
+				[[[S= Select  printf('%g', round(${Q3.vce_ovrg_rvnu_3_mnth_avg_amt},2)) as col1
+					<voiceOverageRevenue>${S.col1}</voiceOverageRevenue>
+				]]]
+				</averageRevenue>
+				<currentRevenue>
+				[[[ R = Select fnReplaceAtEnd(${Q3.intnl_dial_rvnu_amt},'.0','') as intnl_dial_rvnu_amt , fnReplaceAtEnd(${Q3.intnl_roam_rvnu_amt},'.0','') as intnl_roam_rvnu_amt , fnReplaceAtEnd(${Q3.ovrg_vce_rvnu_amt},'.0','') as ovrg_vce_rvnu_amt
+					<internationalDialingRevenue>${R.intnl_dial_rvnu_amt}</internationalDialingRevenue>
+					<internationalRoamingRevenue>${R.intnl_roam_rvnu_amt}</internationalRoamingRevenue>
+					<voiceOverageRevenue>${R.ovrg_vce_rvnu_amt}</voiceOverageRevenue>
+				]]]
+				</currentRevenue>
+				[[[ALL{"Q3.rvnu_ind":"Y"}
+					<revenueIndicator>true</revenueIndicator>
+				]]]
+				[[[NONE{"Q3.rvnu_ind":"Y"}
+					<revenueIndicator>false</revenueIndicator>
+				]]]		
+			</Revenue>
+			[[[ALL{"Q3.eon_ind":"Y"}
+				<excessiveOffNetIndicator>true</excessiveOffNetIndicator>
+			]]]
+			[[[NONE{"Q3.eon_ind":"Y"}
+				<excessiveOffNetIndicator>false</excessiveOffNetIndicator>
+			]]]
+			[[[ALL{"Q3.subrnetwork":"ORANGE"}
+				<networkType>O</networkType>
+			]]]
+			[[[ALL{"Q3.subrnetwork":"BLUE"}
+				<networkType>B</networkType>
+			]]]
+			[[[ALL{"Q3.subrnetwork":"DOBSON"}
+				<networkType>D</networkType>
+			]]]
+			[[[ALL{"Q3.subrnetwork":"RED"}
+				<networkType>R</networkType>
+			]]]
+			[[[NONE{"Q2.bill_sys_geo_id": null}
+				[[[ S6 = Select M.MODEL_ID as "modelId" ,mr.MODEL_NM as "modelName" ,m.MODEL_SCR_NBR as "modelScoreNumber" ,m.MODEL_SCR_PCTL as "modelScorePercentile" from uhv_subscriber uhv_sub, uhv_subsrptn_mdl_scr m, uhv_mdl_scr_avt mr where m.bid_sub_id = uhv_sub.bid_sub_id and m.model_id = mr.model_id and m.bill_sys_geo_id = ${Q2.bill_sys_geo_id} and m.model_id in ('3501', '1400', '1100', '1300', '1200', '2100', '2200', '2300', '2400', '3502')
+				<ModelDetails>  
+					<modelId>${S6.modelId}</modelId>
+					<modelName>${S6.modelName}</modelName>
+					[[[ R = Select fnReplaceAtEnd(${S6.modelScoreNumber},'.0','') as modelScoreNumber
+						<modelScoreNumber>${R.modelScoreNumber}</modelScoreNumber>
+					]]]
+					<modelScorePercentile>${S6.modelScorePercentile}</modelScorePercentile>
+				</ModelDetails>
+				]]]
+			]]]
+			[[[ALL{"Q2.bill_sys_geo_id": null}
+				[[[ S6 = Select M.MODEL_ID as "modelId" ,mr.MODEL_NM as "modelName" ,m.MODEL_SCR_NBR as "modelScoreNumber" ,m.MODEL_SCR_PCTL as "modelScorePercentile" from uhv_subscriber uhv_sub, uhv_subsrptn_mdl_scr m, uhv_mdl_scr_avt mr where m.bid_sub_id = uhv_sub.bid_sub_id and m.model_id = mr.model_id and m.bill_sys_geo_id = null and m.model_id in ('3501', '1400', '1100', '1300', '1200', '2100', '2200', '2300', '2400', '3502')
+					<ModelDetails>  
+					<modelId>${S6.modelId}</modelId>
+					<modelName>${S6.modelName}</modelName>
+					[[[ R = Select fnReplaceAtEnd(${S6.modelScoreNumber},'.0','') as modelScoreNumber
+						<modelScoreNumber>${R.modelScoreNumber}</modelScoreNumber>
+					]]]
+						<modelScorePercentile>${S6.modelScorePercentile}</modelScorePercentile>
+					</ModelDetails>
+				]]]
+			]]]
+			<handsetFunctionalityCode>${Q3.BLNG_DVC_COMN_NM}</handsetFunctionalityCode>	
+			[[[R = Select fnReplaceAtEnd(${Q3.cmpnt_mrc_amt},'.0','') as cmpnt_mrc_amt	
+				<cmpnt_mrc_amt>${R.cmpnt_mrc_amt}</cmpnt_mrc_amt>
+			]]]
+			<bndl_cd>${Q3.bndl_cd}</bndl_cd>
+			<bndl_desc>${Q3.bndl_desc}</bndl_desc>
+			<bndl_promo_amt>${Q3.bndl_promo_amt}</bndl_promo_amt>
+			<lteType>${Q3.subrltetype}</lteType>
+			<Vip_Ind>${Q3.vip_ind}</Vip_Ind>
+			<srv_type_cd>${Q3.srv_type_cd}</srv_type_cd>
+			</ServiceAccessProfileWireless>
+		]]]
+		[[[ALL{"Q3.accs_mthd_type_cd":"W"}
+				
+					[[[NONE{"Q3.srv_type_cd": null, "Q3.srv_type_cd": "WLLVOICE", "Q3.srv_type_cd": "WLLDATA", "Q3.srv_type_cd": "DTV"}
+					<ServiceAccessProfileTitan>
+					<srv_type_cd>${Q3.srv_type_cd}</srv_type_cd>
+					[[[NONE{"Q3.term_agr_start_dt": null}
+					S = select date(Q3.term_agr_start_dt||'Z') as col1
+					<term_agr_start_dt>${S.col1}</term_agr_start_dt>
+					]]]
+					[[[NONE{"Q3.term_agr_stop_dt": null}
+					S = select date(Q3.term_agr_stop_dt||'Z') as col1
+					<term_agr_stop_dt>${S.col1}</term_agr_stop_dt>
+					]]]
+					<cmpnt_mrc_amt>${Q3.cmpnt_mrc_amt}</cmpnt_mrc_amt>
+					<bndl_cd>${Q3.bndl_cd}</bndl_cd>
+					<bndl_desc>${Q3.bndl_desc}</bndl_desc>
+					<bndl_promo_amt>${Q3.bndl_promo_amt}</bndl_promo_amt>
+					<srv_type_seq_cd>${Q3.srv_type_seq_cd}</srv_type_seq_cd>
+					<srv_type_nm>${Q3.srv_type_nm}</srv_type_nm>
+					</ServiceAccessProfileTitan>				
+					]]]				
+				]]]
+				[[[ALL{"Q3.accs_mthd_type_cd":"W", "Q3.srv_type_cd": "WLLVOICE"}
+				<ServiceAccessProfileWLL>
+				<srv_type_cd>WLLVOICE</srv_type_cd>
+				</ServiceAccessProfileWLL>
+				]]]
+				[[[ALL{"Q3.accs_mthd_type_cd":"W", "Q3.srv_type_cd": "WLLDATA"}
+				<ServiceAccessProfileWLL>
+				<srv_type_cd>WLLDATA</srv_type_cd>
+				</ServiceAccessProfileWLL>
+				]]]
+				[[[ALL{"Q3.accs_mthd_type_cd":"W", "Q3.srv_type_cd": "DTV"}
+				<ServiceAccessProfileDTV>
+				<packageCode>${Q3.srv_type_seq_cd}</packageCode>
+				<description>${Q3.srv_type_nm}<description>
+				<srv_type_cd>Q3.srv_type_cd</srv_type_cd>
+				</ServiceAccessProfileDTV>
+				]]]
+
+	</ServiceAccessProfile>
+]]]--Q3
+[[[S = select s.digl_life_ind from uhv_subscriber s where ${Q2.bid_aflt_acct_id} = s.bid_aflt_acct_id limit 1
+			<digitalLifeIndicator>${S.digl_life_ind}</digitalLifeIndicator>
+			]]]
+			<MigrationTargetIndicator>${Q2.MIGR_TGTD_CD}</MigrationTargetIndicator>
+			[[[S = Select DIRECTV_ACCT_ID from CRM_UVERSE_IP_NOTIFICATION uip where uip.BAN = ${Q2.BUS_AFLT_ACCT_NBR}
+			<dtvLegacyAcctNo>${S.DIRECTV_ACCT_ID}</dtvLegacyAcctNo>
+			]]]
+			<affiliateCompanyCode>${Q2.AFLT_CO_CD}</affiliateCompanyCode>
+			<combinedBillIndicator>${Q2.CMBND_BL_IND}</combinedBillIndicator>
+			[[[ANY{"Q2.bus_aflt_acct_nbr":"Q2.acctid", "Q2.bus_aflt_acct_nbr":"Q2.acctid"}
+			<LoyaltyDetails>
+				<BAN>${Q2.bus_aflt_acct_nbr}</BAN>
+				[[[S = Select lpa.START_DATE_GMT, lpa.LOYALTY_CARD_NUMBER, lpa.LOYALTY_PROGRAM, lpa.ASSOC_MADE_BY, lpa.END_DATE_GMT from mps_loyaltyprogacctassoc lpa WHERE lpa.acctid = ${Q2.bus_aflt_acct_nbr} AND lpa.end_date_gmt is null
+					<LoyaltyIDDetails>
+						[[[S1 = select date('${S.START_DATE_GMT}') || 'T' || time('${S.START_DATE_GMT}') || 'Z' as col1
+							<startDateGMT>${S1.col1}</startDateGMT>
+						]]]
+						<loyaltyID>${S.LOYALTY_CARD_NUMBER}</loyaltyID>
+						<loyaltyProgram>${S.LOYALTY_PROGRAM}</loyaltyProgram>
+						<assocMadeBy>${S.ASSOC_MADE_BY}</assocMadeBy>
+						<endDateGMT>${S.END_DATE_GMT}</endDateGMT>
+					</LoyaltyIDDetails>
+				]]]
+				[[[S = Select lp.START_DATE_GMT, lp.OFFER, lp.LOYALTY_PROGRAM, lp.ASSOC_MADE_BY, lp.END_DATE_GMT from mps_LOYALTYOFFERACCEPTANCE lp where lp.acctid  = ${Q2.bus_aflt_acct_nbr} AND lp.end_date_gmt is null
+				<LoyaltyOfferDetails>
+					[[[S1(S.START_DATE_GMT, S.START_DATE_GMT) = select date('${S.START_DATE_GMT}') || 'T' || time('${S.START_DATE_GMT}') || 'Z' as col1
+						<startDateGMT>${S1.col1}</startDateGMT>
+					]]]
+					<billpayOfferIndicator>${S.OFFER}</billpayOfferIndicator>
+					<loyaltyProgram>${S.LOYALTY_PROGRAM}</loyaltyProgram>
+					<assocMadeBy>${S.ASSOC_MADE_BY}</assocMadeBy>
+					<endDateGMT>${S.END_DATE_GMT}</endDateGMT>
+				</LoyaltyOfferDetails>
+				]]]
+			</LoyaltyDetails>
+			]]]
+			<ThrdPrtyPrtnrCd>${Q2.THRD_PRTY_PRTNR_CD}</ThrdPrtyPrtnrCd>
+			<ThrdPrtyPrtnrNm>${Q2.Thrd_Prty_Prtnr_Nm}</ThrdPrtyPrtnrNm>
+			<JntBillType>${Q2.Jnt_Bill_Type}</JntBillType>
+			<Val_Sgmnt_Tier_Txt>${Q2.val_sgmnt_tier_txt}</Val_Sgmnt_Tier_Txt>
+			<High_Prftbt_Ind>${Q2.high_prftbt_ind}</High_Prftbt_Ind>
+		</AffiliateAccountProfile>
+	]]]--Q2
+	
+		[[[NONE{"Q1.uvrs_hsi_availty_ind": null}
+		<ServiceAvailability> 
+			<productCode>UHSI</productCode>
+			<isAvailable>${Q1.uvrs_hsi_availty_ind}</isAvailable>
+			<maxHSIADownloadSpeed>${Q1.MX_HSI_DNLD_SPEED_KB_RT_NBR}</maxHSIADownloadSpeed>		  
+		</ServiceAvailability>	
+		]]]
+		[[[NONE{"Q1.uvrs_iptv_availty_ind": null}
+				<ServiceAvailability> 
+				<productCode>UIPTV</productCode>
+				<isAvailable>${Q1.uvrs_iptv_availty_ind}</isAvailable>
+				<iptvAvailabilityColorCode>${Q1.IPTV_AVAILTY_COLR_CD}</iptvAvailabilityColorCode>
+				[[[S2 = Select substr('${Q1.IPTV_GREEN_DT}', 1, 10) as "iptvGreenDate"
+				<iptvGreenDate>${S2.iptvGreenDate}</iptvGreenDate>
+				]]]		  
+			</ServiceAvailability>	
+			
+		]]]
+		[[[NONE{"Q1.uvrs_voip_availty_ind": null}
+		<ServiceAvailability> 
+			<productCode>UVOIP</productCode>
+			<isAvailable>${Q1.uvrs_voip_availty_ind}</isAvailable>		  
+		</ServiceAvailability>
+		]]]
+		[[[NONE{"Q1.dsl_ln_shr_availty_ind": null}
+		<ServiceAvailability> 
+			<productCode>DSL</productCode>
+			<isAvailable>${Q1.dsl_ln_shr_availty_ind}</isAvailable>
+			<maxDSLDownloadSpeed>${Q1.mx_dsl_dnld_speed_kb_rt_nbr}</maxDSLDownloadSpeed>		  
+		</ServiceAvailability>
+		]]]
+		[[[NONE{"Q1.dsl_drct_availty_ind": null}
+		<ServiceAvailability> 
+			<productCode>DLOOP</productCode>
+			<isAvailable>${Q1.dsl_drct_availty_ind}</isAvailable>	  
+		</ServiceAvailability>
+		]]]	
+	
+		[[[NONE{"Q1.dsl_ln_shr_availty_ind": null, "dsl_drct_availty_ind": null}
+			[[[S6 = Select 'DSL' as "productCode", 'Y' as "isAvailable", loc.mx_dsl_dnld_speed_kb_rt_nbr as "maxDSLDownloadSpeed", 'DLOOP' as "productCode", 'Y' as "isAvailable" from uhv_location loc, uhv_subscriber where ((SELECT COUNT (1) FROM uhv_subscriber where bid_aflt_acct_id IN (select bid_aflt_acct_id from ban_list ) and dsl_avail_ind = 'Y') > 0) 
+			<ServiceAvailability>
+				<productCode>${S6.productCode}</productCode>
+				<isAvailable>${S6.isAvailable}</isAvailable>
+				<maxDSLDownloadSpeed>${S6.maxDSLDownloadSpeed}</maxDSLDownloadSpeed>
+				</ServiceAvailability>
+				<ServiceAvailability>
+				<productCode>${S6.productCode}</productCode>
+				<isAvailable>${S6.isAvailable}</isAvailable>
+			</ServiceAvailability>
+			]]]--S6
+		]]]
+		[[[NONE{"Q1.digl_life_eligib_ind": null}
+		<ServiceAvailability>
+			<productCode>DIGITALLIFE</productCode>
+			<isAvailable>${Q1.digl_life_eligib_ind}</isAvailable>
+		</ServiceAvailability>
+		]]]
+		[[[ALL{"Q1.NRF_REQD_IND":"Y"}
+			<nrfRequired>true</nrfRequired>
+		]]]
+		[[[NONE{"Q1.NRF_REQD_IND":"Y"}
+			<nrfRequired>false</nrfRequired>
+		]]]
+		[[[S8 = Select m.model_id as "modelId", mr.model_nm as "modelName", m.model_scr_nbr as "modelScoreNumber", m.model_scr_pctl as "modelScorePercentile"  from uhv_cust_loc_mdl_scr m, uhv_mdl_scr_avt mr where m.rpstry_aflt_cust_loc_id = ${Q1.rpstry_aflt_cust_loc_id} and m.model_id = mr.model_id and m.model_id in ('3501', '1400', '1100', '1300', '1200', '2100', '2200', '2300', '2400', '3502')
+			<ModelDetails>
+				<modelId>${S8.modelId}</modelId>
+				<modelName>${S8.modelName}</modelName>
+				[[[R = Select fnReplaceAtEnd(${S8.modelScoreNumber},'.0','') as modelScoreNumber
+					<modelScoreNumber>${R.modelScoreNumber}</modelScoreNumber>
+				]]]
+				<modelScorePercentile>${S8.modelScorePercentile}</modelScorePercentile>
+			</ModelDetails>
+		]]]--S8
+		[[[ALL{"Q1.new_srv_ind":"Y"}
+			<newServiceIndicator>true</newServiceIndicator>	
+		]]]
+		[[[NONE{"Q1.new_srv_ind":"Y"}
+			<newServiceIndicator>false</newServiceIndicator>	
+		]]]
+		[[[ALL{"Q1.cnvrg_bl_availty_ind":"Y"}
+			<cnvrg_bl_availty_ind>true</cnvrg_bl_availty_ind>	
+		]]]
+		[[[NONE{"Q1.cnvrg_bl_availty_ind":"Y"}
+			<cnvrg_bl_availty_ind>false</cnvrg_bl_availty_ind>	
+		]]]
+		<WirelessHomePhoneIndicator>${Q1.WIRLS_HM_PHN_AVAILTY_IND}</WirelessHomePhoneIndicator>
+		<customerTagCode>${@Q1.CUST_TAG_CD}</customerTagCode>
+	</p:CustomerLocationProfile>
+	]]]--Q1		
+	<p:Response>
+		<code>0</code>
+		<description>Success</description>
+	</p:Response>
+</p:InquireUnifiedCustomerServiceProfileResponse>		

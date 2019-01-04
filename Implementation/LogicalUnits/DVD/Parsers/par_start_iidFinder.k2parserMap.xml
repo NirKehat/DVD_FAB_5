@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.6.1.1">
+  <Name>par_start_iidFinder</Name>
+  <MapType>ParserMap</MapType>
+  <RootItemID>f_3</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <TargetsList>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>iidfinder_manager</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item id="f_3" name="fnRtIidStart" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnRtIidStart.k2function.xml">
+          <InputsList>
+            <Input id="fi_3.0" name="input" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_3.0" name="node" />
+            <Output id="fo_3.1" name="output" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_iidfinder_manager" name="iidfinder_manager" nodeOrder="1" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="par_start_iidFinder">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_efcc32172fc1412cac32858c354013d6" name="node" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_a6433d0888154437b2c11e8aa61421ca" name="output" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn />
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_efcc32172fc1412cac32858c354013d6" name="node" pkType="Partition_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="21" fromNodeOrder="0" fromItemID="f_3" fromColID="fo_3.0" toItemID="rt_iidfinder_manager" toColID="rtCol_efcc32172fc1412cac32858c354013d6" />
+        <Link partId="11" fromNodeOrder="0" fromItemID="f_3" fromColID="fo_3.1" toItemID="rt_iidfinder_manager" toColID="rtCol_a6433d0888154437b2c11e8aa61421ca" />
+      </LinksList>
+      <ParserMapRecordType id="rt_iidfinder_manager" name="iidfinder_manager" parentParser="par_start_iidFinder">
+        <Active xsi:nil="true" />
+        <RecordTypeKeyColumn />
+        <Columns>
+          <Column id="rtCol_efcc32172fc1412cac32858c354013d6" name="node" index="0">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_a6433d0888154437b2c11e8aa61421ca" name="output" index="1">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_efcc32172fc1412cac32858c354013d6" name="node" pkType="Partition_Key" />
+        </PkColumns>
+      </ParserMapRecordType>
+    </Target>
+  </TargetsList>
+  <DiagramGraph>
+    <Graph name="par_start_iidFinder.k2parserMap.xml" lastPartID="26" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
+      <ParserRecordTypeTargetNode partID="0" name="iidfinder_manager" pos="183.61795 18.9635429" size="312.998871 74.14583" parserName="par_start_iidFinder" isTargetNode="true" isRoot="false" />
+      <FunctionMapNode id="0" L0="1" R0="2" R1="3" partID="3" topLabel="fnRtIidStart (3)" pos="9.945254 26.1233559" size="128.726456 49.23698" isRoot="true">
+        <KFunction>{"Name":"fnRtIidStart","ID":"f_3","Category":"Root","Version":"3.6.1.1","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsSyntaxValid":true,"IsRootFunction":true,"inputParams":[{"Name":"input","ID":"fi_3.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"node","ID":"fo_3.0","Index":0,"DataType":"String"},{"Name":"output","ID":"fo_3.1","Index":1,"DataType":"String"}]}</KFunction>
+      </FunctionMapNode>
+      <Link from="2" to="4" partID="21" pointsArr="138.6717 47.2509575 148.6717 47.2509575 173.61795 50 183.61795 50" fromNodePartID="3" fromNodeColumnName="node" toNodePartID="0" toNodeColumnName="node" />
+      <Link from="3" to="5" partID="11" pointsArr="138.6717 59.3238754 148.6717 59.3238754 173.61795 62.0729141 183.61795 62.0729141" fromNodePartID="3" fromNodeColumnName="output" toNodePartID="0" toNodeColumnName="output" />
+    </Graph>
+  </DiagramGraph>
+  <Active>true</Active>
+  <ExecutionMode>Manually</ExecutionMode>
+  <syncEvery>00:00:00</syncEvery>
+</ParserMap>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_city</ID>
+  <PopulationObjectName>query_public_city</PopulationObjectName>
+  <TableName>city</TableName>
+  <RootItemID>query_query_public_city</RootItemID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="city_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="city" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="country_id" id="queryCol_2" dataType="Integer" index="2" />
+    <Arg name="last_update" id="queryCol_3" dataType="Text" index="3" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_city" name="query_public_city" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="city_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="city" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="country_id" dataType="Integer" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="last_update" dataType="Text" index="3" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.city]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="44" fromNodeOrder="0" fromItemID="query_query_public_city" fromColID="queryCol_0" toItemID="tbl_city" toColID="tblCol_1e654c41ea8c469b855e4255cc8bcebb" />
+    <Link partId="45" fromNodeOrder="0" fromItemID="query_query_public_city" fromColID="queryCol_1" toItemID="tbl_city" toColID="tblCol_a56d1ced95764c50a579072e3da106aa" />
+    <Link partId="46" fromNodeOrder="0" fromItemID="query_query_public_city" fromColID="queryCol_2" toItemID="tbl_city" toColID="tblCol_bc3a1dec91f340eb90542f6846b17d34" />
+    <Link partId="47" fromNodeOrder="0" fromItemID="query_query_public_city" fromColID="queryCol_3" toItemID="tbl_city" toColID="tblCol_91aef48fba3d4fe4b71998388827dc39" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="city.query_public_city.k2tablePop.xml" lastPartID="47">
+      <TableNode partID="0" name="city" pos="308 24.81771" width="309.7827" />
+      <DBQueryNode partID="39" name="dvdRental" pos="10 20.8541718" size="253 108.291656" isRoot="true">
+        <DBQuery>{"Name":"query_public_city","ID":"query_query_public_city","ConnName":"dvdRental","SQL":"SELECT * FROM public.city","ColumnsList":[{"ID":"queryCol_0","Name":"city_id","DataType":"Integer","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"city","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"country_id","DataType":"Integer","Index":2,"IsInputArgument":true},{"ID":"queryCol_3","Name":"last_update","DataType":"Text","Index":3,"IsInputArgument":true}]}</DBQuery>
+      </DBQueryNode>
+      <Link partID="44" from="0" to="1" pointsArr="263 56.890625 273 56.890625 275.5 25 295.5 25 298 55.8541679 308 55.8541679" fromNodePartID="39" fromNodeColumnName="city_id" toNodePartID="0" toNodeColumnName="city_id" />
+      <Link partID="45" from="2" to="3" pointsArr="263 68.96355 273 68.96355 275.5 50 295.5 50 298 67.9270859 308 67.9270859" fromNodePartID="39" fromNodeColumnName="city" toNodePartID="0" toNodeColumnName="city" />
+      <Link partID="46" from="4" to="5" pointsArr="263 81.03645 273 81.03645 275.5 75 295.5 75 298 80 308 80" fromNodePartID="39" fromNodeColumnName="country_id" toNodePartID="0" toNodeColumnName="country_id" />
+      <Link partID="47" from="6" to="7" pointsArr="263 93.10936 273 93.10936 275.5 100 295.5 100 298 92.0729141 308 92.0729141" fromNodePartID="39" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

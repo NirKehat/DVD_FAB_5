@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Translation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>trnFileCheck</Name>
+  <InputNotFoundAction>Use_Default</InputNotFoundAction>
+  <SchemaColumns>
+    <Column>
+      <Title>file_type</Title>
+      <ColumnName>file_type</ColumnName>
+      <Direction>Input</Direction>
+      <Type>Text</Type>
+      <Length>3</Length>
+      <Format />
+      <Index>0</Index>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="100" />
+    </Column>
+    <Column>
+      <Title>file_char_check_location</Title>
+      <ColumnName>file_char_check_location</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>3</Length>
+      <Format />
+      <Index>0</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="146" />
+    </Column>
+    <Column>
+      <Title>file_char_check_value</Title>
+      <ColumnName>file_char_check_value</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>5</Length>
+      <Format />
+      <Index>1</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="133" />
+    </Column>
+    <Column>
+      <Title>line_length_check_value</Title>
+      <ColumnName>line_length_check_value</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>3</Length>
+      <Format />
+      <Index>2</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="146" />
+    </Column>
+    <Column>
+      <Title>file_new_path</Title>
+      <ColumnName>file_new_path</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>100</Length>
+      <Format />
+      <Index>3</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="177" />
+    </Column>
+  </SchemaColumns>
+  <IsImportFromSQL>false</IsImportFromSQL>
+  <IsDynamicData>false</IsDynamicData>
+  <ColumnMapping />
+  <TranslationData>
+    <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+      <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="trnFileCheck" msdata:UseCurrentLocale="true">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="trnFileCheck">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="file_type" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="3" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="file_char_check_location" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="3" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="file_char_check_value" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="5" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="line_length_check_value" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="3" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="file_new_path" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+      <DocumentElement>
+        <trnFileCheck diffgr:id="trnFileCheck1" msdata:rowOrder="0">
+          <file_type>ctt</file_type>
+          <file_char_check_location>70</file_char_check_location>
+          <file_char_check_value>C|D</file_char_check_value>
+          <line_length_check_value>377</line_length_check_value>
+          <file_new_path>/usr/local/k2view/ctt_files/</file_new_path>
+        </trnFileCheck>
+        <trnFileCheck diffgr:id="trnFileCheck2" msdata:rowOrder="1">
+          <file_type>ach</file_type>
+          <file_char_check_location>130</file_char_check_location>
+          <file_char_check_value>P|E</file_char_check_value>
+          <line_length_check_value>369</line_length_check_value>
+          <file_new_path>/usr/local/k2view/ach_files/</file_new_path>
+        </trnFileCheck>
+      </DocumentElement>
+    </diffgr:diffgram>
+  </TranslationData>
+  <DataRowsHeight>20</DataRowsHeight>
+</Translation>

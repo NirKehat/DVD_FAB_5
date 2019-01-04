@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Translation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>trnIcChecks</Name>
+  <InputNotFoundAction>Use_Default</InputNotFoundAction>
+  <SchemaColumns>
+    <Column>
+      <Title>ic_name</Title>
+      <ColumnName>ic_name</ColumnName>
+      <Direction>Input</Direction>
+      <Type>Text</Type>
+      <Length>100</Length>
+      <Format />
+      <Index>0</Index>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="100" />
+    </Column>
+    <Column>
+      <Title>title</Title>
+      <ColumnName>title</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>200</Length>
+      <Format />
+      <Index>0</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>Allows you to explain what the ic check purpose</Comment>
+      <GridColumnProperties width="140" />
+    </Column>
+    <Column>
+      <Title>sql</Title>
+      <ColumnName>sql</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>1000</Length>
+      <Format />
+      <Index>1</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>Sql to run, Must return single numeric value</Comment>
+      <GridColumnProperties width="242" />
+    </Column>
+    <Column>
+      <Title>operator</Title>
+      <ColumnName>operator</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>2</Length>
+      <Format />
+      <Index>2</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>=\!=\&gt;\&gt;=\&lt;\&lt;=</Comment>
+      <GridColumnProperties width="100" />
+    </Column>
+    <Column>
+      <Title>value</Title>
+      <ColumnName>value</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Integer</Type>
+      <Length>10</Length>
+      <Format />
+      <Index>3</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="81" />
+    </Column>
+    <Column>
+      <Title>action</Title>
+      <ColumnName>action</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>50</Length>
+      <Format />
+      <Index>4</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>Reject_Entity\Report_To_Log\Report_To_Log_And_Execute_Activity\Execute_Activity\Reject_Entity_At_End_Of_IC</Comment>
+      <GridColumnProperties width="205" />
+    </Column>
+    <Column>
+      <Title>functionName</Title>
+      <ColumnName>functionName</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Project Function</Type>
+      <Length>50</Length>
+      <Format />
+      <Index>5</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>The function name you want to invoke in case check as failed</Comment>
+      <GridColumnProperties width="100" />
+    </Column>
+    <Column>
+      <Title>write_result_to_table</Title>
+      <ColumnName>write_result_to_table</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Boolean</Type>
+      <Length>1</Length>
+      <Format />
+      <Index>6</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>If you wish to write ic checks result to table enable/disable</Comment>
+      <GridColumnProperties width="111" />
+    </Column>
+    <Column>
+      <Title>interface_name</Title>
+      <ColumnName>interface_name</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>50</Length>
+      <Format />
+      <Index>7</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>Mandatory if write_result_to_table is enable</Comment>
+      <GridColumnProperties width="100" />
+    </Column>
+    <Column>
+      <Title>active</Title>
+      <ColumnName>active</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Boolean</Type>
+      <Length>1</Length>
+      <Format />
+      <Index>8</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>Allows you to mark check active or not active</Comment>
+      <GridColumnProperties width="36" />
+    </Column>
+  </SchemaColumns>
+  <IsImportFromSQL>false</IsImportFromSQL>
+  <IsDynamicData>false</IsDynamicData>
+  <ColumnMapping />
+  <TranslationData>
+    <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+      <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="trnIcChecks" msdata:UseCurrentLocale="true">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="trnIcChecks">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ic_name" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="title" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="200" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="sql" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="1000" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="operator" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="value" type="xs:long" minOccurs="0" />
+                  <xs:element name="action" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="functionName" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="write_result_to_table" type="xs:boolean" minOccurs="0" />
+                  <xs:element name="interface_name" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="active" type="xs:boolean" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+      <DocumentElement>
+        <trnIcChecks diffgr:id="trnIcChecks1" msdata:rowOrder="0">
+          <ic_name>my_ic_check</ic_name>
+          <title>ic checks to test ic checks</title>
+          <sql>SELECT ifnull(count(*),0) FROM CUSTOMER</sql>
+          <operator>&gt;</operator>
+          <value>3</value>
+          <action>Report_To_Log_And_Execute_Activity</action>
+          <functionName>fnTest</functionName>
+          <write_result_to_table>true</write_result_to_table>
+          <interface_name>cass_local</interface_name>
+          <active>false</active>
+        </trnIcChecks>
+      </DocumentElement>
+    </diffgr:diffgram>
+  </TranslationData>
+  <DataRowsHeight>22</DataRowsHeight>
+</Translation>

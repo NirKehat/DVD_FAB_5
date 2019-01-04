@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_rental</ID>
+  <PopulationObjectName>query_public_rental</PopulationObjectName>
+  <TableName>rental</TableName>
+  <RootItemID>f_41</RootItemID>
+  <Mode>Upsert</Mode>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <InputArguments>
+    <Arg name="customer_id" id="fi_41.0" dataType="Integer" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item id="f_41" name="fnPopRootRental" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPopRootRental.k2function.xml">
+      <InputsList>
+        <Input id="fi_41.0" name="customer_id" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_41.0" name="rental_id" />
+        <Output id="fo_41.1" name="rental_date" />
+        <Output id="fo_41.2" name="inventory_id" />
+        <Output id="fo_41.3" name="customer_id" />
+        <Output id="fo_41.4" name="return_date" />
+        <Output id="fo_41.5" name="staff_id" />
+        <Output id="fo_41.6" name="last_update" />
+      </OutputsList>
+    </Item>
+    <Item xsi:type="ConstantDataSave" id="c.211" nodeOrder="0" module="Constant" mapObjectModule="Constant">
+      <Value><![CDATA[_]]></Value>
+    </Item>
+    <Item id="f_201" name="k2_concat5" nodeOrder="1" module="Function" mapObjectModule="Function" fileName="k2_concat5.k2function.xml">
+      <InputsList>
+        <Input id="fi_201.0" name="i_str1" />
+        <Input id="fi_201.1" name="i_str2" />
+        <Input id="fi_201.2" name="i_str3" />
+        <Input id="fi_201.3" name="i_str4" />
+        <Input id="fi_201.4" name="i_str5" />
+        <Input id="fi_201.5" name="i_delimiter" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_201.0" name="o_str1" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="50" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.0" toItemID="tbl_rental" toColID="tblCol_4a1044732c33488092841c4aaef15a69" />
+    <Link partId="51" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.1" toItemID="tbl_rental" toColID="tblCol_4d8e7a7a058a44f3988c35dd5589100c" />
+    <Link partId="52" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.2" toItemID="tbl_rental" toColID="tblCol_1ec50b239c6b4c34b5d145eb1e0a7a41" />
+    <Link partId="53" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.3" toItemID="tbl_rental" toColID="tblCol_e3a45f0f6f9b46ee90a9dcf5568d837d" />
+    <Link partId="54" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.4" toItemID="tbl_rental" toColID="tblCol_647bbad5f80c459e8f91deea9a178b9e" />
+    <Link partId="55" fromNodeOrder="1" fromItemID="f_201" fromColID="fo_201.0" toItemID="tbl_rental" toColID="tblCol_60db80b10f3a42fdb8a474b0dca3c500" />
+    <Link partId="209" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.0" toItemID="f_201" toColID="fi_201.0" />
+    <Link partId="213" fromNodeOrder="0" fromItemID="c.211" fromColID="c.211" toItemID="f_201" toColID="fi_201.5" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="rental.query_public_rental.k2tablePop.xml" lastPartID="304">
+      <TableNode partID="0" name="rental" pos="523.892761 31.7083435" width="309.752441" />
+      <FunctionMapNode id="0" L0="2" R0="3" R1="4" R2="5" R3="6" R4="7" R5="8" R6="9" partID="41" topLabel="fnPopRootRental (41)" pos="10.03187 20.1992111" size="173.820648 109.60157" isRoot="true">
+        <KFunction>{"Name":"fnPopRootRental","ID":"f_41","Category":"Parser","Version":"3.1.0.0","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsSyntaxValid":true,"IsRootFunction":true,"inputParams":[{"Name":"customer_id","ID":"fi_41.0","Index":0,"DataType":"Integer","Comment":""}],"outputParams":[{"Name":"rental_id","ID":"fo_41.0","Index":0,"DataType":"Long","Comment":""},{"Name":"rental_date","ID":"fo_41.1","Index":1,"DataType":"String","Comment":""},{"Name":"inventory_id","ID":"fo_41.2","Index":2,"DataType":"Long","Comment":""},{"Name":"customer_id","ID":"fo_41.3","Index":3,"DataType":"Long","Comment":""},{"Name":"return_date","ID":"fo_41.4","Index":4,"DataType":"String","Comment":""},{"Name":"staff_id","ID":"fo_41.5","Index":5,"DataType":"Long","Comment":""},{"Name":"last_update","ID":"fo_41.6","Index":6,"DataType":"String","Comment":""}]}</KFunction>
+      </FunctionMapNode>
+      <FunctionMapNode id="1" L0="10" L1="11" L2="12" L3="13" L4="14" L5="15" R0="16" partID="201" topLabel="k2_concat5 (201)" pos="284.596039 151.235687" size="138.576721 97.52864" isRoot="false">
+        <KFunction>{"Name":"k2_concat5","ID":"f_201","Category":"String","FunctionLevel":1,"FunctionType":0,"FunctionType2":0,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"Concatenate upto 5 strings with defined delimiter","Language":1,"IsSyntaxValid":true,"IsRootFunction":false,"inputParams":[{"Name":"i_str1","ID":"fi_201.0","Index":0,"DataType":"String","Comment":""},{"Name":"i_str2","ID":"fi_201.1","Index":1,"DataType":"String","Comment":""},{"Name":"i_str3","ID":"fi_201.2","Index":2,"DataType":"String","Comment":""},{"Name":"i_str4","ID":"fi_201.3","Index":3,"DataType":"String","Comment":""},{"Name":"i_str5","ID":"fi_201.4","Index":4,"DataType":"String","Comment":""},{"Name":"i_delimiter","ID":"fi_201.5","Index":5,"DataType":"String","Comment":""}],"outputParams":[{"Name":"o_str1","ID":"fo_201.0","Index":0,"DataType":"String","Comment":""}]}</KFunction>
+      </FunctionMapNode>
+      <ConstantMapNode partID="211" topLabel="ConstantForConcat" pos="36.86733 202.454437" size="120.149734 45.09114">
+        <KDataValue>{"ID":"c.211","DataValue":"_"}</KDataValue>
+      </ConstantMapNode>
+      <Link partID="50" from="3" to="17" pointsArr="183.852524 41.32682 193.852524 41.32682 218.8844 25 488.8844 25 513.892761 62.7448 523.892761 62.7448" fromNodePartID="41" fromNodeColumnName="rental_id" toNodePartID="0" toNodeColumnName="rental_id" />
+      <Link partID="51" from="4" to="18" pointsArr="183.852524 53.3997345 193.852524 53.3997345 218.8844 50 488.8844 50 513.892761 74.81772 523.892761 74.81772" fromNodePartID="41" fromNodeColumnName="rental_date" toNodePartID="0" toNodeColumnName="rental_date" />
+      <Link partID="52" from="5" to="19" pointsArr="183.852524 65.47265 193.852524 65.47265 218.8844 75 488.8844 75 513.892761 86.89063 523.892761 86.89063" fromNodePartID="41" fromNodeColumnName="inventory_id" toNodePartID="0" toNodeColumnName="inventory_id" />
+      <Link partID="53" from="6" to="20" pointsArr="183.852524 77.54556 193.852524 77.54556 218.8844 100 488.8844 100 513.892761 98.96355 523.892761 98.96355" fromNodePartID="41" fromNodeColumnName="customer_id" toNodePartID="0" toNodeColumnName="customer_id" />
+      <Link partID="54" from="7" to="21" pointsArr="183.852524 89.6184845 193.852524 89.6184845 218.8844 125 488.8844 125 513.892761 111.036461 523.892761 111.036461" fromNodePartID="41" fromNodeColumnName="return_date" toNodePartID="0" toNodeColumnName="return_date" />
+      <Link partID="55" from="16" to="22" pointsArr="423.17276 202.545578 433.17276 202.545578 513.892761 123.109375 523.892761 123.109375" fromNodePartID="201" fromNodeColumnName="o_str1" toNodePartID="0" toNodeColumnName="staff_id" />
+      <Link partID="209" from="3" to="10" pointsArr="183.852524 41.32682 193.852524 41.32682 274.596039 172.363281 284.596039 172.363281" fromNodePartID="41" fromNodeColumnName="rental_id" toNodePartID="201" toNodeColumnName="i_str1" />
+      <Link partID="213" from="23" to="15" pointsArr="144.993088 227.545578 154.993088 227.545578 274.596039 232.727859 284.596039 232.727859" fromNodePartID="211" fromNodeColumnName="_" toNodePartID="201" toNodeColumnName="i_delimiter" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

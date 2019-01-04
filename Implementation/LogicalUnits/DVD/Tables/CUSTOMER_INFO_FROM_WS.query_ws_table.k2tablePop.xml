@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_ws_table</ID>
+  <PopulationObjectName>query_ws_table</PopulationObjectName>
+  <TableName>CUSTOMER_INFO_FROM_WS</TableName>
+  <RootItemID>f_5</RootItemID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <InputArguments>
+    <Arg name="cusId" id="fi_5.0" dataType="String" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item id="f_5" name="fnPopWsTable" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPopWsTable.k2function.xml">
+      <InputsList>
+        <Input id="fi_5.0" name="cusId" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_5.0" name="Customer_Id" />
+        <Output id="fo_5.1" name="firstName" />
+        <Output id="fo_5.2" name="lastName" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="13" fromNodeOrder="0" fromItemID="f_5" fromColID="fo_5.0" toItemID="tbl_CUSTOMER_INFO_FROM_WS" toColID="tblCol_f7ef0f8a02f94929a685d87d0c7cc86e" />
+    <Link partId="18" fromNodeOrder="0" fromItemID="f_5" fromColID="fo_5.1" toItemID="tbl_CUSTOMER_INFO_FROM_WS" toColID="tblCol_0bf80c064d944a5d927ad82266ce16f6" />
+    <Link partId="19" fromNodeOrder="0" fromItemID="f_5" fromColID="fo_5.2" toItemID="tbl_CUSTOMER_INFO_FROM_WS" toColID="tblCol_0cf4c14ce91a45f7845923fb61702b5c" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="CUSTOMER_INFO_FROM_WS.query_ws_table.k2tablePop.xml" lastPartID="19">
+      <TableNode partID="0" name="CUSTOMER_INFO_FROM_WS" pos="403.074615 30" width="310.249481" />
+      <FunctionMapNode id="0" L0="1" R0="2" R1="3" R2="4" partID="5" topLabel="fnPopWsTable (5)" pos="33 25" size="148.197327 61.30989" isRoot="true">
+        <KFunction>{"Name":"fnPopWsTable","ID":"f_5","Category":"WS_AS_SOURCE","Version":"3.6.4.0","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsSyntaxValid":true,"IsRootFunction":true,"inputParams":[{"Name":"cusId","ID":"fi_5.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"Customer_Id","ID":"fo_5.0","Index":0,"DataType":"String"},{"Name":"firstName","ID":"fo_5.1","Index":1,"DataType":"String"},{"Name":"lastName","ID":"fo_5.2","Index":2,"DataType":"String"}]}</KFunction>
+      </FunctionMapNode>
+      <Link partID="13" from="2" to="5" pointsArr="181.197327 46.1276 191.197327 46.1276 393.537018 61.0364571 403.537018 61.0364571" fromNodePartID="5" fromNodeColumnName="Customer_Id" toNodePartID="0" toNodeColumnName="Customer_Id" />
+      <Link partID="18" from="3" to="6" pointsArr="181.197327 58.2005157 191.197327 58.2005157 393.537018 73.109375 403.537018 73.109375" fromNodePartID="5" fromNodeColumnName="firstName" toNodePartID="0" toNodeColumnName="firstName" />
+      <Link partID="19" from="4" to="7" pointsArr="181.197327 70.27343 191.197327 70.27343 393.537018 85.18229 403.537018 85.18229" fromNodePartID="5" fromNodeColumnName="lastName" toNodePartID="0" toNodeColumnName="lastName" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

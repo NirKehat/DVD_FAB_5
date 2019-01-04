@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>film</Name>
+  <ID>tbl_film</ID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <Columns>
+    <Column name="film_id" id="tblCol_e18b5254e0054eb1b56d41357a321746" index="0" datatype="Integer" mandatory="true" />
+    <Column name="title" id="tblCol_d60c87ddf04f4a768d2fd6ed05c1a3b2" index="1" datatype="Text" mandatory="true" />
+    <Column name="description" id="tblCol_e17acb6cd47a4686b1bcb080ed6ad715" index="2" datatype="Text" />
+    <Column name="release_year" id="tblCol_69e8febe7d174d00a264faff97ebe09a" index="3" datatype="Integer" />
+    <Column name="language_id" id="tblCol_99eee9a68f414e2f8581c89eb7cd80b0" index="4" datatype="Integer" mandatory="true" />
+    <Column name="rental_duration" id="tblCol_1f2a33c47cb841c485ae893f0d9ecc23" index="5" datatype="Integer" mandatory="true" />
+    <Column name="rental_rate" id="tblCol_dc28f523e16c4f34b620a5b9ac13738c" index="6" datatype="Real" mandatory="true" />
+    <Column name="length" id="tblCol_e539e534a1a74c3db8b0fcc834cb774d" index="7" datatype="Integer" />
+    <Column name="replacement_cost" id="tblCol_149ca1f2dcc041e1b5d3bd50a50dbdec" index="8" datatype="Real" mandatory="true" />
+    <Column name="rating" id="tblCol_b1d147cfab414b0eb9c672bc9cda8580" index="9" datatype="Text" />
+    <Column name="last_update" id="tblCol_fc141490134c412a8bcbafccc0a4fe19" index="10" datatype="Text" mandatory="true" />
+    <Column name="special_features" id="tblCol_337306010106481eace44fac577db5b1" index="11" datatype="Text" />
+    <Column name="fulltext" id="tblCol_8de1cc4915824af49d1ae0fbe67d73c0" index="12" datatype="Text" mandatory="true" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" unique="true" instanceOnly="true" columnsIdsList="tblCol_e18b5254e0054eb1b56d41357a321746" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

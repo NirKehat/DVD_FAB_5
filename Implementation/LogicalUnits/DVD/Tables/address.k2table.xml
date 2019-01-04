@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>address</Name>
+  <ID>tbl_address</ID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <Columns>
+    <Column name="address_id" id="tblCol_b5bc58f9fee84c2786e4122e78668dd0" index="0" datatype="Integer" />
+    <Column name="address" id="tblCol_74d75f93050c4e0badbe81d99ddb5d11" index="1" datatype="Text" mandatory="true" />
+    <Column name="address2" id="tblCol_e1145a7260274797a31631fc92a1690e" index="2" datatype="Text" />
+    <Column name="district" id="tblCol_8d387b4b0f4c495a8cd65cf0f7ce540d" index="3" datatype="Text" mandatory="true" />
+    <Column name="city_name" id="tblCol_217472d4a7884e83947abb8f15612125" index="4" datatype="text" />
+    <Column name="postal_code" id="tblCol_7e80b8cc440f40df9626cd2cbbdb5f3f" index="5" datatype="Text" />
+    <Column name="phone" id="tblCol_1b98c7133d80458aa3415cf8801d237e" index="6" datatype="Text" mandatory="true" />
+    <Column name="last_update" id="tblCol_eedbf1d6c3b349e08662205aa4ec4391" index="7" datatype="Text" mandatory="true" />
+    <Column name="county_name" id="tblCol_c385d588207146d8a1851320202ef8f8" index="8" datatype="text" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" unique="true" instanceOnly="true" columnsIdsList="tblCol_b5bc58f9fee84c2786e4122e78668dd0" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

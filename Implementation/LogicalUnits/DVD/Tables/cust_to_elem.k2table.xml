@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>cust_to_elem</Name>
+  <ID>tbl_cust_to_elem</ID>
+  <LazyDataUpdate syncMethod="None" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <Columns>
+    <Column name="element" id="tblCol_b8ce78026e4d4a8caf17267286ec6651" index="0" datatype="integer" />
+    <Column name="customer" id="tblCol_4055d059cdda4ff08917efb689a7edf9" index="1" datatype="integer" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" unique="true" instanceOnly="true" columnsIdsList="tblCol_b8ce78026e4d4a8caf17267286ec6651,tblCol_4055d059cdda4ff08917efb689a7edf9" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

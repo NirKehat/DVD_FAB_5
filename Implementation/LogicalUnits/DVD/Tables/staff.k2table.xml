@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>staff</Name>
+  <ID>tbl_staff</ID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <Columns>
+    <Column name="staff_id" id="tblCol_af2dd3469a6c4cc19155fb288e2f7bb2" index="0" datatype="Integer" mandatory="true" />
+    <Column name="first_name" id="tblCol_88255594e54f455c9e7292ca22bc6655" index="1" datatype="Text" mandatory="true" />
+    <Column name="last_name" id="tblCol_b50cfd7761a7412cac8c9efc10e4804a" index="2" datatype="Text" mandatory="true" />
+    <Column name="address_id" id="tblCol_9cced7c588a64ab18a85e7ceaef1b8e9" index="3" datatype="Integer" mandatory="true" />
+    <Column name="email" id="tblCol_5fb587c9e1d7454480610c7eb3315d6b" index="4" datatype="Text" />
+    <Column name="store_id" id="tblCol_5a133409caca443c83c90f218472627c" index="5" datatype="Integer" mandatory="true" />
+    <Column name="active" id="tblCol_6bbd1367b52742d99896323d9b47e7fd" index="6" datatype="Text" mandatory="true" />
+    <Column name="username" id="tblCol_e6388b1834754af7878b1527d601fe86" index="7" datatype="Text" mandatory="true" />
+    <Column name="password" id="tblCol_2e6827274afc4308adcc5bedfbeb6dea" index="8" datatype="Text" />
+    <Column name="last_update" id="tblCol_d104465307c64f22affe311ab84e8013" index="9" datatype="Text" mandatory="true" />
+    <Column name="picture" id="tblCol_365fe2aef82148c68952b8e746b66b01" index="10" datatype="BLOB" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" unique="true" instanceOnly="true" columnsIdsList="tblCol_af2dd3469a6c4cc19155fb288e2f7bb2" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

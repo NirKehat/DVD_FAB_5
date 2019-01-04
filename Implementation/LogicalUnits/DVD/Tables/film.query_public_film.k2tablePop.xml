@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_film</ID>
+  <PopulationObjectName>query_public_film</PopulationObjectName>
+  <TableName>film</TableName>
+  <RootItemID>query_query_public_film</RootItemID>
+  <Mode>Upsert</Mode>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="film_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="title" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="description" id="queryCol_2" dataType="Text" index="2" />
+    <Arg name="release_year" id="queryCol_3" dataType="Integer" index="3" />
+    <Arg name="language_id" id="queryCol_4" dataType="Integer" index="4" />
+    <Arg name="rental_duration" id="queryCol_5" dataType="Integer" index="5" />
+    <Arg name="rental_rate" id="queryCol_6" dataType="Real" index="6" />
+    <Arg name="length" id="queryCol_7" dataType="Integer" index="7" />
+    <Arg name="replacement_cost" id="queryCol_8" dataType="Real" index="8" />
+    <Arg name="rating" id="queryCol_9" dataType="Text" index="9" />
+    <Arg name="last_update" id="queryCol_10" dataType="Text" index="10" />
+    <Arg name="special_features" id="queryCol_11" dataType="Text" index="11" />
+    <Arg name="fulltext" id="queryCol_12" dataType="Text" index="12" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_film" name="query_public_film" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="film_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="title" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="description" dataType="Text" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="release_year" dataType="Integer" index="3" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_4" name="language_id" dataType="Integer" index="4" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_5" name="rental_duration" dataType="Integer" index="5" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_6" name="rental_rate" dataType="Real" index="6" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_7" name="length" dataType="Integer" index="7" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_8" name="replacement_cost" dataType="Real" index="8" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_9" name="rating" dataType="Text" index="9" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_10" name="last_update" dataType="Text" index="10" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_11" name="special_features" dataType="Text" index="11" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_12" name="fulltext" dataType="Text" index="12" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.film]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="30" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_0" toItemID="tbl_film" toColID="tblCol_e18b5254e0054eb1b56d41357a321746" />
+    <Link partId="31" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_1" toItemID="tbl_film" toColID="tblCol_d60c87ddf04f4a768d2fd6ed05c1a3b2" />
+    <Link partId="32" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_2" toItemID="tbl_film" toColID="tblCol_e17acb6cd47a4686b1bcb080ed6ad715" />
+    <Link partId="33" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_3" toItemID="tbl_film" toColID="tblCol_69e8febe7d174d00a264faff97ebe09a" />
+    <Link partId="34" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_4" toItemID="tbl_film" toColID="tblCol_99eee9a68f414e2f8581c89eb7cd80b0" />
+    <Link partId="35" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_5" toItemID="tbl_film" toColID="tblCol_1f2a33c47cb841c485ae893f0d9ecc23" />
+    <Link partId="36" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_6" toItemID="tbl_film" toColID="tblCol_dc28f523e16c4f34b620a5b9ac13738c" />
+    <Link partId="37" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_7" toItemID="tbl_film" toColID="tblCol_e539e534a1a74c3db8b0fcc834cb774d" />
+    <Link partId="38" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_8" toItemID="tbl_film" toColID="tblCol_149ca1f2dcc041e1b5d3bd50a50dbdec" />
+    <Link partId="39" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_9" toItemID="tbl_film" toColID="tblCol_b1d147cfab414b0eb9c672bc9cda8580" />
+    <Link partId="40" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_10" toItemID="tbl_film" toColID="tblCol_fc141490134c412a8bcbafccc0a4fe19" />
+    <Link partId="41" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_11" toItemID="tbl_film" toColID="tblCol_337306010106481eace44fac577db5b1" />
+    <Link partId="42" fromNodeOrder="0" fromItemID="query_query_public_film" fromColID="queryCol_12" toItemID="tbl_film" toColID="tblCol_8de1cc4915824af49d1ae0fbe67d73c0" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="film.query_public_film.k2tablePop.xml" lastPartID="70">
+      <TableNode partID="0" name="film" pos="382.537048 5.489586" width="309.78717" />
+      <DBQueryNode partID="16" name="dvdRental" pos="10 0.526046753" size="253 216.9479" isRoot="true">
+        <DBQuery>{"Name":"query_public_film","ID":"query_query_public_film","ConnName":"dvdRental","SQL":"SELECT * FROM public.film","ColumnsList":[{"ID":"queryCol_0","Name":"film_id","DataType":"Integer","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"title","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"description","DataType":"Text","Index":2,"IsInputArgument":true},{"ID":"queryCol_3","Name":"release_year","DataType":"Integer","Index":3,"IsInputArgument":true},{"ID":"queryCol_4","Name":"language_id","DataType":"Integer","Index":4,"IsInputArgument":true},{"ID":"queryCol_5","Name":"rental_duration","DataType":"Integer","Index":5,"IsInputArgument":true},{"ID":"queryCol_6","Name":"rental_rate","DataType":"Real","Index":6,"IsInputArgument":true},{"ID":"queryCol_7","Name":"length","DataType":"Integer","Index":7,"IsInputArgument":true},{"ID":"queryCol_8","Name":"replacement_cost","DataType":"Real","Index":8,"IsInputArgument":true},{"ID":"queryCol_9","Name":"rating","DataType":"Text","Index":9,"IsInputArgument":true},{"ID":"queryCol_10","Name":"last_update","DataType":"Text","Index":10,"IsInputArgument":true},{"ID":"queryCol_11","Name":"special_features","DataType":"Text","Index":11,"IsInputArgument":true},{"ID":"queryCol_12","Name":"fulltext","DataType":"Text","Index":12,"IsInputArgument":true}]}</DBQuery>
+      </DBQueryNode>
+      <Link partID="30" from="0" to="1" pointsArr="263 36.5625038 273 36.5625038 373.000031 36.5260429 383.000031 36.5260429" fromNodePartID="16" fromNodeColumnName="film_id" toNodePartID="0" toNodeColumnName="film_id" />
+      <Link partID="31" from="2" to="3" pointsArr="263 48.63542 273 48.63542 373.000031 48.59896 383.000031 48.59896" fromNodePartID="16" fromNodeColumnName="title" toNodePartID="0" toNodeColumnName="title" />
+      <Link partID="32" from="4" to="5" pointsArr="263 60.7083359 273 60.7083359 373.000031 60.671875 383.000031 60.671875" fromNodePartID="16" fromNodeColumnName="description" toNodePartID="0" toNodeColumnName="description" />
+      <Link partID="33" from="6" to="7" pointsArr="263 72.78125 273 72.78125 373.000031 72.74479 383.000031 72.74479" fromNodePartID="16" fromNodeColumnName="release_year" toNodePartID="0" toNodeColumnName="release_year" />
+      <Link partID="34" from="8" to="9" pointsArr="263 84.8541641 273 84.8541641 373.000031 84.8177 383.000031 84.8177" fromNodePartID="16" fromNodeColumnName="language_id" toNodePartID="0" toNodeColumnName="language_id" />
+      <Link partID="35" from="10" to="11" pointsArr="263 96.92708 273 96.92708 373.000031 96.89062 383.000031 96.89062" fromNodePartID="16" fromNodeColumnName="rental_duration" toNodePartID="0" toNodeColumnName="rental_duration" />
+      <Link partID="36" from="12" to="13" pointsArr="263 109 273 109 373.000031 108.963539 383.000031 108.963539" fromNodePartID="16" fromNodeColumnName="rental_rate" toNodePartID="0" toNodeColumnName="rental_rate" />
+      <Link partID="37" from="14" to="15" pointsArr="263 121.072922 273 121.072922 373.000031 121.036461 383.000031 121.036461" fromNodePartID="16" fromNodeColumnName="length" toNodePartID="0" toNodeColumnName="length" />
+      <Link partID="38" from="16" to="17" pointsArr="263 133.145844 273 133.145844 373.000031 133.109375 383.000031 133.109375" fromNodePartID="16" fromNodeColumnName="replacement_cost" toNodePartID="0" toNodeColumnName="replacement_cost" />
+      <Link partID="39" from="18" to="19" pointsArr="263 145.218765 273 145.218765 373.000031 145.182312 383.000031 145.182312" fromNodePartID="16" fromNodeColumnName="rating" toNodePartID="0" toNodeColumnName="rating" />
+      <Link partID="40" from="20" to="21" pointsArr="263 157.291687 273 157.291687 373.000031 157.255219 383.000031 157.255219" fromNodePartID="16" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
+      <Link partID="41" from="22" to="23" pointsArr="263 169.3646 273 169.3646 373.000031 169.328125 383.000031 169.328125" fromNodePartID="16" fromNodeColumnName="special_features" toNodePartID="0" toNodeColumnName="special_features" />
+      <Link partID="42" from="24" to="25" pointsArr="263 181.4375 273 181.4375 373.000031 181.401031 383.000031 181.401031" fromNodePartID="16" fromNodeColumnName="fulltext" toNodePartID="0" toNodeColumnName="fulltext" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

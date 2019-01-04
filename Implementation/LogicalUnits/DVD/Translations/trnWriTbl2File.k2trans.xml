@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Translation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>trnWriTbl2File</Name>
+  <InputNotFoundAction>Use_Default</InputNotFoundAction>
+  <SchemaColumns>
+    <Column>
+      <Title>seq</Title>
+      <ColumnName>seq</ColumnName>
+      <Direction>Input</Direction>
+      <Type>Auto Increment</Type>
+      <Length>10</Length>
+      <Format />
+      <Index>0</Index>
+      <DefaultValue />
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="59" />
+    </Column>
+    <Column>
+      <Title>db_name</Title>
+      <ColumnName>db_name</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>10</Length>
+      <Format />
+      <Index>0</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>The DB Name to run the query on if null then ludb</Comment>
+      <GridColumnProperties width="100" />
+    </Column>
+    <Column>
+      <Title>table_name</Title>
+      <ColumnName>table_name</ColumnName>
+      <Direction>Output</Direction>
+      <Type>LUDB Table</Type>
+      <Length>50</Length>
+      <Format />
+      <Index>1</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>Table Name to be used </Comment>
+      <GridColumnProperties width="100" />
+    </Column>
+    <Column>
+      <Title>columns_list</Title>
+      <ColumnName>columns_list</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>100</Length>
+      <Format />
+      <Index>2</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>Column to be used, Should be comma seperated</Comment>
+      <GridColumnProperties width="117" />
+    </Column>
+    <Column>
+      <Title>sql</Title>
+      <ColumnName>sql</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>100</Length>
+      <Format />
+      <Index>3</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>Sql to be used instead of table and column list</Comment>
+      <GridColumnProperties width="354" />
+    </Column>
+    <Column>
+      <Title>file_full_path</Title>
+      <ColumnName>file_full_path</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>100</Length>
+      <Format />
+      <Index>4</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>If you wish to have date in your file name you can use -&gt; {your_format_here} for exmaple - C:\K2View\payment_{yyyymmdd_HHmmss}.csv</Comment>
+      <GridColumnProperties width="324" />
+    </Column>
+    <Column>
+      <Title>headers</Title>
+      <ColumnName>headers</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Boolean</Type>
+      <Length>1</Length>
+      <Format />
+      <Index>5</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>if you want to have headers in your file</Comment>
+      <GridColumnProperties width="49" />
+    </Column>
+    <Column>
+      <Title>append</Title>
+      <ColumnName>append</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Boolean</Type>
+      <Length>1</Length>
+      <Format />
+      <Index>6</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>if you want to append data to your file</Comment>
+      <GridColumnProperties width="46" />
+    </Column>
+    <Column>
+      <Title>active</Title>
+      <ColumnName>active</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Boolean</Type>
+      <Length>1</Length>
+      <Format />
+      <Index>7</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>active yes or no</Comment>
+      <GridColumnProperties width="37" />
+    </Column>
+  </SchemaColumns>
+  <IsImportFromSQL>false</IsImportFromSQL>
+  <IsDynamicData>false</IsDynamicData>
+  <ColumnMapping />
+  <TranslationData>
+    <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+      <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="trnWriTbl2File" msdata:UseCurrentLocale="true">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="trnWriTbl2File">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="seq" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" type="xs:int" minOccurs="0" />
+                  <xs:element name="db_name" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="table_name" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="columns_list" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="sql" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="file_full_path" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="headers" type="xs:boolean" minOccurs="0" />
+                  <xs:element name="append" type="xs:boolean" minOccurs="0" />
+                  <xs:element name="active" type="xs:boolean" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+        <xs:unique name="Constraint1">
+          <xs:selector xpath=".//trnWriTbl2File" />
+          <xs:field xpath="seq" />
+        </xs:unique>
+      </xs:element>
+    </xs:schema>
+    <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+      <DocumentElement>
+        <trnWriTbl2File diffgr:id="trnWriTbl2File1" msdata:rowOrder="0">
+          <seq>1</seq>
+          <db_name></db_name>
+          <table_name>CUSTOMER</table_name>
+          <columns_list>customer_id,store_id</columns_list>
+          <sql></sql>
+          <file_full_path>C:\K2View\example.csv</file_full_path>
+          <headers>true</headers>
+          <append>true</append>
+          <active>true</active>
+        </trnWriTbl2File>
+        <trnWriTbl2File diffgr:id="trnWriTbl2File2" msdata:rowOrder="1">
+          <seq>2</seq>
+          <db_name></db_name>
+          <table_name></table_name>
+          <columns_list></columns_list>
+          <sql>SELECT * FROM PAYMENT where PAYMENT.CUSTOMER_ID = 1</sql>
+          <file_full_path>C:\K2View\payment_{yyyymmdd_HHmmss}.csv</file_full_path>
+          <active>false</active>
+        </trnWriTbl2File>
+      </DocumentElement>
+    </diffgr:diffgram>
+  </TranslationData>
+  <DataRowsHeight>22</DataRowsHeight>
+</Translation>

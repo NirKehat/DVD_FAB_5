@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_film_list</ID>
+  <PopulationObjectName>query_public_film_list</PopulationObjectName>
+  <TableName>film_list</TableName>
+  <RootItemID>query_query_public_film_list</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="fid" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="title" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="description" id="queryCol_2" dataType="Text" index="2" />
+    <Arg name="category" id="queryCol_3" dataType="Text" index="3" />
+    <Arg name="price" id="queryCol_4" dataType="Real" index="4" />
+    <Arg name="length" id="queryCol_5" dataType="Integer" index="5" />
+    <Arg name="rating" id="queryCol_6" dataType="Text" index="6" />
+    <Arg name="actors" id="queryCol_7" dataType="Text" index="7" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_film_list" name="query_public_film_list" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="fid" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="title" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="description" dataType="Text" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="category" dataType="Text" index="3" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_4" name="price" dataType="Real" index="4" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_5" name="length" dataType="Integer" index="5" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_6" name="rating" dataType="Text" index="6" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_7" name="actors" dataType="Text" index="7" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.film_list]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="20" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_0" toItemID="tbl_film_list" toColID="tblCol_828a982409934c5b86f4e6da36388722" />
+    <Link partId="21" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_1" toItemID="tbl_film_list" toColID="tblCol_e0c67bc028e44b53ba7eb682e327ebbc" />
+    <Link partId="22" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_2" toItemID="tbl_film_list" toColID="tblCol_407780577d5e447a839a57683622cb48" />
+    <Link partId="23" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_3" toItemID="tbl_film_list" toColID="tblCol_7df905ca3e124786a14566426cc7001c" />
+    <Link partId="24" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_4" toItemID="tbl_film_list" toColID="tblCol_0d28cf6e35da48aa80519c6788eff929" />
+    <Link partId="25" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_5" toItemID="tbl_film_list" toColID="tblCol_89e61196e7f6406d8f757d19b0aca5d3" />
+    <Link partId="26" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_6" toItemID="tbl_film_list" toColID="tblCol_b075e2ef026f4e61b2344d66ef41ff9b" />
+    <Link partId="27" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_7" toItemID="tbl_film_list" toColID="tblCol_a0fbcea9cdb448839f6ef5ad38e588d9" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="film_list.query_public_film_list.k2tablePop.bin" lastPartID="27">
+  <TableNode partID="0" name="film_list" pos="308 0.671890259" width="309.324158" />
+  <DBQueryNode partID="11" name="dvdRental" pos="10 21.7083435" size="253 156.583313" isRoot="true">
+    <DBQuery>{"Name":"query_public_film_list","ID":"query_query_public_film_list","ConnName":"dvdRental","SQL":"SELECT * FROM public.film_list","ColumnsList":[{"ID":"queryCol_0","Name":"fid","DataType":"Integer","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"title","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"description","DataType":"Text","Index":2,"IsInputArgument":true},{"ID":"queryCol_3","Name":"category","DataType":"Text","Index":3,"IsInputArgument":true},{"ID":"queryCol_4","Name":"price","DataType":"Real","Index":4,"IsInputArgument":true},{"ID":"queryCol_5","Name":"length","DataType":"Integer","Index":5,"IsInputArgument":true},{"ID":"queryCol_6","Name":"rating","DataType":"Text","Index":6,"IsInputArgument":true},{"ID":"queryCol_7","Name":"actors","DataType":"Text","Index":7,"IsInputArgument":true}]}</DBQuery>
+  </DBQueryNode>
+  <Link partID="20" from="0" to="1" pointsArr="263 57.7447968 273 57.7447968 275.5 0 295.5 0 298 31.7083435 308 31.7083435" fromNodePartID="11" fromNodeColumnName="fid" toNodePartID="0" toNodeColumnName="fid" />
+  <Link partID="21" from="2" to="3" pointsArr="263 69.81771 273 69.81771 275.5 25 295.5 25 298 43.7812576 308 43.7812576" fromNodePartID="11" fromNodeColumnName="title" toNodePartID="0" toNodeColumnName="title" />
+  <Link partID="22" from="4" to="5" pointsArr="263 81.890625 273 81.890625 275.5 50 295.5 50 298 55.85417 308 55.85417" fromNodePartID="11" fromNodeColumnName="description" toNodePartID="0" toNodeColumnName="description" />
+  <Link partID="23" from="6" to="7" pointsArr="263 93.96355 273 93.96355 275.5 75 295.5 75 298 67.92709 308 67.92709" fromNodePartID="11" fromNodeColumnName="category" toNodePartID="0" toNodeColumnName="category" />
+  <Link partID="24" from="8" to="9" pointsArr="263 106.036453 273 106.036453 275.5 100 295.5 100 298 80 308 80" fromNodePartID="11" fromNodeColumnName="price" toNodePartID="0" toNodeColumnName="price" />
+  <Link partID="25" from="10" to="11" pointsArr="263 118.109375 273 118.109375 275.5 125 295.5 125 298 92.07292 308 92.07292" fromNodePartID="11" fromNodeColumnName="length" toNodePartID="0" toNodeColumnName="length" />
+  <Link partID="26" from="12" to="13" pointsArr="263 130.1823 273 130.1823 275.5 150 295.5 150 298 104.145844 308 104.145844" fromNodePartID="11" fromNodeColumnName="rating" toNodePartID="0" toNodeColumnName="rating" />
+  <Link partID="27" from="14" to="15" pointsArr="263 142.255219 273 142.255219 275.5 175 295.5 175 298 116.218765 308 116.218765" fromNodePartID="11" fromNodeColumnName="actors" toNodePartID="0" toNodeColumnName="actors" />
+</Graph>
+  </DiagramGraph>
+</TablePopulationObject>

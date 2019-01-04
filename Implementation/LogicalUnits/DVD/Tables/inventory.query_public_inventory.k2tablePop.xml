@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_inventory</ID>
+  <PopulationObjectName>query_public_inventory</PopulationObjectName>
+  <TableName>inventory</TableName>
+  <RootItemID>query_query_public_inventory</RootItemID>
+  <Mode>Upsert</Mode>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="inventory_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="film_id" id="queryCol_1" dataType="Integer" index="1" />
+    <Arg name="store_id" id="queryCol_2" dataType="Integer" index="2" />
+    <Arg name="last_update" id="queryCol_3" dataType="Text" index="3" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_inventory" name="query_public_inventory" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="inventory_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="film_id" dataType="Integer" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="store_id" dataType="Integer" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="last_update" dataType="Text" index="3" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.inventory]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_inventory" fromColID="queryCol_0" toItemID="tbl_inventory" toColID="tblCol_e09034dffd10440981379ba96c6d915d" />
+    <Link partId="13" fromNodeOrder="0" fromItemID="query_query_public_inventory" fromColID="queryCol_1" toItemID="tbl_inventory" toColID="tblCol_cc93252cbd2a4cf1be3d4f62d69c7d5e" />
+    <Link partId="14" fromNodeOrder="0" fromItemID="query_query_public_inventory" fromColID="queryCol_2" toItemID="tbl_inventory" toColID="tblCol_b2e795c6d9b64984817a516e829a1478" />
+    <Link partId="15" fromNodeOrder="0" fromItemID="query_query_public_inventory" fromColID="queryCol_3" toItemID="tbl_inventory" toColID="tblCol_04766f2d4f55413abd18773492ac7135" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="inventory.query_public_inventory.k2tablePop.xml" lastPartID="25">
+      <TableNode partID="0" name="inventory" pos="308 24.8177147" width="309.324219" />
+      <DBQueryNode partID="7" name="dvdRental" pos="10 20.8541718" size="253 108.291656" isRoot="true">
+        <DBQuery>{"Name":"query_public_inventory","ID":"query_query_public_inventory","ConnName":"dvdRental","SQL":"SELECT * FROM public.inventory","ColumnsList":[{"ID":"queryCol_0","Name":"inventory_id","DataType":"Integer","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"film_id","DataType":"Integer","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"store_id","DataType":"Integer","Index":2,"IsInputArgument":true},{"ID":"queryCol_3","Name":"last_update","DataType":"Text","Index":3,"IsInputArgument":true}]}</DBQuery>
+      </DBQueryNode>
+      <Link partID="12" from="0" to="1" pointsArr="263 56.89063 273 56.89063 275.5 25 295.5 25 298 55.8541679 308 55.8541679" fromNodePartID="7" fromNodeColumnName="inventory_id" toNodePartID="0" toNodeColumnName="inventory_id" />
+      <Link partID="13" from="2" to="3" pointsArr="263 68.96355 273 68.96355 275.5 50 295.5 50 298 67.9270859 308 67.9270859" fromNodePartID="7" fromNodeColumnName="film_id" toNodePartID="0" toNodeColumnName="film_id" />
+      <Link partID="14" from="4" to="5" pointsArr="263 81.03645 273 81.03645 275.5 75 295.5 75 298 80 308 80" fromNodePartID="7" fromNodeColumnName="store_id" toNodePartID="0" toNodeColumnName="store_id" />
+      <Link partID="15" from="6" to="7" pointsArr="263 93.109375 273 93.109375 275.5 100 295.5 100 298 92.0729141 308 92.0729141" fromNodePartID="7" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

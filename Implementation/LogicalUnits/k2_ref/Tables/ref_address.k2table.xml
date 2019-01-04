@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>ref_address</Name>
+  <ID>tbl_ref_address</ID>
+  <LazyDataUpdate syncMethod="None" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <Columns>
+    <Column name="address_id" id="tblCol_848a8deccfe94ebda2fb244a5d8dbf52" index="0" datatype="Integer" mandatory="true" />
+    <Column name="address" id="tblCol_a780b870ca5245879e1d4ef9a4a40748" index="1" datatype="Text" mandatory="true" />
+    <Column name="address2" id="tblCol_2650123ceed34ae0bbeb4c8e6140d986" index="2" datatype="Text" />
+    <Column name="district" id="tblCol_d78d5e486e11482baddd9a13483833d3" index="3" datatype="Text" mandatory="true" />
+    <Column name="city_id" id="tblCol_34368be81c3b4c3a9925aa2cc23e57b0" index="4" datatype="Integer" mandatory="true" />
+    <Column name="postal_code" id="tblCol_57c70ca61abd4e34b7f56bb3a44912e7" index="5" datatype="Text" />
+    <Column name="phone" id="tblCol_1f11516d3063427799584674ff5047aa" index="6" datatype="Text" mandatory="true" />
+    <Column name="last_update" id="tblCol_d0e5704f4f8d40c7a911d4f324680c0c" index="7" datatype="Text" mandatory="true" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" instanceOnly="true" columnsIdsList="tblCol_848a8deccfe94ebda2fb244a5d8dbf52" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

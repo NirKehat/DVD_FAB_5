@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_payment</ID>
+  <PopulationObjectName>query_public_payment</PopulationObjectName>
+  <TableName>payment</TableName>
+  <RootItemID>f_41</RootItemID>
+  <Mode>Upsert</Mode>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <InputArguments>
+    <Arg name="customer_id" id="fi_41.0" dataType="Long" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item id="f_41" name="fnPopPaymentFromCass" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPopPaymentFromCass.k2function.xml">
+      <InputsList>
+        <Input id="fi_41.0" name="customer_id" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_41.0" name="customer_id" />
+        <Output id="fo_41.1" name="payment_id" />
+        <Output id="fo_41.2" name="payment_date" />
+        <Output id="fo_41.3" name="rental_id" />
+        <Output id="fo_41.4" name="staff_id" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="51" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.0" toItemID="tbl_payment" toColID="tblCol_d4d560f18bf54c8682b96a8cb3fdba20" />
+    <Link partId="50" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.1" toItemID="tbl_payment" toColID="tblCol_271834eb2a854d6684e397f21f1bac14" />
+    <Link partId="55" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.2" toItemID="tbl_payment" toColID="tblCol_947ea5741682428fa786c2472a24010a" />
+    <Link partId="53" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.3" toItemID="tbl_payment" toColID="tblCol_5c84e0189f734a1b8688bbd18016ed17" />
+    <Link partId="52" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.4" toItemID="tbl_payment" toColID="tblCol_23d345f093b24febbf40e55c2d0a7841" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="payment.query_public_payment.k2tablePop.xml" lastPartID="236">
+      <TableNode partID="0" name="payment" pos="349.3701 64.70834" width="311.558258" />
+      <FunctionMapNode id="0" L0="1" R0="2" R1="3" R2="4" R3="5" R4="6" partID="41" topLabel="fnPopPaymentFromCass (41)" pos="9.999977 47.4149551" size="182.604156 105.91758" isRoot="true">
+        <KFunction>{"Name":"fnPopPaymentFromCass","ID":"f_41","Category":"RootCass","Version":"3.6.6.2","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsSyntaxValid":true,"IsRootFunction":true,"inputParams":[{"Name":"customer_id","ID":"fi_41.0","Index":0,"DataType":"Long","Comment":""}],"outputParams":[{"Name":"customer_id","ID":"fo_41.0","Index":0,"DataType":"Integer","Comment":""},{"Name":"payment_id","ID":"fo_41.1","Index":1,"DataType":"Integer","Comment":""},{"Name":"payment_date","ID":"fo_41.2","Index":2,"DataType":"String","Comment":""},{"Name":"rental_id","ID":"fo_41.3","Index":3,"DataType":"Integer","Comment":""},{"Name":"staff_id","ID":"fo_41.4","Index":4,"DataType":"Integer","Comment":""}]}</KFunction>
+      </FunctionMapNode>
+      <Link partID="51" from="2" to="7" pointsArr="170.731033 78.77349 180.731033 78.77349 339.3701 95.7448044 349.3701 95.7448044" fromNodePartID="41" fromNodeColumnName="customer_id" toNodePartID="0" toNodeColumnName="customer_id" />
+      <Link partID="50" from="3" to="8" pointsArr="170.731033 90.846405 180.731033 90.846405 339.3701 107.817719 349.3701 107.817719" fromNodePartID="41" fromNodeColumnName="payment_id" toNodePartID="0" toNodeColumnName="payment_id" />
+      <Link partID="55" from="4" to="9" pointsArr="170.731033 102.919319 180.731033 102.919319 339.3701 119.890633 349.3701 119.890633" fromNodePartID="41" fromNodeColumnName="payment_date" toNodePartID="0" toNodeColumnName="payment_date" />
+      <Link partID="53" from="5" to="10" pointsArr="170.731033 114.992233 180.731033 114.992233 339.3701 131.963547 349.3701 131.963547" fromNodePartID="41" fromNodeColumnName="rental_id" toNodePartID="0" toNodeColumnName="rental_id" />
+      <Link partID="52" from="6" to="11" pointsArr="170.731033 127.065147 180.731033 127.065147 339.3701 144.036469 349.3701 144.036469" fromNodePartID="41" fromNodeColumnName="staff_id" toNodePartID="0" toNodeColumnName="staff_id" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

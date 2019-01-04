@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>M_rental</Name>
+  <ID>tbl_M_rental</ID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <Columns>
+    <Column name="rental_id" id="tblCol_d172a31c6a104ef6961e146989d7e981" index="0" datatype="Integer" mandatory="true" />
+    <Column name="rental_date" id="tblCol_820419468d2c40ec8a2424d45cebbf4d" index="1" datatype="Text" mandatory="true" />
+    <Column name="inventory_id" id="tblCol_62225e01eaec4d8b88c28a4819334915" index="2" datatype="Integer" mandatory="true" />
+    <Column name="customer_id" id="tblCol_7134c8fb484a4568bdc388786628eb41" index="3" datatype="Integer" mandatory="true" />
+    <Column name="return_date" id="tblCol_227583f683f74f628eb6f0aa35261274" index="4" datatype="Text" />
+    <Column name="staff_id" id="tblCol_ff7ef99b859f44e7832790289e7f011e" index="5" datatype="Integer" mandatory="true" />
+    <Column name="last_update" id="tblCol_4ad6ad68499d4d2d9eddaf102b216adf" index="6" datatype="Text" mandatory="true" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" instanceOnly="true" columnsIdsList="tblCol_d172a31c6a104ef6961e146989d7e981" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

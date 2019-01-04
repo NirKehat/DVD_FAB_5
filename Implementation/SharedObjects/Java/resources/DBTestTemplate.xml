@@ -1,0 +1,21 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v3="http://directvla.com/contract/inventorydomain/CustomerABE/v3-0" xmlns:v31="http://directvla.com/schema/util/commondatatypes/v3-0" xmlns:v32="http://directvla.com/schema/businessdomain/common/v3-0" xmlns:v33="http://directvla.com/schema/businessdomain/customer/v3-0" xmlns:v34="http://directvla.com/schema/businessdomain/product/v3-0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v3:GetCustomer360ViewResponse>
+         <v3:GetCustomer360ViewResult>
+			[[[STORE  =  SELECT STORE_ID, MANAGER_STAFF_ID, ADDRESS_ID, STORE.LAST_UPDATE FROM STORE;
+			<STORE> 
+				<Title>
+					<manager_staff_id>${@STORE.manager_staff_id}</manager_staff_id>
+				</Title>
+				[[[address  =  SELECT REF_ADDRESS.ADDRESS FROM REF_ADDRESS where REF_ADDRESS.ADDRESS_ID = ${STORE.ADDRESS_ID};
+				<address_details>
+					<ADDRESS>${@address.ADDRESS}</ADDRESS>
+				</address_details>
+				]]]
+			</STORE>
+			]]]
+         </v3:GetCustomer360ViewResult>
+      </v3:GetCustomer360ViewResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.6.1.1">
+  <Name>parMigartion</Name>
+  <MapType>ParserMap</MapType>
+  <RootItemID>f_22</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <TargetsList>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>par_dummy</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item id="f_22" name="fnMigIid" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnMigIid.k2function.xml">
+          <InputsList>
+            <Input id="fi_22.0" name="inst_group_name" defaultValue="igCustomerID" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_22.0" name="output" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_par_dummy" name="par_dummy" nodeOrder="1" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="parMigartion">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_1b6b875086e444a6becebd2dd8a26312" name="dummy" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn />
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_1b6b875086e444a6becebd2dd8a26312" name="dummy" pkType="Partition_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="26" fromNodeOrder="0" fromItemID="f_22" fromColID="fo_22.0" toItemID="rt_par_dummy" toColID="rtCol_1b6b875086e444a6becebd2dd8a26312" />
+      </LinksList>
+      <ParserMapRecordType id="rt_par_dummy" name="par_dummy" parentParser="parMigartion">
+        <Active xsi:nil="true" />
+        <RecordTypeKeyColumn />
+        <Columns>
+          <Column id="rtCol_1b6b875086e444a6becebd2dd8a26312" name="dummy" index="0">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_1b6b875086e444a6becebd2dd8a26312" name="dummy" pkType="Partition_Key" />
+        </PkColumns>
+      </ParserMapRecordType>
+    </Target>
+  </TargetsList>
+  <DiagramGraph>
+    <Graph name="parMigartion.k2parserMap.xml" lastPartID="41" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
+      <ParserRecordTypeTargetNode partID="0" name="par_dummy" pos="225.201385 18.9635429" size="312.997833 62.07291" parserName="parMigartion" isTargetNode="true" isRoot="false" />
+      <FunctionMapNode id="0" L0="1" R0="2" partID="22" topLabel="fnMigIid (22)" pos="10.60902 26.1233559" size="149.598938 48.00355" isRoot="true">
+        <KFunction>{"Name":"fnMigIid","ID":"f_22","Category":"Enrichment","Version":"3.6.1.1","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsSyntaxValid":true,"IsRootFunction":true,"inputParams":[{"Name":"inst_group_name","ID":"fi_22.0","Index":0,"DataType":"String","MapDefaultValue":"igCustomerID"}],"outputParams":[{"Name":"output","ID":"fo_22.0","Index":0,"DataType":"String"}]}</KFunction>
+      </FunctionMapNode>
+      <Link from="2" to="3" partID="26" pointsArr="135.095947 52.6707039 145.095947 52.6707039 215.201385 50 225.201385 50" fromNodePartID="22" fromNodeColumnName="output" toNodePartID="0" toNodeColumnName="dummy" />
+    </Graph>
+  </DiagramGraph>
+  <Active>true</Active>
+  <ExecutionMode>Manually</ExecutionMode>
+  <syncEvery>00:00:00</syncEvery>
+</ParserMap>

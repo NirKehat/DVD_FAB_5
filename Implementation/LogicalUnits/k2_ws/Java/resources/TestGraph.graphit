@@ -1,0 +1,44 @@
+{
+  "name": "MY_XML_RESPONCE",
+  "children": [
+    {
+      "name": "date",
+      "type": "string",
+      "code": "${date}",
+      "attribute": true
+    },
+    {
+      "name": "STORE",
+      "type": "sqlNonPrepared",
+      "code": "SELECT STORE.STORE_ID, STORE.MANAGER_STAFF_ID, STORE.ADDRESS_ID, STORE.LAST_UPDATE FROM STORE",
+      "entryTag": "STORE_DETAILS",
+      "sessionProvider": "fabric",
+      "children": [
+        {
+          "name": "STORE_ID",
+          "type": "variable",
+          "code": "STORE_ID"
+        },
+        {
+          "name": "ADDRESS",
+          "type": "sql",
+          "code": "SELECT REF_ADDRESS.ADDRESS FROM REF_ADDRESS where REF_ADDRESS.ADDRESS_ID = ${ADDRESS_ID}",
+          "entryTag": "ADDRESS_DETAILS",
+          "sessionProvider": "fabric",
+          "children": [
+            {
+              "name": "ADDRESS",
+              "type": "variable",
+              "code": "ADDRESS"
+            },
+            {
+              "name": "cond",
+              "type": "condition",
+              "code": "7> 4"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

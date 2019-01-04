@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>language</Name>
+  <ID>tbl_language</ID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <Columns>
+    <Column name="language_id" id="tblCol_e7d085b11b0c494dadf20cc9a66ae89a" index="0" datatype="Integer" mandatory="true" />
+    <Column name="name" id="tblCol_3c9acfdf1b3448168388c068dd706347" index="1" datatype="Text" mandatory="true" />
+    <Column name="last_update" id="tblCol_f8bf1d412afc44bb98f18c79a8789003" index="2" datatype="Text" mandatory="true" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" instanceOnly="true" columnsIdsList="tblCol_e7d085b11b0c494dadf20cc9a66ae89a" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

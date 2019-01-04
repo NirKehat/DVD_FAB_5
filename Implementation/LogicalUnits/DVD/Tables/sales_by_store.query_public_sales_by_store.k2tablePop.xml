@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_sales_by_store</ID>
+  <PopulationObjectName>query_public_sales_by_store</PopulationObjectName>
+  <TableName>sales_by_store</TableName>
+  <RootItemID>query_query_public_sales_by_store</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="store" id="queryCol_0" dataType="Text" index="0" />
+    <Arg name="manager" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="total_sales" id="queryCol_2" dataType="Real" index="2" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_sales_by_store" name="query_public_sales_by_store" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="store" dataType="Text" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="manager" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="total_sales" dataType="Real" index="2" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.sales_by_store]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="10" fromNodeOrder="0" fromItemID="query_query_public_sales_by_store" fromColID="queryCol_0" toItemID="tbl_sales_by_store" toColID="tblCol_fefe077ec63b47b39cc6bb47a37cb0f7" />
+    <Link partId="11" fromNodeOrder="0" fromItemID="query_query_public_sales_by_store" fromColID="queryCol_1" toItemID="tbl_sales_by_store" toColID="tblCol_b4b27188a6d44a27961e564fd1b0f1f0" />
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_sales_by_store" fromColID="queryCol_2" toItemID="tbl_sales_by_store" toColID="tblCol_bf52672dc7cc42d19d56d1f6345c205c" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="sales_by_store.query_public_sales_by_store.k2tablePop.bin" lastPartID="12">
+  <TableNode partID="0" name="sales_by_store" pos="315.457336 5.854168" width="309.324158" />
+  <DBQueryNode partID="6" name="dvdRental" pos="10 1.890625" size="260.457336 96.21875" isRoot="true">
+    <DBQuery>{"Name":"query_public_sales_by_store","ID":"query_query_public_sales_by_store","ConnName":"dvdRental","SQL":"SELECT * FROM public.sales_by_store","ColumnsList":[{"ID":"queryCol_0","Name":"store","DataType":"Text","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"manager","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"total_sales","DataType":"Real","Index":2,"IsInputArgument":true}]}</DBQuery>
+  </DBQueryNode>
+  <Link partID="10" from="0" to="1" pointsArr="270.457336 37.9270859 280.457336 37.9270859 282.957336 25 302.957336 25 305.457336 36.890625 315.457336 36.890625" fromNodePartID="6" fromNodeColumnName="store" toNodePartID="0" toNodeColumnName="store" />
+  <Link partID="11" from="2" to="3" pointsArr="270.457336 50 280.457336 50 282.957336 50 302.957336 50 305.457336 48.9635429 315.457336 48.9635429" fromNodePartID="6" fromNodeColumnName="manager" toNodePartID="0" toNodeColumnName="manager" />
+  <Link partID="12" from="4" to="5" pointsArr="270.457336 62.0729141 280.457336 62.0729141 282.957336 75 302.957336 75 305.457336 61.0364571 315.457336 61.0364571" fromNodePartID="6" fromNodeColumnName="total_sales" toNodePartID="0" toNodeColumnName="total_sales" />
+</Graph>
+  </DiagramGraph>
+</TablePopulationObject>

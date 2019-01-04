@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_cust_to_elem</ID>
+  <PopulationObjectName>query_cust_to_elem</PopulationObjectName>
+  <TableName>cust_to_elem</TableName>
+  <RootItemID>f_5</RootItemID>
+  <Mode>Upsert</Mode>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <InputArguments>
+    <Arg name="element" id="fi_5.0" dataType="Integer" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item id="f_5" name="fnpopCustToElem" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnpopCustToElem.k2function.xml">
+      <InputsList>
+        <Input id="fi_5.0" name="element" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_5.0" name="element" />
+        <Output id="fo_5.1" name="customer" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="9" fromNodeOrder="0" fromItemID="f_5" fromColID="fo_5.0" toItemID="tbl_cust_to_elem" toColID="tblCol_b8ce78026e4d4a8caf17267286ec6651" />
+    <Link partId="10" fromNodeOrder="0" fromItemID="f_5" fromColID="fo_5.1" toItemID="tbl_cust_to_elem" toColID="tblCol_4055d059cdda4ff08917efb689a7edf9" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="cust_to_elem.query_cust_to_elem.k2tablePop.bin" lastPartID="10">
+  <TableNode partID="0" name="cust_to_elem" pos="404 30" width="309.3241" />
+  <FunctionMapNode id="0" L0="1" R0="2" R1="3" partID="5" topLabel="fnpopCustToElem (5)" pos="43 42" size="160.151245 49.2369766" isRoot="true">
+    <KFunction>{"Name":"fnpopCustToElem","ID":"f_5","Category":"Root","Version":"3.4.2.0","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsSyntaxValid":true,"IsRootFunction":true,"inputParams":[{"Name":"element","ID":"fi_5.0","Index":0,"DataType":"Integer"}],"outputParams":[{"Name":"element","ID":"fo_5.0","Index":0,"DataType":"Integer"},{"Name":"customer","ID":"fo_5.1","Index":1,"DataType":"Integer"}]}</KFunction>
+  </FunctionMapNode>
+  <Link partID="9" from="2" to="4" pointsArr="203.151245 63.1276 213.151245 63.1276 394 61.0364571 404 61.0364571" fromNodePartID="5" fromNodeColumnName="element" toNodePartID="0" toNodeColumnName="element" />
+  <Link partID="10" from="3" to="5" pointsArr="203.151245 75.2005157 213.151245 75.2005157 394 73.109375 404 73.109375" fromNodePartID="5" fromNodeColumnName="customer" toNodePartID="0" toNodeColumnName="customer" />
+</Graph>
+  </DiagramGraph>
+</TablePopulationObject>

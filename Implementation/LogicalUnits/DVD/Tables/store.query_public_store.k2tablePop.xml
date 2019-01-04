@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_store</ID>
+  <PopulationObjectName>query_public_store</PopulationObjectName>
+  <TableName>store</TableName>
+  <RootItemID>f_36</RootItemID>
+  <Mode>Upsert</Mode>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <InputArguments>
+    <Arg name="store_id" id="fi_36.0" dataType="String" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item id="f_36" name="fnRtStore" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnRtStore.k2function.xml">
+      <InputsList>
+        <Input id="fi_36.0" name="store_id" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_36.0" name="store_id" />
+        <Output id="fo_36.1" name="manager_staff_id" />
+        <Output id="fo_36.2" name="address_id" />
+        <Output id="fo_36.3" name="last_update" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="42" fromNodeOrder="0" fromItemID="f_36" fromColID="fo_36.0" toItemID="tbl_store" toColID="tblCol_e8744feb5b41466881cc4720ac5a80f7" />
+    <Link partId="43" fromNodeOrder="0" fromItemID="f_36" fromColID="fo_36.1" toItemID="tbl_store" toColID="tblCol_79f301f5a75d449eb0c367f649d43ab8" />
+    <Link partId="44" fromNodeOrder="0" fromItemID="f_36" fromColID="fo_36.2" toItemID="tbl_store" toColID="tblCol_35741f7acd044bdab5c8ae1a63a34afc" />
+    <Link partId="45" fromNodeOrder="0" fromItemID="f_36" fromColID="fo_36.3" toItemID="tbl_store" toColID="tblCol_878332beac77412789d78679da59f864" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="store.query_public_store.k2tablePop.xml" lastPartID="45">
+      <TableNode partID="0" name="store" pos="233.032227 24.81771" width="309.324219" />
+      <FunctionMapNode id="0" L0="1" R0="2" R1="3" R2="4" R3="5" partID="36" topLabel="fnRtStore (36)" pos="10 13.3085947" size="178.032227 73.3828049" isRoot="true">
+        <KFunction>{"Name":"fnRtStore","ID":"f_36","Category":"Root","Version":"4.0.6.2","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"store_id","ID":"fi_36.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"store_id","ID":"fo_36.0","Index":0,"DataType":"Long","Comment":""},{"Name":"manager_staff_id","ID":"fo_36.1","Index":1,"DataType":"Long","Comment":""},{"Name":"address_id","ID":"fo_36.2","Index":2,"DataType":"Long","Comment":""},{"Name":"last_update","ID":"fo_36.3","Index":3,"DataType":"String","Comment":""}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link partID="42" from="2" to="6" pointsArr="188.032227 34.4361877 198.032227 34.4361877 200.532227 25 220.532227 25 223.032227 55.8541641 233.032227 55.8541641" fromNodePartID="36" fromNodeColumnName="store_id" toNodePartID="0" toNodeColumnName="store_id" />
+      <Link partID="43" from="3" to="7" pointsArr="188.032227 46.50911 198.032227 46.50911 200.532227 50 220.532227 50 223.032227 67.92708 233.032227 67.92708" fromNodePartID="36" fromNodeColumnName="manager_staff_id" toNodePartID="0" toNodeColumnName="manager_staff_id" />
+      <Link partID="44" from="4" to="8" pointsArr="188.032227 58.582016 198.032227 58.582016 200.532227 75 220.532227 75 223.032227 80 233.032227 80" fromNodePartID="36" fromNodeColumnName="address_id" toNodePartID="0" toNodeColumnName="address_id" />
+      <Link partID="45" from="5" to="9" pointsArr="188.032227 70.65494 198.032227 70.65494 200.532227 100 220.532227 100 223.032227 92.07291 233.032227 92.07291" fromNodePartID="36" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

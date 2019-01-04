@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DBConn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="DBConnSqlServer" name="sqlServerDB" type="SqlServer" version="3.6.6.2">
+  <Active>true</Active>
+  <DataSource>vpn.k2view.com</DataSource>
+  <PortNum>49623</PortNum>
+  <DataBase>k2vtest</DataBase>
+  <UserId>sa</UserId>
+  <Password>0CMkiS80hF4y6xclAA73XpfZdj36VSX/zPDhdAZ/QUk=:TJ5VQ9NlAKukN1XT3+OHKqF2bUHEX+EmhKITUIPrxcc=</Password>
+  <MinConnectionsNumber>0</MinConnectionsNumber>
+  <MaxConnectionsNumber>1</MaxConnectionsNumber>
+  <ConnectionStringClient>Server=vpn.k2view.com,49623;Network Library=DBMSSOCN;Database='k2vtest';UID='sa';Password='[PASSWORD]';Trusted_Connection=False;</ConnectionStringClient>
+  <ConnectionStringServerSide>jdbc:sqlserver://vpn.k2view.com:49623;database=k2vtest</ConnectionStringServerSide>
+  <UseSelectAsteriskInAutoCreatedQueries>true</UseSelectAsteriskInAutoCreatedQueries>
+  <CommandList />
+  <DBSourceList />
+</DBConn>

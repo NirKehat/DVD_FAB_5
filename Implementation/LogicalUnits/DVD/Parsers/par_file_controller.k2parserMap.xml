@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="4.1.0.13">
+  <Name>par_file_controller</Name>
+  <MapType>ParserMap</MapType>
+  <RootItemID>f_16</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <TargetsList>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>par_controller</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item id="f_16" name="fnRtControllerFiles" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnRtControllerFiles.k2function.xml">
+          <InputsList>
+            <Input id="fi_16.0" name="zip_ind" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_16.0" name="output" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_par_controller" name="par_controller" nodeOrder="1" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="par_file_controller">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_071e5c66284d496aab1db33a273829e6" name="output" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn />
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_071e5c66284d496aab1db33a273829e6" name="output" pkType="Partition_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+          <CompactionStrategy>SizeTieredCompactionStrategy</CompactionStrategy>
+          <TimeToLive>0</TimeToLive>
+          <CreateStatement><![CDATA[]]></CreateStatement>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="19" fromNodeOrder="0" fromItemID="f_16" fromColID="fo_16.0" toItemID="rt_par_controller" toColID="rtCol_071e5c66284d496aab1db33a273829e6" />
+      </LinksList>
+      <ParserMapRecordType id="rt_par_controller" name="par_controller" parentParser="par_file_controller">
+        <Active xsi:nil="true" />
+        <RecordTypeKeyColumn />
+        <Columns>
+          <Column id="rtCol_071e5c66284d496aab1db33a273829e6" name="output" index="0">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_071e5c66284d496aab1db33a273829e6" name="output" pkType="Partition_Key" />
+        </PkColumns>
+        <CreateStatement><![CDATA[]]></CreateStatement>
+      </ParserMapRecordType>
+    </Target>
+  </TargetsList>
+  <DiagramGraph>
+    <Graph name="par_file_controller.k2parserMap.xml" lastPartID="28" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
+      <ParserRecordTypeTargetNode partID="0" name="par_controller" pos="212.819977 18.9635468" size="312.99826 62.0729065" parserName="par_file_controller" isTargetNode="true" isRoot="false" />
+      <FunctionMapNode id="0" L0="1" R0="2" partID="16" topLabel="fnRtControllerFiles (16)" pos="10.0236368 27.4544258" size="157.7717 45.0911446" isRoot="true">
+        <KFunction>{"Name":"fnRtControllerFiles","ID":"f_16","Category":"FILES_CONTROLLER","Version":"4.0.4.2","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"zip_ind","ID":"fi_16.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"output","ID":"fo_16.0","Index":0,"DataType":"String","Comment":""}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link from="2" to="3" partID="19" pointsArr="167.795334 52.54557 177.795334 52.54557 202.819977 49.9999962 212.819977 49.9999962" fromNodePartID="16" fromNodeColumnName="output" toNodePartID="0" toNodeColumnName="output" />
+    </Graph>
+  </DiagramGraph>
+  <Active>true</Active>
+  <ExecutionMode>Manually</ExecutionMode>
+  <syncEvery>00:00:00</syncEvery>
+  <InterfaceName>int_files_controller</InterfaceName>
+  <DeleteResource>true</DeleteResource>
+</ParserMap>

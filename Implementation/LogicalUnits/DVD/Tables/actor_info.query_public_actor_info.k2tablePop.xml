@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_actor_info</ID>
+  <PopulationObjectName>query_public_actor_info</PopulationObjectName>
+  <TableName>actor_info</TableName>
+  <RootItemID>query_query_public_actor_info</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="actor_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="first_name" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="last_name" id="queryCol_2" dataType="Text" index="2" />
+    <Arg name="film_info" id="queryCol_3" dataType="Text" index="3" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_actor_info" name="query_public_actor_info" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="actor_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="first_name" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="last_name" dataType="Text" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="film_info" dataType="Text" index="3" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.actor_info]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_actor_info" fromColID="queryCol_0" toItemID="tbl_actor_info" toColID="tblCol_18bf83f9d56c440eb0a4bc04365a6f40" />
+    <Link partId="13" fromNodeOrder="0" fromItemID="query_query_public_actor_info" fromColID="queryCol_1" toItemID="tbl_actor_info" toColID="tblCol_dff42dcf989544858dce00822e4a46aa" />
+    <Link partId="14" fromNodeOrder="0" fromItemID="query_query_public_actor_info" fromColID="queryCol_2" toItemID="tbl_actor_info" toColID="tblCol_159f96b41216438b9e5837f8a8331f53" />
+    <Link partId="15" fromNodeOrder="0" fromItemID="query_query_public_actor_info" fromColID="queryCol_3" toItemID="tbl_actor_info" toColID="tblCol_091ab925949544bfbb17611e6182f532" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="actor_info.query_public_actor_info.k2tablePop.bin" lastPartID="15">
+  <TableNode partID="0" name="actor_info" pos="308 24.8177147" width="309.324158" />
+  <DBQueryNode partID="7" name="dvdRental" pos="10 20.8541718" size="253 108.291656" isRoot="true">
+    <DBQuery>{"Name":"query_public_actor_info","ID":"query_query_public_actor_info","ConnName":"dvdRental","SQL":"SELECT * FROM public.actor_info","ColumnsList":[{"ID":"queryCol_0","Name":"actor_id","DataType":"Integer","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"first_name","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"last_name","DataType":"Text","Index":2,"IsInputArgument":true},{"ID":"queryCol_3","Name":"film_info","DataType":"Text","Index":3,"IsInputArgument":true}]}</DBQuery>
+  </DBQueryNode>
+  <Link partID="12" from="0" to="1" pointsArr="263 56.89063 273 56.89063 275.5 25 295.5 25 298 55.85417 308 55.85417" fromNodePartID="7" fromNodeColumnName="actor_id" toNodePartID="0" toNodeColumnName="actor_id" />
+  <Link partID="13" from="2" to="3" pointsArr="263 68.96355 273 68.96355 275.5 50 295.5 50 298 67.9270859 308 67.9270859" fromNodePartID="7" fromNodeColumnName="first_name" toNodePartID="0" toNodeColumnName="first_name" />
+  <Link partID="14" from="4" to="5" pointsArr="263 81.03645 273 81.03645 275.5 75 295.5 75 298 80 308 80" fromNodePartID="7" fromNodeColumnName="last_name" toNodePartID="0" toNodeColumnName="last_name" />
+  <Link partID="15" from="6" to="7" pointsArr="263 93.109375 273 93.109375 275.5 100 295.5 100 298 92.07292 308 92.07292" fromNodePartID="7" fromNodeColumnName="film_info" toNodePartID="0" toNodeColumnName="film_info" />
+</Graph>
+  </DiagramGraph>
+</TablePopulationObject>

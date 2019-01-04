@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_staff</ID>
+  <PopulationObjectName>query_public_staff</PopulationObjectName>
+  <TableName>staff</TableName>
+  <RootItemID>query_query_public_staff</RootItemID>
+  <Mode>Upsert</Mode>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="staff_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="first_name" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="last_name" id="queryCol_2" dataType="Text" index="2" />
+    <Arg name="address_id" id="queryCol_3" dataType="Integer" index="3" />
+    <Arg name="email" id="queryCol_4" dataType="Text" index="4" />
+    <Arg name="store_id" id="queryCol_5" dataType="Integer" index="5" />
+    <Arg name="active" id="queryCol_6" dataType="Text" index="6" />
+    <Arg name="username" id="queryCol_7" dataType="Text" index="7" />
+    <Arg name="password" id="queryCol_8" dataType="Text" index="8" />
+    <Arg name="last_update" id="queryCol_9" dataType="Text" index="9" />
+    <Arg name="picture" id="queryCol_10" dataType="BLOB" index="10" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_staff" name="query_public_staff" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="staff_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="first_name" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="last_name" dataType="Text" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="address_id" dataType="Integer" index="3" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_4" name="email" dataType="Text" index="4" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_5" name="store_id" dataType="Integer" index="5" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_6" name="active" dataType="Text" index="6" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_7" name="username" dataType="Text" index="7" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_8" name="password" dataType="Text" index="8" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_9" name="last_update" dataType="Text" index="9" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_10" name="picture" dataType="BLOB" index="10" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.staff]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="26" fromNodeOrder="0" fromItemID="query_query_public_staff" fromColID="queryCol_0" toItemID="tbl_staff" toColID="tblCol_af2dd3469a6c4cc19155fb288e2f7bb2" />
+    <Link partId="27" fromNodeOrder="0" fromItemID="query_query_public_staff" fromColID="queryCol_1" toItemID="tbl_staff" toColID="tblCol_88255594e54f455c9e7292ca22bc6655" />
+    <Link partId="28" fromNodeOrder="0" fromItemID="query_query_public_staff" fromColID="queryCol_2" toItemID="tbl_staff" toColID="tblCol_b50cfd7761a7412cac8c9efc10e4804a" />
+    <Link partId="29" fromNodeOrder="0" fromItemID="query_query_public_staff" fromColID="queryCol_3" toItemID="tbl_staff" toColID="tblCol_9cced7c588a64ab18a85e7ceaef1b8e9" />
+    <Link partId="30" fromNodeOrder="0" fromItemID="query_query_public_staff" fromColID="queryCol_4" toItemID="tbl_staff" toColID="tblCol_5fb587c9e1d7454480610c7eb3315d6b" />
+    <Link partId="31" fromNodeOrder="0" fromItemID="query_query_public_staff" fromColID="queryCol_5" toItemID="tbl_staff" toColID="tblCol_5a133409caca443c83c90f218472627c" />
+    <Link partId="32" fromNodeOrder="0" fromItemID="query_query_public_staff" fromColID="queryCol_6" toItemID="tbl_staff" toColID="tblCol_6bbd1367b52742d99896323d9b47e7fd" />
+    <Link partId="33" fromNodeOrder="0" fromItemID="query_query_public_staff" fromColID="queryCol_7" toItemID="tbl_staff" toColID="tblCol_e6388b1834754af7878b1527d601fe86" />
+    <Link partId="34" fromNodeOrder="0" fromItemID="query_query_public_staff" fromColID="queryCol_8" toItemID="tbl_staff" toColID="tblCol_2e6827274afc4308adcc5bedfbeb6dea" />
+    <Link partId="35" fromNodeOrder="0" fromItemID="query_query_public_staff" fromColID="queryCol_9" toItemID="tbl_staff" toColID="tblCol_d104465307c64f22affe311ab84e8013" />
+    <Link partId="36" fromNodeOrder="0" fromItemID="query_query_public_staff" fromColID="queryCol_10" toItemID="tbl_staff" toColID="tblCol_365fe2aef82148c68952b8e746b66b01" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="staff.query_public_staff.k2tablePop.xml" lastPartID="60">
+      <TableNode partID="0" name="staff" pos="382.537048 5.56250763" width="309.78717" />
+      <DBQueryNode partID="14" name="dvdRental" pos="10 0.5989685" size="253 192.802063" isRoot="true">
+        <DBQuery>{"Name":"query_public_staff","ID":"query_query_public_staff","ConnName":"dvdRental","SQL":"SELECT * FROM public.staff","ColumnsList":[{"ID":"queryCol_0","Name":"staff_id","DataType":"Integer","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"first_name","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"last_name","DataType":"Text","Index":2,"IsInputArgument":true},{"ID":"queryCol_3","Name":"address_id","DataType":"Integer","Index":3,"IsInputArgument":true},{"ID":"queryCol_4","Name":"email","DataType":"Text","Index":4,"IsInputArgument":true},{"ID":"queryCol_5","Name":"store_id","DataType":"Integer","Index":5,"IsInputArgument":true},{"ID":"queryCol_6","Name":"active","DataType":"Text","Index":6,"IsInputArgument":true},{"ID":"queryCol_7","Name":"username","DataType":"Text","Index":7,"IsInputArgument":true},{"ID":"queryCol_8","Name":"password","DataType":"Text","Index":8,"IsInputArgument":true},{"ID":"queryCol_9","Name":"last_update","DataType":"Text","Index":9,"IsInputArgument":true},{"ID":"queryCol_10","Name":"picture","DataType":"BLOB","Index":10,"IsInputArgument":true}]}</DBQuery>
+      </DBQueryNode>
+      <Link partID="26" from="0" to="1" pointsArr="263 36.6354256 273 36.6354256 373.000031 36.5989647 383.000031 36.5989647" fromNodePartID="14" fromNodeColumnName="staff_id" toNodePartID="0" toNodeColumnName="staff_id" />
+      <Link partID="27" from="2" to="3" pointsArr="263 48.7083435 273 48.7083435 373.000031 48.6718826 383.000031 48.6718826" fromNodePartID="14" fromNodeColumnName="first_name" toNodePartID="0" toNodeColumnName="first_name" />
+      <Link partID="28" from="4" to="5" pointsArr="263 60.7812576 273 60.7812576 373.000031 60.7447968 383.000031 60.7447968" fromNodePartID="14" fromNodeColumnName="last_name" toNodePartID="0" toNodeColumnName="last_name" />
+      <Link partID="29" from="6" to="7" pointsArr="263 72.85417 273 72.85417 373.000031 72.81771 383.000031 72.81771" fromNodePartID="14" fromNodeColumnName="address_id" toNodePartID="0" toNodeColumnName="address_id" />
+      <Link partID="30" from="8" to="9" pointsArr="263 84.9270859 273 84.9270859 373.000031 84.890625 383.000031 84.890625" fromNodePartID="14" fromNodeColumnName="email" toNodePartID="0" toNodeColumnName="email" />
+      <Link partID="31" from="10" to="11" pointsArr="263 97 273 97 373.000031 96.96354 383.000031 96.96354" fromNodePartID="14" fromNodeColumnName="store_id" toNodePartID="0" toNodeColumnName="store_id" />
+      <Link partID="32" from="12" to="13" pointsArr="263 109.072922 273 109.072922 373.000031 109.036461 383.000031 109.036461" fromNodePartID="14" fromNodeColumnName="active" toNodePartID="0" toNodeColumnName="active" />
+      <Link partID="33" from="14" to="15" pointsArr="263 121.145844 273 121.145844 373.000031 121.109383 383.000031 121.109383" fromNodePartID="14" fromNodeColumnName="username" toNodePartID="0" toNodeColumnName="username" />
+      <Link partID="34" from="16" to="17" pointsArr="263 133.218765 273 133.218765 373.000031 133.182312 383.000031 133.182312" fromNodePartID="14" fromNodeColumnName="password" toNodePartID="0" toNodeColumnName="password" />
+      <Link partID="35" from="18" to="19" pointsArr="263 145.291687 273 145.291687 373.000031 145.255219 383.000031 145.255219" fromNodePartID="14" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
+      <Link partID="36" from="20" to="21" pointsArr="263 157.364609 273 157.364609 373.000031 157.328156 383.000031 157.328156" fromNodePartID="14" fromNodeColumnName="picture" toNodePartID="0" toNodeColumnName="picture" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

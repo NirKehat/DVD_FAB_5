@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_country</ID>
+  <PopulationObjectName>query_public_country</PopulationObjectName>
+  <TableName>country</TableName>
+  <RootItemID>query_query_public_country</RootItemID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="country_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="country" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="last_update" id="queryCol_2" dataType="Text" index="2" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_country" name="query_public_country" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="country_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="country" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="last_update" dataType="Text" index="2" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.country]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="47" fromNodeOrder="0" fromItemID="query_query_public_country" fromColID="queryCol_0" toItemID="tbl_country" toColID="tblCol_fd9e52fcdcf54be5a8196b7aec4b5741" />
+    <Link partId="48" fromNodeOrder="0" fromItemID="query_query_public_country" fromColID="queryCol_1" toItemID="tbl_country" toColID="tblCol_d1ac520aef3e40bbb2724ec65033d33e" />
+    <Link partId="49" fromNodeOrder="0" fromItemID="query_query_public_country" fromColID="queryCol_2" toItemID="tbl_country" toColID="tblCol_9ad7517842b24049b26f5f0cf851306c" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="country.query_public_country.k2tablePop.xml" lastPartID="49">
+      <TableNode partID="0" name="country" pos="307.999969 5.85417175" width="310.236145" />
+      <DBQueryNode partID="43" name="dvdRental" pos="10 1.890625" size="253 96.21875" isRoot="true">
+        <DBQuery>{"Name":"query_public_country","ID":"query_query_public_country","ConnName":"dvdRental","SQL":"SELECT * FROM public.country","ColumnsList":[{"ID":"queryCol_0","Name":"country_id","DataType":"Integer","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"country","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"last_update","DataType":"Text","Index":2,"IsInputArgument":true}]}</DBQuery>
+      </DBQueryNode>
+      <Link partID="47" from="0" to="1" pointsArr="263 37.92708 273 37.92708 275.5 25 295.5 25 297.999969 36.8906326 307.999969 36.8906326" fromNodePartID="43" fromNodeColumnName="country_id" toNodePartID="0" toNodeColumnName="country_id" />
+      <Link partID="48" from="2" to="3" pointsArr="263 50 273 50 275.5 50 295.5 50 297.999969 48.9635468 307.999969 48.9635468" fromNodePartID="43" fromNodeColumnName="country" toNodePartID="0" toNodeColumnName="country" />
+      <Link partID="49" from="4" to="5" pointsArr="263 62.0729065 273 62.0729065 275.5 75 295.5 75 297.999969 61.03646 307.999969 61.03646" fromNodePartID="43" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

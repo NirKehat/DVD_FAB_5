@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>CUSTOMER_INFO_FROM_WS</Name>
+  <ID>tbl_CUSTOMER_INFO_FROM_WS</ID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <Columns>
+    <Column name="Customer_Id" id="tblCol_f7ef0f8a02f94929a685d87d0c7cc86e" index="0" datatype="text" />
+    <Column name="firstName" id="tblCol_0bf80c064d944a5d927ad82266ce16f6" index="1" datatype="Text" />
+    <Column name="lastName" id="tblCol_0cf4c14ce91a45f7845923fb61702b5c" index="2" datatype="Text" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+</TableObject>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>city</Name>
+  <ID>tbl_city</ID>
+  <LazyDataUpdate syncMethod="None" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <Columns>
+    <Column name="city_id" id="tblCol_1e654c41ea8c469b855e4255cc8bcebb" index="0" datatype="Integer" />
+    <Column name="city" id="tblCol_a56d1ced95764c50a579072e3da106aa" index="1" datatype="Text" />
+    <Column name="country_id" id="tblCol_bc3a1dec91f340eb90542f6846b17d34" index="2" datatype="Integer" />
+    <Column name="last_update" id="tblCol_91aef48fba3d4fe4b71998388827dc39" index="3" datatype="Text" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" unique="true" instanceOnly="true" columnsIdsList="tblCol_1e654c41ea8c469b855e4255cc8bcebb" />
+    <Index id="2" instanceOnly="true" columnsIdsList="tblCol_bc3a1dec91f340eb90542f6846b17d34" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

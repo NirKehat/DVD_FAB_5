@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="4.1.0.13">
+  <Name>par_parse_file_by_length</Name>
+  <MapType>ParserMap</MapType>
+  <RootItemID>f_1</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <TargetsList>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>par_file_by_length</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item id="f_1" name="fnParFileByLength" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnParFileByLength.k2function.xml">
+          <InputsList>
+            <Input id="fi_1.0" name="i_input" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_1.0" name="rs" />
+          </OutputsList>
+        </Item>
+        <Item id="f_119" name="fnSplitRowVals" nodeOrder="1" module="Function" mapObjectModule="Function" fileName="fnSplitRowVals.k2function.xml">
+          <InputsList>
+            <Input id="fi_119.0" name="rowVals" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_119.0" name="Account" />
+            <Output id="fo_119.1" name="LastName" />
+            <Output id="fo_119.2" name="FirstName" />
+            <Output id="fo_119.3" name="Balance" />
+            <Output id="fo_119.4" name="CreditLine" />
+            <Output id="fo_119.5" name="AccountCreated" />
+            <Output id="fo_119.6" name="Rating" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_par_file_by_length" name="par_file_by_length" nodeOrder="2" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="par_parse_file_by_length">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_e6efedc05b184be2bd3791c9801e65f2" name="Account" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_a5ef569254214e6884c27783317e8bb6" name="LastName" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_548dd0d50dbd4793a8d96a8d5d5f0e1c" name="FirstName" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_4d131857900f4fb98d2e40587837ea56" name="Balance" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_f21b7e87a2e14dd691aca76aba8a760e" name="CreditLimit" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_fcb8e6f1edb445398c3d15dc4a492d77" name="AccountCreated" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_cd5c6c3e4490465699c73e3d48fc33d4" name="Rating" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn />
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_e6efedc05b184be2bd3791c9801e65f2" name="Account" pkType="Partition_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+          <CompactionStrategy>SizeTieredCompactionStrategy</CompactionStrategy>
+          <TimeToLive>0</TimeToLive>
+          <CreateStatement><![CDATA[]]></CreateStatement>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="128" fromNodeOrder="1" fromItemID="f_119" fromColID="fo_119.0" toItemID="rt_par_file_by_length" toColID="rtCol_e6efedc05b184be2bd3791c9801e65f2" />
+        <Link partId="135" fromNodeOrder="0" fromItemID="f_1" fromColID="fo_1.0" toItemID="f_119" toColID="fi_119.0" />
+        <Link partId="129" fromNodeOrder="1" fromItemID="f_119" fromColID="fo_119.1" toItemID="rt_par_file_by_length" toColID="rtCol_a5ef569254214e6884c27783317e8bb6" />
+        <Link partId="130" fromNodeOrder="1" fromItemID="f_119" fromColID="fo_119.2" toItemID="rt_par_file_by_length" toColID="rtCol_548dd0d50dbd4793a8d96a8d5d5f0e1c" />
+        <Link partId="131" fromNodeOrder="1" fromItemID="f_119" fromColID="fo_119.3" toItemID="rt_par_file_by_length" toColID="rtCol_4d131857900f4fb98d2e40587837ea56" />
+        <Link partId="21" fromNodeOrder="1" fromItemID="f_119" fromColID="fo_119.4" toItemID="rt_par_file_by_length" toColID="rtCol_f21b7e87a2e14dd691aca76aba8a760e" />
+        <Link partId="132" fromNodeOrder="1" fromItemID="f_119" fromColID="fo_119.5" toItemID="rt_par_file_by_length" toColID="rtCol_fcb8e6f1edb445398c3d15dc4a492d77" />
+        <Link partId="133" fromNodeOrder="1" fromItemID="f_119" fromColID="fo_119.6" toItemID="rt_par_file_by_length" toColID="rtCol_cd5c6c3e4490465699c73e3d48fc33d4" />
+      </LinksList>
+      <ParserMapRecordType id="rt_par_file_by_length" name="par_file_by_length" parentParser="par_parse_file_by_length">
+        <Active xsi:nil="true" />
+        <RecordTypeKeyColumn />
+        <Columns>
+          <Column id="rtCol_e6efedc05b184be2bd3791c9801e65f2" name="Account" index="0">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_a5ef569254214e6884c27783317e8bb6" name="LastName" index="1">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_548dd0d50dbd4793a8d96a8d5d5f0e1c" name="FirstName" index="2">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_4d131857900f4fb98d2e40587837ea56" name="Balance" index="3">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_f21b7e87a2e14dd691aca76aba8a760e" name="CreditLimit" index="4">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_fcb8e6f1edb445398c3d15dc4a492d77" name="AccountCreated" index="5">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_cd5c6c3e4490465699c73e3d48fc33d4" name="Rating" index="6">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_e6efedc05b184be2bd3791c9801e65f2" name="Account" pkType="Partition_Key" />
+        </PkColumns>
+        <CreateStatement><![CDATA[]]></CreateStatement>
+      </ParserMapRecordType>
+    </Target>
+  </TargetsList>
+  <DiagramGraph>
+    <Graph name="par_parse_file_by_length.k2parserMap.xml" lastPartID="169" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
+      <ParserRecordTypeTargetNode partID="0" name="par_file_by_length" pos="516.880859 12.7447968" size="312.99707 134.5104" parserName="par_parse_file_by_length" isTargetNode="true" isRoot="false" />
+      <FunctionMapNode id="0" L0="2" R0="3" partID="1" topLabel="fnParFileByLength (1)" pos="10.0120115 33.9798" size="158.356476 86.68941" isRoot="true">
+        <KFunction>{"Name":"fnParFileByLength","ID":"f_1","Category":"File_Parsing","Version":"4.0.4.2","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"i_input","ID":"fi_1.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"rs","ID":"fo_1.0","Index":0,"DataType":"Map&lt;String,Object&gt;","Comment":""}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <FunctionMapNode id="1" L0="4" R0="5" R1="6" R2="7" R3="8" R4="9" R5="10" R6="11" partID="119" topLabel="fnSplitRowVals (119)" pos="213.40831 20.1992188" size="172.444016 109.601547" isRoot="false">
+        <KFunction>{"Name":"fnSplitRowVals","ID":"f_119","Category":"File_Parsing","Version":"4.0.4.2","FunctionLevel":0,"FunctionType":0,"FunctionType2":0,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":false,"inputParams":[{"Name":"rowVals","ID":"fi_119.0","Index":0,"DataType":"Map&lt;String,Object&gt;"}],"outputParams":[{"Name":"Account","ID":"fo_119.0","Index":0,"DataType":"String"},{"Name":"LastName","ID":"fo_119.1","Index":1,"DataType":"String"},{"Name":"FirstName","ID":"fo_119.2","Index":2,"DataType":"String"},{"Name":"Balance","ID":"fo_119.3","Index":3,"DataType":"String"},{"Name":"CreditLine","ID":"fo_119.4","Index":4,"DataType":"String"},{"Name":"AccountCreated","ID":"fo_119.5","Index":5,"DataType":"String"},{"Name":"Rating","ID":"fo_119.6","Index":6,"DataType":"String"}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link from="9" to="12" partID="21" pointsArr="385.852325 89.6184845 395.852325 89.6184845 506.880859 92.0729141 516.880859 92.0729141" fromNodePartID="119" fromNodeColumnName="CreditLine" toNodePartID="0" toNodeColumnName="CreditLimit" />
+      <Link from="5" to="13" partID="128" pointsArr="385.852325 41.32682 395.852325 41.32682 506.880859 43.7812538 516.880859 43.7812538" fromNodePartID="119" fromNodeColumnName="Account" toNodePartID="0" toNodeColumnName="Account" />
+      <Link from="6" to="14" partID="129" pointsArr="385.852325 53.3997345 395.852325 53.3997345 506.880859 55.85417 516.880859 55.85417" fromNodePartID="119" fromNodeColumnName="LastName" toNodePartID="0" toNodeColumnName="LastName" />
+      <Link from="7" to="15" partID="130" pointsArr="385.852325 65.47265 395.852325 65.47265 506.880859 67.9270859 516.880859 67.9270859" fromNodePartID="119" fromNodeColumnName="FirstName" toNodePartID="0" toNodeColumnName="FirstName" />
+      <Link from="8" to="16" partID="131" pointsArr="385.852325 77.54556 395.852325 77.54556 506.880859 80 516.880859 80" fromNodePartID="119" fromNodeColumnName="Balance" toNodePartID="0" toNodeColumnName="Balance" />
+      <Link from="10" to="17" partID="132" pointsArr="385.852325 101.691391 395.852325 101.691391 506.880859 104.145828 516.880859 104.145828" fromNodePartID="119" fromNodeColumnName="AccountCreated" toNodePartID="0" toNodeColumnName="AccountCreated" />
+      <Link from="11" to="18" partID="133" pointsArr="385.852325 113.764313 395.852325 113.764313 506.880859 116.21875 516.880859 116.21875" fromNodePartID="119" fromNodeColumnName="Rating" toNodePartID="0" toNodeColumnName="Rating" />
+      <Link from="3" to="4" partID="135" pointsArr="168.368484 79.87008 178.368484 79.87008 203.40831 77.54557 213.40831 77.54557" fromNodePartID="1" fromNodeColumnName="rs" toNodePartID="119" toNodeColumnName="rowVals" />
+    </Graph>
+  </DiagramGraph>
+  <Active>true</Active>
+  <ExecutionMode>Manually</ExecutionMode>
+  <syncEvery>00:00:00</syncEvery>
+  <InterfaceName>int_parse_file_by_length</InterfaceName>
+  <DeleteResource>true</DeleteResource>
+</ParserMap>

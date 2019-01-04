@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.4.0.14">
+  <Name>prTestFile10k</Name>
+  <MapType>ParserMap</MapType>
+  <RootItemID>f_269</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <TargetsList>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>test_file_10k</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item xsi:type="ConstantDataSave" id="c.293" nodeOrder="0" module="Constant" mapObjectModule="Constant">
+          <Value><![CDATA[/usr/local/K2View/fabric_test.csv]]></Value>
+        </Item>
+        <Item id="f_269" name="fnRtFbTst" nodeOrder="1" module="Function" mapObjectModule="Function" fileName="fnRtFbTst.k2function.xml">
+          <InputsList>
+            <Input id="fi_269.0" name="fileLocation" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_269.0" name="output" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_test_file_10k" name="test_file_10k" nodeOrder="2" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="prTestFile10k">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_b8ad0015fbef4602ace565817c434f3a" name="cul" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn>rtCol_b8ad0015fbef4602ace565817c434f3a</RecordTypeKeyColumn>
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_b8ad0015fbef4602ace565817c434f3a" name="cul" pkType="Partition_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="300" fromNodeOrder="1" fromItemID="f_269" fromColID="fo_269.0" toItemID="rt_test_file_10k" toColID="rtCol_b8ad0015fbef4602ace565817c434f3a" />
+        <Link partId="298" fromNodeOrder="0" fromItemID="c.293" fromColID="c.293" toItemID="f_269" toColID="fi_269.0" />
+      </LinksList>
+      <ParserMapRecordType id="rt_test_file_10k" name="test_file_10k" parentParser="prTestFile10k">
+        <Active xsi:nil="true" />
+        <RecordTypeKeyColumn>rtCol_b8ad0015fbef4602ace565817c434f3a</RecordTypeKeyColumn>
+        <Columns>
+          <Column id="rtCol_b8ad0015fbef4602ace565817c434f3a" name="cul" index="0">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_b8ad0015fbef4602ace565817c434f3a" name="cul" pkType="Partition_Key" />
+        </PkColumns>
+      </ParserMapRecordType>
+    </Target>
+  </TargetsList>
+  <Active>true</Active>
+  <ExecutionMode>Manually</ExecutionMode>
+  <syncEvery>00:00:00</syncEvery>
+  <InterfaceName />
+  <DiagramGraph>
+    <Graph name="prTestFile10k.k2parserMap.bin" lastPartID="320" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
+  <ParserRecordTypeTargetNode partID="0" name="test_file_10k" pos="494.5852 74.96355" size="312.9961 62.07292" parserName="prTestFile10k" isTargetNode="true" isRoot="false" />
+  <FunctionMapNode id="0" L0="2" R0="3" partID="269" topLabel="fnRtFbTst (269)" pos="235.569 62.73672" size="129.1272 88.5888062" isRoot="true">
+    <KFunction>{"Name":"fnRtFbTst","ID":"f_269","Category":"RtParser","Version":"3.4.0.14","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsSyntaxValid":true,"IsRootFunction":true,"inputParams":[{"Name":"fileLocation","ID":"fi_269.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"output","ID":"fo_269.0","Index":0,"DataType":"String"}]}</KFunction>
+  </FunctionMapNode>
+  <ConstantMapNode id="1" R0="4" partID="293" topLabel="fileLocation" pos="39.7142944 77.45442" size="184.295166 45.09114">
+    <KDataValue>{"ID":"c.293","DataValue":"/usr/local/K2View/fabric_test.csv"}</KDataValue>
+  </ConstantMapNode>
+  <Link from="4" to="2" partID="298" pointsArr="202.865326 102.545563 212.865326 102.545563 225.569 109.576706 235.569 109.576706" fromNodePartID="293" fromNodeColumnName="/usr/local/K2View/fabric_test.csv" toNodePartID="269" toNodeColumnName="fileLocation" />
+  <Link from="3" to="5" partID="300" pointsArr="364.6962 109.576706 374.6962 109.576706 484.5852 106.000008 494.5852 106.000008" fromNodePartID="269" fromNodeColumnName="output" toNodePartID="0" toNodeColumnName="cul" />
+</Graph>
+  </DiagramGraph>
+</ParserMap>

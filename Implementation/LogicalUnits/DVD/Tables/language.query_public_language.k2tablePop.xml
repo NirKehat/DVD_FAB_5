@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_language</ID>
+  <PopulationObjectName>query_public_language</PopulationObjectName>
+  <TableName>language</TableName>
+  <RootItemID>query_query_public_language</RootItemID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="language_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="name" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="last_update" id="queryCol_2" dataType="Text" index="2" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_language" name="query_public_language" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="language_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="name" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="last_update" dataType="Text" index="2" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.language]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="10" fromNodeOrder="0" fromItemID="query_query_public_language" fromColID="queryCol_0" toItemID="tbl_language" toColID="tblCol_e7d085b11b0c494dadf20cc9a66ae89a" />
+    <Link partId="11" fromNodeOrder="0" fromItemID="query_query_public_language" fromColID="queryCol_1" toItemID="tbl_language" toColID="tblCol_3c9acfdf1b3448168388c068dd706347" />
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_language" fromColID="queryCol_2" toItemID="tbl_language" toColID="tblCol_f8bf1d412afc44bb98f18c79a8789003" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="language.query_public_language.k2tablePop.xml" lastPartID="12">
+      <TableNode partID="0" name="language" pos="383.000031 5.854168" width="309.324158" />
+      <DBQueryNode partID="6" name="dvdRental" pos="10 0.890625" size="253 96.21875" isRoot="true">
+        <DBQuery>{"Name":"query_public_language","ID":"query_query_public_language","ConnName":"dvdRental","SQL":"SELECT * FROM public.language","ColumnsList":[{"ID":"queryCol_0","Name":"language_id","DataType":"Integer","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"name","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"last_update","DataType":"Text","Index":2,"IsInputArgument":true}]}</DBQuery>
+      </DBQueryNode>
+      <Link partID="10" from="0" to="1" pointsArr="263 36.9270859 273 36.9270859 313 37 333 37 373.000031 36.890625 383.000031 36.890625" fromNodePartID="6" fromNodeColumnName="language_id" toNodePartID="0" toNodeColumnName="language_id" />
+      <Link partID="11" from="2" to="3" pointsArr="263 49 273 49 313 49 333 49 373.000031 48.9635429 383.000031 48.9635429" fromNodePartID="6" fromNodeColumnName="name" toNodePartID="0" toNodeColumnName="name" />
+      <Link partID="12" from="4" to="5" pointsArr="263 61.0729141 273 61.0729141 313 61 333 61 373.000031 61.0364571 383.000031 61.0364571" fromNodePartID="6" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

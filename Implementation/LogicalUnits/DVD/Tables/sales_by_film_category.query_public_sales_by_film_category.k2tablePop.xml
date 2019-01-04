@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_sales_by_film_category</ID>
+  <PopulationObjectName>query_public_sales_by_film_category</PopulationObjectName>
+  <TableName>sales_by_film_category</TableName>
+  <RootItemID>query_query_public_sales_by_film_category</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="category" id="queryCol_0" dataType="Text" index="0" />
+    <Arg name="total_sales" id="queryCol_1" dataType="Real" index="1" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_sales_by_film_category" name="query_public_sales_by_film_category" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="category" dataType="Text" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="total_sales" dataType="Real" index="1" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.sales_by_film_category]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="8" fromNodeOrder="0" fromItemID="query_query_public_sales_by_film_category" fromColID="queryCol_0" toItemID="tbl_sales_by_film_category" toColID="tblCol_f4b5ce251d2543e98f02dd81fa453026" />
+    <Link partId="9" fromNodeOrder="0" fromItemID="query_query_public_sales_by_film_category" fromColID="queryCol_1" toItemID="tbl_sales_by_film_category" toColID="tblCol_45cf606658be45f3b052ecea09334335" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="sales_by_film_category.query_public_sales_by_film_category.k2tablePop.bin" lastPartID="9">
+  <TableNode partID="0" name="sales_by_film_category" pos="365.249176 11.8906288" width="309.324158" />
+  <DBQueryNode partID="5" name="dvdRental" pos="10.0000153 7.927086" size="310.2491 84.14583" isRoot="true">
+    <DBQuery>{"Name":"query_public_sales_by_film_category","ID":"query_query_public_sales_by_film_category","ConnName":"dvdRental","SQL":"SELECT * FROM public.sales_by_film_category","ColumnsList":[{"ID":"queryCol_0","Name":"category","DataType":"Text","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"total_sales","DataType":"Real","Index":1,"IsInputArgument":true}]}</DBQuery>
+  </DBQueryNode>
+  <Link partID="8" from="0" to="1" pointsArr="320.249146 43.9635429 330.249146 43.9635429 332.749146 25 352.749146 25 355.249176 42.9270859 365.249176 42.9270859" fromNodePartID="5" fromNodeColumnName="category" toNodePartID="0" toNodeColumnName="category" />
+  <Link partID="9" from="2" to="3" pointsArr="320.249146 56.03646 330.249146 56.03646 332.749146 50 352.749146 50 355.249176 55.0000038 365.249176 55.0000038" fromNodePartID="5" fromNodeColumnName="total_sales" toNodePartID="0" toNodeColumnName="total_sales" />
+</Graph>
+  </DiagramGraph>
+</TablePopulationObject>

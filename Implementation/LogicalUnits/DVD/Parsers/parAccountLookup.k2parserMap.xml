@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.6.6.2">
+  <Name>parAccountLookup</Name>
+  <MapType>ParserMap</MapType>
+  <RootItemID>f_1507</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <TargetsList>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>account_lkup_rpstry_aflt_cust_loc_id</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item id="f_1507" name="fnPopAccount" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPopAccount.k2function.xml">
+          <InputsList>
+            <Input id="fi_1507.0" name="coulmnToSplit" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_1507.0" name="output" />
+          </OutputsList>
+        </Item>
+        <Item id="f_1537" name="fnSwitchTableAccount" nodeOrder="1" module="Function" mapObjectModule="Function" fileName="fnSwitchTableAccount.k2function.xml">
+          <InputsList>
+            <Input id="fi_1537.0" name="vals" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_1537.0" name="rvrs" />
+            <Output id="fo_1537.1" name="lkup" />
+          </OutputsList>
+        </Item>
+        <Item id="f_1578" name="fnSplitMapArgs" nodeOrder="2" module="Function" mapObjectModule="Function" fileName="fnSplitMapArgs.k2function.xml">
+          <InputsList>
+            <Input id="fi_1578.0" name="mapInp" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_1578.0" name="rpstry_aflt_cust_loc_id" />
+            <Output id="fo_1578.1" name="bid_aflt_acct_id" />
+            <Output id="fo_1578.2" name="aflt_type_cd" />
+            <Output id="fo_1578.3" name="blng_lst_nm" />
+            <Output id="fo_1578.4" name="bus_aflt_acct_nbr" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_account_lkup_rpstry_aflt_cust_loc_id" name="account_lkup_rpstry_aflt_cust_loc_id" nodeOrder="3" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="parAccountLookup">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_d8bd88d220394743a4b1d97cf3890b89" name="rpstry_aflt_cust_loc_id" dataType="Integer" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_eb8cac3ef92f4a378eccba16fff664e7" name="bid_aflt_acct_id" dataType="Integer" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_59532fb9c8dd4bc6ab16aa386fee106e" name="aflt_type_cd" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_3bcbe534cd904fd387ffedd31b797c63" name="blng_lst_nm" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_326d56cb4ec5460180a042841b1a4ac4" name="bus_aflt_acct_nbr" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn />
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_d8bd88d220394743a4b1d97cf3890b89" name="rpstry_aflt_cust_loc_id" pkType="Partition_Key" />
+            <RecordTypePkColumn id="rtCol_eb8cac3ef92f4a378eccba16fff664e7" name="bid_aflt_acct_id" pkType="Clustering_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="1585" fromNodeOrder="2" fromItemID="f_1578" fromColID="fo_1578.0" toItemID="rt_account_lkup_rpstry_aflt_cust_loc_id" toColID="rtCol_d8bd88d220394743a4b1d97cf3890b89" />
+        <Link partId="1543" fromNodeOrder="1" fromItemID="f_1537" fromColID="fo_1537.1" toItemID="f_1578" toColID="fi_1578.0" />
+        <Link partId="1541" fromNodeOrder="0" fromItemID="f_1507" fromColID="fo_1507.0" toItemID="f_1537" toColID="fi_1537.0" />
+        <Link partId="1586" fromNodeOrder="2" fromItemID="f_1578" fromColID="fo_1578.1" toItemID="rt_account_lkup_rpstry_aflt_cust_loc_id" toColID="rtCol_eb8cac3ef92f4a378eccba16fff664e7" />
+        <Link partId="1587" fromNodeOrder="2" fromItemID="f_1578" fromColID="fo_1578.2" toItemID="rt_account_lkup_rpstry_aflt_cust_loc_id" toColID="rtCol_59532fb9c8dd4bc6ab16aa386fee106e" />
+        <Link partId="1588" fromNodeOrder="2" fromItemID="f_1578" fromColID="fo_1578.3" toItemID="rt_account_lkup_rpstry_aflt_cust_loc_id" toColID="rtCol_3bcbe534cd904fd387ffedd31b797c63" />
+        <Link partId="1589" fromNodeOrder="2" fromItemID="f_1578" fromColID="fo_1578.4" toItemID="rt_account_lkup_rpstry_aflt_cust_loc_id" toColID="rtCol_326d56cb4ec5460180a042841b1a4ac4" />
+      </LinksList>
+      <ParserMapRecordType id="rt_account_lkup_rpstry_aflt_cust_loc_id" name="account_lkup_rpstry_aflt_cust_loc_id" parentParser="parAccountLookup">
+        <Active xsi:nil="true" />
+        <RecordTypeKeyColumn />
+        <Columns>
+          <Column id="rtCol_d8bd88d220394743a4b1d97cf3890b89" name="rpstry_aflt_cust_loc_id" index="0">
+            <DataType>Integer</DataType>
+          </Column>
+          <Column id="rtCol_eb8cac3ef92f4a378eccba16fff664e7" name="bid_aflt_acct_id" index="1">
+            <DataType>Integer</DataType>
+          </Column>
+          <Column id="rtCol_59532fb9c8dd4bc6ab16aa386fee106e" name="aflt_type_cd" index="2">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_3bcbe534cd904fd387ffedd31b797c63" name="blng_lst_nm" index="3">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_326d56cb4ec5460180a042841b1a4ac4" name="bus_aflt_acct_nbr" index="4">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_d8bd88d220394743a4b1d97cf3890b89" name="rpstry_aflt_cust_loc_id" pkType="Partition_Key" />
+          <PkColumn id="rtCol_eb8cac3ef92f4a378eccba16fff664e7" name="bid_aflt_acct_id" pkType="Clustering_Key" />
+        </PkColumns>
+      </ParserMapRecordType>
+    </Target>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>account_rvrs_rpstry_aflt_cust_loc_id</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item id="f_1507" name="fnPopAccount" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPopAccount.k2function.xml">
+          <InputsList>
+            <Input id="fi_1507.0" name="coulmnToSplit" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_1507.0" name="output" />
+          </OutputsList>
+        </Item>
+        <Item id="f_1537" name="fnSwitchTableAccount" nodeOrder="1" module="Function" mapObjectModule="Function" fileName="fnSwitchTableAccount.k2function.xml">
+          <InputsList>
+            <Input id="fi_1537.0" name="vals" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_1537.0" name="rvrs" />
+            <Output id="fo_1537.1" name="lkup" />
+          </OutputsList>
+        </Item>
+        <Item id="f_1571" name="fnSplitMapArgs" nodeOrder="2" module="Function" mapObjectModule="Function" fileName="fnSplitMapArgs.k2function.xml">
+          <InputsList>
+            <Input id="fi_1571.0" name="mapInp" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_1571.0" name="rpstry_aflt_cust_loc_id" />
+            <Output id="fo_1571.1" name="bid_aflt_acct_id" />
+            <Output id="fo_1571.2" name="aflt_type_cd" />
+            <Output id="fo_1571.3" name="blng_lst_nm" />
+            <Output id="fo_1571.4" name="bus_aflt_acct_nbr" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_account_rvrs_rpstry_aflt_cust_loc_id" name="account_rvrs_rpstry_aflt_cust_loc_id" nodeOrder="3" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="parAccountLookup">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_c850f5bb1ac54d4b8f0e465132d4fcb7" name="rpstry_aflt_cust_loc_id" dataType="Integer" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_53196c04199243d48714f807f6178abc" name="bid_aflt_acct_id" dataType="Integer" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_856e71619ef34053a6413a1e0b736a50" name="aflt_type_cd" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_331a5aefccfa4c969c7e7d349138e992" name="blng_lst_nm" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_638a4249d3ea4705af998c6a8875a800" name="bus_aflt_acct_nbr" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn />
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_53196c04199243d48714f807f6178abc" name="bid_aflt_acct_id" pkType="Partition_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="1590" fromNodeOrder="2" fromItemID="f_1571" fromColID="fo_1571.0" toItemID="rt_account_rvrs_rpstry_aflt_cust_loc_id" toColID="rtCol_c850f5bb1ac54d4b8f0e465132d4fcb7" />
+        <Link partId="1542" fromNodeOrder="1" fromItemID="f_1537" fromColID="fo_1537.0" toItemID="f_1571" toColID="fi_1571.0" />
+        <Link partId="1541" fromNodeOrder="0" fromItemID="f_1507" fromColID="fo_1507.0" toItemID="f_1537" toColID="fi_1537.0" />
+        <Link partId="1591" fromNodeOrder="2" fromItemID="f_1571" fromColID="fo_1571.1" toItemID="rt_account_rvrs_rpstry_aflt_cust_loc_id" toColID="rtCol_53196c04199243d48714f807f6178abc" />
+        <Link partId="1592" fromNodeOrder="2" fromItemID="f_1571" fromColID="fo_1571.2" toItemID="rt_account_rvrs_rpstry_aflt_cust_loc_id" toColID="rtCol_856e71619ef34053a6413a1e0b736a50" />
+        <Link partId="1593" fromNodeOrder="2" fromItemID="f_1571" fromColID="fo_1571.3" toItemID="rt_account_rvrs_rpstry_aflt_cust_loc_id" toColID="rtCol_331a5aefccfa4c969c7e7d349138e992" />
+        <Link partId="1594" fromNodeOrder="2" fromItemID="f_1571" fromColID="fo_1571.4" toItemID="rt_account_rvrs_rpstry_aflt_cust_loc_id" toColID="rtCol_638a4249d3ea4705af998c6a8875a800" />
+      </LinksList>
+      <ParserMapRecordType id="rt_account_rvrs_rpstry_aflt_cust_loc_id" name="account_rvrs_rpstry_aflt_cust_loc_id" parentParser="parAccountLookup">
+        <Active xsi:nil="true" />
+        <RecordTypeKeyColumn />
+        <Columns>
+          <Column id="rtCol_c850f5bb1ac54d4b8f0e465132d4fcb7" name="rpstry_aflt_cust_loc_id" index="0">
+            <DataType>Integer</DataType>
+          </Column>
+          <Column id="rtCol_53196c04199243d48714f807f6178abc" name="bid_aflt_acct_id" index="1">
+            <DataType>Integer</DataType>
+          </Column>
+          <Column id="rtCol_856e71619ef34053a6413a1e0b736a50" name="aflt_type_cd" index="2">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_331a5aefccfa4c969c7e7d349138e992" name="blng_lst_nm" index="3">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_638a4249d3ea4705af998c6a8875a800" name="bus_aflt_acct_nbr" index="4">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_53196c04199243d48714f807f6178abc" name="bid_aflt_acct_id" pkType="Partition_Key" />
+        </PkColumns>
+      </ParserMapRecordType>
+    </Target>
+  </TargetsList>
+  <DiagramGraph>
+    <Graph name="parAccountLookup.k2parserMap.xml" lastPartID="1594" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
+      <ParserRecordTypeTargetNode partID="0" name="account_lkup_rpstry_aflt_cust_loc_id" pos="655.293152 194.817719" size="312.987549 110.364563" parserName="parAccountLookup" isTargetNode="true" isRoot="false" />
+      <ParserRecordTypeTargetNode partID="1086" name="account_rvrs_rpstry_aflt_cust_loc_id" pos="655.2893 19.81771" size="312.9953 110.364578" parserName="parAccountLookup" isTargetNode="true" isRoot="false" />
+      <FunctionMapNode id="0" L0="4" R0="5" partID="1507" topLabel="fnPopAccount (1507)" pos="9.999992 152.454437" size="156.390152 45.09114" isRoot="true">
+        <KFunction>{"Name":"fnPopAccount","ID":"f_1507","Category":"Parser","Version":"3.6.6.2","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsSyntaxValid":false,"IsRootFunction":true,"inputParams":[{"Name":"coulmnToSplit","ID":"fi_1507.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"output","ID":"fo_1507.0","Index":0,"DataType":"Map&lt;String,Object&gt;","Comment":""}]}</KFunction>
+      </FunctionMapNode>
+      <FunctionMapNode id="1" L0="6" R0="7" R1="8" partID="1537" topLabel="fnSwitchTableAccount (1537)" pos="211.390137 150.381516" size="181.10022 49.23697" isRoot="false">
+        <KFunction>{"Name":"fnSwitchTableAccount","ID":"f_1537","Category":"Switch","Version":"3.6.6.2","FunctionLevel":0,"FunctionType":0,"FunctionType2":6,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"to reject null values in the population","Language":1,"IsSyntaxValid":true,"IsRootFunction":false,"inputParams":[{"Name":"vals","ID":"fi_1537.0","Index":0,"DataType":"Map&lt;String,Object&gt;"}],"outputParams":[{"Name":"rvrs","ID":"fo_1537.0","Index":0,"DataType":"Map&lt;String,Object&gt;"},{"Name":"lkup","ID":"fo_1537.1","Index":1,"DataType":"Map&lt;String,Object&gt;"}]}</KFunction>
+      </FunctionMapNode>
+      <FunctionMapNode id="2" L0="9" R0="10" R1="11" R2="12" R3="13" R4="14" partID="1571" topLabel="fnSplitMapArgs (1571)" pos="437.490326 32.27214" size="172.798889 85.45572" isRoot="false">
+        <KFunction>{"Name":"fnSplitMapArgs","ID":"f_1571","Category":"Parser","Version":"3.6.6.2","FunctionLevel":0,"FunctionType":0,"FunctionType2":0,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsSyntaxValid":true,"IsRootFunction":false,"inputParams":[{"Name":"mapInp","ID":"fi_1571.0","Index":0,"DataType":"Map&lt;String,Object&gt;"}],"outputParams":[{"Name":"rpstry_aflt_cust_loc_id","ID":"fo_1571.0","Index":0,"DataType":"String"},{"Name":"bid_aflt_acct_id","ID":"fo_1571.1","Index":1,"DataType":"String"},{"Name":"aflt_type_cd","ID":"fo_1571.2","Index":2,"DataType":"String"},{"Name":"blng_lst_nm","ID":"fo_1571.3","Index":3,"DataType":"String"},{"Name":"bus_aflt_acct_nbr","ID":"fo_1571.4","Index":4,"DataType":"String"}]}</KFunction>
+      </FunctionMapNode>
+      <FunctionMapNode id="3" L0="15" R0="16" R1="17" R2="18" R3="19" R4="20" partID="1578" topLabel="fnSplitMapArgs (1578)" pos="437.490326 207.272141" size="172.798889 85.45572" isRoot="false">
+        <KFunction>{"Name":"fnSplitMapArgs","ID":"f_1578","Category":"Parser","Version":"3.6.6.2","FunctionLevel":0,"FunctionType":0,"FunctionType2":0,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsSyntaxValid":true,"IsRootFunction":false,"inputParams":[{"Name":"mapInp","ID":"fi_1578.0","Index":0,"DataType":"Map&lt;String,Object&gt;"}],"outputParams":[{"Name":"rpstry_aflt_cust_loc_id","ID":"fo_1578.0","Index":0,"DataType":"String"},{"Name":"bid_aflt_acct_id","ID":"fo_1578.1","Index":1,"DataType":"String"},{"Name":"aflt_type_cd","ID":"fo_1578.2","Index":2,"DataType":"String"},{"Name":"blng_lst_nm","ID":"fo_1578.3","Index":3,"DataType":"String"},{"Name":"bus_aflt_acct_nbr","ID":"fo_1578.4","Index":4,"DataType":"String"}]}</KFunction>
+      </FunctionMapNode>
+      <Link from="5" to="6" partID="1541" pointsArr="166.390137 177.545578 176.390137 177.545578 222.3748 177.545563 232.3748 177.545563" fromNodePartID="1507" fromNodeColumnName="output" toNodePartID="1537" toNodeColumnName="vals" />
+      <Link from="7" to="9" partID="1542" pointsArr="371.505676 171.509109 381.505676 171.509109 427.490326 77.54558 437.490326 77.54558" fromNodePartID="1537" fromNodeColumnName="rvrs" toNodePartID="1571" toNodeColumnName="mapInp" />
+      <Link from="8" to="15" partID="1543" pointsArr="371.505676 183.582031 381.505676 183.582031 427.490326 252.545609 437.490326 252.545609" fromNodePartID="1537" fromNodeColumnName="lkup" toNodePartID="1578" toNodeColumnName="mapInp" />
+      <Link from="16" to="21" partID="1585" pointsArr="610.2892 228.399765 620.2892 228.399765 622.789246 200 642.789246 200 645.293152 225.854156 655.293152 225.854156" fromNodePartID="1578" fromNodeColumnName="rpstry_aflt_cust_loc_id" toNodePartID="0" toNodeColumnName="rpstry_aflt_cust_loc_id" />
+      <Link from="17" to="22" partID="1586" pointsArr="610.2892 240.472672 620.2892 240.472672 622.789246 225 642.789246 225 645.293152 237.927078 655.293152 237.927078" fromNodePartID="1578" fromNodeColumnName="bid_aflt_acct_id" toNodePartID="0" toNodeColumnName="bid_aflt_acct_id" />
+      <Link from="18" to="23" partID="1587" pointsArr="610.2892 252.545578 620.2892 252.545578 622.789246 250 642.789246 250 645.293152 249.999985 655.293152 249.999985" fromNodePartID="1578" fromNodeColumnName="aflt_type_cd" toNodePartID="0" toNodeColumnName="aflt_type_cd" />
+      <Link from="19" to="24" partID="1588" pointsArr="610.2892 264.61853 620.2892 264.61853 622.789246 275 642.789246 275 645.293152 262.0729 655.293152 262.0729" fromNodePartID="1578" fromNodeColumnName="blng_lst_nm" toNodePartID="0" toNodeColumnName="blng_lst_nm" />
+      <Link from="20" to="25" partID="1589" pointsArr="610.2892 276.6914 620.2892 276.6914 622.789246 300 642.789246 300 645.293152 274.1458 655.293152 274.1458" fromNodePartID="1578" fromNodeColumnName="bus_aflt_acct_nbr" toNodePartID="0" toNodeColumnName="bus_aflt_acct_nbr" />
+      <Link from="10" to="26" partID="1590" pointsArr="610.2892 53.3997421 620.2892 53.3997421 622.789246 25 642.789246 25 645.2893 50.8541641 655.2893 50.8541641" fromNodePartID="1571" fromNodeColumnName="rpstry_aflt_cust_loc_id" toNodePartID="1086" toNodeColumnName="rpstry_aflt_cust_loc_id" />
+      <Link from="11" to="27" partID="1591" pointsArr="610.2892 65.47266 620.2892 65.47266 622.789246 50 642.789246 50 645.2893 62.9270821 655.2893 62.9270821" fromNodePartID="1571" fromNodeColumnName="bid_aflt_acct_id" toNodePartID="1086" toNodeColumnName="bid_aflt_acct_id" />
+      <Link from="12" to="28" partID="1592" pointsArr="610.2892 77.54558 620.2892 77.54558 622.789246 75 642.789246 75 645.2893 75 655.2893 75" fromNodePartID="1571" fromNodeColumnName="aflt_type_cd" toNodePartID="1086" toNodeColumnName="aflt_type_cd" />
+      <Link from="13" to="29" partID="1593" pointsArr="610.2892 89.6184845 620.2892 89.6184845 622.789246 100 642.789246 100 645.2893 87.07291 655.2893 87.07291" fromNodePartID="1571" fromNodeColumnName="blng_lst_nm" toNodePartID="1086" toNodeColumnName="blng_lst_nm" />
+      <Link from="14" to="30" partID="1594" pointsArr="610.2892 101.691406 620.2892 101.691406 622.789246 125 642.789246 125 645.2893 99.14583 655.2893 99.14583" fromNodePartID="1571" fromNodeColumnName="bus_aflt_acct_nbr" toNodePartID="1086" toNodeColumnName="bus_aflt_acct_nbr" />
+    </Graph>
+  </DiagramGraph>
+  <Active>true</Active>
+  <ExecutionMode>Manually</ExecutionMode>
+  <syncEvery>00:00:00</syncEvery>
+  <Affinity />
+</ParserMap>

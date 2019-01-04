@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DBConn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="DBConnSqlite" name="dbSQLite" type="SQLite" version="3.5.0.4">
+  <Active>false</Active>
+  <DataBase>C:\\K2View\\graphit\\sqliteFiles\\k2_ref.COUNTRY.1513602968327.db</DataBase>
+  <MaxConnectionsNumber>60</MaxConnectionsNumber>
+  <ConnectionStringClient>Data Source="C:\\K2View\\graphit\\sqliteFiles\\k2_ref.COUNTRY.1513602968327.db";Version=3;</ConnectionStringClient>
+  <ConnectionStringServerSide>jdbc:sqlite:C:\\K2View\\graphit\\sqliteFiles\\k2_ref.COUNTRY.1513602968327.db</ConnectionStringServerSide>
+  <UseSelectAsteriskInAutoCreatedQueries>true</UseSelectAsteriskInAutoCreatedQueries>
+  <CommandList />
+  <DBSourceList />
+  <Memory>false</Memory>
+  <AttachedDatabases />
+</DBConn>

@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FabEnvironmentsManager xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Environments</Name>
+  <EnvironmentsList>
+    <Environment enabled="true" name="Dev">
+      <DbInterfacesList>
+        <DbInterface k2StudioObjectName="cass_local" dbType="cassandra" active="true">
+          <dbHost>localhost</dbHost>
+          <dbPort>9042</dbPort>
+          <dbUser>admin</dbUser>
+          <dbPasswordEncrypted>v7B6qShd0bGDd/5Ad4rmSrWpq3t+byr47C91Pp3NSTw=:N3y7JlViapZe/Mvi0coWFm86U6fTzah//IXBehiUGgg=</dbPasswordEncrypted>
+          <connString>jdbc:cassandra://localhost:9042?consistency=QUORUM&amp;loadbalancing=com.k2view.cdbms.policy.SingleNodePolicy('localhost')</connString>
+          <minConnectionsNumber>0</minConnectionsNumber>
+          <maxConnectionsNumber>60</maxConnectionsNumber>
+        </DbInterface>
+        <DbInterface k2StudioObjectName="dbCassandra" dbType="cassandra" active="true">
+          <dbHost>localhost</dbHost>
+          <dbPort>9042</dbPort>
+          <dbUser>admin</dbUser>
+          <dbPasswordEncrypted>MPfzGJXKhlM7y0AjMwWXABgZJVS5pjF8lRJx15Ew34c=:cOrEXpuC+G2WvCkbcnZQJ7HAbygmjJ7qYeQnDj2Bj68=</dbPasswordEncrypted>
+          <connString>jdbc:cassandra://localhost:9042?consistency=QUORUM&amp;loadbalancing=com.k2view.cdbms.policy.SingleNodePolicy('localhost',9042)</connString>
+          <minConnectionsNumber>0</minConnectionsNumber>
+          <maxConnectionsNumber>60</maxConnectionsNumber>
+        </DbInterface>
+        <DbInterface k2StudioObjectName="dbOracle" dbType="oracle" active="true">
+          <dbHost>192.168.232.1</dbHost>
+          <dbPort>1521</dbPort>
+          <dbScheme>orcl</dbScheme>
+          <dbUser>SYSTEM</dbUser>
+          <dbPasswordEncrypted>VjVfDWW56BPrP9MKfw4MYQkOdare+egvwJaw7sjswvg=:2lU48PT43mQexxCNnpJfTU/IvBwYz0RvWcSevuJeVUE=</dbPasswordEncrypted>
+          <connString>jdbc:oracle:thin:@192.168.232.1:1521/orcl</connString>
+          <minConnectionsNumber>0</minConnectionsNumber>
+          <maxConnectionsNumber>60</maxConnectionsNumber>
+        </DbInterface>
+        <DbInterface k2StudioObjectName="dvdRental" dbType="postgresql" active="true">
+          <dbHost>192.168.232.1</dbHost>
+          <dbPort>5432</dbPort>
+          <dbScheme>dvdRental</dbScheme>
+          <dbUser>postgres</dbUser>
+          <dbPasswordEncrypted>UGTmgJrcUAYzj036NV6g1MRKtfMSHfVhgsJnE52yP1Q=:UKQAxeh6+a24TRnTAoNfPSbo5Mo0GpOwXCWfuAuovu0=</dbPasswordEncrypted>
+          <connString>jdbc:postgresql://192.168.232.1:5432/dvdRental?stringtype=unspecified</connString>
+          <minConnectionsNumber>0</minConnectionsNumber>
+          <maxConnectionsNumber>60</maxConnectionsNumber>
+        </DbInterface>
+        <DbInterface k2StudioObjectName="sqlServerDB" dbType="sqlserver" active="true">
+          <dbHost>vpn.k2view.com</dbHost>
+          <dbPort>49623</dbPort>
+          <dbScheme>k2vtest</dbScheme>
+          <dbUser>sa</dbUser>
+          <dbPasswordEncrypted>LlN8faBK0Rwby1/Hx8aMaizEylO9PZOHczq3SJIYF4I=:il9F/eSpqDCgYCj1A1CImaKjRSdAEoDqKvX5gV2QMUg=</dbPasswordEncrypted>
+          <connString>jdbc:sqlserver://vpn.k2view.com:49623;database=k2vtest</connString>
+          <minConnectionsNumber>0</minConnectionsNumber>
+          <maxConnectionsNumber>1</maxConnectionsNumber>
+        </DbInterface>
+        <DbInterface k2StudioObjectName="TDM" dbType="postgresql" active="true">
+          <dbHost>10.211.55.6</dbHost>
+          <dbPort>5432</dbPort>
+          <dbScheme>TDMDB</dbScheme>
+          <dbUser>k2app</dbUser>
+          <dbPasswordEncrypted>FWdK8uAN/8CuWgfJO/nhOaxVrXPwV4iMhCTaWenN8pw=:9XEXRfsBrKxYSPpntLLtXGOQp6Vgk1Zu/lQxawyQeCs=</dbPasswordEncrypted>
+          <connString>jdbc:postgresql://10.211.55.6:5432/TDMDB?stringtype=unspecified</connString>
+          <minConnectionsNumber>0</minConnectionsNumber>
+          <maxConnectionsNumber>60</maxConnectionsNumber>
+        </DbInterface>
+      </DbInterfacesList>
+      <GenericInterfacesList>
+        <GenericInterface type="SFTP" displayName="SFTP" enabled="true" version="1.3">
+          <Name>ifLocalLinux</Name>
+          <Properties>
+            <Property name="IP" displayName="IP" dataType="string" mandatory="true" show="true" readOnly="false" category="">
+              <Value>192.168.139.151</Value>
+              <DefaultValue />
+              <Comments />
+              <OptionsList />
+            </Property>
+            <Property name="User" displayName="User" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+              <Value>k2view</Value>
+              <DefaultValue />
+              <Comments />
+              <OptionsList />
+            </Property>
+            <Property name="Password" displayName="Password" dataType="password" mandatory="false" show="true" readOnly="false" category="">
+              <Value>4+bJwlpj1Zu+J5HlSx6/dl3xkQgnSWwRQN+KSH11NZA=:eVI1KFh9fLyoVekcIaZLtYO7Png4Ac0FPmaPs0UV5es=</Value>
+              <DefaultValue />
+              <Comments />
+              <OptionsList />
+            </Property>
+            <Property name="RemoteDir" displayName="Remote Directory" dataType="string" mandatory="true" show="true" readOnly="false" category="">
+              <Value>/usr/local/k2view/</Value>
+              <DefaultValue />
+              <Comments />
+              <OptionsList />
+            </Property>
+            <Property name="FilesFilter" displayName="Files Filter" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+              <Value />
+              <DefaultValue />
+              <Comments>Regular expression</Comments>
+              <OptionsList />
+            </Property>
+            <Property name="Affinity" displayName="Affinity" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+              <Value />
+              <DefaultValue />
+              <Comments>Comma delimited string to define candidate owners nodes. Can be DC_name/node_ip/Node_identifier</Comments>
+              <OptionsList />
+            </Property>
+          </Properties>
+          <TestConnection displayName="Test Connection" enabled="true">
+            <MethodName>com.k2view.cdbms.services.TestGenericInterfaceConnection</MethodName>
+            <Args>SFTP "@IP@" "@User@" "@Password@" "@RemoteDir@"</Args>
+          </TestConnection>
+        </GenericInterface>
+        <GenericInterface type="LOCAL" displayName="Local File System" enabled="true" version="1.2">
+          <Name>int_parse_file_by_length</Name>
+          <Properties>
+            <Property name="WorkingDir" displayName="Working Directory" dataType="string" mandatory="true" show="true" readOnly="false" category="">
+              <Value>/usr/local/k2view/</Value>
+              <DefaultValue />
+              <Comments />
+              <OptionsList />
+            </Property>
+            <Property name="FilesFilter" displayName="Files Filter" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+              <Value />
+              <DefaultValue />
+              <Comments>Regular expression</Comments>
+              <OptionsList />
+            </Property>
+            <Property name="Affinity" displayName="Affinity" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+              <Value />
+              <DefaultValue />
+              <Comments>Comma delimited string to define candidate owners nodes. Can be DC_name/node_ip/Node_identifier</Comments>
+              <OptionsList />
+            </Property>
+          </Properties>
+          <TestConnection enabled="false" />
+        </GenericInterface>
+      </GenericInterfacesList>
+    </Environment>
+    <Environment enabled="true" name="QA">
+      <DbInterfacesList>
+        <DbInterface k2StudioObjectName="cass_local" dbType="cassandra" active="true">
+          <dbHost>localhost</dbHost>
+          <dbPort>9042</dbPort>
+          <dbUser>admin</dbUser>
+          <dbPasswordEncrypted>5G+MlOzcn6U4TpMyoyFnKXGkGc0l3zUnqcfzNI+mLZI=:DL05WtogfhB7XLIlFgszf5w6xmWGO2+vB25qdoLCqkY=</dbPasswordEncrypted>
+          <connString>jdbc:cassandra://localhost:9042?consistency=QUORUM&amp;loadbalancing=com.k2view.cdbms.policy.SingleNodePolicy('localhost')</connString>
+          <minConnectionsNumber>0</minConnectionsNumber>
+          <maxConnectionsNumber>60</maxConnectionsNumber>
+        </DbInterface>
+        <DbInterface k2StudioObjectName="dbCassandra" dbType="cassandra" active="true">
+          <dbHost>localhost</dbHost>
+          <dbPort>9042</dbPort>
+          <dbUser>admin</dbUser>
+          <dbPasswordEncrypted>hBiziaPzeldm6Vi9pplQUrCUeWS8BV1do/fZ3Edkbu0=:seyqcUo2PJm+/B1BYa3VbFBLnWt3sLrY6Z63kdTI1rg=</dbPasswordEncrypted>
+          <connString>jdbc:cassandra://localhost:9042?consistency=QUORUM&amp;loadbalancing=com.k2view.cdbms.policy.SingleNodePolicy('localhost',9042)</connString>
+          <minConnectionsNumber>0</minConnectionsNumber>
+          <maxConnectionsNumber>60</maxConnectionsNumber>
+        </DbInterface>
+        <DbInterface k2StudioObjectName="dbOracle" dbType="oracle" active="true">
+          <dbHost>192.168.232.1</dbHost>
+          <dbPort>1521</dbPort>
+          <dbScheme>orcl</dbScheme>
+          <dbUser>SYSTEM</dbUser>
+          <dbPasswordEncrypted>SWpl5rvlup7AQYzYPDvzUwyF/ckXd8uEHg4XYljAMxc=:pD28TVBqlMmuSLLFq4dObYW2jydbhpjZOn2z4YW9is0=</dbPasswordEncrypted>
+          <connString>jdbc:oracle:thin:@192.168.232.1:1521/orcl</connString>
+          <minConnectionsNumber>0</minConnectionsNumber>
+          <maxConnectionsNumber>60</maxConnectionsNumber>
+        </DbInterface>
+        <DbInterface k2StudioObjectName="dvdRental" dbType="postgresql" active="true">
+          <dbHost>192.168.232.1</dbHost>
+          <dbPort>5432</dbPort>
+          <dbScheme>dvdRental</dbScheme>
+          <dbUser>postgres</dbUser>
+          <dbPasswordEncrypted>e2FE0sa78f6NIQPDppra42MkQmnu3b2HsJDbaYOHgmQ=:ymsNDQ+0wh7/BHoZHxwi6Rd2hPgvUsKpO6uE4ZkrIwY=</dbPasswordEncrypted>
+          <connString>jdbc:postgresql://192.168.232.1:5432/dvdRental?stringtype=unspecified</connString>
+          <minConnectionsNumber>0</minConnectionsNumber>
+          <maxConnectionsNumber>60</maxConnectionsNumber>
+        </DbInterface>
+        <DbInterface k2StudioObjectName="sqlServerDB" dbType="sqlserver" active="true">
+          <dbHost>vpn.k2view.com</dbHost>
+          <dbPort>49623</dbPort>
+          <dbScheme>k2vtest</dbScheme>
+          <dbUser>sa</dbUser>
+          <dbPasswordEncrypted>+sJlEnT4L7eVhz8rpV5/sJNCsfJwe0rFn196/FJfT8Y=:XoHCtQJ+cjcB1lKeZfKBb2e5rMCInNueLppttR0wR1I=</dbPasswordEncrypted>
+          <connString>jdbc:sqlserver://vpn.k2view.com:49623;database=k2vtest</connString>
+          <minConnectionsNumber>0</minConnectionsNumber>
+          <maxConnectionsNumber>1</maxConnectionsNumber>
+        </DbInterface>
+        <DbInterface k2StudioObjectName="TDM" dbType="postgresql" active="true">
+          <dbHost>10.211.55.6</dbHost>
+          <dbPort>5432</dbPort>
+          <dbScheme>TDMDB</dbScheme>
+          <dbUser>k2app</dbUser>
+          <dbPasswordEncrypted>n9Aef+9GcD+tnmMIoFNBq5qi4LosllOW1VfBVCU1l6o=:klp0+mCLiLkZSsupb42lD9GFUvhNCswHa+3XYoLeSXw=</dbPasswordEncrypted>
+          <connString>jdbc:postgresql://10.211.55.6:5432/TDMDB?stringtype=unspecified</connString>
+          <minConnectionsNumber>0</minConnectionsNumber>
+          <maxConnectionsNumber>60</maxConnectionsNumber>
+        </DbInterface>
+      </DbInterfacesList>
+      <GenericInterfacesList>
+        <GenericInterface type="SFTP" displayName="SFTP" enabled="true" version="1.3">
+          <Name>ifLocalLinux</Name>
+          <Properties>
+            <Property name="IP" displayName="IP" dataType="string" mandatory="true" show="true" readOnly="false" category="">
+              <Value>192.168.139.151</Value>
+              <DefaultValue />
+              <Comments />
+              <OptionsList />
+            </Property>
+            <Property name="User" displayName="User" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+              <Value>k2view</Value>
+              <DefaultValue />
+              <Comments />
+              <OptionsList />
+            </Property>
+            <Property name="Password" displayName="Password" dataType="password" mandatory="false" show="true" readOnly="false" category="">
+              <Value>SIT6VbGk5TD45JhhixKvD+hrGUO8uFZY1oqYw7xzrzI=:F67vdK1misgx43JYqPtPLxjmy1M07djgS1AYFd//GFs=</Value>
+              <DefaultValue />
+              <Comments />
+              <OptionsList />
+            </Property>
+            <Property name="RemoteDir" displayName="Remote Directory" dataType="string" mandatory="true" show="true" readOnly="false" category="">
+              <Value>/usr/local/k2view/</Value>
+              <DefaultValue />
+              <Comments />
+              <OptionsList />
+            </Property>
+            <Property name="FilesFilter" displayName="Files Filter" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+              <Value />
+              <DefaultValue />
+              <Comments>Regular expression</Comments>
+              <OptionsList />
+            </Property>
+            <Property name="Affinity" displayName="Affinity" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+              <Value />
+              <DefaultValue />
+              <Comments>Comma delimited string to define candidate owners nodes. Can be DC_name/node_ip/Node_identifier</Comments>
+              <OptionsList />
+            </Property>
+          </Properties>
+          <TestConnection displayName="Test Connection" enabled="true">
+            <MethodName>com.k2view.cdbms.services.TestGenericInterfaceConnection</MethodName>
+            <Args>SFTP "@IP@" "@User@" "@Password@" "@RemoteDir@"</Args>
+          </TestConnection>
+        </GenericInterface>
+        <GenericInterface type="LOCAL" displayName="Local File System" enabled="true" version="1.2">
+          <Name>int_parse_file_by_length</Name>
+          <Properties>
+            <Property name="WorkingDir" displayName="Working Directory" dataType="string" mandatory="true" show="true" readOnly="false" category="">
+              <Value>/usr/local/k2view/</Value>
+              <DefaultValue />
+              <Comments />
+              <OptionsList />
+            </Property>
+            <Property name="FilesFilter" displayName="Files Filter" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+              <Value />
+              <DefaultValue />
+              <Comments>Regular expression</Comments>
+              <OptionsList />
+            </Property>
+            <Property name="Affinity" displayName="Affinity" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+              <Value />
+              <DefaultValue />
+              <Comments>Comma delimited string to define candidate owners nodes. Can be DC_name/node_ip/Node_identifier</Comments>
+              <OptionsList />
+            </Property>
+          </Properties>
+          <TestConnection enabled="false" />
+        </GenericInterface>
+      </GenericInterfacesList>
+    </Environment>
+  </EnvironmentsList>
+</FabEnvironmentsManager>
