@@ -25,7 +25,7 @@
       <Index>0</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
-      <Comment>The DB Name to run the query on if null then ludb</Comment>
+      <Comment>The DB Name to run the query on if null then ludb, if running from WS fabric and needs to pass the connection session  to the function</Comment>
       <GridColumnProperties width="100" />
     </Column>
     <Column>

@@ -34,7 +34,7 @@ import static com.k2view.cdbms.usercode.lu.DVD.Globals.*;
 public class Logic extends UserCode {
 
 
-	public static void fnWriLuData2File() throws Exception {
+	public static void fnWriLuData2File(Object fabric_connection) throws Exception {
 		Connection dbConn = null;
 		ResultSet rs = null;
 		java.text.DateFormat dateFormat;
@@ -50,6 +50,8 @@ public class Logic extends UserCode {
 		
 			if(rowInfo.get("db_name") == null || rowInfo.get("db_name").equals("")){
 				dbConn = getConnection("ludb");
+			}else if(rowInfo.get("db_name").equalsIgnoreCase("fabric")){
+				dbConn = (Connection)fabric_connection;
 			}else{
 				dbConn = getConnection(rowInfo.get("db_name"));
 			}
