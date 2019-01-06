@@ -37,7 +37,11 @@ public class Logic extends UserCode {
 		Object[] params = null;
 		String sqlInsert = "insert into " + icCheckTblName + " (entity_id, ic_check_name, ic_check_time, ic_check_msg, ic_check_runtime_in_sec) values (?, ?, ?, ?, ?)";
 		boolean tblCre = true;
-		Map <String, Map <String,String>> icChecksTrn = getTranslationsData("trnIcChecks");
+		Map <String, Map <String,String>> icChecksTrn = null;
+		icChecksTrn = getTranslationsData("trnIcChecks");
+		if(icChecksTrn == null){
+			log.error("fnExecuteIcChecks ERROR: trnIcChecks wan't found in project please check!");
+		}
 		boolean rejEntAtEnd = false;
 		String icMsg = null;
 		for(java.util.Map.Entry<String, Map <String,String>> trnVals : icChecksTrn.entrySet()){
@@ -61,14 +65,14 @@ public class Logic extends UserCode {
 			}catch(SQLException e){
 				log.error("fnExecuteIcChecks ERROR", e);
 			}
-		
+			
 			if( operator.equals("=")  && sqlRes == value )icPass = true;
 			if( operator.equals("!=") && sqlRes != value )icPass = true;
 			if( operator.equals(">")  && sqlRes > value  )icPass = true;
 			if( operator.equals(">=") && sqlRes >= value )icPass = true;
 			if( operator.equals("<")  && sqlRes < value  )icPass = true;
 			if( operator.equals("<=") && sqlRes <= value )icPass = true;
-			
+		
 			if(!icPass){
 				if(!inDebugMode() && trnVal.get("write_result_to_table") != null && trnVal.get("write_result_to_table").equalsIgnoreCase("true")){
 					if(trnVal.get("interface_name") == null)throw new Exception("fnExecuteIcChecks - Interface name is null and write_result_to_table is Enable!"); 
@@ -80,11 +84,13 @@ public class Logic extends UserCode {
 					rejectInstance(icMsg);
 					break;
 				}else if(action.equalsIgnoreCase("Report_To_Log")){
+					if(inDebugMode())reportUserMessage(icMsg);
 					log.warn(icMsg);
 					break;
 				}else if(action.equalsIgnoreCase("Report_To_Log_And_Execute_Activity")){
+					if(inDebugMode())reportUserMessage(icMsg);
 					log.warn(icMsg);
-					Class<?> c = Class.forName(trnVal.get("functionNameLocation") + ".Logic");
+					Class<?> c = Class.forName(trnVal.get("functionClass") + ".Logic");
 					Object t = c.newInstance();
 					java.lang.reflect.Method method = null;
 					try {
@@ -97,7 +103,7 @@ public class Logic extends UserCode {
 					if(method != null)method.invoke(t);
 					break;
 				}else if(action.equalsIgnoreCase("Execute_Activity")){
-					Class<?> c = Class.forName(trnVal.get("functionNameLocation"));
+					Class<?> c = Class.forName(trnVal.get("functionClass") + ".Logic");
 					Object t = c.newInstance();
 					java.lang.reflect.Method method = null;
 					try {
@@ -110,6 +116,7 @@ public class Logic extends UserCode {
 					if(method != null)method.invoke(t);
 					break;
 				}else if(action.equalsIgnoreCase("Reject_Entity_At_End_Of_IC")){
+					if(inDebugMode())reportUserMessage(icMsg);
 					log.warn(icMsg);
 					rejEntAtEnd = true;
 				}

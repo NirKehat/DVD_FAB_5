@@ -25,7 +25,7 @@
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>Allows you to explain what the ic check purpose</Comment>
-      <GridColumnProperties width="140" />
+      <GridColumnProperties width="142" />
     </Column>
     <Column>
       <Title>sql</Title>
@@ -38,7 +38,7 @@
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>Sql to run, Must return single numeric value</Comment>
-      <GridColumnProperties width="242" />
+      <GridColumnProperties width="244" />
     </Column>
     <Column>
       <Title>operator</Title>
@@ -79,13 +79,26 @@
       <GridColumnProperties width="205" />
     </Column>
     <Column>
+      <Title>functionClass</Title>
+      <ColumnName>functionClass</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>50</Length>
+      <Format />
+      <Index>5</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>The function class full path you want to invoke in case check as failed</Comment>
+      <GridColumnProperties width="268" />
+    </Column>
+    <Column>
       <Title>functionName</Title>
       <ColumnName>functionName</ColumnName>
       <Direction>Output</Direction>
       <Type>Project Function</Type>
       <Length>50</Length>
       <Format />
-      <Index>5</Index>
+      <Index>6</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>The function name you want to invoke in case check as failed</Comment>
@@ -98,7 +111,7 @@
       <Type>Boolean</Type>
       <Length>1</Length>
       <Format />
-      <Index>6</Index>
+      <Index>7</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>If you wish to write ic checks result to table enable/disable</Comment>
@@ -111,7 +124,7 @@
       <Type>Text</Type>
       <Length>50</Length>
       <Format />
-      <Index>7</Index>
+      <Index>8</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>Mandatory if write_result_to_table is enable</Comment>
@@ -124,10 +137,10 @@
       <Type>Boolean</Type>
       <Length>1</Length>
       <Format />
-      <Index>8</Index>
+      <Index>9</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
-      <Comment>Allows you to mark check active or not active</Comment>
+      <Comment>If to run the ic checks</Comment>
       <GridColumnProperties width="36" />
     </Column>
   </SchemaColumns>
@@ -178,6 +191,13 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
+                  <xs:element name="functionClass" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
                   <xs:element name="functionName" default="" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
@@ -209,11 +229,12 @@
           <sql>SELECT ifnull(count(*),0) FROM CUSTOMER</sql>
           <operator>&gt;</operator>
           <value>3</value>
-          <action>Report_To_Log_And_Execute_Activity</action>
-          <functionName>fnTest</functionName>
+          <action>Reject_Entity_At_End_Of_IC</action>
+          <functionClass>com.k2view.cdbms.usercode.lu.DVD.icChecksTest</functionClass>
+          <functionName>fnTestIcCheck</functionName>
           <write_result_to_table>true</write_result_to_table>
-          <interface_name>cass_local</interface_name>
-          <active>false</active>
+          <interface_name>dbCassandra</interface_name>
+          <active>true</active>
         </trnIcChecks>
       </DocumentElement>
     </diffgr:diffgram>
