@@ -2,7 +2,7 @@
 // Project Web Services
 /////////////////////////////////////////////////////////////////////////
 
-package com.k2view.cdbms.usercode.lu.k2_ws.ExtractData;
+package com.k2view.cdbms.usercode.lu.k2_ws.TableData2File;
 
 import java.util.*;
 import java.sql.*;
@@ -28,11 +28,15 @@ import static com.k2view.cdbms.usercode.common.SharedGlobals.*;
 public class Logic extends WebServiceUserCode {
 
 
-	public static void wsLu2File(String lu_name, String iid, String path_to_save_file) throws Exception {
-		fnWriLuData2File();
+
+
+	@out(name = "rs", type = String.class, desc = "")
+	public static String wsTableData2File(String luName, String customerId) throws Exception {
+		DBExecute("fabric", "set sync off", null);
+		DBExecute("fabric", "get " + luName + "." + customerId, null);
+		fnWriTableData2File();
+		return "Copy Complete!";
 	}
-
-
 
 	
 	

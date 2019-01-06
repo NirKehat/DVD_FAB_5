@@ -68,6 +68,7 @@ public class Logic extends WebServiceUserCode {
 		Map<String, String[]> wsParams = requestParams();
 		java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("yyyymmdd_HHmmss");
 		java.util.Date date = new java.util.Date();
+		DBExecute("fabric", "set sync off", null);
 		DBExecute("fabric", "get " + luName + "." + customerId, null);
 		if(downLoadFile){ 
 			setCustomResponseHeader("Content-Disposition", "attachment; filename=\"" + luName + "_iid_" + customerId + "_" + dateFormat.format(date) + "." + wsParams.get("format")[0] + "\"");

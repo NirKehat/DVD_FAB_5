@@ -61,11 +61,18 @@ public class Logic extends WebServiceUserCode {
 			resEnvList.add(intMap);
 		});
 		
+		Set<String> envList = InterfacesManager.getInstance().getAllEnvironments();
+		Set<Object> environments = new LinkedHashSet<>();
+		for(String envName : envList){
+			environments.add(envName);
+		}
+		
 		Map<String, Object> luGlobals = new LinkedHashMap<>();
 		Set<Object> mapSet = new LinkedHashSet<>();
 		
-		LUType lut = LUTypeFactoryImpl.getInstance().getTypeByName("DVD");
+		LUType lut = LUTypeFactoryImpl.getInstance().getTypeByName(luName);
 		Map<String, String> luGlob = lut.ludbGlobals;
+		
 		luGlob.forEach((k,v) ->{
 			Map<String, Object> globMap = new LinkedHashMap<>();
 			globMap.put("Global_Name", k);
@@ -74,8 +81,9 @@ public class Logic extends WebServiceUserCode {
 		});
 		luGlobals.put("GLOBAL", mapSet);
 		interfaceMap.put("Interface", resEnvList);
-		
-		resMap.put("Interfaces", interfaceMap);
+		resMap.put("Environment List", environments);
+		resMap.put("Active Environment", InterfacesManager.getInstance().getActiveEnvironment());
+		resMap.put("Interfaces Details", interfaceMap);
 		resMap.put("GLOBALS", luGlobals);
 		
 		return resMap;
