@@ -79,26 +79,13 @@
       <GridColumnProperties width="205" />
     </Column>
     <Column>
-      <Title>functionClass</Title>
-      <ColumnName>functionClass</ColumnName>
-      <Direction>Output</Direction>
-      <Type>Text</Type>
-      <Length>50</Length>
-      <Format />
-      <Index>5</Index>
-      <DefaultValueIsExpression>false</DefaultValueIsExpression>
-      <AllowNULL>true</AllowNULL>
-      <Comment>The function class full path you want to invoke in case check as failed</Comment>
-      <GridColumnProperties width="268" />
-    </Column>
-    <Column>
       <Title>functionName</Title>
       <ColumnName>functionName</ColumnName>
       <Direction>Output</Direction>
       <Type>Project Function</Type>
       <Length>50</Length>
       <Format />
-      <Index>6</Index>
+      <Index>5</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>The function name you want to invoke in case check as failed</Comment>
@@ -111,7 +98,7 @@
       <Type>Boolean</Type>
       <Length>1</Length>
       <Format />
-      <Index>7</Index>
+      <Index>6</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>If you wish to write ic checks result to table enable/disable</Comment>
@@ -124,7 +111,7 @@
       <Type>Text</Type>
       <Length>50</Length>
       <Format />
-      <Index>8</Index>
+      <Index>7</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>Mandatory if write_result_to_table is enable</Comment>
@@ -137,7 +124,7 @@
       <Type>Boolean</Type>
       <Length>1</Length>
       <Format />
-      <Index>9</Index>
+      <Index>8</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>If to run the ic checks</Comment>
@@ -191,13 +178,6 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="functionClass" default="" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="50" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
                   <xs:element name="functionName" default="" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
@@ -230,7 +210,6 @@
           <operator>&gt;</operator>
           <value>3</value>
           <action>Reject_Entity_At_End_Of_IC</action>
-          <functionClass>com.k2view.cdbms.usercode.lu.DVD.icChecksTest</functionClass>
           <functionName>fnTestIcCheck</functionName>
           <write_result_to_table>true</write_result_to_table>
           <interface_name>dbCassandra</interface_name>

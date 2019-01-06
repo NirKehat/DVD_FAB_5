@@ -20,6 +20,7 @@ import com.k2view.cdbms.func.oracle.OracleToDate;
 import com.k2view.cdbms.func.oracle.OracleRownum;
 import com.k2view.cdbms.usercode.lu.DVD.*;
 
+import static com.k2view.cdbms.lut.FunctionDef.functionContext;
 import static com.k2view.cdbms.shared.utils.UserCodeDescribe.FunctionType.*;
 import static com.k2view.cdbms.shared.user.ProductFunctions.*;
 import static com.k2view.cdbms.usercode.common.SharedLogic.*;
@@ -90,30 +91,30 @@ public class Logic extends UserCode {
 				}else if(action.equalsIgnoreCase("Report_To_Log_And_Execute_Activity")){
 					if(inDebugMode())reportUserMessage(icMsg);
 					log.warn(icMsg);
-					Class<?> c = Class.forName(trnVal.get("functionClass") + ".Logic");
-					Object t = c.newInstance();
-					java.lang.reflect.Method method = null;
-					try {
-						method = t.getClass().getMethod(trnVal.get("functionName"));
-					} catch (SecurityException e) {
-						log.error("fnExecuteIcChecks ERROR", e);
-					} catch (NoSuchMethodException e){
-						log.error("fnExecuteIcChecks ERROR", e);
+					FunctionDef method = (FunctionDef) LUTypeFactoryImpl.getInstance().getTypeByName(getLuType().luName).ludbFunctions.get(trnVal.get("functionName"));
+					if (method == null) {
+						throw new NoSuchMethodException(String.format("user function '%s' was not found", trnVal.get("functionName")));
+					} else {
+						try {
+							method.invoke((AbstractMapExecution) null, functionContext());
+						} catch (ReflectiveOperationException | InterruptedException e) {
+							log.error("colValidationManager: Failed to invoke user function!", e);
+							if (inDebugMode())reportUserMessage("colValidationManager: Failed to invoke user function!, Exception Details:" + e.getMessage());
+						}
 					}
-					if(method != null)method.invoke(t);
 					break;
 				}else if(action.equalsIgnoreCase("Execute_Activity")){
-					Class<?> c = Class.forName(trnVal.get("functionClass") + ".Logic");
-					Object t = c.newInstance();
-					java.lang.reflect.Method method = null;
-					try {
-						method = t.getClass().getMethod(trnVal.get("functionName"));
-					} catch (SecurityException e) {
-						log.error("fnExecuteIcChecks ERROR", e);
-					} catch (NoSuchMethodException e){
-						log.error("fnExecuteIcChecks ERROR", e);
+					FunctionDef method = (FunctionDef) LUTypeFactoryImpl.getInstance().getTypeByName(getLuType().luName).ludbFunctions.get(trnVal.get("functionName"));
+					if (method == null) {
+						throw new NoSuchMethodException(String.format("user function '%s' was not found", trnVal.get("functionName")));
+					} else {
+						try {
+							method.invoke((AbstractMapExecution) null, functionContext());
+						} catch (ReflectiveOperationException | InterruptedException e) {
+							log.error("colValidationManager: Failed to invoke user function!", e);
+							if (inDebugMode())reportUserMessage("colValidationManager: Failed to invoke user function!, Exception Details:" + e.getMessage());
+						}
 					}
-					if(method != null)method.invoke(t);
 					break;
 				}else if(action.equalsIgnoreCase("Reject_Entity_At_End_Of_IC")){
 					if(inDebugMode())reportUserMessage(icMsg);
