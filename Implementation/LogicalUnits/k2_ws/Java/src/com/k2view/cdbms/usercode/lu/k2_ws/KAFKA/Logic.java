@@ -73,7 +73,7 @@ public class Logic extends WebServiceUserCode {
 		if (matcher.find()){
 				insStmt = (net.sf.jsqlparser.statement.Insert) sqlStmt;
 				StringBuilder sbPK = new StringBuilder().append("[");
-				String pkColumns = getTranslationValues("trnTable2PK", new Object[]{insStmt.getTable().getName().toLowerCase()}).get("pk_list");
+				String pkColumns = getTranslationValues("trnTable2PK", new Object[]{insStmt.getTable().getSchemaName().toUpperCase() + "_" + insStmt.getTable().getName().toUpperCase()}).get("pk_list");
 				if(pkColumns == null)throw new Exception ("Couldn't find Primary key columns for table: " + insStmt.getTable().getSchemaName().toUpperCase() + "_" + insStmt.getTable().getName().toUpperCase() + " in properties class!, Please check");
 				String[] pkCuls = pkColumns.split(",");
 				String prefixPK = "";
@@ -101,7 +101,7 @@ public class Logic extends WebServiceUserCode {
 			if(matcher.find()){
 					upStmt = (net.sf.jsqlparser.statement.update.UpdateTable) sqlStmt;
 					StringBuilder sbPK = new StringBuilder().append("[");
-					String pkColumns = getTranslationValues("trnTable2PK", new Object[]{insStmt.getTable().getName().toLowerCase()}).get("pk_list");
+					String pkColumns = getTranslationValues("trnTable2PK", new Object[]{insStmt.getTable().getSchemaName().toUpperCase() + "_" + insStmt.getTable().getName().toUpperCase()}).get("pk_list");
 					if(pkColumns == null)throw new Exception ("Couldn't find Primary key columns for table: " + upStmt.getTable().getSchemaName().toUpperCase() + "_" + upStmt.getTable().getName().toUpperCase() + " in properties class!, Please check");
 					String[] pkCuls = pkColumns.split(",");
 					String prefixPK = "";
@@ -157,7 +157,7 @@ public class Logic extends WebServiceUserCode {
 				if(matcher.find()){
 					delStmt = (net.sf.jsqlparser.statement.Delete) sqlStmt;
 					StringBuilder sbPK = new StringBuilder().append("[");
-					String pkColumns = getTranslationValues("trnTable2PK", new Object[]{insStmt.getTable().getName().toLowerCase()}).get("pk_list");
+					String pkColumns = getTranslationValues("trnTable2PK", new Object[]{insStmt.getTable().getSchemaName().toUpperCase() + "_" + insStmt.getTable().getName().toUpperCase()}).get("pk_list");
 					if(pkColumns == null)throw new Exception ("Couldn't find Primary key columns for table: " + delStmt.getTable().getSchemaName().toUpperCase() + "_" + delStmt.getTable().getName().toUpperCase() + " in properties class!, Please check");
 					String[] pkCuls = pkColumns.split(",");
 					String prefixPK = "";

@@ -4,8 +4,8 @@
   <InputNotFoundAction>Use_Default</InputNotFoundAction>
   <SchemaColumns>
     <Column>
-      <Title>table_name</Title>
-      <ColumnName>table_name</ColumnName>
+      <Title>schema_nd_table_name</Title>
+      <ColumnName>schema_nd_table_name</ColumnName>
       <Direction>Input</Direction>
       <Type>Text</Type>
       <Length>50</Length>
@@ -38,7 +38,7 @@
             <xs:element name="trnTable2PK">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="table_name" default="" minOccurs="0">
+                  <xs:element name="schema_nd_table_name" default="" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
@@ -62,7 +62,7 @@
     <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
       <DocumentElement>
         <trnTable2PK diffgr:id="trnTable2PK1" msdata:rowOrder="0">
-          <table_name>account</table_name>
+          <schema_nd_table_name>UHV_ACCOUNT</schema_nd_table_name>
           <pk_list>first_name</pk_list>
         </trnTable2PK>
       </DocumentElement>
