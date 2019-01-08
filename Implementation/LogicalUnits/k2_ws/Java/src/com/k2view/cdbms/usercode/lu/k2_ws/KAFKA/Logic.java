@@ -1,36 +1,42 @@
 /////////////////////////////////////////////////////////////////////////
-// LU Functions
+// Project Web Services
 /////////////////////////////////////////////////////////////////////////
 
-package com.k2view.cdbms.usercode.lu.DVD.Kafka;
+package com.k2view.cdbms.usercode.lu.k2_ws.KAFKA;
 
 import java.util.*;
 import java.sql.*;
 import java.math.*;
 import java.io.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import com.k2view.cdbms.shared.*;
-import com.k2view.cdbms.shared.Globals;
-import com.k2view.cdbms.shared.user.UserCode;
+import com.k2view.cdbms.shared.user.WebServiceUserCode;
 import com.k2view.cdbms.sync.*;
 import com.k2view.cdbms.lut.*;
 import com.k2view.cdbms.shared.utils.UserCodeDescribe.*;
 import com.k2view.cdbms.shared.logging.LogEntry.*;
 import com.k2view.cdbms.func.oracle.OracleToDate;
 import com.k2view.cdbms.func.oracle.OracleRownum;
-import com.k2view.cdbms.usercode.lu.DVD.*;
+import com.k2view.cdbms.usercode.lu.k2_ws.*;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
+import org.json.JSONObject;
 
 import static com.k2view.cdbms.shared.utils.UserCodeDescribe.FunctionType.*;
 import static com.k2view.cdbms.shared.user.ProductFunctions.*;
 import static com.k2view.cdbms.usercode.common.SharedLogic.*;
-import static com.k2view.cdbms.usercode.lu.DVD.Globals.*;
+import static com.k2view.cdbms.usercode.common.SharedGlobals.*;
 
 @SuppressWarnings({"unused", "DefaultAnnotationParam"})
-public class Logic extends UserCode {
+public class Logic extends WebServiceUserCode {
 
 
-	public static void fnGenNdProKafkaMsg(String sql_stmt, String tblType, String partiKey) throws Exception {
-		final String LU_TABLES = "MS.IDFINDER";
+	public static void wsUpdateKafka(String sql_stmt, String tblType, String partiKey) throws Exception {
+		final String LU_TABLES = "MS.IDfinder";
 		final String REF = "MS.REF";
 		final String LOOKUP = "MS.LKUP";
 		final java.util.regex.Pattern patternInsert = java.util.regex.Pattern.compile("(?i)^insert(.*)");
@@ -67,7 +73,7 @@ public class Logic extends UserCode {
 		if (matcher.find()){
 				insStmt = (net.sf.jsqlparser.statement.Insert) sqlStmt;
 				StringBuilder sbPK = new StringBuilder().append("[");
-				String pkColumns = k2Studio.usershared.properties.getLookUpsPks(insStmt.getTable().getSchemaName().toUpperCase() + "_" + insStmt.getTable().getName().toUpperCase());
+				String pkColumns = getTranslationValues("trnTable2PK", new Object[]{insStmt.getTable().getName().toLowerCase()}).get("pk_list");
 				if(pkColumns == null)throw new Exception ("Couldn't find Primary key columns for table: " + insStmt.getTable().getSchemaName().toUpperCase() + "_" + insStmt.getTable().getName().toUpperCase() + " in properties class!, Please check");
 				String[] pkCuls = pkColumns.split(",");
 				String prefixPK = "";
@@ -95,7 +101,7 @@ public class Logic extends UserCode {
 			if(matcher.find()){
 					upStmt = (net.sf.jsqlparser.statement.update.UpdateTable) sqlStmt;
 					StringBuilder sbPK = new StringBuilder().append("[");
-					String pkColumns = k2Studio.usershared.properties.getLookUpsPks(upStmt.getTable().getSchemaName().toUpperCase() + "_" + upStmt.getTable().getName().toUpperCase());
+					String pkColumns = getTranslationValues("trnTable2PK", new Object[]{insStmt.getTable().getName().toLowerCase()}).get("pk_list");
 					if(pkColumns == null)throw new Exception ("Couldn't find Primary key columns for table: " + upStmt.getTable().getSchemaName().toUpperCase() + "_" + upStmt.getTable().getName().toUpperCase() + " in properties class!, Please check");
 					String[] pkCuls = pkColumns.split(",");
 					String prefixPK = "";
@@ -151,7 +157,7 @@ public class Logic extends UserCode {
 				if(matcher.find()){
 					delStmt = (net.sf.jsqlparser.statement.Delete) sqlStmt;
 					StringBuilder sbPK = new StringBuilder().append("[");
-					String pkColumns = k2Studio.usershared.properties.getLookUpsPks(delStmt.getTable().getSchemaName().toUpperCase() + "_" + delStmt.getTable().getName().toUpperCase());
+					String pkColumns = getTranslationValues("trnTable2PK", new Object[]{insStmt.getTable().getName().toLowerCase()}).get("pk_list");
 					if(pkColumns == null)throw new Exception ("Couldn't find Primary key columns for table: " + delStmt.getTable().getSchemaName().toUpperCase() + "_" + delStmt.getTable().getName().toUpperCase() + " in properties class!, Please check");
 					String[] pkCuls = pkColumns.split(",");
 					String prefixPK = "";
@@ -189,15 +195,29 @@ public class Logic extends UserCode {
 			}
 		}
 		
-		//Inserting to kafka producer
-		k2Studio.usershared.ParserKafkaProducer kafPro = new k2Studio.usershared.ParserKafkaProducer();
-		kafPro.send(topicName, jsonRes.toString(), null);
+		Properties props = new Properties();
+		props.put("bootstrap.servers", IifProperties.getInstance().getKafkaBootsrapServers());
+		props.put("acks", "all");
+		props.put("retries", "5");
+		props.put("batch.size", "" + IifProperties.getInstance().getKafkaBatchSize());
+		props.put("linger.ms", 1);
+		props.put("max.block.ms", "" + IifProperties.getInstance().getKafkaMaxBlockMs());
+		props.put("buffer.memory", "" + IifProperties.getInstance().getKafkaBufferMemory());
+		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+		
+		Producer<String, JSONObject> producer = new KafkaProducer<>(props);
+		Future<RecordMetadata> future = producer.send(new ProducerRecord(topicName, null, null, jsonRes.toString()));
+		try {
+			future.get();
+		} catch (InterruptedException | ExecutionException e) {
+			log.error("Failed to send kafka message: ", e);
+			throw e;
+		}
 	}
 
+	
+	
 
-
-	
-	
-	
 	
 }
