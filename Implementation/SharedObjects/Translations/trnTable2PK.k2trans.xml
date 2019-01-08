@@ -63,7 +63,7 @@
       <DocumentElement>
         <trnTable2PK diffgr:id="trnTable2PK1" msdata:rowOrder="0">
           <schema_nd_table_name>UHV_ACCOUNT</schema_nd_table_name>
-          <pk_list>first_name</pk_list>
+          <pk_list>BID_AFLT_ACCT_ID</pk_list>
         </trnTable2PK>
       </DocumentElement>
     </diffgr:diffgram>
