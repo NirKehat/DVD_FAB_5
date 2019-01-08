@@ -208,12 +208,7 @@ public class Logic extends WebServiceUserCode {
 		
 		Producer<String, JSONObject> producer = new KafkaProducer<>(props);
 		Future<RecordMetadata> future = producer.send(new ProducerRecord(topicName, null, null, jsonRes.toString()));
-		try {
-			future.get();
-		} catch (InterruptedException | ExecutionException e) {
-			log.error("Failed to send kafka message: ", e);
-			throw e;
-		}
+		future.get();
 	}
 
 	
