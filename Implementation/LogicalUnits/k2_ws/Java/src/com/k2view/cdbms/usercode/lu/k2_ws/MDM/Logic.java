@@ -60,6 +60,7 @@ public class Logic extends WebServiceUserCode {
 			String prefix = "";
 			String prefixHref = "?";
 			StringBuilder hrefFilters = new StringBuilder();
+			Set<Object> preStmtVals = new LinkedHashSet<>();
 			for (Map.Entry<String, String[]> vals : requestParamsMap.entrySet()) {
 				if (!vals.getKey().equals("token") && !vals.getKey().equals("arg")) {
 					hrefFilters.append(prefixHref + vals.getKey() + "=" + vals.getValue()[0]);
@@ -68,7 +69,8 @@ public class Logic extends WebServiceUserCode {
 				if (vals.getKey().equals("token") || vals.getKey().equals("arg") || vals.getKey().equals("fields"))
 					continue;
 				if (prefix.equals("")) sqlStmt.append(" Where ");
-				sqlStmt.append(prefix + vals.getKey() + " = " + vals.getValue()[0]);
+				sqlStmt.append(prefix + vals.getKey() + " = ?");
+				preStmtVals.add(vals.getValue()[0]);
 				prefix = " and ";
 			}
 		
@@ -77,8 +79,14 @@ public class Logic extends WebServiceUserCode {
 			fabCon.createStatement().execute("get " + luName + "." + iid);
 			rs.put("id", iid);
 			rs.put("href", getRequestHeaders().get("host") + "/GET/" + requestParamsMap.get("arg")[0] + hrefFilters);
-			//rs.put(tableName, DBQuery("fabric", sqlStmt.toString(), null));
-			ResultSet queryRS = fabCon.createStatement().executeQuery(sqlStmt.toString());
+
+			PreparedStatement preStmt = fabCon.prepareStatement(sqlStmt.toString());
+			int cntPreVals = 1;
+			for(Object preStmtVal : preStmtVals){
+				preStmt.setObject(cntPreVals, preStmtVal);
+				cntPreVals++;
+			}
+			ResultSet queryRS = preStmt.executeQuery();
 			ResultSetMetaData queryRSMD = queryRS.getMetaData();
 		
 			while (queryRS.next()){
@@ -89,6 +97,7 @@ public class Logic extends WebServiceUserCode {
 			}
 			rs.put(tableName,listRs);
 		}catch (Exception e){
+			log.error("get Exception", e);
 			if(e.getMessage().contains("Access to")) {
 				sos.println(e.getMessage());
 				wsResp.setStatus(401);
