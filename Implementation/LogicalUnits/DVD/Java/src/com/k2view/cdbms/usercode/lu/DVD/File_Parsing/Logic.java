@@ -107,57 +107,6 @@ public class Logic extends UserCode {
 	}
 
 
-	@type(RootFunction)
-	@out(name = "rs", type = Object.class, desc = "")
-	public static void fnParFileNdUpdKafka(String del, String table_Name, String zip_ind) throws Exception {
-		java.io.BufferedReader br = null;
-		java.net.URI uri = getSourceUri();
-		String filePath = uri.getPath();
-		String fileName = filePath.substring(filePath.lastIndexOf(File.separator) + 1, filePath.length());
-		reportUserMessage(fileName);
-		try {
-			if(zip_ind != null && zip_ind.equals("Y")){
-				InputStream gzipStream = new java.util.zip.GZIPInputStream(getStream());
-				Reader decoder = new InputStreamReader(gzipStream);
-				br = new BufferedReader(decoder);
-			}else{
-				br = new BufferedReader(new InputStreamReader(getStream()));
-			}
-			if(br != null) {
-				String curLine = br.readLine();
-				String columNames = null;
-				if (del == null || del.equals("")) {
-					del = ",";
-					columNames = curLine;
-				}else {
-					columNames = curLine.replace(del, ",");
-				}
-				StringBuilder sqlStmt = new StringBuilder();
-				while ((curLine = br.readLine()) != null) {
-					sqlStmt.append("Insert into " + table_Name + "(" + columNames + ") values (");
-					String prefix = "";
-					String[] rowArr = curLine.split(del);
-					for (String rowArrVal : rowArr) {
-						sqlStmt.append(prefix + "'" + rowArrVal + "'");
-						prefix = ",";
-					}
-					sqlStmt.append(")");
-					log.info(sqlStmt.toString());
-					fnUpdateKafkaTopic(sqlStmt.toString(), null, null);
-					sqlStmt = new StringBuilder();
-				}
-			}
-		} catch (java.io.IOException e) {
-			throw e;
-		} finally {
-			try {
-				if (br != null)br.close();
-			} catch (IOException ex) {
-				throw ex;
-			}
-		}
-		if(1 == 2)yield(null);
-	}
 
 	
 	
