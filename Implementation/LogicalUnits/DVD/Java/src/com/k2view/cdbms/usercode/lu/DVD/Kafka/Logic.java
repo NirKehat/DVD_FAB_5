@@ -190,8 +190,8 @@ public class Logic extends UserCode {
 		}
 		
 		//Inserting to kafka producer
-		k2Studio.usershared.ParserKafkaProducer kafPro = new k2Studio.usershared.ParserKafkaProducer();
-		kafPro.send(topicName, jsonRes.toString(), null);
+		//k2Studio.usershared.ParserKafkaProducer kafPro = new k2Studio.usershared.ParserKafkaProducer();
+		//kafPro.send(topicName, jsonRes.toString(), null);
 	}
 
 

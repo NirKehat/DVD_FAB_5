@@ -19,6 +19,10 @@ import com.k2view.cdbms.func.oracle.OracleToDate;
 import com.k2view.cdbms.func.oracle.OracleRownum;
 import com.k2view.cdbms.usercode.lu.k2_ws.*;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import static com.k2view.cdbms.shared.utils.UserCodeDescribe.FunctionType.*;
 import static com.k2view.cdbms.shared.user.ProductFunctions.*;
 import static com.k2view.cdbms.usercode.common.SharedLogic.*;
@@ -28,45 +32,80 @@ import static com.k2view.cdbms.usercode.common.SharedGlobals.*;
 public class Logic extends WebServiceUserCode {
 
 
-	@out(name = "rs", type = Object.class, desc = "")
-	public static Object get(String arg) throws Exception {
+	public static void get(String arg) throws Exception {
 		Map<String, Object> rs = new LinkedHashMap<>();
-		Map<String, String[]> requestParamsMap = requestParams();
-		String fields = null;
-		if(requestParamsMap.get("fields") != null){
-			fields = requestParamsMap.get("fields")[0];
-		}else{
-			fields = "*";
-		}
-		StringBuilder sqlStmt = new StringBuilder().append("Select " + fields + " from ");
+		Map<String, Object> queryMapRs = new LinkedHashMap<>();
+		List<Map<String, Object>> listRs = new LinkedList<>();
 		
-		String[] args = requestParamsMap.get("arg")[0].split("/");
-		String luName = args[0];
-		String iid = args[1];
-		String tableName = args[2];
-		
-		sqlStmt.append(tableName);
-		
-		String prefix = "";
-		String prefixHref = "?";
-		StringBuilder hrefFilters = new StringBuilder();
-		for(Map.Entry<String, String[]> vals: requestParamsMap.entrySet()){
-			if(!vals.getKey().equals("token") && !vals.getKey().equals("arg")){
-				hrefFilters.append(prefixHref + vals.getKey() + "=" + vals.getValue()[0]);
-				prefixHref="&";
+		HttpServletResponse wsResp = response();
+		ServletOutputStream sos = wsResp.getOutputStream();
+		HttpServletRequest wsReq = request();
+		try {
+			Map<String, String[]> requestParamsMap = requestParams();
+			String fields = null;
+			if (requestParamsMap.get("fields") != null) {
+				fields = requestParamsMap.get("fields")[0];
+			} else {
+				fields = "*";
 			}
-			if(vals.getKey().equals("token") || vals.getKey().equals("arg") || vals.getKey().equals("fields"))continue;
-			if(prefix.equals(""))sqlStmt.append(" Where ");
-			sqlStmt.append(prefix + vals.getKey() + " = " + vals.getValue()[0]);
-			prefix = " and ";
+			StringBuilder sqlStmt = new StringBuilder().append("Select " + fields + " from ");
+		
+			String[] args = requestParamsMap.get("arg")[0].split("/");
+			String luName = args[0];
+			String iid = args[1];
+			String tableName = args[2];
+		
+			sqlStmt.append(tableName);
+		
+			String prefix = "";
+			String prefixHref = "?";
+			StringBuilder hrefFilters = new StringBuilder();
+			for (Map.Entry<String, String[]> vals : requestParamsMap.entrySet()) {
+				if (!vals.getKey().equals("token") && !vals.getKey().equals("arg")) {
+					hrefFilters.append(prefixHref + vals.getKey() + "=" + vals.getValue()[0]);
+					prefixHref = "&";
+				}
+				if (vals.getKey().equals("token") || vals.getKey().equals("arg") || vals.getKey().equals("fields"))
+					continue;
+				if (prefix.equals("")) sqlStmt.append(" Where ");
+				sqlStmt.append(prefix + vals.getKey() + " = " + vals.getValue()[0]);
+				prefix = " and ";
+			}
+		
+			Connection fabCon = getConnection("fabric");
+			fabCon.createStatement().execute("set sync off");
+			fabCon.createStatement().execute("get " + luName + "." + iid);
+			rs.put("id", iid);
+			rs.put("href", getRequestHeaders().get("host") + "/GET/" + requestParamsMap.get("arg")[0] + hrefFilters);
+			//rs.put(tableName, DBQuery("fabric", sqlStmt.toString(), null));
+			ResultSet queryRS = fabCon.createStatement().executeQuery(sqlStmt.toString());
+			ResultSetMetaData queryRSMD = queryRS.getMetaData();
+		
+			while (queryRS.next()){
+				for(int i = 1; i < queryRSMD.getColumnCount() + 1; i++){
+					queryMapRs.put(queryRSMD.getColumnName(i) ,queryRS.getObject(i));
+				}
+				listRs.add(queryMapRs);
+			}
+			rs.put(tableName,listRs);
+		}catch (Exception e){
+			if(e.getMessage().contains("Access to")) {
+				sos.println(e.getMessage());
+				wsResp.setStatus(401);
+			}else{
+				sos.println("Bad Request!");
+				wsResp.setStatus(400);
+			}
+			sos.flush();
+			sos.close();
+			return;
 		}
-
-		DBExecute("fabric", "set sync off", null);
-		DBExecute("fabric", "get "+ luName + "." + iid, null);
-		rs.put("id", iid);
-		rs.put("href", getRequestHeaders().get("host") + "/GET/" + requestParamsMap.get("arg")[0] + hrefFilters.toString());
-		rs.put(tableName, DBQuery("fabric", sqlStmt.toString(), null).getResults());
-		return rs;
+		
+		if(listRs.size() == 0 )wsResp.setStatus(204);
+		sos = wsResp.getOutputStream();
+		sos.println(rs.toString());
+		sos.flush();
+		sos.close();
 	}
 
 	
