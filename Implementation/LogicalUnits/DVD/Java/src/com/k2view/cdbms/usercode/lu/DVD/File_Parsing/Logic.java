@@ -26,7 +26,7 @@ import static com.k2view.cdbms.shared.utils.UserCodeDescribe.FunctionType.*;
 import static com.k2view.cdbms.shared.user.ProductFunctions.*;
 import static com.k2view.cdbms.usercode.common.SharedLogic.*;
 import static com.k2view.cdbms.usercode.lu.DVD.Globals.*;
-import static com.k2view.cdbms.usercode.lu.DVD.Kafka.Logic.fnUpfateKafkaTopic;
+import static com.k2view.cdbms.usercode.lu.DVD.Kafka.Logic.fnUpdateKafkaTopic;
 
 @SuppressWarnings({"unused", "DefaultAnnotationParam"})
 public class Logic extends UserCode {
@@ -109,13 +109,12 @@ public class Logic extends UserCode {
 
 	@type(RootFunction)
 	@out(name = "rs", type = Object.class, desc = "")
-	public static void fnParFileNdUpdKafka(String zip_ind, String del, String table_Name) throws Exception {
+	public static void fnParFileNdUpdKafka(String del, String table_Name, String zip_ind) throws Exception {
 		java.io.BufferedReader br = null;
 		java.net.URI uri = getSourceUri();
 		String filePath = uri.getPath();
 		String fileName = filePath.substring(filePath.lastIndexOf(File.separator) + 1, filePath.length());
-		String fileRegex = null;
-		
+		reportUserMessage(fileName);
 		try {
 			if(zip_ind != null && zip_ind.equals("Y")){
 				InputStream gzipStream = new java.util.zip.GZIPInputStream(getStream());
@@ -125,12 +124,17 @@ public class Logic extends UserCode {
 				br = new BufferedReader(new InputStreamReader(getStream()));
 			}
 			if(br != null) {
-				String curLine = br.readLine();	
-				if (del == null && del.equals(""))del = ","; 
-				String columnsNames = curLine.replace(del, ",");
+				String curLine = br.readLine();
+				String columNames = null;
+				if (del == null || del.equals("")) {
+					del = ",";
+					columNames = curLine;
+				}else {
+					columNames = curLine.replace(del, ",");
+				}
 				StringBuilder sqlStmt = new StringBuilder();
 				while ((curLine = br.readLine()) != null) {
-					sqlStmt.append("Insert into " + table_Name + "(" + columnsNames + ") values (");
+					sqlStmt.append("Insert into " + table_Name + "(" + columNames + ") values (");
 					String prefix = "";
 					String[] rowArr = curLine.split(del);
 					for (String rowArrVal : rowArr) {
@@ -138,7 +142,8 @@ public class Logic extends UserCode {
 						prefix = ",";
 					}
 					sqlStmt.append(")");
-					fnUpfateKafkaTopic(sqlStmt.toString(), null, null);
+					log.info(sqlStmt.toString());
+					fnUpdateKafkaTopic(sqlStmt.toString(), null, null);
 					sqlStmt = new StringBuilder();
 				}
 			}

@@ -11,9 +11,9 @@
       <ItemsList>
         <Item id="f_2" name="fnParFileNdUpdKafka" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnParFileNdUpdKafka.k2function.xml">
           <InputsList>
-            <Input id="fi_2.0" name="zip_ind" />
-            <Input id="fi_2.1" name="del" />
-            <Input id="fi_2.2" name="table_Name" />
+            <Input id="fi_2.0" name="del" />
+            <Input id="fi_2.1" name="table_Name" defaultValue="UHV.ACCOUNT" />
+            <Input id="fi_2.2" name="zip_ind" />
           </InputsList>
           <OutputsList>
             <Output id="fo_2.0" name="rs" />
@@ -53,16 +53,15 @@
     </Target>
   </TargetsList>
   <DiagramGraph>
-    <Graph name="par_load_file_2_kafka.k2parserMap.xml" lastPartID="16" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
-      <ParserRecordTypeTargetNode partID="0" name="par_load_file_2_kafka" pos="209.818024 18.9635429" size="312.9996 62.07291" parserName="par_load_file_2_kafka" isTargetNode="true" isRoot="false" />
-      <FunctionMapNode id="0" R0="1" L0="2" L1="3" L2="4" partID="2" topLabel="fnParFileNdUpdKafka (2)" pos="10 19.3450527" size="154.817688 61.3098946" isRoot="true">
-        <KFunction>{"Name":"fnParFileNdUpdKafka","ID":"f_2","Category":"File_Parsing","Version":"5.0.0.11","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"zip_ind","ID":"fi_2.0","Index":0,"DataType":"String"},{"Name":"del","ID":"fi_2.1","Index":1,"DataType":"String"},{"Name":"table_Name","ID":"fi_2.2","Index":2,"DataType":"String"}],"outputParams":[{"Name":"rs","ID":"fo_2.0","Index":0,"DataType":"Object","Comment":""}],"HideMethodInUi":false}</KFunction>
+    <Graph name="par_load_file_2_kafka.k2parserMap.xml" lastPartID="27" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
+      <ParserRecordTypeTargetNode partID="0" name="par_load_file_2_kafka" pos="209.8187 18.9635429" size="312.998932 62.07291" parserName="par_load_file_2_kafka" isTargetNode="true" isRoot="false" />
+      <FunctionMapNode id="0" L0="1" L1="2" L2="3" R0="4" partID="2" topLabel="fnParFileNdUpdKafka (2)" pos="10 19.34505" size="154.817688 61.3098946" isRoot="true">
+        <KFunction>{"Name":"fnParFileNdUpdKafka","ID":"f_2","Category":"File_Parsing","Version":"5.0.0.11","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"del","ID":"fi_2.0","Index":0,"DataType":"String"},{"Name":"table_Name","ID":"fi_2.1","Index":1,"DataType":"String","MapDefaultValue":"UHV.ACCOUNT"},{"Name":"zip_ind","ID":"fi_2.2","Index":2,"DataType":"String"}],"outputParams":[{"Name":"rs","ID":"fo_2.0","Index":0,"DataType":"Object","Comment":""}],"HideMethodInUi":false}</KFunction>
       </FunctionMapNode>
-      <Link from="1" to="5" partID="7" pointsArr="159.786469 52.54557 169.786469 52.54557 199.818024 50.0000038 209.818024 50.0000038" fromNodePartID="2" fromNodeColumnName="rs" toNodePartID="0" toNodeColumnName="dummy" />
+      <Link from="4" to="5" partID="7" pointsArr="159.786469 52.54557 169.786469 52.54557 199.8187 50 209.8187 50" fromNodePartID="2" fromNodeColumnName="rs" toNodePartID="0" toNodeColumnName="dummy" />
     </Graph>
   </DiagramGraph>
   <Active>true</Active>
-  <ExecutionMode>Manually</ExecutionMode>
   <syncEvery>00:00:00</syncEvery>
   <InterfaceName>ifLocalLinux</InterfaceName>
 </ParserMap>

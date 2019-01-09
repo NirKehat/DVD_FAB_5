@@ -201,7 +201,9 @@ public class Logic extends UserCode {
 	}
 
 
-	public static void fnUpfateKafkaTopic(String sql_stmt, String tblType, String partiKey) throws Exception {
+
+
+	public static void fnUpdateKafkaTopic(String sql_stmt, String tblType, String partiKey) throws Exception {
 		final String LU_TABLES = "MS.IDfinder";
 		final String REF = "MS.REF";
 		final String LOOKUP = "MS.LKUP";
