@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="4.1.0.13">
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="5.0.0.11">
   <Name>par_address</Name>
   <MapType>ParserMap</MapType>
   <RootItemID>f_1</RootItemID>
@@ -106,29 +106,30 @@
     </Target>
   </TargetsList>
   <DiagramGraph>
-    <Graph name="par_address.k2parserMap.xml" lastPartID="96" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
-      <ParserRecordTypeTargetNode partID="0" name="par_address" pos="540.359131 1.70834351" size="312.9989 146.583313" parserName="par_address" isTargetNode="true" isRoot="false" />
-      <FunctionMapNode id="0" L0="3" R0="4" partID="1" topLabel="fnRTDeltaParser (1)" pos="137.405121 52.4544334" size="160.099762 45.0911446" isRoot="true">
+    <Graph name="par_address.k2parserMap.xml" lastPartID="116" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
+      <ParserRecordTypeTargetNode partID="0" name="par_address" pos="540.3595 1.70834351" size="312.998535 146.583313" parserName="par_address" isTargetNode="true" isRoot="false" />
+      <FunctionMapNode id="0" L0="3" R0="4" partID="1" topLabel="fnRTDeltaParser (1)" pos="137.409286 52.4544334" size="160.091415 45.0911446" isRoot="true">
         <KFunction>{"Name":"fnRTDeltaParser","ID":"f_1","Category":"DELTA_PARSER","Version":"4.1.0.13","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"parName","ID":"fi_1.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"rs","ID":"fo_1.0","Index":0,"DataType":"Map&lt;String,Object&gt;","Comment":""}],"HideMethodInUi":false}</KFunction>
       </FunctionMapNode>
-      <FunctionMapNode id="1" L0="5" R0="6" R1="7" R2="8" R3="9" R4="10" R5="11" R6="12" R7="13" partID="4" topLabel="fnSplRow (4)" pos="342.514771 14.1627645" size="152.846008 121.674454" isRoot="false">
-        <KFunction>{"ID":"f_4","Category":"DELTA_PARSER","Version":"4.1.0.13","FunctionLevel":0,"FunctionType":0,"FunctionType2":0,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":false,"inputParams":[{"Name":"rowVals","ID":"fi_4.0","Index":0,"DataType":"Map&lt;String,Object&gt;"}],"outputParams":[{"Name":"address_id","ID":"fo_4.0","Index":0,"DataType":"String","Comment":""},{"Name":"address","ID":"fo_4.1","Index":1,"DataType":"String","Comment":""},{"Name":"address2","ID":"fo_4.2","Index":2,"DataType":"String","Comment":""},{"Name":"district","ID":"fo_4.3","Index":3,"DataType":"String","Comment":""},{"Name":"city_id","ID":"fo_4.4","Index":4,"DataType":"String","Comment":""},{"Name":"postal_code","ID":"fo_4.5","Index":5,"DataType":"String","Comment":""},{"Name":"phone","ID":"fo_4.6","Index":6,"DataType":"String","Comment":""},{"Name":"last_update","ID":"fo_4.7","Index":7,"DataType":"String","Comment":""}],"HideMethodInUi":false}</KFunction>
+      <FunctionMapNode id="1" L0="5" R0="6" R1="7" R2="8" R3="9" R4="10" R5="11" R6="12" R7="13" partID="4" topLabel="fnSplRow (4)" pos="342.513428 14.1627645" size="152.848724 121.674454" isRoot="false">
+        <KFunction>{"Name":"fnSplRow","ID":"f_4","Category":"DELTA_PARSER","FunctionLevel":0,"FunctionType":0,"FunctionType2":0,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":false,"inputParams":[{"Name":"rowVals","ID":"fi_4.0","Index":0,"DataType":"Map&lt;String,Object&gt;"}],"outputParams":[{"Name":"address_id","ID":"fo_4.0","Index":0,"DataType":"String","Comment":""},{"Name":"address","ID":"fo_4.1","Index":1,"DataType":"String","Comment":""},{"Name":"address2","ID":"fo_4.2","Index":2,"DataType":"String","Comment":""},{"Name":"district","ID":"fo_4.3","Index":3,"DataType":"String","Comment":""},{"Name":"city_id","ID":"fo_4.4","Index":4,"DataType":"String","Comment":""},{"Name":"postal_code","ID":"fo_4.5","Index":5,"DataType":"String","Comment":""},{"Name":"phone","ID":"fo_4.6","Index":6,"DataType":"String","Comment":""},{"Name":"last_update","ID":"fo_4.7","Index":7,"DataType":"String","Comment":""}],"HideMethodInUi":false}</KFunction>
       </FunctionMapNode>
-      <ConstantMapNode id="2" R0="14" partID="32" topLabel="par_name" pos="16.5100288 52.4544258" size="83.0775452 45.0911446">
+      <ConstantMapNode id="2" R0="14" partID="32" topLabel="par_name" pos="18.843792 52.4544258" size="83.07352 45.0911446">
         <KDataValue>{"ID":"c.32","DataValue":"par_address"}</KDataValue>
       </ConstantMapNode>
-      <Link from="6" to="15" partID="22" pointsArr="495.360779 35.2903671 505.360779 35.2903671 507.858032 0 527.858032 0 530.359131 32.7447968 540.359131 32.7447968" fromNodePartID="4" fromNodeColumnName="address_id" toNodePartID="0" toNodeColumnName="address_id" />
-      <Link from="7" to="16" partID="23" pointsArr="495.360779 47.36328 505.360779 47.36328 507.858032 25 527.858032 25 530.359131 44.81771 540.359131 44.81771" fromNodePartID="4" fromNodeColumnName="address" toNodePartID="0" toNodeColumnName="address" />
-      <Link from="8" to="17" partID="24" pointsArr="495.360779 59.4361954 505.360779 59.4361954 507.858032 50 527.858032 50 530.359131 56.890625 540.359131 56.890625" fromNodePartID="4" fromNodeColumnName="address2" toNodePartID="0" toNodeColumnName="address2" />
-      <Link from="9" to="18" partID="25" pointsArr="495.360779 71.50911 505.360779 71.50911 507.858032 75 527.858032 75 530.359131 68.96355 540.359131 68.96355" fromNodePartID="4" fromNodeColumnName="district" toNodePartID="0" toNodeColumnName="district" />
-      <Link from="10" to="19" partID="26" pointsArr="495.360779 83.58202 505.360779 83.58202 507.858032 100 527.858032 100 530.359131 81.03645 540.359131 81.03645" fromNodePartID="4" fromNodeColumnName="city_id" toNodePartID="0" toNodeColumnName="city_id" />
-      <Link from="11" to="20" partID="27" pointsArr="495.360779 95.65494 505.360779 95.65494 507.858032 125 527.858032 125 530.359131 93.109375 540.359131 93.109375" fromNodePartID="4" fromNodeColumnName="postal_code" toNodePartID="0" toNodeColumnName="postal_code" />
-      <Link from="12" to="21" partID="28" pointsArr="495.360779 107.727859 505.360779 107.727859 507.858032 150 527.858032 150 530.359131 105.1823 540.359131 105.1823" fromNodePartID="4" fromNodeColumnName="phone" toNodePartID="0" toNodeColumnName="phone" />
-      <Link from="13" to="22" partID="29" pointsArr="495.360779 119.800781 505.360779 119.800781 507.858032 175 527.858032 175 530.359131 117.255219 540.359131 117.255219" fromNodePartID="4" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
-      <Link from="14" to="3" partID="34" pointsArr="85.760025 77.54557 95.760025 77.54557 127.405121 77.54558 137.405121 77.54558" fromNodePartID="32" fromNodeColumnName="par_address" toNodePartID="1" toNodeColumnName="parName" />
-      <Link from="4" to="5" partID="56" pointsArr="297.504883 77.54558 307.504883 77.54558 332.514771 77.54557 342.514771 77.54557" fromNodePartID="1" fromNodeColumnName="rs" toNodePartID="4" toNodeColumnName="rowVals" />
+      <Link from="6" to="15" partID="22" pointsArr="495.362152 35.2903671 505.362152 35.2903671 507.858032 0 527.858032 0 530.3595 32.7447968 540.3595 32.7447968" fromNodePartID="4" fromNodeColumnName="address_id" toNodePartID="0" toNodeColumnName="address_id" />
+      <Link from="7" to="16" partID="23" pointsArr="495.362152 47.36328 505.362152 47.36328 507.858032 25 527.858032 25 530.3595 44.81771 540.3595 44.81771" fromNodePartID="4" fromNodeColumnName="address" toNodePartID="0" toNodeColumnName="address" />
+      <Link from="8" to="17" partID="24" pointsArr="495.362152 59.4361954 505.362152 59.4361954 507.858032 50 527.858032 50 530.3595 56.890625 540.3595 56.890625" fromNodePartID="4" fromNodeColumnName="address2" toNodePartID="0" toNodeColumnName="address2" />
+      <Link from="9" to="18" partID="25" pointsArr="495.362152 71.50911 505.362152 71.50911 507.858032 75 527.858032 75 530.3595 68.96355 540.3595 68.96355" fromNodePartID="4" fromNodeColumnName="district" toNodePartID="0" toNodeColumnName="district" />
+      <Link from="10" to="19" partID="26" pointsArr="495.362152 83.58202 505.362152 83.58202 507.858032 100 527.858032 100 530.3595 81.03645 540.3595 81.03645" fromNodePartID="4" fromNodeColumnName="city_id" toNodePartID="0" toNodeColumnName="city_id" />
+      <Link from="11" to="20" partID="27" pointsArr="495.362152 95.65494 505.362152 95.65494 507.858032 125 527.858032 125 530.3595 93.109375 540.3595 93.109375" fromNodePartID="4" fromNodeColumnName="postal_code" toNodePartID="0" toNodeColumnName="postal_code" />
+      <Link from="12" to="21" partID="28" pointsArr="495.362152 107.727859 505.362152 107.727859 507.858032 150 527.858032 150 530.3595 105.1823 540.3595 105.1823" fromNodePartID="4" fromNodeColumnName="phone" toNodePartID="0" toNodeColumnName="phone" />
+      <Link from="13" to="22" partID="29" pointsArr="495.362152 119.800781 505.362152 119.800781 507.858032 175 527.858032 175 530.3595 117.255219 540.3595 117.255219" fromNodePartID="4" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
+      <Link from="14" to="3" partID="34" pointsArr="88.09379 77.54557 98.09379 77.54557 127.409286 77.54558 137.409286 77.54558" fromNodePartID="32" fromNodeColumnName="par_address" toNodePartID="1" toNodeColumnName="parName" />
+      <Link from="4" to="5" partID="56" pointsArr="297.5007 77.54558 307.5007 77.54558 332.513428 77.54557 342.513428 77.54557" fromNodePartID="1" fromNodeColumnName="rs" toNodePartID="4" toNodeColumnName="rowVals" />
     </Graph>
   </DiagramGraph>
   <Active>true</Active>
+  <ExecutionMode>Manually</ExecutionMode>
   <syncEvery>00:00:59</syncEvery>
 </ParserMap>
