@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenericInterface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="LOCAL" displayName="Local File System" enabled="true" version="1.2">
+  <Name>int_file_test</Name>
+  <Properties>
+    <Property name="WorkingDir" dataType="string" mandatory="true">
+      <Value>/usr/local/k2view/</Value>
+    </Property>
+    <Property name="FilesFilter" dataType="string">
+      <Value>filename.csv</Value>
+    </Property>
+    <Property name="Affinity" dataType="string">
+      <Value />
+    </Property>
+  </Properties>
+  <TestConnection enabled="false" />
+</GenericInterface>

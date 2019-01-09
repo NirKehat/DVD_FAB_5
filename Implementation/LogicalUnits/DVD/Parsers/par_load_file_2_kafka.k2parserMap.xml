@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="5.0.0.11">
+  <Name>par_load_file_2_kafka</Name>
+  <MapType>ParserMap</MapType>
+  <RootItemID>f_2</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <TargetsList>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>par_load_file_2_kafka</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item id="f_2" name="fnParFileNdUpdKafka" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnParFileNdUpdKafka.k2function.xml">
+          <InputsList>
+            <Input id="fi_2.0" name="zip_ind" />
+            <Input id="fi_2.1" name="del" />
+            <Input id="fi_2.2" name="table_Name" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_2.0" name="rs" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_par_load_file_2_kafka" name="par_load_file_2_kafka" nodeOrder="1" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="par_load_file_2_kafka">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_65f3f44219ef4de092b6127e5a7b6b1a" name="dummy" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn />
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_65f3f44219ef4de092b6127e5a7b6b1a" name="dummy" pkType="Partition_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+          <CompactionStrategy>SizeTieredCompactionStrategy</CompactionStrategy>
+          <TimeToLive>0</TimeToLive>
+          <CreateStatement><![CDATA[]]></CreateStatement>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="7" fromNodeOrder="0" fromItemID="f_2" fromColID="fo_2.0" toItemID="rt_par_load_file_2_kafka" toColID="rtCol_65f3f44219ef4de092b6127e5a7b6b1a" />
+      </LinksList>
+      <ParserMapRecordType id="rt_par_load_file_2_kafka" name="par_load_file_2_kafka" parentParser="par_load_file_2_kafka">
+        <Active xsi:nil="true" />
+        <RecordTypeKeyColumn />
+        <Columns>
+          <Column id="rtCol_65f3f44219ef4de092b6127e5a7b6b1a" name="dummy" index="0">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_65f3f44219ef4de092b6127e5a7b6b1a" name="dummy" pkType="Partition_Key" />
+        </PkColumns>
+        <CreateStatement><![CDATA[]]></CreateStatement>
+      </ParserMapRecordType>
+    </Target>
+  </TargetsList>
+  <DiagramGraph>
+    <Graph name="par_load_file_2_kafka.k2parserMap.xml" lastPartID="16" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
+      <ParserRecordTypeTargetNode partID="0" name="par_load_file_2_kafka" pos="209.818024 18.9635429" size="312.9996 62.07291" parserName="par_load_file_2_kafka" isTargetNode="true" isRoot="false" />
+      <FunctionMapNode id="0" R0="1" L0="2" L1="3" L2="4" partID="2" topLabel="fnParFileNdUpdKafka (2)" pos="10 19.3450527" size="154.817688 61.3098946" isRoot="true">
+        <KFunction>{"Name":"fnParFileNdUpdKafka","ID":"f_2","Category":"File_Parsing","Version":"5.0.0.11","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"zip_ind","ID":"fi_2.0","Index":0,"DataType":"String"},{"Name":"del","ID":"fi_2.1","Index":1,"DataType":"String"},{"Name":"table_Name","ID":"fi_2.2","Index":2,"DataType":"String"}],"outputParams":[{"Name":"rs","ID":"fo_2.0","Index":0,"DataType":"Object","Comment":""}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link from="1" to="5" partID="7" pointsArr="159.786469 52.54557 169.786469 52.54557 199.818024 50.0000038 209.818024 50.0000038" fromNodePartID="2" fromNodeColumnName="rs" toNodePartID="0" toNodeColumnName="dummy" />
+    </Graph>
+  </DiagramGraph>
+  <Active>true</Active>
+  <ExecutionMode>Manually</ExecutionMode>
+  <syncEvery>00:00:00</syncEvery>
+  <InterfaceName>ifLocalLinux</InterfaceName>
+</ParserMap>
