@@ -36,10 +36,11 @@ public class Logic extends WebServiceUserCode {
 		Map<String, Object> rs = new LinkedHashMap<>();
 		Map<String, Object> queryMapRs = new LinkedHashMap<>();
 		List<Map<String, Object>> listRs = new LinkedList<>();
-		
 		HttpServletResponse wsResp = response();
 		ServletOutputStream sos = wsResp.getOutputStream();
-		HttpServletRequest wsReq = request();
+		ResultSet queryRS = null;
+		PreparedStatement preStmt = null;
+
 		try {
 			Map<String, String[]> requestParamsMap = requestParams();
 			String fields = null;
@@ -73,22 +74,23 @@ public class Logic extends WebServiceUserCode {
 				preStmtVals.add(vals.getValue()[0]);
 				prefix = " and ";
 			}
-		
-			Connection fabCon = getConnection("fabric");
-			fabCon.createStatement().execute("set sync off");
-			fabCon.createStatement().execute("get " + luName + "." + iid);
+
 			rs.put("id", iid);
 			rs.put("href", getRequestHeaders().get("host") + "/GET/" + requestParamsMap.get("arg")[0] + hrefFilters);
 
-			PreparedStatement preStmt = fabCon.prepareStatement(sqlStmt.toString());
+			Connection fabCon = getConnection("fabric");
+			fabCon.createStatement().execute("set sync off");
+			fabCon.createStatement().execute("get " + luName + "." + iid);
+
+			preStmt = fabCon.prepareStatement(sqlStmt.toString());
 			int cntPreVals = 1;
 			for(Object preStmtVal : preStmtVals){
 				preStmt.setObject(cntPreVals, preStmtVal);
 				cntPreVals++;
 			}
-			ResultSet queryRS = preStmt.executeQuery();
+
+			queryRS = preStmt.executeQuery();
 			ResultSetMetaData queryRSMD = queryRS.getMetaData();
-		
 			while (queryRS.next()){
 				for(int i = 1; i < queryRSMD.getColumnCount() + 1; i++){
 					queryMapRs.put(queryRSMD.getColumnName(i) ,queryRS.getObject(i));
@@ -96,6 +98,7 @@ public class Logic extends WebServiceUserCode {
 				listRs.add(queryMapRs);
 			}
 			rs.put(tableName,listRs);
+
 		}catch (Exception e){
 			log.error("get Exception", e);
 			if(e.getMessage().contains("Access to")) {
@@ -108,6 +111,9 @@ public class Logic extends WebServiceUserCode {
 			sos.flush();
 			sos.close();
 			return;
+		}finally {
+			if(preStmt != null)preStmt.close();
+			if(queryRS != null)queryRS.close();
 		}
 		
 		if(listRs.size() == 0 )wsResp.setStatus(204);
