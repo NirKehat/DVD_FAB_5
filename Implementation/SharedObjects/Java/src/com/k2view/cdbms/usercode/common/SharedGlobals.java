@@ -9,7 +9,7 @@ import com.k2view.cdbms.shared.utils.UserCodeDescribe.*;
 public class SharedGlobals {
 
 	@desc("Indicator to run table record validation")
-	public static final String RUN_RECORD_VALIDATION = "TRUE";
+	public static final String RUN_RECORD_VALIDATION = "FALSE";
 
 	@desc("Indicator to decide if to reject instance only after all validation were done")
 	public static final String RECORD_VALIDATION_REJECT_INSTANCE_AT_END = "FALSE";
