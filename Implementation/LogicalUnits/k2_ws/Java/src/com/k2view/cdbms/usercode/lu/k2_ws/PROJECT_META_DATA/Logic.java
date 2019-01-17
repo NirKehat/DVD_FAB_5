@@ -49,14 +49,19 @@ public class Logic extends WebServiceUserCode {
 				intMap.put("dbScheme", intCls.dbScheme);
 				intMap.put("DbMaxConnections", intCls.getDbMaxConnections() + "");
 				intMap.put("dbUrl", intCls.dbUrl);
-			}else{
+			}else if(myInter instanceof  com.k2view.cdbms.interfaces.jobs.local.LocalFileSystemInterface ){
+				com.k2view.cdbms.interfaces.jobs.local.LocalFileSystemInterface intCls = (com.k2view.cdbms.interfaces.jobs.local.LocalFileSystemInterface) myInter;
+				intMap.put("Interface_Name", x);
+				intMap.put("REMOTE_DIR", intCls.getDir());
+				intMap.put("FILES_FILTER", intCls.getFileFilter());
+			}else if(myInter instanceof  com.k2view.cdbms.interfaces.jobs.sftp.SFTPInterface ){
 				com.k2view.cdbms.interfaces.jobs.sftp.SFTPInterface intCls = (com.k2view.cdbms.interfaces.jobs.sftp.SFTPInterface) myInter;
 				intMap.put("Interface_Name", x);
 				intMap.put("IP", intCls.getIp());
 				intMap.put("REMOTE_DIR", intCls.getRemoteDir());
 				intMap.put("USER", intCls.getUser());
 				intMap.put("FILES_FILTER", intCls.getFileFilter());
-				}
+			}
 		
 			resEnvList.add(intMap);
 		});
