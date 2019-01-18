@@ -78,7 +78,7 @@
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>If you wish to have date in your file name you can use -&gt; {your_format_here} for exmaple - C:\K2View\payment_{yyyymmdd_HHmmss}.csv</Comment>
-      <GridColumnProperties width="73" />
+      <GridColumnProperties width="85" />
     </Column>
     <Column>
       <Title>file_name</Title>
@@ -97,7 +97,7 @@
       <ColumnName>file_type</ColumnName>
       <Direction>Output</Direction>
       <Type>Text</Type>
-      <Length>5</Length>
+      <Length>8</Length>
       <Format />
       <Index>6</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
@@ -118,13 +118,25 @@
       <GridColumnProperties width="100" />
     </Column>
     <Column>
+      <Title>parquet_schema</Title>
+      <ColumnName>parquet_schema</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>500</Length>
+      <Format />
+      <Index>8</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="779" />
+    </Column>
+    <Column>
       <Title>headers</Title>
       <ColumnName>headers</ColumnName>
       <Direction>Output</Direction>
       <Type>Boolean</Type>
       <Length>1</Length>
       <Format />
-      <Index>8</Index>
+      <Index>9</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>if you want to have headers in your file</Comment>
@@ -137,7 +149,7 @@
       <Type>Boolean</Type>
       <Length>1</Length>
       <Format />
-      <Index>9</Index>
+      <Index>10</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>if you want to append data to your file</Comment>
@@ -150,7 +162,7 @@
       <Type>Boolean</Type>
       <Length>1</Length>
       <Format />
-      <Index>10</Index>
+      <Index>11</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>active yes or no</Comment>
@@ -214,7 +226,7 @@
                   <xs:element name="file_type" default="" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="5" />
+                        <xs:maxLength value="8" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
@@ -222,6 +234,13 @@
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="parquet_schema" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="500" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
@@ -243,27 +262,32 @@
       <DocumentElement>
         <trnWriTbl2File diffgr:id="trnWriTbl2File1" msdata:rowOrder="0">
           <seq>1</seq>
-          <db_name></db_name>
+          <db_name>fabric</db_name>
           <table_name>CUSTOMER</table_name>
           <columns_list>customer_id,store_id</columns_list>
           <sql></sql>
-          <file_full_path>C:\K2View</file_full_path>
-          <file_name>example</file_name>
-          <file_type>csv</file_type>
+          <file_full_path>/home/k2view/</file_full_path>
+          <file_name>parquet_example</file_name>
+          <file_type>parquet</file_type>
           <delimiter></delimiter>
-          <headers>true</headers>
-          <append>true</append>
+          <parquet_schema>{ "type": "record", "name": "cutsRecords", "doc": "customer", "fields":   [{   "name": "customer_id",   "type": "int"     },   {   "name": "store_id",   "type": "int"  } ]}</parquet_schema>
+          <headers>false</headers>
+          <append>false</append>
           <active>true</active>
         </trnWriTbl2File>
         <trnWriTbl2File diffgr:id="trnWriTbl2File2" msdata:rowOrder="1">
           <seq>2</seq>
-          <db_name></db_name>
-          <table_name></table_name>
-          <columns_list></columns_list>
-          <sql>SELECT * FROM RENTAL</sql>
-          <file_full_path>C:\K2View</file_full_path>
-          <file_name>payment_{yyyymmdd_HHmmss}</file_name>
+          <db_name>fabric</db_name>
+          <table_name>CUSTOMER</table_name>
+          <columns_list>customer_id,store_id</columns_list>
+          <sql></sql>
+          <file_full_path>/home/k2view/</file_full_path>
+          <file_name>csv_example</file_name>
           <file_type>xls</file_type>
+          <delimiter></delimiter>
+          <parquet_schema></parquet_schema>
+          <headers>true</headers>
+          <append>true</append>
           <active>true</active>
         </trnWriTbl2File>
       </DocumentElement>
