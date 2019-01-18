@@ -27,6 +27,17 @@ import static com.k2view.cdbms.shared.user.ProductFunctions.*;
 import static com.k2view.cdbms.shared.user.UserCode.*;
 import static com.k2view.cdbms.shared.utils.UserCodeDescribe.FunctionType.*;
 import static com.k2view.cdbms.usercode.common.SharedGlobals.*;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.avro.Schema;
+import org.apache.avro.generic.GenericData;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.parquet.avro.AvroParquetReader;
+import org.apache.parquet.avro.AvroParquetWriter;
+import org.apache.parquet.hadoop.ParquetReader;
+import org.apache.parquet.hadoop.ParquetWriter;
+import org.apache.parquet.hadoop.metadata.CompressionCodecName;
 
 @SuppressWarnings({"unused", "DefaultAnnotationParam"})
 public class SharedLogic {
@@ -344,7 +355,7 @@ public class SharedLogic {
 		java.util.Date date = new java.util.Date();
 		PrintWriter printWriter = null;
 		FileOutputStream fos = null;
-		
+		ParquetWriter<GenericData.Record> parquetWriter = null;
 		java.util.Map <String,Map <String,String>> rsFromTrn = getTranslationsData("trnWriTbl2File");
 		for (java.util.Map.Entry<String, Map<String, String>> rsFromTrnInfo : rsFromTrn.entrySet()){
 			Map<String, String> rowInfo = rsFromTrnInfo.getValue();
@@ -362,8 +373,8 @@ public class SharedLogic {
 				appnd = Boolean.parseBoolean(rowInfo.get("append"));
 			}
 		
+			String fileName = rowInfo.get("file_name");
 			try {
-				String fileName = rowInfo.get("file_name");
 				Pattern r = Pattern.compile("\\{.*}");
 				Matcher m = r.matcher(fileName);
 				if (m.find()) {
@@ -375,11 +386,12 @@ public class SharedLogic {
 					fileName = rowInfo.get("file_full_path")  + "/" + rowInfo.get("file_name") + "." + rowInfo.get("file_type");
 				}
 		
-				if (!rowInfo.get("file_type").equalsIgnoreCase("xls")) {
-					printWriter = new PrintWriter(new FileOutputStream(new File(fileName), appnd));
-				}else {
+				if (rowInfo.get("file_type").equalsIgnoreCase("xls")) {
 					fos = new FileOutputStream(fileName, appnd);
+				}else if(!rowInfo.get("file_type").equalsIgnoreCase("parquet")){
+					printWriter = new PrintWriter(new FileOutputStream(new File(fileName), appnd));
 				}
+		
 			} catch (FileNotFoundException e) {
 				if(inDebugMode())reportUserMessage("fnWriLuData2File Exception:" + e.getMessage());
 				throw e;
@@ -392,10 +404,29 @@ public class SharedLogic {
 				sql.append(rowInfo.get("sql"));
 			}
 		
+			Schema schema = null;
+			List<GenericData.Record> recordList = new ArrayList<>();
+			GenericData.Record record = null;
+		
 			try{
 				String sepChar = null;
 				if (rowInfo.get("file_type").equalsIgnoreCase("csv")) {
 					sepChar = ",";
+				}else if (rowInfo.get("file_type").equalsIgnoreCase("parquet")) {
+					String tablSchema = rowInfo.get("parquet_schema");
+					Schema.Parser parser = new    Schema.Parser();
+					schema = parser.parse(tablSchema);
+					record = new GenericData.Record(schema);
+					parquetWriter = AvroParquetWriter.
+							<GenericData.Record>builder(new Path(fileName))
+							.withRowGroupSize(ParquetWriter.DEFAULT_BLOCK_SIZE)
+							.withPageSize(ParquetWriter.DEFAULT_PAGE_SIZE)
+							.withSchema(schema)
+							.withConf(new Configuration())
+							.withCompressionCodec(CompressionCodecName.SNAPPY)
+							.withValidation(false)
+							.withDictionaryEncoding(false)
+							.build();
 				}else{
 					sepChar = rowInfo.get("delimiter");
 				}
@@ -405,8 +436,9 @@ public class SharedLogic {
 				HSSFSheet tblShet = workBook.createSheet("Table Data");
 				rs = dbConn.createStatement().executeQuery(sql.toString());
 				ResultSetMetaData rsMD = rs.getMetaData();
+		
 				String prefix = "";
-				if(rowInfo.get("headers") != null && rowInfo.get("headers").equalsIgnoreCase("true")) {
+				if(!rowInfo.get("file_type").equalsIgnoreCase("parquet") && rowInfo.get("headers") != null && rowInfo.get("headers").equalsIgnoreCase("true")) {
 					if(rowInfo.get("file_type").equalsIgnoreCase("xls")){
 						HSSFRow headerRow = tblShet.createRow(rowCnt);
 						for (int i = 0; i < rsMD.getColumnCount(); i++) {
@@ -427,18 +459,24 @@ public class SharedLogic {
 					if (rowInfo.get("file_type").equalsIgnoreCase("xls")) {
 						HSSFRow tblRow = tblShet.createRow(rowCnt);
 						for (int i = 0; i < rsMD.getColumnCount(); i++) {
-							if((rs.getObject(i + 1) + "").matches("[0-9]+|-[0-9]+")) {
+							if ((rs.getObject(i + 1) + "").matches("[0-9]+|-[0-9]+")) {
 								String val = rs.getObject((i + 1)) + "";
-								if(val.length() > 10) {
+								if (val.length() > 10) {
 									tblRow.createCell(i).setCellValue(Long.parseLong((rs.getObject((i + 1)) + "")));
-								}else {
+								} else {
 									tblRow.createCell(i).setCellValue(Integer.valueOf((rs.getObject((i + 1)) + "")));
 								}
-							}else {
+							} else {
 								tblRow.createCell(i).setCellValue(rs.getObject((i + 1)) + "");
 							}
 						}
 						rowCnt++;
+					} else if (rowInfo.get("file_type").equalsIgnoreCase("parquet")) {
+						for (int i = 0; i < rsMD.getColumnCount(); i++) {
+							record.put(i, rs.getObject((i + 1)));
+						}
+						recordList.add(record);
+		
 					} else {
 						StringBuilder row = new StringBuilder();
 						prefix = "";
@@ -464,17 +502,24 @@ public class SharedLogic {
 						printWriter.println(row.toString());
 					}
 				}
-				if (!rowInfo.get("file_type").equalsIgnoreCase("xls")) {
-					printWriter.close();
-					printWriter.flush();
-				}else{
+		
+				if (rowInfo.get("file_type").equalsIgnoreCase("xls")) {
 					workBook.write(fos);
 					fos.flush();
+				}else if(rowInfo.get("file_type").equalsIgnoreCase("parquet")){
+					for (GenericData.Record recordToFile : recordList) {
+						parquetWriter.write(recordToFile);
+					}
+				}else{
+					printWriter.close();
+					printWriter.flush();
+		
 				}
 			}finally {
 				try {
 					if(fos != null)fos.close();
 					if(rs != null)rs.close();
+					if(parquetWriter != null)parquetWriter.close();
 				} catch (SQLException e) {
 					if(inDebugMode())reportUserMessage("fnWriLuData2File Exception:" + e.getMessage());
 					throw e;
