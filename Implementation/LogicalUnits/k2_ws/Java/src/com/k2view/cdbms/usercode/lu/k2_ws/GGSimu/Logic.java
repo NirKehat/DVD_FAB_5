@@ -29,12 +29,12 @@ public class Logic extends WebServiceUserCode {
 
 
 	@out(name = "rs", type = String.class, desc = "")
-	public static String wsUpdateGGSimu(@desc("IF Diffrent then default $k2_home/GGSimulator") String GGSIMU_FILE_PATH, String GGSimuFileName, String Stmt, String params) throws Exception {
+	public static String wsUpdateGGSimu(@desc("IF Diffrent then default") String GGSIMU_FILE_PATH, String GGSimuFileName, String Stmt, String params) throws Exception {
 		String GGLocation = "";
 		if(GGSIMU_FILE_PATH != null && !GGSIMU_FILE_PATH.equals("")){
 			GGLocation = GGSIMU_FILE_PATH;
 		}else{
-			GGLocation = System.getenv("K2_HOME") + "/GGSimulator/";
+			GGLocation = System.getenv("GG_SIMU_HOME") + "/GGSimulator/";
 		}
 		PrintWriter printWriter = printWriter = new PrintWriter(new FileOutputStream(new File(GGLocation + GGSimuFileName)));
 		printWriter.println(Stmt + ";" + params);
