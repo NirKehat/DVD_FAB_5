@@ -26,29 +26,11 @@
         <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="address" dataType="Text" index="1" />
         <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="address2" dataType="Text" index="2" />
         <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="district" dataType="Text" index="3" />
-        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_4" name="city_id" dataType="Integer" index="4" />
         <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_5" name="postal_code" dataType="Text" index="5" />
         <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_6" name="phone" dataType="Text" index="6" />
         <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_7" name="last_update" dataType="Text" index="7" />
       </OutputsList>
       <SQL><![CDATA[SELECT * FROM public.address]]></SQL>
-    </Item>
-    <Item xsi:type="LookupDataSave" id="tblLookup.66" name="city" nodeOrder="1" module="Lookup" mapObjectModule="Lookup" alias="" itemType="Table" lookupNotFound="Continue" isReference="true" cacheLookupValues="false">
-      <InputsList>
-        <Input xsi:type="LookupDataSaveColumnInput" id="tblLookup.66.in.city_id" name="city_id" columnID="tblCol_1e654c41ea8c469b855e4255cc8bcebb" />
-      </InputsList>
-      <OutputsList>
-        <Output xsi:type="LookupDataSaveColumn" id="tblLookup.66.out.city" name="city" columnID="tblCol_a56d1ced95764c50a579072e3da106aa" />
-        <Output xsi:type="LookupDataSaveColumn" id="tblLookup.66.out.country_id" name="country_id" columnID="tblCol_bc3a1dec91f340eb90542f6846b17d34" />
-      </OutputsList>
-    </Item>
-    <Item xsi:type="LookupDataSave" id="tblLookup.77" name="country" nodeOrder="2" module="Lookup" mapObjectModule="Lookup" alias="" itemType="Table" lookupNotFound="Continue" isReference="true" cacheLookupValues="false">
-      <InputsList>
-        <Input xsi:type="LookupDataSaveColumnInput" id="tblLookup.77.in.country_id" name="country_id" columnID="tblCol_fd9e52fcdcf54be5a8196b7aec4b5741" />
-      </InputsList>
-      <OutputsList>
-        <Output xsi:type="LookupDataSaveColumn" id="tblLookup.77.out.country" name="country" columnID="tblCol_d1ac520aef3e40bbb2724ec65033d33e" />
-      </OutputsList>
     </Item>
   </ItemsList>
   <LinksList>
@@ -56,38 +38,24 @@
     <Link partId="21" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_1" toItemID="tbl_address" toColID="tblCol_74d75f93050c4e0badbe81d99ddb5d11" />
     <Link partId="22" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_2" toItemID="tbl_address" toColID="tblCol_e1145a7260274797a31631fc92a1690e" />
     <Link partId="23" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_3" toItemID="tbl_address" toColID="tblCol_8d387b4b0f4c495a8cd65cf0f7ce540d" />
-    <Link partId="76" fromNodeOrder="1" fromItemID="tblLookup.66" fromColID="tblLookup.66.out.city" toItemID="tbl_address" toColID="tblCol_217472d4a7884e83947abb8f15612125" />
-    <Link partId="75" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_4" toItemID="tblLookup.66" toColID="tblLookup.66.in.city_id" />
     <Link partId="25" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_5" toItemID="tbl_address" toColID="tblCol_7e80b8cc440f40df9626cd2cbbdb5f3f" />
     <Link partId="26" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_6" toItemID="tbl_address" toColID="tblCol_1b98c7133d80458aa3415cf8801d237e" />
     <Link partId="27" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_7" toItemID="tbl_address" toColID="tblCol_eedbf1d6c3b349e08662205aa4ec4391" />
-    <Link partId="85" fromNodeOrder="2" fromItemID="tblLookup.77" fromColID="tblLookup.77.out.country" toItemID="tbl_address" toColID="tblCol_c385d588207146d8a1851320202ef8f8" />
-    <Link partId="84" fromNodeOrder="1" fromItemID="tblLookup.66" fromColID="tblLookup.66.out.country_id" toItemID="tblLookup.77" toColID="tblLookup.77.in.country_id" />
   </LinksList>
   <ModeKeyColumnIDs />
   <DiagramGraph>
-    <Graph name="address.query_public_address.k2tablePop.xml" lastPartID="118">
-      <TableNode partID="0" name="address" pos="898.0135 69.63544" width="310.693542" />
+    <Graph name="address.query_public_address.k2tablePop.xml" lastPartID="153">
+      <TableNode partID="0" name="address" pos="898.0268 69.63544" width="310.680359" />
       <DBQueryNode partID="11" name="dvdRental" pos="10 21.7083435" size="253 156.583313" isRoot="true">
         <DBQuery>{"Name":"query_public_address","ID":"query_query_public_address","ConnName":"dvdRental","SQL":"SELECT * FROM public.address","ColumnsList":[{"ID":"queryCol_0","Name":"address_id","DataType":"Integer","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"address","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"address2","DataType":"Text","Index":2,"IsInputArgument":true},{"ID":"queryCol_3","Name":"district","DataType":"Text","Index":3,"IsInputArgument":true},{"ID":"queryCol_4","Name":"city_id","DataType":"Integer","Index":4,"IsInputArgument":true},{"ID":"queryCol_5","Name":"postal_code","DataType":"Text","Index":5,"IsInputArgument":true},{"ID":"queryCol_6","Name":"phone","DataType":"Text","Index":6,"IsInputArgument":true},{"ID":"queryCol_7","Name":"last_update","DataType":"Text","Index":7,"IsInputArgument":true}]}</DBQuery>
       </DBQueryNode>
-      <LUDBLookupMapNode id="0" L0="2" L1="3" L2="4" L3="5" R0="6" R1="7" R2="8" R3="9" partID="66" topLabel="city (66)" pos="308 132.9271" size="250 84.14583" isMinimized="true" itemType="Table">
-        <LUDBLookupItem>{"ID":"tblLookup.66","Name":"city","Alias":"","ItemType":3,"IsReference":true,"LookupNotFound":2,"CacheLookupValues":false,"InputColumnsMapList":[{"ID":"tblLookup.66.in.city_id","Name":"city_id","ColumnID":"tblCol_1e654c41ea8c469b855e4255cc8bcebb","DataType":"Integer","Index":0,"Mandatory":true,"MapIndex":0},{"ID":"tblLookup.66.in.city","Name":"city","ColumnID":"tblCol_a56d1ced95764c50a579072e3da106aa","DataType":"Text","Index":0,"Mandatory":true,"MapIndex":1},{"ID":"tblLookup.66.in.country_id","Name":"country_id","ColumnID":"tblCol_bc3a1dec91f340eb90542f6846b17d34","DataType":"Integer","Index":0,"Mandatory":true,"MapIndex":2},{"ID":"tblLookup.66.in.last_update","Name":"last_update","ColumnID":"tblCol_91aef48fba3d4fe4b71998388827dc39","DataType":"Text","Index":0,"Mandatory":true,"MapIndex":3}],"OutputColumnsMapList":[{"ID":"tblLookup.66.out.city_id","Name":"city_id","ColumnID":"tblCol_1e654c41ea8c469b855e4255cc8bcebb","DataType":"Integer","Index":0,"Mandatory":true,"MapIndex":0},{"ID":"tblLookup.66.out.city","Name":"city","ColumnID":"tblCol_a56d1ced95764c50a579072e3da106aa","DataType":"Text","Index":0,"Mandatory":true,"MapIndex":1},{"ID":"tblLookup.66.out.country_id","Name":"country_id","ColumnID":"tblCol_bc3a1dec91f340eb90542f6846b17d34","DataType":"Integer","Index":0,"Mandatory":true,"MapIndex":2},{"ID":"tblLookup.66.out.last_update","Name":"last_update","ColumnID":"tblCol_91aef48fba3d4fe4b71998388827dc39","DataType":"Text","Index":0,"Mandatory":true,"MapIndex":3}]}</LUDBLookupItem>
-      </LUDBLookupMapNode>
-      <LUDBLookupMapNode id="1" L0="10" L1="11" L2="12" R0="13" R1="14" R2="15" partID="77" topLabel="country (77)" pos="603 188.963547" size="250 72.0729141" isMinimized="true" itemType="Table">
-        <LUDBLookupItem>{"ID":"tblLookup.77","Name":"country","Alias":"","ItemType":3,"IsReference":true,"LookupNotFound":2,"CacheLookupValues":false,"InputColumnsMapList":[{"ID":"tblLookup.77.in.country_id","Name":"country_id","ColumnID":"tblCol_fd9e52fcdcf54be5a8196b7aec4b5741","DataType":"Integer","Index":0,"Mandatory":true,"MapIndex":0},{"ID":"tblLookup.77.in.country","Name":"country","ColumnID":"tblCol_d1ac520aef3e40bbb2724ec65033d33e","DataType":"Text","Index":0,"Mandatory":true,"MapIndex":1},{"ID":"tblLookup.77.in.last_update","Name":"last_update","ColumnID":"tblCol_9ad7517842b24049b26f5f0cf851306c","DataType":"Text","Index":0,"Mandatory":true,"MapIndex":2}],"OutputColumnsMapList":[{"ID":"tblLookup.77.out.country_id","Name":"country_id","ColumnID":"tblCol_fd9e52fcdcf54be5a8196b7aec4b5741","DataType":"Integer","Index":0,"Mandatory":true,"MapIndex":0},{"ID":"tblLookup.77.out.country","Name":"country","ColumnID":"tblCol_d1ac520aef3e40bbb2724ec65033d33e","DataType":"Text","Index":0,"Mandatory":true,"MapIndex":1},{"ID":"tblLookup.77.out.last_update","Name":"last_update","ColumnID":"tblCol_9ad7517842b24049b26f5f0cf851306c","DataType":"Text","Index":0,"Mandatory":true,"MapIndex":2}]}</LUDBLookupItem>
-      </LUDBLookupMapNode>
-      <Link partID="20" from="16" to="17" pointsArr="263 57.7447968 273 57.7447968 298 25 568 25 593 25 863 25 888.0135 100.6719 898.0135 100.6719" fromNodePartID="11" fromNodeColumnName="address_id" toNodePartID="0" toNodeColumnName="address_id" />
-      <Link partID="75" from="18" to="2" pointsArr="263 106.036453 273 106.036453 295 175 305 175" fromNodePartID="11" fromNodeColumnName="city_id" toNodePartID="66" toNodeColumnName="city_id" />
-      <Link partID="84" from="8" to="10" pointsArr="561 181.036469 571 181.036469 590 225 600 225" fromNodePartID="66" fromNodeColumnName="country_id" toNodePartID="77" toNodeColumnName="country_id" />
-      <Link partID="21" from="19" to="20" pointsArr="263 69.81771 273 69.81771 298 50 568 50 593 50 863 50 888.0135 112.744812 898.0135 112.744812" fromNodePartID="11" fromNodeColumnName="address" toNodePartID="0" toNodeColumnName="address" />
-      <Link partID="22" from="21" to="22" pointsArr="263 81.890625 273 81.890625 298 75 568 75 593 75 863 75 888.0135 124.817726 898.0135 124.817726" fromNodePartID="11" fromNodeColumnName="address2" toNodePartID="0" toNodeColumnName="address2" />
-      <Link partID="23" from="23" to="24" pointsArr="263 93.96355 273 93.96355 298 100 568 100 593 100 863 100 888.0135 136.89064 898.0135 136.89064" fromNodePartID="11" fromNodeColumnName="district" toNodePartID="0" toNodeColumnName="district" />
-      <Link partID="76" from="7" to="25" pointsArr="561 168.963547 571 168.963547 888.0135 148.963562 898.0135 148.963562" fromNodePartID="66" fromNodeColumnName="city" toNodePartID="0" toNodeColumnName="city_name" />
-      <Link partID="25" from="26" to="27" pointsArr="263 118.109375 273 118.109375 298 300 568 300 593 300 863 300 888.0135 161.036469 898.0135 161.036469" fromNodePartID="11" fromNodeColumnName="postal_code" toNodePartID="0" toNodeColumnName="postal_code" />
-      <Link partID="26" from="28" to="29" pointsArr="263 130.1823 273 130.1823 298 325 568 325 593 325 863 325 888.0135 173.10939 898.0135 173.10939" fromNodePartID="11" fromNodeColumnName="phone" toNodePartID="0" toNodeColumnName="phone" />
-      <Link partID="27" from="30" to="31" pointsArr="263 142.255219 273 142.255219 298 350 568 350 593 350 863 350 888.0135 185.182312 898.0135 185.182312" fromNodePartID="11" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
-      <Link partID="85" from="14" to="32" pointsArr="856 225 866 225 888.0135 197.255234 898.0135 197.255234" fromNodePartID="77" fromNodeColumnName="country" toNodePartID="0" toNodeColumnName="county_name" />
+      <Link partID="20" from="0" to="1" pointsArr="263 57.7447968 273 57.7447968 298 25 568 25 593 25 863 25 888.0268 100.6719 898.0268 100.6719" fromNodePartID="11" fromNodeColumnName="address_id" toNodePartID="0" toNodeColumnName="address_id" />
+      <Link partID="21" from="2" to="3" pointsArr="263 69.81771 273 69.81771 298 50 568 50 593 50 863 50 888.0268 112.744812 898.0268 112.744812" fromNodePartID="11" fromNodeColumnName="address" toNodePartID="0" toNodeColumnName="address" />
+      <Link partID="22" from="4" to="5" pointsArr="263 81.890625 273 81.890625 298 75 568 75 593 75 863 75 888.0268 124.817726 898.0268 124.817726" fromNodePartID="11" fromNodeColumnName="address2" toNodePartID="0" toNodeColumnName="address2" />
+      <Link partID="23" from="6" to="7" pointsArr="263 93.96355 273 93.96355 298 100 568 100 593 100 863 100 888.0268 136.89064 898.0268 136.89064" fromNodePartID="11" fromNodeColumnName="district" toNodePartID="0" toNodeColumnName="district" />
+      <Link partID="25" from="8" to="9" pointsArr="263 118.109375 273 118.109375 298 300 568 300 593 300 863 300 888.0268 161.036469 898.0268 161.036469" fromNodePartID="11" fromNodeColumnName="postal_code" toNodePartID="0" toNodeColumnName="postal_code" />
+      <Link partID="26" from="10" to="11" pointsArr="263 130.1823 273 130.1823 298 325 568 325 593 325 863 325 888.0268 173.10939 898.0268 173.10939" fromNodePartID="11" fromNodeColumnName="phone" toNodePartID="0" toNodeColumnName="phone" />
+      <Link partID="27" from="12" to="13" pointsArr="263 142.255219 273 142.255219 298 350 568 350 593 350 863 350 888.0268 185.182312 898.0268 185.182312" fromNodePartID="11" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
     </Graph>
   </DiagramGraph>
 </TablePopulationObject>
