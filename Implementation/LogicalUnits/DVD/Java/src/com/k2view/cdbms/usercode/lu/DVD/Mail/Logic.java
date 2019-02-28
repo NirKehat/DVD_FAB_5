@@ -41,7 +41,7 @@ public class Logic extends UserCode {
 	public static Boolean fnSendEmail(String to, String from, Boolean authenticate, String username, String password, String host, Integer port, Boolean ssl, Integer ssl_port, String subject, String email_body, String attachment) throws Exception {
 		// The code below is not part of fabric product and is delivered specifically 
 		//for the project and for the customer's use
-		
+		/*
 		if(to == null || to.trim().equals("")){
 			throw new RuntimeException("fnSendEmail - To is mandatory field!, please check!");
 		}
@@ -129,6 +129,7 @@ public class Logic extends UserCode {
 			log.error("fnSendEmail - Failed to send Email!");
 		    throw new RuntimeException(e);
 		}
+		*/
 		return true;
 	}
 
