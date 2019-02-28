@@ -28,7 +28,6 @@ import com.k2view.cdbms.func.oracle.OracleRownum;
 import com.k2view.cdbms.shared.utils.UserCodeDescribe.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import static com.k2view.cdbms.lut.FunctionDef.functionContext;
 import static com.k2view.cdbms.shared.user.ProductFunctions.*;
 import static com.k2view.cdbms.shared.user.UserCode.*;
@@ -51,7 +50,7 @@ public class SharedLogic {
 	private Date date = new Date();
 	private long ts = System.currentTimeMillis() / 1000;
 	private Db ci = null;
-	
+
 	public SharedLogic() {
 		if (!RUN_RECORD_VALIDATION.equalsIgnoreCase("TRUE")) return;
 		cleanValTab();
@@ -61,9 +60,9 @@ public class SharedLogic {
 		try {
 			ludbConn = getConnection("ludb");
 		} catch (SQLException e) {
-			log.error("colValidationManager:Faild to get ludb connection!", e);
+			log.error("colValidationManager:Failed to get ludb connection!", e);
 			if (inDebugMode())
-				reportUserMessage("colValidationManager:Faild to get ludb connection!, Exception Details:" + e.getMessage());
+				reportUserMessage("colValidationManager:Failed to get ludb connection!, Exception Details:" + e.getMessage());
 			return;
 		}
 
@@ -82,17 +81,17 @@ public class SharedLogic {
 		try {
 			if (numberOfvaluesvalidated != 0) {
 				DBExecute("ludb", "Insert into Validation_Control_Summery (ENTITY_ID, EXECUTION_TIME, NUMBER_OF_VALUES_VALIDATED, NUMBER_OF_VALUES_PASSED, NUMBER_OF_VALUES_FAILED, NUMBER_OF_RECORDS_REJECTED, PASS_RATE, FAILED_RATE, OVERALL_TIME_TO_EXECUTE_IN_MS) values (?,?,?,?,?,?,?,?,?)", new Object[]{getInstanceID(), this.dateFormat.format(date), numberOfvaluesvalidated, numberOfvaluesPassed, numberOfvaluesFailed, numberOfvaluesRejected, (numberOfvaluesPassed * 100) / numberOfvaluesvalidated, 100 - ((numberOfvaluesPassed * 100) / numberOfvaluesvalidated), clsRunTime});
-				if (1 == 2){
+				if (!inDebugMode() && "true".equalsIgnoreCase(LOAD_VALIDATION_RESULTS_TO_COMMON)) {
 					this.ci = db(commonInterface("ALL_VALIDATION_CONTROL_SUMMERY"));
 					this.ci.beginTransaction();
-					this.ci.execute("INSERT OR REPLACE INTO  ALL_VALIDATION_CONTROL_SUMMERY VALUES (?,?,?,?,?,?,?,?,?)",new Object[]{getInstanceID(), this.dateFormat.format(date), numberOfvaluesvalidated, numberOfvaluesPassed, numberOfvaluesFailed, numberOfvaluesRejected, (numberOfvaluesPassed * 100) / numberOfvaluesvalidated, 100 - ((numberOfvaluesPassed * 100) / numberOfvaluesvalidated), clsRunTime});
+					this.ci.execute("INSERT OR REPLACE INTO  ALL_VALIDATION_CONTROL_SUMMERY (ENTITY_ID, EXECUTION_TIME, NUMBER_OF_VALUES_VALIDATED, NUMBER_OF_VALUES_PASSED, NUMBER_OF_VALUES_FAILED, NUMBER_OF_RECORDS_REJECTED, PASS_RATE, FAILED_RATE, OVERALL_TIME_TO_EXECUTE_IN_MS) VALUES (?,?,?,?,?,?,?,?,?)", new Object[]{getInstanceID(), this.dateFormat.format(date), numberOfvaluesvalidated, numberOfvaluesPassed, numberOfvaluesFailed, numberOfvaluesRejected, (numberOfvaluesPassed * 100) / numberOfvaluesvalidated, 100 - ((numberOfvaluesPassed * 100) / numberOfvaluesvalidated), clsRunTime});
 					this.ci.commit();
 				}
 			}
 		} catch (SQLException e) {
-			log.error("colValidationManager:Faild to update Validation_Control_Summery!", e);
+			log.error("colValidationManager:Failed to update Validation_Control_Summery!", e);
 			if (inDebugMode())
-				reportUserMessage("colValidationManager:Faild to update Validation_Control_Summery! , Exception Details:" + e.getMessage());
+				reportUserMessage("colValidationManager:Failed to update Validation_Control_Summery! , Exception Details:" + e.getMessage());
 		}
 	}
 
@@ -110,18 +109,18 @@ public class SharedLogic {
 				tblList.add(row[0] + "@" + row[1]);
 			}
 		} catch (SQLException e) {
-			log.error("colValidationManager:Faild to query stats table!", e);
+			log.error("colValidationManager:Failed to query stats table!", e);
 			if (inDebugMode())
-				reportUserMessage("colValidationManager:Faild to query stats table!, Exception Details:" + e.getMessage());
+				reportUserMessage("colValidationManager:Failed to query stats table!, Exception Details:" + e.getMessage());
 			return null;
 		} finally {
 			if (rs != null) {
 				try {
 					rs.closeStmt();
 				} catch (SQLException e) {
-					log.error("colValidationManager:Faild to close result set!", e);
+					log.error("colValidationManager:Failed to close result set!", e);
 					if (inDebugMode())
-						reportUserMessage("colValidationManager:Faild to close result set! , Exception Details:" + e.getMessage());
+						reportUserMessage("colValidationManager:Failed to close result set! , Exception Details:" + e.getMessage());
 				}
 			}
 		}
@@ -138,7 +137,7 @@ public class SharedLogic {
 		String tableRunTime = table_name.split("@")[1];
 		Map<String, LudbColumn> tblColList = this.lut.ludbObjects.get(tableName).getLudbColumnMap();
 		for (Map.Entry<String, LudbColumn> tblColListEnt : tblColList.entrySet()) {
-			ArrayList<LinkedHashMap<String, String>> validationRulesList = tblColListEnt.getValue().validationRulesList;
+			ArrayList<LinkedHashMap<String, String>> validationRulesList = null;//tblColListEnt.getValue().validationRulesList;
 			if (validationRulesList.size() > 0) {
 				if (!valFound) valFound = true;
 				sqlColList.append(prefix + tblColListEnt.getKey());
@@ -153,7 +152,7 @@ public class SharedLogic {
 		ResultSetMetaData rsmd = null;
 		try {
 			rs = ludbConn.createStatement().executeQuery(sqlColList.toString());
-			if(rs != null)rsmd = rs.getMetaData();
+			if (rs != null) rsmd = rs.getMetaData();
 			Map<String, Boolean> valNameValValColVal = new HashMap<>();
 			while (rs.next()) {
 				Object rowID = rs.getObject(1);
@@ -175,20 +174,23 @@ public class SharedLogic {
 									res = (Boolean) method.invoke(this, columnValue, valDet);
 									valNameValValColVal.put(validationFunction + "@" + valDet.get("value") + "@" + columnName + "@" + columnValue, res);
 								}
-								if (1 == 2){
+								if (!inDebugMode()) {
 									this.ci = db(commonInterface("ALL_VALIDATION_CONTROL"));
 									this.ci.beginTransaction();
 								}
 								if (!res) {
 									execAction(tableName, columnName, valDet, columnValue, rowID);
 									DBExecute("ludb", "Insert into Validation_Control (ENTITY_ID, TABLE_NAME, ROW_ID, FIELD_NAME, REQUIRED_VALUE, ACTUAL_VALUE, VALIDATION_NAME, PASS_IND, ACTION, EXECUTION_TIME) values (?,?,?,?,?,?,?,?,?,?)", new Object[]{getInstanceID(), tableName, rowID, columnName, valDet.get("value"), columnValue, valDet.get("name"), "FAILED", valDet.get("failureAction"), tableRunTime});
-									if (1 == 2)this.ci.execute("INSERT OR REPLACE INTO ALL_VALIDATION_CONTROL VALUES (?,?,?,?,?,?,?,?,?,?)",new Object[]{getInstanceID(), tableName, rowID, columnName, valDet.get("value"), columnValue, valDet.get("name"), "FAILED", valDet.get("failureAction"), tableRunTime});
+									if (!inDebugMode() && "true".equalsIgnoreCase(LOAD_VALIDATION_RESULTS_TO_COMMON))
+										this.ci.execute("INSERT OR REPLACE INTO ALL_VALIDATION_CONTROL (ENTITY_ID, TABLE_NAME, ROW_ID, FIELD_NAME, REQUIRED_VALUE, ACTUAL_VALUE, VALIDATION_NAME, PASS_IND, ACTION, EXECUTION_TIME, SOURCE_LU) VALUES (?,?,?,?,?,?,?,?,?,?,?)", new Object[]{getInstanceID(), tableName, rowID, columnName, valDet.get("value"), columnValue, valDet.get("name"), "FAILED", valDet.get("failureAction"), this.dateFormat.format(new Date(Long.valueOf(tableRunTime))), getLuType().luName});
 								} else {
 									numberOfvaluesPassed++;
 									DBExecute("ludb", "Insert into Validation_Control (ENTITY_ID, TABLE_NAME, ROW_ID, FIELD_NAME, REQUIRED_VALUE, ACTUAL_VALUE, VALIDATION_NAME, PASS_IND, ACTION, EXECUTION_TIME) values (?,?,?,?,?,?,?,?,?,?)", new Object[]{getInstanceID(), tableName, rowID, columnName, valDet.get("value"), columnValue, valDet.get("name"), "PASS", valDet.get("failureAction"), tableRunTime});
-									if (1 == 2)this.ci.execute("INSERT OR REPLACE INTO ALL_VALIDATION_CONTROL VALUES (?,?,?,?,?,?,?,?,?,?)",new Object[]{getInstanceID(), tableName, rowID, columnName, valDet.get("value"), columnValue, valDet.get("name"), "PASS", valDet.get("failureAction"), tableRunTime});
-								}
-								if (1 == 2)this.ci.commit();
+									if (!inDebugMode()) {
+										this.ci.execute("INSERT OR REPLACE INTO ALL_VALIDATION_CONTROL (ENTITY_ID, TABLE_NAME, ROW_ID, FIELD_NAME, REQUIRED_VALUE, ACTUAL_VALUE, VALIDATION_NAME, PASS_IND, ACTION, EXECUTION_TIME, SOURCE_LU) VALUES (?,?,?,?,?,?,?,?,?,?,?)", new Object[]{getInstanceID(), tableName, rowID, columnName, valDet.get("value"), columnValue, valDet.get("name"), "PASS", valDet.get("failureAction"), this.dateFormat.format(new Date(Long.valueOf(tableRunTime))), getLuType().luName});
+									}
+										}
+								if (!inDebugMode()) this.ci.commit();
 							}
 						} catch (SecurityException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
 							log.error("colValidationManager: Failed to invoke function!", e);
@@ -200,17 +202,17 @@ public class SharedLogic {
 				}
 			}
 		} catch (SQLException e) {
-			log.error("colValidationManager:Faild to query table:" + tableName + "!", e);
+			log.error("colValidationManager:Failed to query table:" + tableName + "!", e);
 			if (inDebugMode())
-				reportUserMessage("colValidationManager:Faild to query table:" + tableName + "! , Exception Details:" + e.getMessage());
+				reportUserMessage("colValidationManager:Failed to query table:" + tableName + "! , Exception Details:" + e.getMessage());
 		} finally {
 			if (rs != null) {
 				try {
 					rs.close();
 				} catch (SQLException e) {
-					log.error("colValidationManager:Faild to close result set!", e);
+					log.error("colValidationManager:Failed to close result set!", e);
 					if (inDebugMode())
-						reportUserMessage("colValidationManager:Faild to close result set! , Exception Details:" + e.getMessage());
+						reportUserMessage("colValidationManager:Failed to close result set! , Exception Details:" + e.getMessage());
 				}
 			}
 		}
@@ -242,9 +244,9 @@ public class SharedLogic {
 				DBExecute("ludb", vals[0], new Object[]{vals[1]});
 			}
 		} catch (SQLException e) {
-			log.error("colValidationManager:Faild to delete record from table!", e);
+			log.error("colValidationManager:Failed to delete record from table!", e);
 			if (inDebugMode())
-				reportUserMessage("colValidationManager:Faild to delete record from table!, Exception Details:" + e.getMessage());
+				reportUserMessage("colValidationManager:Failed to delete record from table!, Exception Details:" + e.getMessage());
 		}
 	}
 
@@ -261,9 +263,9 @@ public class SharedLogic {
 				DBExecute("ludb", "Delete from Validation_Control where EXECUTION_TIME < ?", new Object[]{dateFormat.format(currentDatePlusOneDay)});
 			}
 		} catch (SQLException e) {
-			log.error("colValidationManager:Faild to delete records from Validation_Control!", e);
+			log.error("colValidationManager:Failed to delete records from Validation_Control!", e);
 			if (inDebugMode())
-				reportUserMessage("colValidationManager:Faild to delete records from Validation_Control!, Exception Details:" + e.getMessage());
+				reportUserMessage("colValidationManager:Failed to delete records from Validation_Control!, Exception Details:" + e.getMessage());
 		}
 	}
 
@@ -273,7 +275,7 @@ public class SharedLogic {
 		FunctionDef method = (FunctionDef) LUTypeFactoryImpl.getInstance().getTypeByName(getLuType().luName).ludbFunctions.get(valDet.get("value"));
 		if (method == null) {
 			try {
-				throw new NoSuchMethodException(String.format("user function '%s' was not found", valDet.get("value")));
+				throw new NoSuchMethodException(String.format("Decision function '%s' was not found", valDet.get("value")));
 			} catch (NoSuchMethodException e) {
 				log.error("colValidationManager: Couldn't find user function!", e);
 				if (inDebugMode())
@@ -418,10 +420,10 @@ public class SharedLogic {
 	}
 
 	//Validation based on Value Type: Integer , Text, DateTime, Real, Boolean
-	@UserCodeDescribe.out(name = "output", type = Boolean.class, desc = "")
-	public static boolean ValueType(Object columnValue, LinkedHashMap<String, String> valDet) {
+	@out(name = "result", type = Object.class, desc = "")
+	public static boolean ValueType(Object columnValue, LinkedHashMap<String,String> valDet) throws Exception {
 		switch (valDet.get("value")) {
-			case "Integer":
+			case "Numeric":
 				String ValueInt = "[+-]?[0-9][0-9]*";
 				Pattern p2 = Pattern.compile(ValueInt);
 				Matcher matcher2 = p2.matcher((columnValue + ""));
@@ -439,7 +441,7 @@ public class SharedLogic {
 				} else {
 					return false;
 				}
-
+		
 			case "Datetime":
 				String ValueDT = "^\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}$";
 				Pattern pDT = Pattern.compile(ValueDT);
@@ -449,7 +451,7 @@ public class SharedLogic {
 				} else {
 					return false;
 				}
-
+		
 			case "Real":
 				String ValueReal = "[+-]?[0-9]+(\\.[0-9]+)?([Ee][+-]?[0-9]+)?";
 				Pattern p3 = Pattern.compile(ValueReal);
@@ -459,7 +461,7 @@ public class SharedLogic {
 				} else {
 					return false;
 				}
-
+		
 			case "Boolean":
 				String ValFalse = "(?i:\\bfalse\\b)";
 				String ValTrue = "(?i:\\btrue\\b)";
@@ -474,13 +476,13 @@ public class SharedLogic {
 				Matcher matcher6 = p6.matcher(FieldValue);
 				Pattern p7 = Pattern.compile(ValNo);
 				Matcher matcher7 = p7.matcher(FieldValue);
-
+		
 				if (matcher4.matches() || matcher5.matches() || matcher6.matches() || matcher7.matches() || FieldValue.equals("0") || FieldValue.equals("1")) {
 					return true;
 				} else {
 					return false;
 				}
-
+		
 			default:
 				return false;
 		}
@@ -632,28 +634,29 @@ public class SharedLogic {
 	}
 
 	//Validation based on Language of the Column , using Apache Tika Class.
-	@UserCodeDescribe.out(name = "output", type = Boolean.class, desc = "")
-	public static boolean Language(Object columnValue, LinkedHashMap<String, String> valDet) {
-		org.apache.tika.language.LanguageIdentifier identifier = new org.apache.tika.language.LanguageIdentifier(columnValue + "");
-		String language = identifier.getLanguage();
-
-		String InLangue = valDet.get("value");
-		switch (InLangue) {
-			case "English":
-				InLangue = "en";
-				break;
-			case "German":
-				InLangue = "de";
-				break;
-			case "French":
-				InLangue = "fr";
-				break;
-		}
-		if (language.equals(InLangue)) {
-			return true;
-		} else {
-			return false;
-		}
+	@out(name = "result", type = Object.class, desc = "")
+	public static boolean Language(Object columnValue, LinkedHashMap<String,String> valDet) throws Exception {
+		//		//org.apache.tika.language.LanguageIdentifier identifier = new org.apache.tika.language.LanguageIdentifier(columnValue + "");
+		//		//String language = identifier.getLanguage();
+		//
+		//		String InLangue = valDet.get("value");
+		//		switch (InLangue) {
+		//			case "English":
+		//				InLangue = "en";
+		//				break;
+		//			case "German":
+		//				InLangue = "de";
+		//				break;
+		//			case "French":
+		//				InLangue = "fr";
+		//				break;
+		//		}
+		//		if (language.equals(InLangue)) {
+		//			return true;
+		//		} else {
+		//			return false;
+		//		}
+		return true;
 	}
 
 	//Validation based on SoundLike using Soundex
@@ -668,13 +671,13 @@ public class SharedLogic {
 			return false;
 		}
 	}
-	@category("ValidationControl")
-	@type(RootFunction)
-	@out(name = "output", type = String.class, desc = "")
-	public static void fnPopValidationControl(String ENTITY_ID) throws Exception {
-		if(1 == 2)yield(new Object[]{null});
+							   
+					
+													  
+																			   
+									  
 
-	}
+  
 
 
 	@category("Validation")
@@ -682,4 +685,18 @@ public class SharedLogic {
 		new com.k2view.cdbms.usercode.common.SharedMDMLogic.SharedLogic();
 	}
 
+
+
+
+	@type(LudbFunction)
+	@out(name = "result", type = Boolean.class, desc = "")
+	public static Boolean fnRegexMatch(String str, String regex) throws Exception {
+		Pattern p = Pattern.compile(regex);
+		Matcher matcher = p.matcher(str);
+		if (matcher.matches()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
