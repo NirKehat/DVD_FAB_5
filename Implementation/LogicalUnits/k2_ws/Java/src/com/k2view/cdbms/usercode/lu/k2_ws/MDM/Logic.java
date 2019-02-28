@@ -37,6 +37,8 @@ public class Logic extends WebServiceUserCode {
         Map<String, Object> queryMapRs = new LinkedHashMap<>();
         List<Map<String, Object>> listRs = new LinkedList<>();
         HttpServletResponse wsResp = response();
+        HttpServletRequest wsReq = request();
+        wsReq.getReader();
         Map<String, String[]> requestParamsMap = requestParams();
         ServletOutputStream sos = null;
         if (requestParamsMap.get("format") == null) sos = wsResp.getOutputStream();
