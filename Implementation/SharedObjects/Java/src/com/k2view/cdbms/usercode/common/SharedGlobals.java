@@ -17,6 +17,8 @@ public class SharedGlobals {
 	@desc("Indicate for how long to keep history in Validation_Control table in days, empty - for ever, 0 - never.")
 	public static final String RECORD_VALIDATION_HISTORY = "0";
 
+	public static final String LOAD_VALIDATION_RESULTS_TO_COMMON = "";
+
 	
 
 
