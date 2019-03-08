@@ -92,8 +92,8 @@
       <GridColumnProperties width="100" />
     </Column>
     <Column>
-      <Title>write_result_to_table</Title>
-      <ColumnName>write_result_to_table</ColumnName>
+      <Title>write_result_to_lu</Title>
+      <ColumnName>write_result_to_lu</ColumnName>
       <Direction>Output</Direction>
       <Type>Boolean</Type>
       <Length>1</Length>
@@ -101,7 +101,20 @@
       <Index>6</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
-      <Comment>If you wish to write ic checks result to table enable/disable</Comment>
+      <Comment>If you wish to write ic checks result to LU table enable/disable</Comment>
+      <GridColumnProperties width="99" />
+    </Column>
+    <Column>
+      <Title>write_result_to_cassandra</Title>
+      <ColumnName>write_result_to_cassandra</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Boolean</Type>
+      <Length>1</Length>
+      <Format />
+      <Index>7</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <Comment>If you wish to write ic checks result to cassanndra table enable/disable</Comment>
       <GridColumnProperties width="111" />
     </Column>
     <Column>
@@ -111,7 +124,7 @@
       <Type>Text</Type>
       <Length>50</Length>
       <Format />
-      <Index>7</Index>
+      <Index>8</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>Mandatory if write_result_to_table is enable</Comment>
@@ -124,7 +137,7 @@
       <Type>Boolean</Type>
       <Length>1</Length>
       <Format />
-      <Index>8</Index>
+      <Index>9</Index>
       <DefaultValueIsExpression>false</DefaultValueIsExpression>
       <AllowNULL>true</AllowNULL>
       <Comment>If to run the ic checks</Comment>
@@ -185,7 +198,8 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="write_result_to_table" type="xs:boolean" minOccurs="0" />
+                  <xs:element name="write_result_to_lu" type="xs:boolean" minOccurs="0" />
+                  <xs:element name="write_result_to_cassandra" type="xs:boolean" minOccurs="0" />
                   <xs:element name="interface_name" default="" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
@@ -209,10 +223,24 @@
           <sql>SELECT ifnull(count(*),0) FROM CUSTOMER</sql>
           <operator>&gt;</operator>
           <value>3</value>
-          <action>Reject_Entity_At_End_Of_IC</action>
+          <action>Execute_Activity</action>
           <functionName>fnTestIcCheck</functionName>
-          <write_result_to_table>true</write_result_to_table>
+          <write_result_to_lu>true</write_result_to_lu>
+          <write_result_to_cassandra>true</write_result_to_cassandra>
           <interface_name>dbCassandra</interface_name>
+          <active>true</active>
+        </trnIcChecks>
+        <trnIcChecks diffgr:id="trnIcChecks2" msdata:rowOrder="1">
+          <ic_name>my_ic_check2</ic_name>
+          <title>ic checks to test ic checks</title>
+          <sql>SELECT ifnull(count(*),0) FROM CUSTOMER</sql>
+          <operator>&gt;</operator>
+          <value>3</value>
+          <action>Report_To_Log</action>
+          <functionName></functionName>
+          <write_result_to_lu>true</write_result_to_lu>
+          <write_result_to_cassandra>true</write_result_to_cassandra>
+          <interface_name></interface_name>
           <active>true</active>
         </trnIcChecks>
       </DocumentElement>
