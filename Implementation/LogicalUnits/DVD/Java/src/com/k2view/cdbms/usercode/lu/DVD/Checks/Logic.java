@@ -37,6 +37,7 @@ public class Logic extends UserCode {
 		String icCheckTblName = "k2view_" + getLuType().luName + ".ic_checks";
 		Object[] params = null;
 		String sqlInsert = "insert into " + icCheckTblName + " (entity_id, ic_check_name, ic_check_time, ic_check_msg, ic_check_runtime_in_sec) values (?, ?, ?, ?, ?)";
+		String sqlInsertLu = "insert or replace into LU_IC_CHECKS_RS (iid, ic_check_name, ic_check_time, ic_check_msg, ic_check_runtime_in_sec) values (?, ?, ?, ?, ?)";
 		boolean tblCre = true;
 		Map <String, Map <String,String>> icChecksTrn = null;
 		icChecksTrn = getTranslationsData("trnIcChecks");
@@ -55,8 +56,8 @@ public class Logic extends UserCode {
 			String operator = trnVal.get("operator");
 			int value = Integer.valueOf(trnVal.get("value"));
 			String action = trnVal.get("action");
-			if(!inDebugMode() && trnVal.get("write_result_to_table") != null && trnVal.get("write_result_to_table").equalsIgnoreCase("true") && tblCre){
-				if(trnVal.get("interface_name") == null)throw new Exception("fnExecuteIcChecks - Interface name is null and write_result_to_table is Enable!"); 
+			if(!inDebugMode() && trnVal.get("write_result_to_cassandra") != null && trnVal.get("write_result_to_cassandra").equalsIgnoreCase("true") && tblCre){
+				if(trnVal.get("interface_name") == null)throw new Exception("fnExecuteIcChecks - Interface name is null and write_result_to_cassandra is Enable!"); 
 				DBExecute(trnVal.get("interface_name"), "create table if not exists " + icCheckTblName + " (entity_id text, ic_check_name text, ic_check_time text, ic_check_msg text, ic_check_runtime_in_sec text, PRIMARY KEY (entity_id,ic_check_name,ic_check_time))", null);
 				tblCre = false;
 			}
@@ -75,11 +76,16 @@ public class Logic extends UserCode {
 			if( operator.equals("<=") && sqlRes <= value )icPass = true;
 		
 			if(!icPass){
-				if(!inDebugMode() && trnVal.get("write_result_to_table") != null && trnVal.get("write_result_to_table").equalsIgnoreCase("true")){
-					if(trnVal.get("interface_name") == null)throw new Exception("fnExecuteIcChecks - Interface name is null and write_result_to_table is Enable!"); 
+				if(!inDebugMode() && trnVal.get("write_result_to_cassandra") != null && trnVal.get("write_result_to_cassandra").equalsIgnoreCase("true")){
+					if(trnVal.get("interface_name") == null)throw new Exception("fnExecuteIcChecks - Interface name is null and write_result_to_cassandra is Enable!"); 
 					long totalIcCheckTime = System.nanoTime() - startTime;
 					params = new Object[]{getInstanceID(), trnVals.getKey(), writeTime, icMsg, (totalIcCheckTime/ 1000000000.0)};
 					DBExecute(trnVal.get("interface_name"), sqlInsert, params);
+				}
+				if(trnVal.get("write_result_to_lu") != null && trnVal.get("write_result_to_lu").equalsIgnoreCase("true")){
+					long totalIcCheckTime = System.nanoTime() - startTime;
+					params = new Object[]{getInstanceID(), trnVals.getKey(), writeTime, icMsg, (totalIcCheckTime/ 1000000000.0)};
+					DBExecute("ludb", sqlInsertLu, params);
 				}
 				if(action.equalsIgnoreCase("Reject_Entity")){
 					rejectInstance(icMsg);
@@ -87,7 +93,6 @@ public class Logic extends UserCode {
 				}else if(action.equalsIgnoreCase("Report_To_Log")){
 					if(inDebugMode())reportUserMessage(icMsg);
 					log.warn(icMsg);
-					break;
 				}else if(action.equalsIgnoreCase("Report_To_Log_And_Execute_Activity")){
 					if(inDebugMode())reportUserMessage(icMsg);
 					log.warn(icMsg);
@@ -102,7 +107,6 @@ public class Logic extends UserCode {
 							if (inDebugMode())reportUserMessage("colValidationManager: Failed to invoke user function!, Exception Details:" + e.getMessage());
 						}
 					}
-					break;
 				}else if(action.equalsIgnoreCase("Execute_Activity")){
 					FunctionDef method = (FunctionDef) LUTypeFactoryImpl.getInstance().getTypeByName(getLuType().luName).ludbFunctions.get(trnVal.get("functionName"));
 					if (method == null) {
@@ -115,7 +119,6 @@ public class Logic extends UserCode {
 							if (inDebugMode())reportUserMessage("colValidationManager: Failed to invoke user function!, Exception Details:" + e.getMessage());
 						}
 					}
-					break;
 				}else if(action.equalsIgnoreCase("Reject_Entity_At_End_Of_IC")){
 					if(inDebugMode())reportUserMessage(icMsg);
 					log.warn(icMsg);
@@ -124,6 +127,13 @@ public class Logic extends UserCode {
 			}
 		};
 		if(rejEntAtEnd)rejectInstance(icMsg);
+	}
+
+
+	@type(RootFunction)
+	@out(name = "IID", type = String.class, desc = "")
+	public static void fnPopIcChecksTbl(String IID) throws Exception {
+		if(1 == 2)yield(null);
 	}
 
 	
