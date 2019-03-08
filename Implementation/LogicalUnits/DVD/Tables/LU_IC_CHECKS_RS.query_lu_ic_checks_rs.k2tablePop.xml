@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_lu_ic_checks_rs</ID>
+  <PopulationObjectName>query_lu_ic_checks_rs</PopulationObjectName>
+  <TableName>LU_IC_CHECKS_RS</TableName>
+  <RootItemID>f_8</RootItemID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <InputArguments>
+    <Arg name="IID" id="fi_8.0" dataType="String" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item id="f_8" name="fnPopIcChecksTbl" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPopIcChecksTbl.k2function.xml">
+      <InputsList>
+        <Input id="fi_8.0" name="IID" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_8.0" name="IID" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="52" fromNodeOrder="0" fromItemID="f_8" fromColID="fo_8.0" toItemID="tbl_LU_IC_CHECKS_RS" toColID="tblCol_ad51f8c62e7641e3927e0ac92816ccef" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="LU_IC_CHECKS_RS.query_lu_ic_checks_rs.k2tablePop.xml" lastPartID="61">
+      <TableNode partID="0" name="LU_IC_CHECKS_RS" pos="214.311768 18.78125" width="309.3241" />
+      <FunctionMapNode id="0" L0="1" R0="2" partID="8" topLabel="fnPopIcChecksTbl (8)" pos="10.0308886 27.4544258" size="159.250015 45.0911446" isRoot="true">
+        <KFunction>{"Name":"fnPopIcChecksTbl","ID":"f_8","Category":"Checks","Version":"5.0.1.7","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"IID","ID":"fi_8.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"IID","ID":"fo_8.0","Index":0,"DataType":"String","Comment":""}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link partID="52" from="2" to="3" pointsArr="169.2809 52.54557 179.2809 52.54557 204.311768 49.8177071 214.311768 49.8177071" fromNodePartID="8" fromNodeColumnName="IID" toNodePartID="0" toNodeColumnName="IID" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

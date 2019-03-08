@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>LU_IC_CHECKS_RS</Name>
+  <ID>tbl_LU_IC_CHECKS_RS</ID>
+  <Columns>
+    <Column name="IID" id="tblCol_ad51f8c62e7641e3927e0ac92816ccef" index="0" datatype="text" />
+    <Column name="IC_CHECK_NAME" id="tblCol_446ba3cd660f488ca23e79edef9c7c84" index="1" datatype="text" />
+    <Column name="IC_CHECK_TIME" id="tblCol_0c86550bac324b69ac88785b9c37fbae" index="2" datatype="text" />
+    <Column name="IC_CHECK_MSG" id="tblCol_73ab4476b32e4a7b8d3959c4222713e0" index="3" datatype="text" />
+    <Column name="IC_CHECK_RUNTIME_IN_SEC" id="tblCol_237d995367d04880a58efc9de4da0e75" index="4" datatype="text" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" instanceOnly="true" columnsIdsList="tblCol_ad51f8c62e7641e3927e0ac92816ccef,tblCol_446ba3cd660f488ca23e79edef9c7c84" />
+  </IndexesList>
+  <EnrichmentList />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+</TableObject>
