@@ -42,13 +42,13 @@ public class Logic extends WebServiceUserCode {
 			if(myInter instanceof com.k2view.cdbms.lut.DbInterface){
 				com.k2view.cdbms.lut.DbInterface intCls = (com.k2view.cdbms.lut.DbInterface) myInter;
 				intMap.put("Interface_Name", x);
-				intMap.put("dbType", intCls.dbType);
+				//intMap.put("dbType", intCls.dbType);
 				intMap.put("dbHost", intCls.dbHost);
 				intMap.put("dbPort", intCls.dbPort + "");
 				intMap.put("dbUser", intCls.dbUser);
 				intMap.put("dbScheme", intCls.dbScheme);
 				intMap.put("DbMaxConnections", intCls.getDbMaxConnections() + "");
-				intMap.put("dbUrl", intCls.dbUrl);
+				//intMap.put("dbUrl", intCls.dbUrl);
 			}else if(myInter instanceof  com.k2view.cdbms.interfaces.jobs.local.LocalFileSystemInterface ){
 				com.k2view.cdbms.interfaces.jobs.local.LocalFileSystemInterface intCls = (com.k2view.cdbms.interfaces.jobs.local.LocalFileSystemInterface) myInter;
 				intMap.put("Interface_Name", x);
