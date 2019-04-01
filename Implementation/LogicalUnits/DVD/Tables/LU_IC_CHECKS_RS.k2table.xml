@@ -12,7 +12,13 @@
   <IndexesList>
     <Index id="1" pk="true" unique="true" instanceOnly="true" columnsIdsList="tblCol_ad51f8c62e7641e3927e0ac92816ccef,tblCol_446ba3cd660f488ca23e79edef9c7c84" />
   </IndexesList>
-  <EnrichmentList />
+  <EnrichmentList>
+    <Enrichment>
+      <Name>fnExecuteIcChecks</Name>
+      <Type>Function</Type>
+      <TableName>LU_IC_CHECKS_RS</TableName>
+    </Enrichment>
+  </EnrichmentList>
   <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
     <TruncateBeforeSync>true</TruncateBeforeSync>
   </LazyDataUpdate>
