@@ -36,9 +36,8 @@ public class Logic extends UserCode {
 	@out(name = "rental_id", type = Integer.class, desc = "")
 	@out(name = "staff_id", type = Integer.class, desc = "")
 	public static void fnPopPaymentFromCass(Long customer_id) throws Exception {
-		
-		boolean runPars = fnSyncByCron("0 0 11 ? * * *","fnPopPaymentFromCass_" + getInstanceID(), "cass_local", false, false);
-		if(runPars){
+		//boolean runPars = fnSyncByCron("0 0 11 ? * * *","fnPopPaymentFromCass_" + getInstanceID(), "cass_local", false, false);
+		//if(runPars){
 			String sql = "SELECT customer_id, payment_id, payment_date, rental_id, staff_id FROM payment where customer_id = ?";
 			Object[] valuesArr = new Object[]{customer_id};
 			ResultSetWrapper rs =  null;
@@ -50,7 +49,7 @@ public class Logic extends UserCode {
 			}finally{
 				if(rs != null)rs.closeStmt();
 			}
-		}	
+		//}	
 	}
 
 	
