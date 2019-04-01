@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<VirtualDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="5.0.1.7">
+<VirtualDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="5.1.0.18">
   <Name>vdb</Name>
   <RootView>customer</RootView>
   <LuLazyDataUpdate syncMethod="None" performEvery="1.00:00:00" />
@@ -62,12 +62,11 @@
     </TableProperties>
   </TablesProperties>
   <EnrichmentsOrderList>
-    <Item order="1" active="true" name="customer" columnName="fnExecuteIcChecks" type="Table" />
+    <Item order="1" active="true" name="LU_IC_CHECKS_RS" columnName="fnExecuteIcChecks" type="Table" />
   </EnrichmentsOrderList>
   <ReferencesList>
     <Item active="true" name="city" />
     <Item active="true" name="ref_address" />
-    <Item active="false" name="IC_CHECKS" />
   </ReferencesList>
   <Relations />
   <DatabaseRelations>
@@ -109,7 +108,7 @@
   <Indexes />
   <LudbProperties />
   <DiagramGraph>
-    <Graph version="5.0.1.7" name="vdb.k2vdb.xml" lastPartID="15523">
+    <Graph version="5.1.0.18" name="vdb.k2vdb.xml" lastPartID="15843">
       <Node id="0" partID="500" name="rental" isRootView="false" pos="313 12.5" size="257 139" listGroupSize="250 103" viewType="Table">
         <TableProperties>{"TableName":"rental","TablePopulationPropertiesList":[{"ID":"query_public_rental","Name":"query_public_rental","Order":2,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
       </Node>
@@ -139,11 +138,11 @@
       </Node>
       <Link from="9" to="10" partID="560" linkType="Database" pointsArr="268 334.545563 278 334.545563 303 106.319008 313 106.319008" fromNodePartID="519" fromNodeColumnName="customer_id" toNodePartID="500" toNodeColumnName="customer_id" toNodePopulationObjectName="query_public_rental" />
       <Link from="9" to="11" partID="11994" linkType="Database" pointsArr="268 334.545563 278 334.545563 303 259.5456 313 259.5456" fromNodePartID="519" fromNodeColumnName="customer_id" toNodePartID="11703" toNodeColumnName="customer_id" toNodePopulationObjectName="query_public_payment" />
-      <Link from="12" to="13" partID="12025" linkType="Database" pointsArr="268 350.636719 278 350.636719 303 709.545532 313 709.545532" fromNodePartID="519" fromNodeColumnName="store_id" toNodePartID="12014" toNodeColumnName="store_id" toNodePopulationObjectName="query_public_store" />
-      <Link from="14" to="15" partID="12037" linkType="Database" pointsArr="570 709.545532 580 709.545532 605 691.7279 615 691.7279" fromNodePartID="12014" fromNodeColumnName="store_id" toNodePartID="12026" toNodeColumnName="store_id" toNodePopulationObjectName="query_public_inventory" />
+      <Link from="12" to="13" partID="12025" linkType="Database" pointsArr="268 350.636719 278 350.636719 303 709.5456 313 709.5456" fromNodePartID="519" fromNodeColumnName="store_id" toNodePartID="12014" toNodeColumnName="store_id" toNodePopulationObjectName="query_public_store" />
+      <Link from="14" to="15" partID="12037" linkType="Database" pointsArr="570 709.5456 580 709.5456 605 691.727844 615 691.727844" fromNodePartID="12014" fromNodeColumnName="store_id" toNodePartID="12026" toNodeColumnName="store_id" toNodePopulationObjectName="query_public_inventory" />
       <Link from="16" to="17" partID="12038" linkType="Database" pointsArr="872 859.5456 882 859.5456 907 850.6367 917 850.6367" fromNodePartID="12068" fromNodeColumnName="staff_id" toNodePartID="11995" toNodeColumnName="id" toNodePopulationObjectName="query_public_staff_list" />
-      <Link from="14" to="18" partID="12093" linkType="Database" pointsArr="570 709.545532 580 709.545532 605 940.0012 615 940.0012" fromNodePartID="12014" fromNodeColumnName="store_id" toNodePartID="12068" toNodeColumnName="store_id" toNodePopulationObjectName="query_public_staff" />
-      <Link from="19" to="20" partID="12094" linkType="Database" pointsArr="872 675.6367 882 675.6367 907 634.545532 917 634.545532" fromNodePartID="12026" fromNodeColumnName="film_id" toNodePartID="12039" toNodeColumnName="film_id" toNodePopulationObjectName="query_public_film" />
+      <Link from="14" to="18" partID="12093" linkType="Database" pointsArr="570 709.5456 580 709.5456 605 940.0012 615 940.0012" fromNodePartID="12014" fromNodeColumnName="store_id" toNodePartID="12068" toNodeColumnName="store_id" toNodePopulationObjectName="query_public_staff" />
+      <Link from="19" to="20" partID="12094" linkType="Database" pointsArr="872 675.6367 882 675.6367 907 634.5456 917 634.5456" fromNodePartID="12026" fromNodeColumnName="film_id" toNodePartID="12039" toNodeColumnName="film_id" toNodePopulationObjectName="query_public_film" />
       <Link from="9" to="21" partID="15369" linkType="Database" pointsArr="268 334.545563 278 334.545563 303 459.545563 313 459.545563" fromNodePartID="519" fromNodeColumnName="customer_id" toNodePartID="15317" toNodeColumnName="IID" toNodePopulationObjectName="query_lu_ic_checks_rs" />
     </Graph>
   </DiagramGraph>
