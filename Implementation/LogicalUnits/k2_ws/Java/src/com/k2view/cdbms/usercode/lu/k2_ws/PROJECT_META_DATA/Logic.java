@@ -107,7 +107,7 @@ public class Logic extends WebServiceUserCode {
 		fileWriterTbl.write(mapEnt.getKey() + "\n");
 		LudbObject rtTable = lut.ludbObjects.get(mapEnt.getKey());
 		Map<String, LudbColumn> colMap = rtTable.getLudbColumnMap();
-		for(Map.Entry<String, String> colMapEnt : tblMap.entrySet()){
+		for(Map.Entry<String, LudbColumn> colMapEnt : colMap.entrySet()){
 			fileWriterCol.write(mapEnt.getKey() + " . " + colMapEnt.getKey() + "\n");
 		}
 		}
