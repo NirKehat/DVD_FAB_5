@@ -94,6 +94,32 @@ public class Logic extends WebServiceUserCode {
 		return resMap;
 	}
 
+
+
+
+	@out(name = "LuMetaData", type = Object.class, desc = "")
+	public static Object wsGetLUMD(String path, String luName) throws Exception {
+		FileWriter fileWriterTbl = new FileWriter(path + "/LU_TABLES.csv");
+		FileWriter fileWriterCol = new FileWriter(path + "/LU_TABLES_TO_COLUMNS.csv");
+		LUType lut = LUTypeFactoryImpl.getInstance().getTypeByName(luName);
+		Map<String, String> tblMap = lut.ludbTables;
+		for(Map.Entry<String, String> mapEnt : tblMap.entrySet()){
+		fileWriterTbl.write(mapEnt.getKey() + "\n");
+		LudbObject rtTable = lut.ludbObjects.get(mapEnt.getKey());
+		Map<String, LudbColumn> colMap = rtTable.getLudbColumnMap();
+		for(Map.Entry<String, String> colMapEnt : tblMap.entrySet()){
+			fileWriterCol.write(mapEnt.getKey() + " . " + colMapEnt.getKey() + "\n");
+		}
+		}
+		fileWriterTbl.flush();
+		fileWriterCol.flush();
+		fileWriterCol.close();
+		fileWriterTbl.close();
+		reportUserMessage(path + "/LU_TABLES.csv");
+		reportUserMessage(path + "/LU_TABLES_TO_COLUMNS.csv");
+		return "DONE";
+	}
+
 	
 	
 
