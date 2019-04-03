@@ -1,0 +1,19 @@
+{
+  "name": "MY_XML_RESPONCE",
+  "children": [
+    {
+      "name": "STORE",
+      "type": "sqlNonPrepared",
+      "code": "SELECT CUSTOMER.STORE_ID FROM CUSTOMER",
+      "entryTag": "STORE_DETAILS",
+      "sessionProvider": "LUDB",
+      "children": [
+        {
+          "name": "STORE_ID",
+          "type": "variable",
+          "code": "STORE_ID"
+        }
+      ]
+    }
+  ]
+}
