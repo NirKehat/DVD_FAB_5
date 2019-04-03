@@ -32,18 +32,26 @@ import static com.k2view.cdbms.usercode.lu.DVD.Globals.*;
 public class Logic extends UserCode {
 
 
-	public static void fnRunGraphitFromLU() throws Exception {
+	@out(name = "rs", type = String.class, desc = "")
+	public static String fnRunGraphitFromLU(String i_graphit_file, Object i_params, String i_format) throws Exception {
+		Map<String, Object> params = null;
+		if(i_params != null)params = (Map<String, Object>) i_params;
+		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		OutputStreamWriter osw = new OutputStreamWriter(baos);
 		try {
-			GraphitPool.Entry entry = getLuType().graphitPool().get("TestGraph.graphit");
+			GraphitPool.Entry entry = getLuType().graphitPool().get(i_graphit_file);
 			Graphit graphit = entry.get();
-			Object rs = graphit.run(null, Serializer.Type.XML, osw);
+			if("json".equalsIgnoreCase(i_format)){
+				graphit.run(params, Serializer.Type.JSON, osw);
+			}else {
+				graphit.run(params, Serializer.Type.XML, osw);
+			}
 		}finally {
 			if (osw != null) osw.close();
 			if (baos != null) baos.close();
 		}
-		reportUserMessage(baos.toString());
+		return baos.toString();
 	}
 
 
