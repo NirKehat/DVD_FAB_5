@@ -31,12 +31,12 @@ public class BatchExecNdUpKafka {
     private String LOOKUP = "MS.LKUP";
 
     public BatchExecNdUpKafka(Map<String, String> iidFinderTopicsPrefix) {
-        if(iidFinderTopicsPrefix != null){
-			if (iidFinderTopicsPrefix.containsKey("LU_TABLES")) this.LU_TABLES = iidFinderTopicsPrefix.get("LU_TABLES");
-        	if (iidFinderTopicsPrefix.containsKey("REF")) this.REF = iidFinderTopicsPrefix.get("REF");
-        	if (iidFinderTopicsPrefix.containsKey("LOOKUP")) this.LOOKUP = iidFinderTopicsPrefix.get("LOOKUP");
-    	}    
-		sesConnect();
+        if (iidFinderTopicsPrefix != null) {
+            if (iidFinderTopicsPrefix.containsKey("LU_TABLES")) this.LU_TABLES = iidFinderTopicsPrefix.get("LU_TABLES");
+            if (iidFinderTopicsPrefix.containsKey("REF")) this.REF = iidFinderTopicsPrefix.get("REF");
+            if (iidFinderTopicsPrefix.containsKey("LOOKUP")) this.LOOKUP = iidFinderTopicsPrefix.get("LOOKUP");
+        }
+        sesConnect();
         bsConnect();
         proConnect();
     }
@@ -47,9 +47,10 @@ public class BatchExecNdUpKafka {
         }
     }
 
-    private void bsConnect(){
-        if(this.bs == null)this.bs = new BatchStatement();
+    private void bsConnect() {
+        if (this.bs == null) this.bs = new BatchStatement();
     }
+
     private void proConnect() {
         if (this.producer == null) {
             Properties props = new Properties();
@@ -74,11 +75,11 @@ public class BatchExecNdUpKafka {
         proDisconnect();
     }
 
-    public void addBatch(String i_statment, Object[] i_statmentParams, String tableType, String schemaName, String tablePartition) throws Exception {
-        this.bs.add(this.ses.prepare(i_statment).bind(i_statmentParams));
+    public void addBatch(String i_statment, Object[] i_statmentParams, String tableType, String i_tableFullName, String tablePartition, boolean sorInd) throws Exception {
         long count = i_statment.chars().filter(ch -> ch == '?').count();
         if (count != i_statmentParams.length)
             throw new Exception("Missmatch between binding params to prepared statement, Statement's Params" + Arrays.toString(i_statmentParams) + " Statement " + i_statment + "Please check!");
+        this.bs.add(this.ses.prepare(i_statment).bind(i_statmentParams));
 
         String i_statmentKafka = i_statment;
         for (Object param : i_statmentParams) {
@@ -91,15 +92,20 @@ public class BatchExecNdUpKafka {
 
         Map<String, String> kafkaProMap = new HashMap<>();
         kafkaProMap.put("tableType", tableType);
-        kafkaProMap.put("schemaName", schemaName);
+        kafkaProMap.put("tableFullName", i_tableFullName);
         kafkaProMap.put("tablePartition", tablePartition);
         kafkaProMap.put("statment", i_statmentKafka);
+        kafkaProMap.put("SOR_IND", String.valueOf(sorInd));
         this.kafkaStatementSet.add(kafkaProMap);
     }
 
-    public void exec() throws Exception {
+    public void exec() {
         this.ses.execute(this.bs);
-        sendMessToKafka();
+        try {
+            sendMessToKafka();
+        } catch (Exception e) {
+            //Add call to function here
+        }
         cleanBatch();
     }
 
@@ -109,11 +115,14 @@ public class BatchExecNdUpKafka {
     }
 
     private void sendMessToKafka() throws Exception {
-        for (Map<String, String> kafkaRec : this.kafkaStatementSet) {
+        Iterator<Map<String, String>> setIte = this.kafkaStatementSet.iterator();
+        while (setIte.hasNext()) {
+            Map<String, String> kafkaRec = setIte.next();
             StringBuilder jsonRes = new StringBuilder();
             String tblType = kafkaRec.get("tableType");
             String sql_stmt = kafkaRec.get("statment");
             String partiKey = kafkaRec.get("tablePartition");
+            boolean sorInd = Boolean.parseBoolean(kafkaRec.get("SOR_IND"));
 
             final java.util.regex.Pattern patternInsert = java.util.regex.Pattern.compile("(?i)^insert(.*)");
             final java.util.regex.Pattern patternUpdate = java.util.regex.Pattern.compile("(?i)^update(.*)");
@@ -143,11 +152,11 @@ public class BatchExecNdUpKafka {
             java.util.regex.Matcher matcher = patternInsert.matcher(sql_stmt);
             if (matcher.find()) {
                 net.sf.jsqlparser.statement.Insert insStmt = (net.sf.jsqlparser.statement.Insert) sqlStmt;
-                String FullTableName = (kafkaRec.get("schemaName") + "." + insStmt.getTable().getName().toUpperCase()).toUpperCase();
+                String FullTableName = (kafkaRec.get("tableFullName")).toUpperCase();
                 StringBuilder sbPK = new StringBuilder().append("[");
-                String pkColumns = getTranslationValues("trnTable2PK", new Object[]{FullTableName.replaceFirst("\\.", "_")}).get("pk_list");
+                String pkColumns = getTranslationValues("trnGenNdProdTblList", new Object[]{FullTableName.replaceFirst("\\.", "_")}).get("pk_list");
                 if (pkColumns == null)
-                    throw new Exception("Couldn't find Primary key columns for table: " + FullTableName.replaceFirst("\\.", "_") + " in trnTable2PK !, Please check");
+                    throw new Exception("Couldn't find Primary key columns for table: " + FullTableName.replaceFirst("\\.", "_") + " in trnGenNdProdTblList !, Please check");
                 String[] pkCuls = pkColumns.split(",");
                 String prefixPK = "";
                 for (String pkCul : pkCuls) {
@@ -168,17 +177,21 @@ public class BatchExecNdUpKafka {
                 }
                 ;
                 jsonRes.append("}}");
-                topicName = topicName.replace("<>", FullTableName);
+                if (sorInd) {
+                    topicName = topicName.replace("<>", FullTableName.replaceFirst("\\.", "\\.OUT_"));
+                } else {
+                    topicName = topicName.replace("<>", FullTableName);
+                }
 
             } else {
                 matcher = patternUpdate.matcher(sql_stmt);
                 if (matcher.find()) {
                     net.sf.jsqlparser.statement.update.UpdateTable upStmt = (net.sf.jsqlparser.statement.update.UpdateTable) sqlStmt;
-                    String FullTableName = (kafkaRec.get("schemaName") + "." + upStmt.getTable().getName().toUpperCase()).toUpperCase();
+                    String FullTableName = (kafkaRec.get("tableFullName")).toUpperCase();
                     StringBuilder sbPK = new StringBuilder().append("[");
-                    String pkColumns = getTranslationValues("trnTable2PK", new Object[]{FullTableName.replaceFirst("\\.", "_")}).get("pk_list");
+                    String pkColumns = getTranslationValues("trnGenNdProdTblList", new Object[]{FullTableName.replaceFirst("\\.", "_")}).get("pk_list");
                     if (pkColumns == null)
-                        throw new Exception("Couldn't find Primary key columns for table: " + FullTableName.replaceFirst("\\.", "_") + " in properties class!, Please check");
+                        throw new Exception("Couldn't find Primary key columns for table: " + FullTableName.replaceFirst("\\.", "_") + " in trnGenNdProdTblList!, Please check");
                     String[] pkCuls = pkColumns.split(",");
                     String prefixPK = "";
                     for (String pkCul : pkCuls) {
@@ -226,18 +239,23 @@ public class BatchExecNdUpKafka {
                     afterMap.putAll(setMap);
 
                     jsonRes.append("{\"table\":\"" + FullTableName + "\",\"op_type\": \"U\"," + "\"op_ts\": \"" + currTime + "\"," + "\"current_ts\": \"" + current_ts + "\"," + "\"pos\": \"00000000020030806864\"," + "\"primary_keys\":" + sbPK.toString() + ",");
-                    topicName = topicName.replace("<>", FullTableName);
                     jsonRes.append("\"before\":" + culsNdValsMap.toString().replaceAll("=", ":"));
                     jsonRes.append(",\"after\":" + afterMap.toString().replaceAll("=", ":") + "}");
+
+                    if (sorInd) {
+                        topicName = topicName.replace("<>", FullTableName.replaceFirst("\\.", "\\.OUT_"));
+                    } else {
+                        topicName = topicName.replace("<>", FullTableName);
+                    }
                 } else {
                     matcher = patternDelete.matcher(sql_stmt);
                     if (matcher.find()) {
                         net.sf.jsqlparser.statement.Delete delStmt = (net.sf.jsqlparser.statement.Delete) sqlStmt;
-                        String FullTableName = (kafkaRec.get("schemaName") + "." + delStmt.getTable().getName().toUpperCase()).toUpperCase();
+                        String FullTableName = (kafkaRec.get("tableFullName")).toUpperCase();
                         StringBuilder sbPK = new StringBuilder().append("[");
-                        String pkColumns = getTranslationValues("trnTable2PK", new Object[]{FullTableName.replaceFirst("\\.", "_")}).get("pk_list");
+                        String pkColumns = getTranslationValues("trnGenNdProdTblList", new Object[]{FullTableName.replaceFirst("\\.", "_")}).get("pk_list");
                         if (pkColumns == null)
-                            throw new Exception("Couldn't find Primary key columns for table: " + FullTableName.replaceFirst("\\.", "_") + " in properties class!, Please check");
+                            throw new Exception("Couldn't find Primary key columns for table: " + FullTableName.replaceFirst("\\.", "_") + " trnGenNdProdTblList!, Please check");
                         String[] pkCuls = pkColumns.split(",");
                         String prefixPK = "";
                         for (String pkCul : pkCuls) {
@@ -268,14 +286,27 @@ public class BatchExecNdUpKafka {
                         }
 
                         jsonRes.append("{\"table\":\"" + FullTableName + "\",\"op_type\": \"D\"," + "\"op_ts\": \"" + currTime + "\"," + "\"current_ts\": \"" + current_ts + "\"," + "\"pos\": \"00000000020030806864\"," + "\"primary_keys\":" + sbPK.toString() + ",");
-                        topicName = topicName.replace("<>", FullTableName);
                         jsonRes.append("\"before\":" + culsNdValsMap.toString().replaceAll("=", ":") + "}");
+
+                        if (sorInd) {
+                            topicName = topicName.replace("<>", FullTableName.replaceFirst("\\.", "\\.OUT_"));
+                        } else {
+                            topicName = topicName.replace("<>", FullTableName);
+                        }
                     }
                 }
             }
 
             if (producer == null) proConnect();
-            producer.send(new ProducerRecord(topicName, null, null, jsonRes.toString()));
+            Future rs = producer.send(new ProducerRecord(topicName, null, null, jsonRes.toString()));
+            while (!rs.isDone()) {
+            }
+
+            if (rs.isCancelled()) {
+                throw new Exception("Failed to load message to kafka!");
+            }else{
+                setIte.remove();
+            }
         }
     }
 
