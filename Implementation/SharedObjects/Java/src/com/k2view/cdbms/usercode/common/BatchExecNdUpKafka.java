@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.datastax.driver.core.BatchStatement;
+import com.datastax.driver.core.BoundStatement;
+import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Session;
 import com.k2view.cdbms.cluster.CassandraClusterSingleton;
 import com.k2view.cdbms.shared.*;
@@ -29,6 +31,9 @@ public class BatchExecNdUpKafka {
     private String LU_TABLES = "IDfinder";
     private String REF = "MS.REF";
     private String LOOKUP = "MS.LKUP";
+	private String LUID = UUID.randomUUID().toString();
+	private PreparedStatement kafkaLogPre = null;
+    private java.text.DateFormat kafkaLogDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
 
     public BatchExecNdUpKafka(Map<String, String> iidFinderTopicsPrefix) {
         if (iidFinderTopicsPrefix != null) {
@@ -99,12 +104,13 @@ public class BatchExecNdUpKafka {
         this.kafkaStatementSet.add(kafkaProMap);
     }
 
-    public void exec() {
+    public void exec() throws Exception {
         this.ses.execute(this.bs);
         try {
             sendMessToKafka();
         } catch (Exception e) {
-            //Add call to function here
+            logKafkaMsgs(e);
+            throw e;
         }
         cleanBatch();
     }
@@ -310,4 +316,14 @@ public class BatchExecNdUpKafka {
         }
     }
 
+	public void setLuID(String LUID){
+		this.LUID = LUID;
+	}
+
+	private void logKafkaMsgs(Exception e){
+        for(Map<String, String> kafkaMsgDet : this.kafkaStatementSet){
+            if(this.kafkaLogPre == null)this.kafkaLogPre = this.ses.prepare("INSERT INTO k2system.kafka_backlog (id,sql,time_stamp,exception) values(?,?,?,?)");
+            this.ses.execute(this.kafkaLogPre.bind(new Object[]{this.LUID, kafkaMsgDet.get("statment"), kafkaLogDateFormat.format(new java.util.Date()), e.getMessage()}));
+        }
+    }
 }
