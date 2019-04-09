@@ -36,40 +36,49 @@ public class Logic extends UserCode {
 
 	@type(UserJob)
 	public static void LookupManager() throws Exception {
-		String luName = getLuType().luName;
-		String fnJobName = "ParseLookUpsTablesJob";
-		String wholeName= luName+"."+fnJobName;
-		ResultSetWrapper rs=null;
-		try{
-			Set<String> allTopics = getTranslationsData("trnLookupTopics").keySet();
-			for(String s : allTopics)
-				log.info("all topics in trans : " + s);
-			String topicName;
-			String sql="select arguments,status from k2system.k2_jobs where type='USER_JOB' and name='"+wholeName+"'";
-			rs = DBQuery("dbCassandra",sql,null);
-			Set<String>  topicsToRemove = new HashSet<String>() ;
-			//loop over all user jobs in k2_jobs table
-			for (Object[] row : rs) {
-					String args = row[0] + "";
-					String status = row[1] + "";
-					if ( status.equals("IN_PROCESS")) {
-						com.google.gson.JsonElement inputValue = new com.google.gson.JsonParser().parse(args).getAsJsonObject().get("Topic_Name");
-						topicName =  inputValue.getAsString();
-						topicsToRemove.add(topicName);
-					}
+		String cronExp = "0 0 3 ? * * *";
+		if (!org.quartz.CronExpression.isValidExpression(cronExp)) {
+		    throw new Exception("fnSyncMarkets - Crone expression is not valid! please check,\ncronExp:" + cronExp);
+		}
+		
+		org.quartz.CronExpression exp = new org.quartz.CronExpression(cronExp);
+		java.util.Date currentTime = new java.util.Date();
+		if(exp.isSatisfiedBy(currentTime)) {
+			String luName = getLuType().luName;
+			String fnJobName = "ParseLookUpsTablesJob";
+			String wholeName= luName+"."+fnJobName;
+			ResultSetWrapper rs=null;
+			try{
+				Set<String> allTopics = getTranslationsData("trnLookupTopics").keySet();
+				for(String s : allTopics)
+					log.info("all topics in trans : " + s);
+				String topicName;
+				String sql="select arguments,status from k2system.k2_jobs where type='USER_JOB' and name='"+wholeName+"'";
+				rs = DBQuery("dbCassandra",sql,null);
+				Set<String>  topicsToRemove = new HashSet<String>() ;
+				//loop over all user jobs in k2_jobs table
+				for (Object[] row : rs) {
+						String args = row[0] + "";
+						String status = row[1] + "";
+						if ( status.equals("IN_PROCESS")) {
+							com.google.gson.JsonElement inputValue = new com.google.gson.JsonParser().parse(args).getAsJsonObject().get("Topic_Name");
+							topicName =  inputValue.getAsString();
+							topicsToRemove.add(topicName);
+						}
+				}
+				allTopics.removeAll(topicsToRemove);
+				// loop over topics set
+				for (String topic : allTopics)
+				{		 
+			    	String uid = UUID.randomUUID() + "";
+			    	DBExecute("fabricDB", "startjob USER_JOB NAME='" + wholeName + "' " + " UID='" + uid + "' ARGS='{\"Topic_Name\":\"" + topic + "\"}'", null);
+				}
+			}catch(Exception e) {
+				log.error("LookupManager",e);
+			}finally {
+				if(rs!=null)
+					rs.closeStmt();
 			}
-			allTopics.removeAll(topicsToRemove);
-			// loop over topics set
-			for (String topic : allTopics)
-			{		 
-		    	String uid = UUID.randomUUID() + "";
-		    	DBExecute("fabricDB", "startjob USER_JOB NAME='" + wholeName + "' " + " UID='" + uid + "' ARGS='{\"Topic_Name\":\"" + topic + "\"}'", null);
-			}
-		}catch(Exception e) {
-			log.error("LookupManager",e);
-		}finally {
-			if(rs!=null)
-				rs.closeStmt();
 		}
 	}
 
