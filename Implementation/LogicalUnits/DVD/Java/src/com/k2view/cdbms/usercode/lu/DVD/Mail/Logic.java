@@ -37,100 +37,85 @@ import static com.k2view.cdbms.usercode.lu.DVD.Globals.*;
 public class Logic extends UserCode {
 
 
-	@out(name = "rs", type = Boolean.class, desc = "")
-	public static Boolean fnSendEmail(String to, String from, Boolean authenticate, String username, String password, String host, Integer port, Boolean ssl, Integer ssl_port, String subject, String email_body, String attachment) throws Exception {
-		// The code below is not part of fabric product and is delivered specifically 
-		//for the project and for the customer's use
-		/*
+	public static void fnSendEmail(String to, String from, String username, String password, String host, Integer port, Integer ssl_port, String subject, String email_body, String attachment) throws Exception {
 		if(to == null || to.trim().equals("")){
-			throw new RuntimeException("fnSendEmail - To is mandatory field!, please check!");
+		    throw new RuntimeException("fnSendEmail - To is mandatory field!, please check!");
 		}
 		
 		if(from == null || from.trim().equals("")){
-			throw new RuntimeException("fnSendEmail - From is mandatory field!, please check!");
-		}
-		
-		if(authenticate && (username == null || username.trim().equals(""))){
-			throw new RuntimeException("fnSendEmail - User name is mandatory field!, please check!");
-		}
-		
-		if(authenticate && (password == null || password.trim().equals(""))){
-			throw new RuntimeException("fnSendEmail - Password is mandatory field!, please check!");
+		    throw new RuntimeException("fnSendEmail - From is mandatory field!, please check!");
 		}
 		
 		if(host == null || host.trim().equals("")){
-			throw new RuntimeException("fnSendEmail - Host is mandatory field!, please check!");
+		    throw new RuntimeException("fnSendEmail - Host is mandatory field!, please check!");
 		}
 		
-		if(port == null || port == 0){
-			throw new RuntimeException("fnSendEmail - Port is mandatory field!, please check!");
+		if(port == 0){
+		    throw new RuntimeException("fnSendEmail - Port is mandatory field!, please check!");
 		}
 		
-		if(ssl && (ssl_port == null || ssl_port == 0)){
-			throw new RuntimeException("fnSendEmail - Port is mandatory field!, please check!");
-		}
+		String HTML_TAG_PATTERN = "<(\"[^\"]*\"|'[^']*'|[^'\">])*>";
+		Pattern pattern = Pattern.compile(HTML_TAG_PATTERN);
 		
 		Properties props = System.getProperties();
-		
-		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", port);
-		if(!ssl){
+		
+		if(ssl_port == 0){
 		    props.put("mail.smtp.starttls.enable", "true");
 		}else{
 		    props.put("mail.smtp.socketFactory.port", ssl_port);
 		    props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		}
 		
-		Session session = null;
-		if(authenticate){
-			session = Session.getInstance(props, new Authenticator() {
-			    @Override
-			    protected PasswordAuthentication getPasswordAuthentication() {
-			        return new PasswordAuthentication(username, password);
-			    }
-			});
-		}else{
-			session = Session.getInstance(props, null);
-		}
-		
-		try {
-		    Message message = new MimeMessage(session);
-		    message.setFrom(new InternetAddress(from));
-			String[] toArr = to.split(",");
-		    InternetAddress[] sendTo = new InternetAddress[toArr.length];
-		    for (int i = 0; i <toArr.length; i++) {
-		        try {
-		            sendTo[i] = new InternetAddress(toArr[i]);
-		        } catch (AddressException e) {
-		            log.error("fnSendEmail - Failed to parse Email address:" + toArr[i] + ", Ignoring address!", e);
+		Session session;
+		if((username != null && !username.trim().equals("")) && (password != null && !password.trim().equals(""))){
+		    props.put("mail.smtp.auth", "true");
+		    session = Session.getInstance(props, new Authenticator() {
+		        @Override
+		        protected PasswordAuthentication getPasswordAuthentication() {
+		            return new PasswordAuthentication(username, password);
 		        }
-		    }
-		    message.setRecipients(Message.RecipientType.TO, sendTo);
-			message.setSubject(subject);
-		    BodyPart messageBodyPart = new MimeBodyPart();
-		    messageBodyPart.setText(email_body + "\n");
-		
-		    Multipart multipart = new MimeMultipart();
-		    multipart.addBodyPart(messageBodyPart);
-		
-			if(attachment != null){
-			    messageBodyPart = new MimeBodyPart();
-			    String filename = attachment;
-			    DataSource source = new FileDataSource(filename);
-			    messageBodyPart.setDataHandler(new DataHandler(source));
-			    messageBodyPart.setFileName(filename);
-			    multipart.addBodyPart(messageBodyPart);
-			}
-		    message.setContent(multipart);
-		
-		    Transport.send(message);
-		} catch (MessagingException e) {
-			log.error("fnSendEmail - Failed to send Email!");
-		    throw new RuntimeException(e);
+		    });
+		}else{
+		    session = Session.getInstance(props, null);
 		}
-		*/
-		return true;
+		
+		Message message = new MimeMessage(session);
+		message.setFrom(new InternetAddress(from));
+		
+		String[] toArr = to.split(",");
+		InternetAddress[] sendTo = new InternetAddress[toArr.length];
+		for (int i = 0; i <toArr.length; i++) {
+		    sendTo[i] = new InternetAddress(toArr[i]);
+		}
+		message.setRecipients(Message.RecipientType.TO, sendTo);
+		message.setSubject(subject);
+		
+		Multipart multipart = new MimeMultipart();
+		MimeBodyPart bodyPart = new MimeBodyPart();
+		
+		Matcher matcher = pattern.matcher(email_body);
+		if(matcher.find()){
+		    bodyPart.setContent( email_body, "text/html; charset=utf-8" );
+		}else{
+		    bodyPart.setText( email_body, "utf-8" );
+		}
+		
+		multipart.addBodyPart(bodyPart);
+		
+		if(attachment != null){
+		    MimeBodyPart attPart = new MimeBodyPart();
+		    DataSource source = new FileDataSource(attachment);
+		    attPart.setDataHandler(new DataHandler(source));
+		    attPart.setFileName(attachment);
+		    multipart.addBodyPart(attPart);
+		
+		}
+		
+		message.setContent(multipart);
+		
+		Transport.send(message);
 	}
 
 	
