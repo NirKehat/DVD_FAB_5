@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>PAYMENT</Name>
+  <ID>tbl_PAYMENT</ID>
+  <Columns>
+    <Column name="CUSTOMER_ID" id="tblCol_592036e1d0cb4d969ec304859d0e7eea" index="0" datatype="Integer" />
+    <Column name="PAYMENT_ID" id="tblCol_815d74ed74ef4de0b76c9b1acd8049ea" index="1" datatype="Integer" />
+    <Column name="PAYMENT_DATE" id="tblCol_edc427f7b53f44a0a124eaa55151896f" index="2" datatype="Text" />
+    <Column name="RENTAL_ID" id="tblCol_5e6f4b07f236476f9380c55ce2bb6d2a" index="3" datatype="Integer" />
+    <Column name="STAFF_ID" id="tblCol_ca30e1185c8f4b93a79a7e8802f4ead8" index="4" datatype="Integer" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+</TableObject>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>RENTAL</Name>
+  <ID>tbl_RENTAL</ID>
+  <Columns>
+    <Column name="RENTAL_ID" id="tblCol_dccf61b23f944d088f07b3fcf1cb1c27" index="0" datatype="Integer" />
+    <Column name="RENTAL_DATE" id="tblCol_26f408c3197e4790bc7ef99e0a0abfe5" index="1" datatype="Text" />
+    <Column name="INVENTORY_ID" id="tblCol_da34b7b0007c481a9b03671ec17d7c9d" index="2" datatype="Integer" />
+    <Column name="CUSTOMER_ID" id="tblCol_e18f78f8f81a4503aa54902b07c948f4" index="3" datatype="Integer" />
+    <Column name="RETURN_DATE" id="tblCol_7362c77f81f444a4b51c4849613a0018" index="4" datatype="Text" />
+    <Column name="STAFF_ID" id="tblCol_6a9a57af38f341d6be7a88545bf4681a" index="5" datatype="Integer" />
+    <Column name="LAST_UPDATE" id="tblCol_59fd648d4e8f4a43b721d2c521ccab2f" index="6" datatype="Text" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+</TableObject>

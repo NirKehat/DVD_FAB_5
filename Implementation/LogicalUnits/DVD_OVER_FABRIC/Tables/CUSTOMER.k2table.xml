@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>CUSTOMER</Name>
+  <ID>tbl_CUSTOMER</ID>
+  <EntityId>tblCol_27495e1adaf74fb1919db1c0b796c9c7</EntityId>
+  <Columns>
+    <Column name="CUSTOMER_ID" id="tblCol_27495e1adaf74fb1919db1c0b796c9c7" index="0" datatype="Integer" />
+    <Column name="STORE_ID" id="tblCol_5d5d436acb08406c8ad06d70222d3d9f" index="1" datatype="Integer" />
+    <Column name="FIRST_NAME" id="tblCol_291eca577b1041be96dccb1310820427" index="2" datatype="Text" />
+    <Column name="LAST_NAME" id="tblCol_9461e24ceb4c483190898f2478ea4f75" index="3" datatype="Text" />
+    <Column name="EMAIL" id="tblCol_ff73616d8fe24a42bc7c16a2629cdffd" index="4" datatype="Text" />
+    <Column name="ADDRESS_ID" id="tblCol_24769012d3254ca0a5b9794b3b20241b" index="5" datatype="Integer" />
+    <Column name="ACTIVEBOOL" id="tblCol_30d2c67eb470450ab805d738670145c4" index="6" datatype="Text" />
+    <Column name="CREATE_DATE" id="tblCol_1aab4d608ead476e9befc1cf05b9dc6f" index="7" datatype="Text" />
+    <Column name="LAST_UPDATE" id="tblCol_c20526581d614868acafd00db0d1f6ca" index="8" datatype="Text" />
+    <Column name="ACTIVE" id="tblCol_aebd86edbde649fdb2bdc4145dd20a5c" index="9" datatype="Integer" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+</TableObject>

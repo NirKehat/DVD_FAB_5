@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VirtualDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="5.1.0.18">
+  <Name>vdb</Name>
+  <RootView>CUSTOMER</RootView>
+  <LuLazyDataUpdate syncMethod="None" performEvery="1.00:00:00" />
+  <Tables>
+    <Table>CUSTOMER</Table>
+    <Table>PAYMENT</Table>
+    <Table>RENTAL</Table>
+  </Tables>
+  <TablesProperties>
+    <TableProperties name="CUSTOMER">
+      <Populations>
+        <Population id="query_DVD_CUSTOMER" name="query_DVD_CUSTOMER" order="1" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="PAYMENT">
+      <Populations>
+        <Population id="query_DVD_PAYMENT" name="query_DVD_PAYMENT" order="2" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="RENTAL">
+      <Populations>
+        <Population id="query_DVD_RENTAL" name="query_DVD_RENTAL" order="2" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+  </TablesProperties>
+  <EnrichmentsOrderList />
+  <ReferencesList>
+    <Item active="false" name="city" />
+    <Item active="false" name="ref_address" />
+    <Item active="false" name="test_table" />
+  </ReferencesList>
+  <Relations />
+  <DatabaseRelations>
+    <Relation id="124">
+      <From tableType="TableObject" table="CUSTOMER" column="CUSTOMER_ID" columnId="tblCol_27495e1adaf74fb1919db1c0b796c9c7" />
+      <To tableType="TableObject" table="PAYMENT" populationObjectName="query_DVD_PAYMENT" column="CUSTOMER_ID" columnId="fi_31.0" />
+    </Relation>
+    <Relation id="188">
+      <From tableType="TableObject" table="CUSTOMER" column="CUSTOMER_ID" columnId="tblCol_27495e1adaf74fb1919db1c0b796c9c7" />
+      <To tableType="TableObject" table="RENTAL" populationObjectName="query_DVD_RENTAL" column="CUSTOMER_ID" columnId="queryCol_3" />
+    </Relation>
+  </DatabaseRelations>
+  <PreVCsSqlScript />
+  <PostVCsSqlScript />
+  <Indexes />
+  <LudbProperties />
+  <DiagramGraph>
+    <Graph version="5.1.0.18" name="vdb.k2vdb.xml" lastPartID="204">
+      <Node id="0" partID="0" name="CUSTOMER" isRootView="true" pos="11 89" size="257 137.5469" listGroupSize="250 100" viewType="Table">
+        <TableProperties>{"TableName":"CUSTOMER","TablePopulationPropertiesList":[{"ID":"query_DVD_CUSTOMER","Name":"query_DVD_CUSTOMER","Order":1,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+      </Node>
+      <Node id="1" partID="111" name="PAYMENT" isRootView="false" pos="313 14" size="257 136" listGroupSize="250 100" viewType="Table">
+        <TableProperties>{"TableName":"PAYMENT","TablePopulationPropertiesList":[{"ID":"query_DVD_PAYMENT","Name":"query_DVD_PAYMENT","Order":2,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+      </Node>
+      <Node id="2" partID="171" name="RENTAL" isRootView="false" pos="313 214" size="257 137.546844" listGroupSize="250 100" viewType="Table">
+        <TableProperties>{"TableName":"RENTAL","TablePopulationPropertiesList":[{"ID":"query_DVD_RENTAL","Name":"query_DVD_RENTAL","Order":2,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+      </Node>
+      <Link from="3" to="4" partID="124" linkType="Database" pointsArr="268 134.545578 278 134.545578 303 59.545578 313 59.545578" fromNodePartID="0" fromNodeColumnName="CUSTOMER_ID" toNodePartID="111" toNodeColumnName="CUSTOMER_ID" toNodePopulationObjectName="query_DVD_PAYMENT" />
+      <Link from="3" to="5" partID="188" linkType="Database" pointsArr="268 134.545578 278 134.545578 303 307.819 313 307.819" fromNodePartID="0" fromNodeColumnName="CUSTOMER_ID" toNodePartID="171" toNodeColumnName="CUSTOMER_ID" toNodePopulationObjectName="query_DVD_RENTAL" />
+    </Graph>
+  </DiagramGraph>
+</VirtualDB>

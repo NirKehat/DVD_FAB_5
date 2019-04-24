@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_DVD_CUSTOMER</ID>
+  <PopulationObjectName>query_DVD_CUSTOMER</PopulationObjectName>
+  <TableName>CUSTOMER</TableName>
+  <RootItemID>f_78</RootItemID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <InputArguments>
+    <Arg name="CUSTOMER_ID" id="fi_78.0" dataType="Long" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item id="f_78" name="fnPopCustomer" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPopCustomer.k2function.xml">
+      <InputsList>
+        <Input id="fi_78.0" name="CUSTOMER_ID" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_78.0" name="CUSTOMER_ID" />
+        <Output id="fo_78.1" name="STORE_ID" />
+        <Output id="fo_78.2" name="FIRST_NAME" />
+        <Output id="fo_78.3" name="LAST_NAME" />
+        <Output id="fo_78.4" name="EMAIL" />
+        <Output id="fo_78.5" name="ADDRESS_ID" />
+        <Output id="fo_78.6" name="ACTIVEBOOL" />
+        <Output id="fo_78.7" name="CREATE_DATE" />
+        <Output id="fo_78.8" name="LAST_UPDATE" />
+        <Output id="fo_78.9" name="ACTIVE" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="90" fromNodeOrder="0" fromItemID="f_78" fromColID="fo_78.0" toItemID="tbl_CUSTOMER" toColID="tblCol_27495e1adaf74fb1919db1c0b796c9c7" />
+    <Link partId="91" fromNodeOrder="0" fromItemID="f_78" fromColID="fo_78.1" toItemID="tbl_CUSTOMER" toColID="tblCol_5d5d436acb08406c8ad06d70222d3d9f" />
+    <Link partId="92" fromNodeOrder="0" fromItemID="f_78" fromColID="fo_78.2" toItemID="tbl_CUSTOMER" toColID="tblCol_291eca577b1041be96dccb1310820427" />
+    <Link partId="93" fromNodeOrder="0" fromItemID="f_78" fromColID="fo_78.3" toItemID="tbl_CUSTOMER" toColID="tblCol_9461e24ceb4c483190898f2478ea4f75" />
+    <Link partId="94" fromNodeOrder="0" fromItemID="f_78" fromColID="fo_78.4" toItemID="tbl_CUSTOMER" toColID="tblCol_ff73616d8fe24a42bc7c16a2629cdffd" />
+    <Link partId="95" fromNodeOrder="0" fromItemID="f_78" fromColID="fo_78.5" toItemID="tbl_CUSTOMER" toColID="tblCol_24769012d3254ca0a5b9794b3b20241b" />
+    <Link partId="96" fromNodeOrder="0" fromItemID="f_78" fromColID="fo_78.6" toItemID="tbl_CUSTOMER" toColID="tblCol_30d2c67eb470450ab805d738670145c4" />
+    <Link partId="97" fromNodeOrder="0" fromItemID="f_78" fromColID="fo_78.7" toItemID="tbl_CUSTOMER" toColID="tblCol_1aab4d608ead476e9befc1cf05b9dc6f" />
+    <Link partId="98" fromNodeOrder="0" fromItemID="f_78" fromColID="fo_78.8" toItemID="tbl_CUSTOMER" toColID="tblCol_c20526581d614868acafd00db0d1f6ca" />
+    <Link partId="99" fromNodeOrder="0" fromItemID="f_78" fromColID="fo_78.9" toItemID="tbl_CUSTOMER" toColID="tblCol_aebd86edbde649fdb2bdc4145dd20a5c" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="CUSTOMER.query_DVD_CUSTOMER.k2tablePop.xml" lastPartID="99">
+      <TableNode partID="0" name="CUSTOMER" pos="265.89386 13.5989532" width="309.3242" />
+      <FunctionMapNode id="0" L0="1" R0="2" R1="3" R2="4" R3="5" R4="6" R5="7" R6="8" R7="9" R8="10" R9="11" partID="78" topLabel="fnPopCustomer (78)" pos="9.99996948 27.0898514" size="210.893875 145.820282" isRoot="true">
+        <KFunction>{"Name":"fnPopCustomer","ID":"f_78","Category":"FabricOverFabric","Version":"5.1.0.18","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"CUSTOMER_ID","ID":"fi_78.0","Index":0,"DataType":"Long","Comment":""}],"outputParams":[{"Name":"CUSTOMER_ID","ID":"fo_78.0","Index":0,"DataType":"Long","Comment":""},{"Name":"STORE_ID","ID":"fo_78.1","Index":1,"DataType":"Long","Comment":""},{"Name":"FIRST_NAME","ID":"fo_78.2","Index":2,"DataType":"String","Comment":""},{"Name":"LAST_NAME","ID":"fo_78.3","Index":3,"DataType":"String","Comment":""},{"Name":"EMAIL","ID":"fo_78.4","Index":4,"DataType":"String","Comment":""},{"Name":"ADDRESS_ID","ID":"fo_78.5","Index":5,"DataType":"Long","Comment":""},{"Name":"ACTIVEBOOL","ID":"fo_78.6","Index":6,"DataType":"String","Comment":""},{"Name":"CREATE_DATE","ID":"fo_78.7","Index":7,"DataType":"String","Comment":""},{"Name":"LAST_UPDATE","ID":"fo_78.8","Index":8,"DataType":"String","Comment":""},{"Name":"ACTIVE","ID":"fo_78.9","Index":9,"DataType":"Long","Comment":""}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link partID="90" from="2" to="12" pointsArr="220.893829 48.21747 230.893829 48.21747 233.393829 0 253.393829 0 255.89386 44.6354141 265.89386 44.6354141" fromNodePartID="78" fromNodeColumnName="CUSTOMER_ID" toNodePartID="0" toNodeColumnName="CUSTOMER_ID" />
+      <Link partID="91" from="3" to="13" pointsArr="220.893829 60.2903748 230.893829 60.2903748 233.393829 25 253.393829 25 255.89386 56.70833 265.89386 56.70833" fromNodePartID="78" fromNodeColumnName="STORE_ID" toNodePartID="0" toNodeColumnName="STORE_ID" />
+      <Link partID="92" from="4" to="14" pointsArr="220.893829 72.36328 230.893829 72.36328 233.393829 50 253.393829 50 255.89386 68.78124 265.89386 68.78124" fromNodePartID="78" fromNodeColumnName="FIRST_NAME" toNodePartID="0" toNodeColumnName="FIRST_NAME" />
+      <Link partID="93" from="5" to="15" pointsArr="220.893829 84.43622 230.893829 84.43622 233.393829 75 253.393829 75 255.89386 80.8541641 265.89386 80.8541641" fromNodePartID="78" fromNodeColumnName="LAST_NAME" toNodePartID="0" toNodeColumnName="LAST_NAME" />
+      <Link partID="94" from="6" to="16" pointsArr="220.893829 96.5091248 230.893829 96.5091248 233.393829 100 253.393829 100 255.89386 92.92707 265.89386 92.92707" fromNodePartID="78" fromNodeColumnName="EMAIL" toNodePartID="0" toNodeColumnName="EMAIL" />
+      <Link partID="95" from="7" to="17" pointsArr="220.893829 108.582031 230.893829 108.582031 233.393829 125 253.393829 125 255.89386 104.999992 265.89386 104.999992" fromNodePartID="78" fromNodeColumnName="ADDRESS_ID" toNodePartID="0" toNodeColumnName="ADDRESS_ID" />
+      <Link partID="96" from="8" to="18" pointsArr="220.893829 120.654968 230.893829 120.654968 233.393829 150 253.393829 150 255.89386 117.072914 265.89386 117.072914" fromNodePartID="78" fromNodeColumnName="ACTIVEBOOL" toNodePartID="0" toNodeColumnName="ACTIVEBOOL" />
+      <Link partID="97" from="9" to="19" pointsArr="220.893829 132.727875 230.893829 132.727875 233.393829 175 253.393829 175 255.89386 129.145844 265.89386 129.145844" fromNodePartID="78" fromNodeColumnName="CREATE_DATE" toNodePartID="0" toNodeColumnName="CREATE_DATE" />
+      <Link partID="98" from="10" to="20" pointsArr="220.893829 144.800781 230.893829 144.800781 233.393829 200 253.393829 200 255.89386 141.21875 265.89386 141.21875" fromNodePartID="78" fromNodeColumnName="LAST_UPDATE" toNodePartID="0" toNodeColumnName="LAST_UPDATE" />
+      <Link partID="99" from="11" to="21" pointsArr="220.893829 156.873718 230.893829 156.873718 233.393829 225 253.393829 225 255.89386 153.291687 265.89386 153.291687" fromNodePartID="78" fromNodeColumnName="ACTIVE" toNodePartID="0" toNodeColumnName="ACTIVE" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>
