@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenericInterface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="KAFKA" displayName="Kafka" enabled="true" version="1.3">
+  <Name>Kafka</Name>
+  <Properties>
+    <Property name="Topic" dataType="string" mandatory="true">
+      <Value>IDfinder.HIS_USER.INVOICE</Value>
+    </Property>
+    <Property name="BootstrapServers" dataType="string" mandatory="true">
+      <Value>10.211.55.7:9092</Value>
+    </Property>
+    <Property name="GroupID" dataType="string">
+      <Value>JobsGroup</Value>
+    </Property>
+    <Property name="DataType" dataType="OptionsList" mandatory="true">
+      <Value>String</Value>
+    </Property>
+    <Property name="MaxPollRecords" dataType="integer">
+      <Value>100</Value>
+    </Property>
+    <Property name="Affinity" dataType="string">
+      <Value />
+    </Property>
+    <Property name="MsgsProcessingTimeout" dataType="integer" mandatory="true">
+      <Value>10000</Value>
+    </Property>
+  </Properties>
+  <TestConnection enabled="false" />
+</GenericInterface>
