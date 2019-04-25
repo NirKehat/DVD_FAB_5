@@ -51,15 +51,16 @@
     </Target>
   </TargetsList>
   <DiagramGraph>
-    <Graph name="par_cons_kafka.k2parserMap.xml" lastPartID="11" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
-      <ParserRecordTypeTargetNode partID="0" name="kafka_messages" pos="214.11145 18.9635429" size="312.999634 62.0729141" parserName="par_cons_kafka" isTargetNode="true" isRoot="false" />
-      <FunctionMapNode id="0" L0="1" R0="2" partID="9" topLabel="fnGetKafkaMsgs (9)" pos="10 27.4544373" size="159.11145 45.0911255" isRoot="true">
-        <KFunction>{"Name":"fnGetKafkaMsgs","ID":"f_9","Category":"Kafka_Cons","Version":"5.1.0.18","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"i_input","ID":"fi_9.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"o_kafka_msg","ID":"fo_9.0","Index":0,"DataType":"String"}],"HideMethodInUi":false}</KFunction>
+    <Graph name="par_cons_kafka.k2parserMap.xml" lastPartID="14" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
+      <ParserRecordTypeTargetNode partID="0" name="kafka_messages" pos="214.111786 18.9635429" size="312.999237 62.07291" parserName="par_cons_kafka" isTargetNode="true" isRoot="false" />
+      <FunctionMapNode id="0" L0="1" R0="2" partID="9" topLabel="fnGetKafkaMsgs (9)" pos="10.00315 27.4544258" size="159.105148 45.0911446" isRoot="true">
+        <KFunction>{"ID":"f_9","Category":"Kafka_Cons","Version":"5.1.0.18","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"i_input","ID":"fi_9.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"o_kafka_msg","ID":"fo_9.0","Index":0,"DataType":"String"}],"HideMethodInUi":false}</KFunction>
       </FunctionMapNode>
-      <Link from="2" to="3" partID="5" pointsArr="169.11145 52.545578 179.11145 52.545578 204.11145 50 214.11145 50" fromNodePartID="9" fromNodeColumnName="o_kafka_msg" toNodePartID="0" toNodeColumnName="output" />
+      <Link from="2" to="3" partID="5" pointsArr="169.108292 52.54557 179.108292 52.54557 204.111786 50.0000038 214.111786 50.0000038" fromNodePartID="9" fromNodeColumnName="o_kafka_msg" toNodePartID="0" toNodeColumnName="output" />
     </Graph>
   </DiagramGraph>
   <Active>true</Active>
+  <ExecutionMode>Manually</ExecutionMode>
   <syncEvery>00:00:00</syncEvery>
   <InterfaceName>Kafka</InterfaceName>
 </ParserMap>
