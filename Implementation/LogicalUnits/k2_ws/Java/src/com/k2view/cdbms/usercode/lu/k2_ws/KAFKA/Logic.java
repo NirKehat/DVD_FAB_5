@@ -211,6 +211,60 @@ public class Logic extends WebServiceUserCode {
 		future.get();
 	}
 
+
+	public static void wsSendRecToKafka(String SQL_INSERT_STMT, String TOPIC) throws Exception {
+		final java.text.DateFormat clsDateFormat = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS");
+		java.util.Date currentTime = new java.util.Date();//Create date
+		String currTime = clsDateFormat.format(currentTime);
+		String current_ts = clsDateFormat.format(currentTime).replace(" ", "T");
+		net.sf.jsqlparser.parser.CCJSqlParserManager parserManager = new net.sf.jsqlparser.parser.CCJSqlParserManager();
+		//Parse statment
+		net.sf.jsqlparser.statement.Statement sqlStmt = parserManager.parse(new StringReader(SQL_INSERT_STMT));
+		StringBuilder jsonRes = new StringBuilder();
+		net.sf.jsqlparser.statement.Insert insStmt = (net.sf.jsqlparser.statement.Insert) sqlStmt;
+		StringBuilder sbPK = new StringBuilder().append("[");
+		//Get table primary keys	
+		//if function run from WS or pragma didn't work go and check trnTable2PK
+		String pkColumnsFromTrn = getTranslationValues("trnTable2PK", new Object[]{insStmt.getTable().getSchemaName().toUpperCase() + "_" + insStmt.getTable().getName().toUpperCase()}).get("pk_list");
+		String[] pkCuls = pkColumnsFromTrn.split(",");
+		String prefix = "";
+		for(String pkCul : pkCuls){
+			sbPK.append(prefix + "\"" + pkCul + "\"");
+			prefix = ",";
+		}
+		sbPK.append("]");
+		
+		//Start build the json message
+		jsonRes.append("{\"table\":\"" + insStmt.getTable().getSchemaName().toUpperCase() + "." + insStmt.getTable().getName().toUpperCase() + "\",\"op_type\": \"R\"," + "\"op_ts\": \"" + currTime + "\"," + "\"current_ts\": \"" + current_ts + "\"," + "\"pos\": \"00000000020030806864\",\"primary_keys\":" + sbPK.toString() + "," + "\"after\": {");
+		//Get statment columns
+		List<net.sf.jsqlparser.schema.Column> exp = insStmt.getColumns();
+		Object[] val = ((net.sf.jsqlparser.expression.operators.relational.ExpressionList) insStmt.getItemsList()).getExpressions().toArray();
+		int i = 0;
+		prefix = "";
+		for(net.sf.jsqlparser.schema.Column x: exp){
+			jsonRes.append(prefix);
+			prefix = ",";
+			jsonRes.append("\"" + x.getColumnName().toUpperCase() + "\":" + (val[i] + "").trim().replaceAll("^\"|\"$", "").replace("\"", "\\\"").replaceAll("^'|'$", "\""));
+			i++;
+		};	
+		jsonRes.append("}}");//Close the json message
+		
+		Properties props = new Properties();
+		props.put("bootstrap.servers", IifProperties.getInstance().getKafkaBootsrapServers());
+		props.put("acks", "all");
+		props.put("retries", "5");
+		props.put("batch.size", "" + IifProperties.getInstance().getKafkaBatchSize());
+		props.put("linger.ms", 1);
+		props.put("max.block.ms", "" + IifProperties.getInstance().getKafkaMaxBlockMs());
+		props.put("buffer.memory", "" + IifProperties.getInstance().getKafkaBufferMemory());
+		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+		//send message to kafka
+		Producer<String, JSONObject> producer = new KafkaProducer<>(props);
+		Future<RecordMetadata> future = producer.send(new ProducerRecord(TOPIC, null, null, jsonRes.toString()));
+		future.get();
+	}
+
 	
 	
 
