@@ -18,8 +18,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 public class Logic extends WebServiceUserCode {
 
 
-	@out(name = "result", type = String.class, desc = "")
-	public static String wsGetLU2Excel(String luName) throws Exception {
+	public static void wsGetLU2Excel(String luName) throws Exception {
 		java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("yyyymmdd_HHmmss");
 		java.util.Date date = new java.util.Date();
 		response().setContentType("application/vnd.ms-excel");
@@ -42,7 +41,6 @@ public class Logic extends WebServiceUserCode {
 		if (workBook != null) {
 		    workBook.write(response().getOutputStream());
 		}
-		return "DONE";
 	}
 
     private static void getTable(LudbObject table, LudbObject tableParent, LUType lut, HSSFSheet tblShet, HSSFWorkbook workBook) {
