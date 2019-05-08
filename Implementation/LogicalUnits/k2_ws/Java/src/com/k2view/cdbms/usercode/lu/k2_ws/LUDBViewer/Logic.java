@@ -43,11 +43,11 @@ public class Logic extends WebServiceUserCode {
 			grSB = new StringBuilder().append("<div class=\"tree\"><ul><li><div class=\"LUDB\">");
 			LUType lut = LUTypeFactoryImpl.getInstance().getTypeByName(luName);
 			LudbObject rtTable = lut.getRootObject();
-			grSB.append("<div class=\"PARENT_TABLE\"><div id=\"" + rtTable.ludbObjectName + "\" class=\"TABLE\"><div class=\"name\">" + rtTable.ludbObjectName + "</div>");
+			grSB.append("<div class=\"PARENT_TABLE\"><div id=\"" + rtTable.ludbObjectName + "\" class=\"TABLE\" style=\"cursor: pointer\"><div class=\"name\">" + rtTable.ludbObjectName + "</div>");
 			getTable(rtTable, null, lut, grSB, IID);
 			grSB.append("</div></div></li></ul></div>");
 		}
-		sbViewerPage.append("<div id=\"excelDataTable\">" + grSB.toString() + "</div><script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js'></script><script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/rwd-table-patterns.js'></script><script>    $(document).ready(function () {        $('input[id^=\"button\"]').click(function () {            $.ajax({                dataType: \"text\",                url: 'http://" + InetAddress.getLocalHost().getHostAddress().trim() + ":3213/api/wsLUDBViewer?token=tokenAll&luName=' + document.getElementById(\"ludbName\").value + '&IID=' + document.getElementById(\"IID\").value + '&SyncMode=' + document.getElementById(\"syncMode\").value + '&format=raw',                success: function (result) {\t\t\t\t\t$(\"#excelDataTable\").html(result);                },error: function(error) {\t\t\t\t\talert('failed to call ws');\t\t\t\t}\t\t            });        })    })</script></body></html>");
+		sbViewerPage.append("<div id=\"excelDataTable\">" + grSB.toString() + "</div><script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js'></script><script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/rwd-table-patterns.js'></script><script>    $(document).ready(function () {        $('input[id^=\"button\"]').click(function () {            $.ajax({                dataType: \"text\",                url: 'http://" + getRequestHeaders().get("host").split(":")[0] + ":3213/api/wsLUDBViewer?token=tokenAll&luName=' + document.getElementById(\"ludbName\").value + '&IID=' + document.getElementById(\"IID\").value + '&SyncMode=' + document.getElementById(\"syncMode\").value + '&format=raw',                success: function (result) {\t\t\t\t\t$(\"#excelDataTable\").html(result);                },error: function(error) {\t\t\t\t\talert('failed to call ws');\t\t\t\t}\t\t            });        })    })</script></body></html>");
 		if (luName == null || "".equals(luName)) {
 			sos.println(sbViewerPage.toString());
 		}else{
@@ -59,7 +59,7 @@ public class Logic extends WebServiceUserCode {
 
 
 	private static void getTable(LudbObject table, LudbObject tableParent, LUType lut, StringBuilder grSB, String IID) {
-		if (tableParent != null)grSB.append("<div class=\"PARENT_TABLE\"><div id=\"" + table.ludbObjectName + "\" class=\"TABLE\"><div class=\"name\">" + table.k2StudioObjectName + "<br/>");
+		if (tableParent != null)grSB.append("<div class=\"PARENT_TABLE\"><div id=\"" + table.ludbObjectName + "_" + tableParent.k2StudioObjectName + "\" class=\"TABLE\" style=\"cursor: pointer\"><div class=\"name\">" + table.k2StudioObjectName + "<br/>");
 		getTblLinks(table, tableParent, lut, grSB, IID);
 		getTableChildren(table, null, lut, grSB, IID);
 		if (tableParent != null) grSB.append("</div>");
@@ -107,7 +107,7 @@ public class Logic extends WebServiceUserCode {
 			if (IID != null && !"".equals(IID)) {
 				tableDataRS = getTableData(tableSB, "select " + col.toString() + " from " + table.ludbObjectName + " where exists (select 1 from " + tableParent.k2StudioObjectName + " where " + tblRelLis.get("linked_Columns") + ")");
 			}
-			grSB.append(tblRelLis.get("linked_Columns").replace(" ", "&nbsp;") + "</div><div  id=\"" + table.ludbObjectName + "TableData" + "\" class=\"container\">  <div class=\"row\">    <div class=\"col-xs-12\">      <div class=\"table-responsive\">        <table class=\"table table-bordered table-hover\"><div>" + tableDataRS + "</div></table>      </div>    </div>  </div></div><script>var tableID = document.getElementById('" + table.ludbObjectName + "');tableID.style.cursor = 'pointer';document.getElementById(\"" + table.ludbObjectName + "TableData\").style.display = 'none';tableID.onclick = function() {    var x = document.getElementById(\"" + table.ludbObjectName + "TableData\");  if (x.style.display == \"none\" || x.style.display == '') {    x.style.display = \"block\";  } else {    x.style.display = \"none\";  }};</script></div>");
+			grSB.append(tblRelLis.get("linked_Columns").replace(" ", "&nbsp;") + "</div><div  id=\"" + table.ludbObjectName + "_" + tableParent.k2StudioObjectName + "_TableData" + "\" class=\"container\" style=\"display: none;\">  <div class=\"row\">    <div class=\"col-xs-12\">      <div class=\"table-responsive\">        <table class=\"table table-bordered table-hover\"><div>" + tableDataRS + "</div></table>      </div>    </div>  </div></div><script>var tableID = document.getElementById('" + table.ludbObjectName + "_" + tableParent.k2StudioObjectName + "');tableID.onclick = function() {    var x = document.getElementById(\"" + table.ludbObjectName + "_" + tableParent.k2StudioObjectName + "_TableData\");  if (x.style.display == \"none\" || x.style.display == '') {    x.style.display = \"block\";  } else {    x.style.display = \"none\";  }};</script></div>");
 
 		} else {
 			StringBuilder col = new StringBuilder();
@@ -123,7 +123,7 @@ public class Logic extends WebServiceUserCode {
 			if (IID != null && !"".equals(IID)) {
 				tableDataRS = getTableData(tableSB, "select " + col.toString() + " from " + table.ludbObjectName);
 			}
-			grSB.append("<div  id=\"" + table.ludbObjectName + "TableData" + "\" class=\"container\">  <div class=\"row\">    <div class=\"col-xs-12\">      <div class=\"table-responsive\">        <table class=\"table table-bordered table-hover\"><div>" + tableDataRS + "</div></table>      </div>    </div>  </div></div><script>var tableID = document.getElementById('" + table.ludbObjectName + "');tableID.style.cursor = 'pointer';document.getElementById(\"" + table.ludbObjectName + "TableData\").style.display = 'none';tableID.onclick = function() {    var x = document.getElementById(\"" + table.ludbObjectName + "TableData\");  if (x.style.display == \"none\" || x.style.display == '') {    x.style.display = \"block\";  } else {    x.style.display = \"none\";  }};</script></div>");
+			grSB.append("<div  id=\"" + table.ludbObjectName + "TableData" + "\" class=\"container\" style=\"display: none;\">  <div class=\"row\">    <div class=\"col-xs-12\">      <div class=\"table-responsive\">        <table class=\"table table-bordered table-hover\"><div>" + tableDataRS + "</div></table>      </div>    </div>  </div></div><script>var tableID = document.getElementById('" + table.ludbObjectName + "');tableID.onclick = function() {    var x = document.getElementById(\"" + table.ludbObjectName + "TableData\");  if (x.style.display == \"none\" || x.style.display == '') {    x.style.display = \"block\";  } else {    x.style.display = \"none\";  }};</script></div>");
 
 		}
 	}
