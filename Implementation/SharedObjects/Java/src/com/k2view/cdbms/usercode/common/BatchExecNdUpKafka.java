@@ -89,9 +89,9 @@ public class BatchExecNdUpKafka {
         String i_statmentKafka = i_statment;
         for (Object param : i_statmentParams) {
             if (param instanceof String) {
-                i_statmentKafka = i_statmentKafka.replaceFirst("\\?", "'" + param + "'");
+                i_statmentKafka = i_statmentKafka.replaceFirst("([^a-zA-Z0-9#\\/])(\\?)", "'" + param + "'");
             } else {
-                i_statmentKafka = i_statmentKafka.replaceFirst("\\?", param + "");
+                i_statmentKafka = i_statmentKafka.replaceFirst("([^a-zA-Z0-9#\\/])(\\?)", param + "");
             }
         }
 
