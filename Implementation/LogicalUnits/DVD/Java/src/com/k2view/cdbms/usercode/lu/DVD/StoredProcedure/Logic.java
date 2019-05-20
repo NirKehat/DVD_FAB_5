@@ -64,7 +64,7 @@ public class Logic extends UserCode {
 		
 		//Register Out Parameters and execute
 		if(output_types == null || (output_types != null && output_types_arr[0].equalsIgnoreCase("CURSOR")) ){
-			callStmt.registerOutParameter((params.length + 1), oracle.jdbc.OracleTypes.CURSOR);
+			//callStmt.registerOutParameter((params.length + 1), oracle.jdbc.OracleTypes.CURSOR);
 			callStmt.execute();
 			ResultSet rs = (ResultSet) callStmt.getObject((params.length + 1));
 			return rs;
@@ -97,7 +97,7 @@ public class Logic extends UserCode {
 		try{
 			callStmt = oraConn.prepareCall(sql);
 			callStmt.setInt(1, Film_Id);
-			callStmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);	
+			//callStmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);	
 			callStmt.execute();	
 			ResultSet rs = (ResultSet) callStmt.getObject(2);
 		
