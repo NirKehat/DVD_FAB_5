@@ -80,6 +80,71 @@ public class Logic extends UserCode {
 		yield(new Object[]{Customer_Id, firstName, lastName});
 	}
 
+
+	@out(name = "wsRS", type = String.class, desc = "")
+	public static String fnInvokeWS(String reqMethod, String URL, String reqBody, Object reqMap, Integer reqConnTOInMS, Integer reqReadTOInMS) throws Exception {
+		java.net.HttpURLConnection conn = null;
+		StringBuilder sb = new StringBuilder();
+		java.io.BufferedReader br = null;
+		java.io.OutputStream os = null;
+		InputStreamReader reqIS = null;
+		
+		try {
+		    java.net.URL url = new java.net.URL(URL);
+		    conn = (java.net.HttpURLConnection) url.openConnection();
+		
+		    if(reqConnTOInMS != 0){
+		        conn.setConnectTimeout(reqConnTOInMS);
+		    }
+		
+		    if(reqReadTOInMS != 0){
+		        conn.setReadTimeout(reqReadTOInMS);
+		    }
+		
+		    if(reqMethod != null && !"".equals(reqMethod)) {
+		        conn.setRequestMethod(reqMethod);
+		    }else{
+		        throw new RuntimeException("Failed To Invoke WS: Request Method Can't Be Empty!");
+		    }
+		
+		    if(reqMap != null) {
+		        for(java.util.Map.Entry<String, String> mapEnt : ((java.util.Map<String, String>)reqMap).entrySet()) {
+		            conn.setRequestProperty(mapEnt.getKey(), mapEnt.getValue());
+		        }
+		    }
+		
+		    if(reqBody != null && !"".equalsIgnoreCase(reqBody)) {
+		        conn.setDoOutput(true);
+		        os = conn.getOutputStream();
+		        os.write(reqBody.getBytes());
+		        os.flush();
+		    }
+		
+		    if(conn.getResponseCode() != 200) {
+		        reqIS = new java.io.InputStreamReader(conn.getErrorStream());
+		    }else{
+		        reqIS = new java.io.InputStreamReader(conn.getInputStream());
+		    }
+		
+		    br = new java.io.BufferedReader(reqIS);
+		    String output;
+		    while ((output = br.readLine()) != null) {
+		        sb.append(output);
+		    }
+		
+		    if (conn.getResponseCode() != 200) {
+		        throw new RuntimeException("Failed To Inoke WS: Error Code : " + conn.getResponseCode() + " \nError Message:" + sb.toString());
+		    }
+		
+		    return sb.toString();
+		} finally{
+		    if(os != null)os.close();
+		    if(br != null)br.close();
+		    if(reqIS != null)reqIS.close();
+		    if(conn != null)conn.disconnect();
+		}
+	}
+
 	
 	
 	
