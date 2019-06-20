@@ -35,6 +35,12 @@ public class Logic extends WebServiceUserCode {
 		return "SET IS DONE";
 	}
 
+
+	public static void wsSetGlobalsForSession() throws Exception {
+		DBExecute("fabric", "SET nir=my_value", null);
+		DBExecute("fabric", "get DVD.1", null);
+	}
+
 	
 	
 
