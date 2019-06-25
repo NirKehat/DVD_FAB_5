@@ -333,8 +333,8 @@ public class Logic extends UserCode {
 
 
 	public static void fnGetParsersList() throws Exception {
-		Map<String, ParserMap> parMap = getLuType().ludbParserMap;
-		for(Map.Entry<String, ParserMap> parMapEnt : parMap.entrySet())	{
+		Map<String, com.k2view.cdbms.lut.map.ParserMap> parMap = getLuType().ludbParserMap;
+		for(Map.Entry<String, com.k2view.cdbms.lut.map.ParserMap> parMapEnt : parMap.entrySet())	{
 			reportUserMessage(parMapEnt.getKey());
 		}
 	}
