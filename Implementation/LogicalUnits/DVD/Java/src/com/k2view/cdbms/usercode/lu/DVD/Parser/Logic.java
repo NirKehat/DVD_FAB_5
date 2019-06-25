@@ -331,6 +331,14 @@ public class Logic extends UserCode {
 		return new Object[]{i_map.get("0"), i_map.get("1")};
 	}
 
+
+	public static void fnGetParsersList() throws Exception {
+		Map<String, ParserMap> parMap = getLuType().ludbParserMap;
+		for(Map.Entry<String, ParserMap> parMapEnt : parMap.entrySet())	{
+			reportUserMessage(parMapEnt.getKey());
+		}
+	}
+
 	
 	
 	
