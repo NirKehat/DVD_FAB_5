@@ -124,7 +124,7 @@ public class Logic extends UserCode {
 		                    throw new NoSuchMethodException(String.format("user function '%s' was not found", trnVal.get("functionName")));
 		                } else {
 		                    try {
-		                        method.invoke((AbstractMapExecution) null, functionContext());
+		                        method.invoke(null, functionContext());
 		                    } catch (ReflectiveOperationException | InterruptedException e) {
 		                        log.error("colValidationManager: Failed to invoke user function!", e);
 		                        if (inDebugMode())
@@ -137,7 +137,7 @@ public class Logic extends UserCode {
 		                    throw new NoSuchMethodException(String.format("user function '%s' was not found", trnVal.get("functionName")));
 		                } else {
 		                    try {
-		                        method.invoke((AbstractMapExecution) null, functionContext());
+		                        method.invoke( null, functionContext());
 		                    } catch (ReflectiveOperationException | InterruptedException e) {
 		                        log.error("colValidationManager: Failed to invoke user function!", e);
 		                        if (inDebugMode())

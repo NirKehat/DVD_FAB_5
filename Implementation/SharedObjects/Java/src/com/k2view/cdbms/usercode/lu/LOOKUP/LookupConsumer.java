@@ -135,7 +135,7 @@ public class LookupConsumer extends AbstractKafkaConsumer<JSONObject> {
             Set<String> tblColList = new HashSet<>();
             for(Map.Entry<String, LudbColumn> tblCol : tblCols.entrySet()){
                 LudbColumn tblColObj = tblCol.getValue();
-                tblColList.add(tblColObj.columnName.toUpperCase());
+                tblColList.add(tblColObj.getName().toUpperCase());
             }
             this.parToColMap.put(tblDef.mapObjectName.toLowerCase(), tblColList);
         }
@@ -305,7 +305,6 @@ public class LookupConsumer extends AbstractKafkaConsumer<JSONObject> {
     private DataChange convertJsonToDataChange(JSONObject value, String keySpace) throws JSONException, ParseException {
         DataChange data = new DataChange();
         String tbl = null;
-        UserUtilsBase utils;
         tbl = value.getString("table").replaceAll("\\.", "_");
         properties.FilltrnPksLookUps();
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSS");

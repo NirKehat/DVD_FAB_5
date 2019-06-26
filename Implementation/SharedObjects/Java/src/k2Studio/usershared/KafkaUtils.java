@@ -40,7 +40,6 @@ private static Logger log = LoggerFactory.getLogger(KafkaUtils.class.getName());
 
 	public static DataChange convertJsonToDataChange(JSONObject value, String tblPrefix , String keySpace) throws Exception {
 	String tbl = null;
-		UserUtilsBase utils;
 	DataChange data = new DataChange();
 		if (value.isNull("op_type")) 
 		{
@@ -255,7 +254,7 @@ private static Logger log = LoggerFactory.getLogger(KafkaUtils.class.getName());
 		boolean ignore=false;
 		 if("LOOKUPS".equals(tblPrefix))
 		  {		
-			//ignore=handleLookUps(value  , data , tbl , primaryKeys );
+			//ignore=handleLookUps(value  , data , tbl , primaryKeys );
 		
 			if (data.getOperation() == Operation.delete) {
 					//log.info("-----delete Operation started !!-----");

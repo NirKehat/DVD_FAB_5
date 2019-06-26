@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>DVD_FAB_5</Name>
-  <CreateDate>2019-01-04T10:15:11.1367836-06:00</CreateDate>
+  <CreateDate>2019-01-04T11:15:11.1367836-05:00</CreateDate>
   <CreateUserId />
-  <ProductVersion>5.0.0.10</ProductVersion>
+  <ProductVersion>5.3.0.14</ProductVersion>
   <UseTableObject>true</UseTableObject>
+  <Mdm>false</Mdm>
   <ProjectHasDiagramBinFiles>false</ProjectHasDiagramBinFiles>
   <ProjectItemPropList />
   <ProjectItemsCategoryList />

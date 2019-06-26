@@ -270,8 +270,8 @@ public class SharedLogic {
 	}
 
 	//Validation Based on User Function, Function must have Object as Input & Boolean as output
-	@UserCodeDescribe.out(name = "output", type = Boolean.class, desc = "")
-	public static boolean Function(Object columnValue, LinkedHashMap<String, String> valDet) {
+	@out(name = "result", type = Object.class, desc = "")
+	public static boolean Function(Object columnValue, LinkedHashMap<String,String> valDet) throws Exception {
 		FunctionDef method = (FunctionDef) LUTypeFactoryImpl.getInstance().getTypeByName(getLuType().luName).ludbFunctions.get(valDet.get("value"));
 		if (method == null) {
 			try {
@@ -283,7 +283,7 @@ public class SharedLogic {
 			}
 		} else {
 			try {
-				return (Boolean) method.invoke((AbstractMapExecution) null, functionContext(), columnValue);
+				return (Boolean) method.invoke( null, functionContext(), columnValue);
 			} catch (ReflectiveOperationException | InterruptedException e) {
 				log.error("colValidationManager: Failed to invoke user function!", e);
 				if (inDebugMode())

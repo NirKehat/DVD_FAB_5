@@ -89,7 +89,7 @@ public class Logic extends WebServiceUserCode {
         Map<String, LudbColumn> tblMap = table.getLudbColumnMap();
         for (Map.Entry<String, LudbColumn> tblMapEnt : tblMap.entrySet()) {
             HSSFRow row = tblShet.createRow(tblShet.getLastRowNum() + 1);
-            row.createCell(0).setCellValue(tblMapEnt.getValue().columnName);
+            row.createCell(0).setCellValue(tblMapEnt.getValue().getName());
             row.createCell(1).setCellValue(tblMapEnt.getValue().columnType);
             row.createCell(2).setCellValue(tblMapEnt.getValue().columnDefaultValue);
             row.createCell(3).setCellValue(tblMapEnt.getValue().columnValueIsMandatory);

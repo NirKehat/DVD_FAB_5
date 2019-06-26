@@ -12,6 +12,13 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Session;
 import com.k2view.cdbms.cluster.CassandraClusterSingleton;
 import com.k2view.cdbms.shared.*;
+import com.k2view.fabric.parser.JSQLParserException;
+import com.k2view.fabric.parser.expression.Expression;
+import com.k2view.fabric.parser.expression.operators.relational.ExpressionList;
+import com.k2view.fabric.parser.parser.CCJSqlParserManager;
+import com.k2view.fabric.parser.schema.Column;
+import com.k2view.fabric.parser.statement.*;
+import com.k2view.fabric.parser.statement.update.UpdateTable;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -139,10 +146,10 @@ public class BatchExecNdUpKafka {
             String currTime = clsDateFormat.format(currentTime);
             String current_ts = clsDateFormat.format(currentTime).replace(" ", "T");
 
-            net.sf.jsqlparser.statement.Statement sqlStmt;
+            Statement sqlStmt;
             try {
-                sqlStmt = new net.sf.jsqlparser.parser.CCJSqlParserManager().parse(new StringReader(sql_stmt));
-            } catch (net.sf.jsqlparser.JSQLParserException e) {
+                sqlStmt = new CCJSqlParserManager().parse(new StringReader(sql_stmt));
+            } catch (JSQLParserException e) {
                 throw e;
             }
 
@@ -157,7 +164,7 @@ public class BatchExecNdUpKafka {
 
             java.util.regex.Matcher matcher = patternInsert.matcher(sql_stmt);
             if (matcher.find()) {
-                net.sf.jsqlparser.statement.Insert insStmt = (net.sf.jsqlparser.statement.Insert) sqlStmt;
+                Insert insStmt = (Insert) sqlStmt;
                 String FullTableName = (kafkaRec.get("tableFullName")).toUpperCase();
                 StringBuilder sbPK = new StringBuilder().append("[");
                 String pkColumns = getTranslationValues("trnGenNdProdTblList", new Object[]{FullTableName.replaceFirst("\\.", "_")}).get("pk_list");
@@ -172,10 +179,10 @@ public class BatchExecNdUpKafka {
                 sbPK.append("]");
                 jsonRes.append("{\"table\":\"" + FullTableName + "\",\"op_type\": \"I\"," + "\"op_ts\": \"" + currTime + "\"," + "\"current_ts\": \"" + current_ts + "\"," + "\"pos\": \"00000000020030806864\"," + "\"primary_keys\":" + sbPK.toString() + "," + "\"after\": {");
                 String prefix = "";
-                List<net.sf.jsqlparser.schema.Column> exp = insStmt.getColumns();
-                Object[] val = ((net.sf.jsqlparser.expression.operators.relational.ExpressionList) insStmt.getItemsList()).getExpressions().toArray();
+                List<Column> exp = insStmt.getColumns();
+                Object[] val = ((ExpressionList) insStmt.getItemsList()).getExpressions().toArray();
                 int i = 0;
-                for (net.sf.jsqlparser.schema.Column x : exp) {
+                for (Column x : exp) {
                     jsonRes.append(prefix);
                     prefix = ",";
                     jsonRes.append("\"" + x.getColumnName().toUpperCase() + "\":" + (val[i] + "").trim().replaceAll("^\"|\"$", "").replace("\"", "\\\"").replaceAll("^'|'$", "\""));
@@ -192,7 +199,7 @@ public class BatchExecNdUpKafka {
             } else {
                 matcher = patternUpdate.matcher(sql_stmt);
                 if (matcher.find()) {
-                    net.sf.jsqlparser.statement.update.UpdateTable upStmt = (net.sf.jsqlparser.statement.update.UpdateTable) sqlStmt;
+                    UpdateTable upStmt = (UpdateTable) sqlStmt;
                     String FullTableName = (kafkaRec.get("tableFullName")).toUpperCase();
                     StringBuilder sbPK = new StringBuilder().append("[");
                     String pkColumns = getTranslationValues("trnGenNdProdTblList", new Object[]{FullTableName.replaceFirst("\\.", "_")}).get("pk_list");
@@ -229,13 +236,13 @@ public class BatchExecNdUpKafka {
 
                     Map<String, Object> setMap = new HashMap<String, Object>();
                     StringBuilder setCulList = new StringBuilder();
-                    List<net.sf.jsqlparser.expression.Expression> exp = upStmt.getExpressions();
+                    List<Expression> exp = upStmt.getExpressions();
                     int i = 0;
                     String prefix = "";
-                    for (net.sf.jsqlparser.expression.Expression x : exp) {
+                    for (Expression x : exp) {
                         setCulList.append(prefix);
-                        setCulList.append(((net.sf.jsqlparser.schema.Column) upStmt.getColumns().get(i)).getColumnName());
-                        setMap.put("\"" + ((net.sf.jsqlparser.schema.Column) upStmt.getColumns().get(i)).getColumnName().toUpperCase() + "\"", (x + "").replaceAll("^\"|\"$", "").replace("\"", "\\\"").replaceAll("^'|'$", "\""));
+                        setCulList.append(((Column) upStmt.getColumns().get(i)).getColumnName());
+                        setMap.put("\"" + ((Column) upStmt.getColumns().get(i)).getColumnName().toUpperCase() + "\"", (x + "").replaceAll("^\"|\"$", "").replace("\"", "\\\"").replaceAll("^'|'$", "\""));
                         i++;
                         prefix = ",";
                     }
@@ -256,7 +263,7 @@ public class BatchExecNdUpKafka {
                 } else {
                     matcher = patternDelete.matcher(sql_stmt);
                     if (matcher.find()) {
-                        net.sf.jsqlparser.statement.Delete delStmt = (net.sf.jsqlparser.statement.Delete) sqlStmt;
+                        Delete delStmt = (Delete) sqlStmt;
                         String FullTableName = (kafkaRec.get("tableFullName")).toUpperCase();
                         StringBuilder sbPK = new StringBuilder().append("[");
                         String pkColumns = getTranslationValues("trnGenNdProdTblList", new Object[]{FullTableName.replaceFirst("\\.", "_")}).get("pk_list");

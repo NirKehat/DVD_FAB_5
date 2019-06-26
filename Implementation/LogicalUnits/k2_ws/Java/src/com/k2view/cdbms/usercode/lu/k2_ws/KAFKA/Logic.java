@@ -20,6 +20,14 @@ import com.k2view.cdbms.shared.logging.LogEntry.*;
 import com.k2view.cdbms.func.oracle.OracleToDate;
 import com.k2view.cdbms.func.oracle.OracleRownum;
 import com.k2view.cdbms.usercode.lu.k2_ws.*;
+import com.k2view.fabric.parser.JSQLParserException;
+import com.k2view.fabric.parser.expression.Expression;
+import com.k2view.fabric.parser.expression.operators.relational.ExpressionList;
+import com.k2view.fabric.parser.parser.CCJSqlParserManager;
+import com.k2view.fabric.parser.schema.Column;
+import com.k2view.fabric.parser.statement.*;
+import com.k2view.fabric.parser.statement.Statement;
+import com.k2view.fabric.parser.statement.update.UpdateTable;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -46,18 +54,18 @@ public class Logic extends WebServiceUserCode {
 		java.util.Date currentTime = new java.util.Date();
 		String currTime = clsDateFormat.format(currentTime);
 		String current_ts = clsDateFormat.format(currentTime).replace(" ", "T");
-		net.sf.jsqlparser.parser.CCJSqlParserManager parserManager = new net.sf.jsqlparser.parser.CCJSqlParserManager();
-		net.sf.jsqlparser.statement.Statement sqlStmt = null;
+		CCJSqlParserManager parserManager = new CCJSqlParserManager();
+		Statement sqlStmt = null;
 		String topicName = null;
 		java.util.regex.Matcher matcher = null;
 		StringBuilder jsonRes = new StringBuilder();
-		net.sf.jsqlparser.statement.Insert insStmt = null;
-		net.sf.jsqlparser.statement.update.UpdateTable upStmt = null;
-		net.sf.jsqlparser.statement.Delete delStmt = null;
+		Insert insStmt = null;
+		UpdateTable upStmt = null;
+		Delete delStmt = null;
 		
 		try {
 			sqlStmt = parserManager.parse(new StringReader(sql_stmt));
-		} catch (net.sf.jsqlparser.JSQLParserException e) {
+		} catch (JSQLParserException e) {
 			throw e;
 		}
 		
@@ -71,7 +79,7 @@ public class Logic extends WebServiceUserCode {
 		
 		matcher = patternInsert.matcher(sql_stmt);
 		if (matcher.find()){
-				insStmt = (net.sf.jsqlparser.statement.Insert) sqlStmt;
+				insStmt = (Insert) sqlStmt;
 				StringBuilder sbPK = new StringBuilder().append("[");
 				String pkColumns = getTranslationValues("trnTable2PK", new Object[]{insStmt.getTable().getSchemaName().toUpperCase() + "_" + insStmt.getTable().getName().toUpperCase()}).get("pk_list");
 				if(pkColumns == null)throw new Exception ("Couldn't find Primary key columns for table: " + insStmt.getTable().getSchemaName().toUpperCase() + "_" + insStmt.getTable().getName().toUpperCase() + " in properties class!, Please check");
@@ -84,22 +92,22 @@ public class Logic extends WebServiceUserCode {
 				sbPK.append("]");
 				jsonRes.append("{\"table\":\"" + insStmt.getTable().getSchemaName().toUpperCase() + "." + insStmt.getTable().getName().toUpperCase() + "\",\"op_type\": \"I\"," + "\"op_ts\": \"" + currTime + "\"," + "\"current_ts\": \"" + current_ts + "\"," + "\"pos\": \"00000000020030806864\"," + "\"primary_keys\":" + sbPK.toString() + "," + "\"after\": {");
 				String prefix = "";
-				List<net.sf.jsqlparser.schema.Column> exp = insStmt.getColumns();
-				Object[] val = ((net.sf.jsqlparser.expression.operators.relational.ExpressionList) insStmt.getItemsList()).getExpressions().toArray();
+				List<Column> exp = insStmt.getColumns();
+				Object[] val = ((ExpressionList) insStmt.getItemsList()).getExpressions().toArray();
 				int i = 0;
-				for(net.sf.jsqlparser.schema.Column x: exp){
+				for(Column x: exp){
 					jsonRes.append(prefix);
 					prefix = ",";
 					jsonRes.append("\"" + x.getColumnName().toUpperCase() + "\":" + (val[i] + "").trim().replaceAll("^\"|\"$", "").replace("\"", "\\\"").replaceAll("^'|'$", "\""));
 					i++;
 				};	
 				jsonRes.append("}}");
-				topicName = topicName.replace("<>", insStmt.getTable().getSchemaName().toUpperCase() + "." + ((net.sf.jsqlparser.statement.Insert)sqlStmt).getTable().getName().toUpperCase());
+				topicName = topicName.replace("<>", insStmt.getTable().getSchemaName().toUpperCase() + "." + ((Insert)sqlStmt).getTable().getName().toUpperCase());
 		
 		}else{
 			matcher = patternUpdate.matcher(sql_stmt);
 			if(matcher.find()){
-					upStmt = (net.sf.jsqlparser.statement.update.UpdateTable) sqlStmt;
+					upStmt = (UpdateTable) sqlStmt;
 					StringBuilder sbPK = new StringBuilder().append("[");
 					String pkColumns = getTranslationValues("trnTable2PK", new Object[]{upStmt.getTable().getSchemaName().toUpperCase() + "_" + upStmt.getTable().getName().toUpperCase()}).get("pk_list");
 					if(pkColumns == null)throw new Exception ("Couldn't find Primary key columns for table: " + upStmt.getTable().getSchemaName().toUpperCase() + "_" + upStmt.getTable().getName().toUpperCase() + " in properties class!, Please check");
@@ -134,13 +142,13 @@ public class Logic extends WebServiceUserCode {
 					
 					Map<String, Object> setMap = new HashMap<String, Object>();
 					StringBuilder setCulList = new StringBuilder(); 
-					List<net.sf.jsqlparser.expression.Expression> exp =  upStmt.getExpressions();
+					List<Expression> exp =  upStmt.getExpressions();
 					int i = 0;
 					String prefix = "";
-					for(net.sf.jsqlparser.expression.Expression x: exp){
+					for(Expression x: exp){
 						setCulList.append(prefix);
-						setCulList.append(((net.sf.jsqlparser.schema.Column) upStmt.getColumns().get(i)).getColumnName());
-						setMap.put("\"" + ((net.sf.jsqlparser.schema.Column) upStmt.getColumns().get(i)).getColumnName().toUpperCase() + "\"", (x + "").replaceAll("^\"|\"$", "").replace("\"", "\\\"").replaceAll("^'|'$", "\""));
+						setCulList.append(((Column) upStmt.getColumns().get(i)).getColumnName());
+						setMap.put("\"" + ((Column) upStmt.getColumns().get(i)).getColumnName().toUpperCase() + "\"", (x + "").replaceAll("^\"|\"$", "").replace("\"", "\\\"").replaceAll("^'|'$", "\""));
 						i++;
 						prefix = ",";
 					};
@@ -155,7 +163,7 @@ public class Logic extends WebServiceUserCode {
 			}else{
 				matcher = patternDelete.matcher(sql_stmt);
 				if(matcher.find()){
-					delStmt = (net.sf.jsqlparser.statement.Delete) sqlStmt;
+					delStmt = (Delete) sqlStmt;
 					StringBuilder sbPK = new StringBuilder().append("[");
 					String pkColumns = getTranslationValues("trnTable2PK", new Object[]{delStmt.getTable().getSchemaName().toUpperCase() + "_" + delStmt.getTable().getName().toUpperCase()}).get("pk_list");
 					if(pkColumns == null)throw new Exception ("Couldn't find Primary key columns for table: " + delStmt.getTable().getSchemaName().toUpperCase() + "_" + delStmt.getTable().getName().toUpperCase() + " in properties class!, Please check");
@@ -217,11 +225,11 @@ public class Logic extends WebServiceUserCode {
 		java.util.Date currentTime = new java.util.Date();//Create date
 		String currTime = clsDateFormat.format(currentTime);
 		String current_ts = clsDateFormat.format(currentTime).replace(" ", "T");
-		net.sf.jsqlparser.parser.CCJSqlParserManager parserManager = new net.sf.jsqlparser.parser.CCJSqlParserManager();
+		CCJSqlParserManager parserManager = new CCJSqlParserManager();
 		//Parse statment
-		net.sf.jsqlparser.statement.Statement sqlStmt = parserManager.parse(new StringReader(SQL_INSERT_STMT));
+		Statement sqlStmt = parserManager.parse(new StringReader(SQL_INSERT_STMT));
 		StringBuilder jsonRes = new StringBuilder();
-		net.sf.jsqlparser.statement.Insert insStmt = (net.sf.jsqlparser.statement.Insert) sqlStmt;
+		Insert insStmt = (Insert) sqlStmt;
 		StringBuilder sbPK = new StringBuilder().append("[");
 		//Get table primary keys	
 		//if function run from WS or pragma didn't work go and check trnTable2PK
@@ -237,11 +245,11 @@ public class Logic extends WebServiceUserCode {
 		//Start build the json message
 		jsonRes.append("{\"table\":\"" + insStmt.getTable().getSchemaName().toUpperCase() + "." + insStmt.getTable().getName().toUpperCase() + "\",\"op_type\": \"R\"," + "\"op_ts\": \"" + currTime + "\"," + "\"current_ts\": \"" + current_ts + "\"," + "\"pos\": \"00000000020030806864\",\"primary_keys\":" + sbPK.toString() + "," + "\"after\": {");
 		//Get statment columns
-		List<net.sf.jsqlparser.schema.Column> exp = insStmt.getColumns();
-		Object[] val = ((net.sf.jsqlparser.expression.operators.relational.ExpressionList) insStmt.getItemsList()).getExpressions().toArray();
+		List<Column> exp = insStmt.getColumns();
+		Object[] val = ((ExpressionList) insStmt.getItemsList()).getExpressions().toArray();
 		int i = 0;
 		prefix = "";
-		for(net.sf.jsqlparser.schema.Column x: exp){
+		for(Column x: exp){
 			jsonRes.append(prefix);
 			prefix = ",";
 			jsonRes.append("\"" + x.getColumnName().toUpperCase() + "\":" + (val[i] + "").trim().replaceAll("^\"|\"$", "").replace("\"", "\\\"").replaceAll("^'|'$", "\""));

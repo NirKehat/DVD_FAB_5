@@ -136,9 +136,9 @@ public class Logic extends WebServiceUserCode {
 			StringBuilder tableSB = new StringBuilder().append("<thead><tr>");
 			String prefix = "";
 			for (LudbColumn luCol : table.ludbColumnMap.values()) {
-				col.append(prefix + "\"" + luCol.columnName + "\"");
+				col.append(prefix + "\"" + luCol.getName() + "\"");
 				prefix = ",";
-				tableSB.append("<th>" + luCol.columnName + "</th>");
+				tableSB.append("<th>" + luCol.getName() + "</th>");
 			}
 			tableSB.append("</tr></thead>");
 			String tableDataRS = "";
@@ -153,9 +153,9 @@ public class Logic extends WebServiceUserCode {
 			StringBuilder tableSB = new StringBuilder().append("<thead><tr>");
 			String prefix = "";
 			for (LudbColumn luCol : table.ludbColumnMap.values()) {
-				col.append(prefix + "\"" + luCol.columnName + "\"");
+				col.append(prefix + "\"" + luCol.getName() + "\"");
 				prefix = ",";
-				tableSB.append("<th>" + luCol.columnName + "</th>");
+				tableSB.append("<th>" + luCol.getName() + "</th>");
 			}
 			tableSB.append("</tr></thead>");
 			String tableDataRS = "";

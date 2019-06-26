@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DBConn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="DBConnCassandra" name="cass_local" type="Cassandra" version="4.0.4.2">
+<DBConn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="DBConnCassandra" name="cass_local" type="Cassandra" version="5.1.0.18">
   <Active>true</Active>
-  <DataSource>localhost</DataSource>
+  <DataSource>10.211.55.7</DataSource>
   <PortNum>9042</PortNum>
   <UserId>admin</UserId>
   <Password>Qjp9Tllji8W8K4XvyFFiOaGhq5WZSWvHcGshMfnPV5Q=:76LBlYZPVZvu9g9F85vVREhj52+oamuXWSoZWXYcGlw=</Password>
+  <ConnectionStringClient>Contact Points='10.211.55.7';Port=9042;Default Keyspace='';Username='admin';Password='[PASSWORD]';</ConnectionStringClient>
+  <IsCustomConnectionStringServerSide>true</IsCustomConnectionStringServerSide>
+  <ConnectionStringServerSide>jdbc:cassandra://10.211.55.7:9042?consistency=LOCAL_ONE&amp;loadbalancing=com.k2view.cdbms.policy.SingleNodePolicy('localhost')&amp;readtimeoutms=5000000&amp;writetimeoutms=5000000</ConnectionStringServerSide>
   <MinConnectionsNumber>0</MinConnectionsNumber>
   <MaxConnectionsNumber>60</MaxConnectionsNumber>
-  <ConnectionStringClient>Contact Points='localhost';Port=9042;Default Keyspace='';Username='admin';Password='[PASSWORD]';</ConnectionStringClient>
-  <IsCustomConnectionStringServerSide>true</IsCustomConnectionStringServerSide>
-  <ConnectionStringServerSide>jdbc:cassandra://localhost:9042?consistency=LOCAL_ONE&amp;loadbalancing=com.k2view.cdbms.policy.SingleNodePolicy('localhost')&amp;readtimeoutms=5000000&amp;writetimeoutms=5000000</ConnectionStringServerSide>
   <UseSelectAsteriskInAutoCreatedQueries>true</UseSelectAsteriskInAutoCreatedQueries>
   <AutomaticMetadataLoading>false</AutomaticMetadataLoading>
   <CommandList />
-  <DBSourceList />
 </DBConn>
