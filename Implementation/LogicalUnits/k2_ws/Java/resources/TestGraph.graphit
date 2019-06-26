@@ -22,21 +22,9 @@
         {
           "name": "ADDRESS",
           "type": "sql",
-          "code": "SELECT REF_ADDRESS.ADDRESS FROM REF_ADDRESS where REF_ADDRESS.ADDRESS_ID = ${ADDRESS_ID}",
-          "entryTag": "ADDRESS_DETAILS",
+          "code": "SELECT REF_ADDRESS.ADDRESS FROM REF_ADDRESS where REF_ADDRESS.ADDRESS_ID = ${ADDRESS_ID} limit 1",
           "sessionProvider": "fabric",
-          "children": [
-            {
-              "name": "ADDRESS",
-              "type": "variable",
-              "code": "ADDRESS"
-            },
-            {
-              "name": "cond",
-              "type": "condition",
-              "code": "7> 4"
-            }
-          ]
+          "one": true
         }
       ]
     }
