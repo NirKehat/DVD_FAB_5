@@ -31,7 +31,7 @@ import static com.k2view.cdbms.usercode.common.SharedGlobals.*;
 
 @SuppressWarnings({"unused", "DefaultAnnotationParam"})
 public class Logic extends WebServiceUserCode {
-	static SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    static SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	public static void wsLUDBViewer(String luName, String IID, String SyncMode) throws Exception {
 		Map<String, Integer> tableList = new HashMap<>();
@@ -66,7 +66,7 @@ public class Logic extends WebServiceUserCode {
 		        grSB = new StringBuilder().append("<div class=\"tree\"><ul><li style=\"display: block;\">");
 		        LUType lut = LUTypeFactoryImpl.getInstance().getTypeByName(luName);
 		        LudbObject rtTable = lut.getRootObject();
-		        grSB.append("<div align=\"middle\" class=\"PARENT_TABLE\"><div id=\"" + rtTable.ludbObjectName + "\" class=\"TABLE\" style=\"display: inline-block\"><p class=\"serif\">" + rtTable.ludbObjectName + "</p>");
+		        grSB.append("<div align=\"middle\" class=\"PARENT_TABLE\"><div id=\"" + rtTable.ludbObjectName + "\" class=\"TABLE\" style=\"display: inline-block\"><p class=\"serif\">" + rtTable.ludbObjectName);
 		        getTable(rtTable, null, lut, grSB, IID, tableList, k2ObjInfo);
 		        grSB.append("</div></li></ul></div>");
 		    }
@@ -76,7 +76,7 @@ public class Logic extends WebServiceUserCode {
 		    errorMsg = e.getMessage();
 		}
 		if (!"".equals(errorMsg)) {
-		    sos.println("<!DOCTYPE html><html><body><div align=\"center\"><h3>" + errorMsg +  "</h3></div></body></html>");
+		    sos.println("<!DOCTYPE html><html><body><div align=\"center\"><h3>" + errorMsg + "</h3></div></body></html>");
 		} else if (luName == null || "".equals(luName)) {
 		    sos.println(sbViewerPage.toString());
 		} else {
@@ -87,146 +87,161 @@ public class Logic extends WebServiceUserCode {
 	}
 
 
-	private static void getTable(LudbObject table, LudbObject tableParent, LUType lut, StringBuilder grSB, String IID, Map<String, Integer> tableList, Map<String, String> k2ObjInfo) {
-		getTblLinks(table, tableParent, lut, grSB, IID, tableList, k2ObjInfo);
-		getTableChildren(table, null, lut, grSB, IID, tableList, k2ObjInfo);
-		if (tableParent != null) grSB.append("</div>");
-	}
+    private static void getTable(LudbObject table, LudbObject tableParent, LUType lut, StringBuilder grSB, String IID, Map<String, Integer> tableList, Map<String, String> k2ObjInfo) {
+        getTblLinks(table, tableParent, lut, grSB, IID, tableList, k2ObjInfo);
+        getTableChildren(table, null, lut, grSB, IID, tableList, k2ObjInfo);
+        if (tableParent != null) grSB.append("</div>");
+    }
 
-	private static void getTableChildren(LudbObject table, LudbObject tableParent, LUType lut, StringBuilder grSB, String IID, Map<String, Integer> tableList, Map<String, String> k2ObjInfo) {
-		if (table.childObjects != null) {
-			if (table.childObjects.size() > 0) {
-				grSB.append("<ul>");
-				for (LudbObject chiTbl : table.childObjects) {
-					grSB.append("<li>");
-					getTable(chiTbl, table, lut, grSB, IID, tableList, k2ObjInfo);
-					grSB.append("</li>");
-				}
-				grSB.append("</ul>");
-			}
-		}
-	}
+    private static void getTableChildren(LudbObject table, LudbObject tableParent, LUType lut, StringBuilder grSB, String IID, Map<String, Integer> tableList, Map<String, String> k2ObjInfo) {
+        if (table.childObjects != null) {
+            if (table.childObjects.size() > 0) {
+                grSB.append("<ul>");
+                for (LudbObject chiTbl : table.childObjects) {
+                    grSB.append("<li>");
+                    getTable(chiTbl, table, lut, grSB, IID, tableList, k2ObjInfo);
+                    grSB.append("</li>");
+                }
+                grSB.append("</ul>");
+            }
+        }
+    }
 
-	private static void getTblLinks(LudbObject table, LudbObject tableParent, LUType lut, StringBuilder grSB, String IID, Map<String, Integer> tableList, Map<String, String> k2ObjInfo) {
-		Map<String, String> tblRelLis = new HashMap<>();
-		if (tableParent != null) {
-			StringBuilder tableID = new StringBuilder().append(table.ludbObjectName + "_" + tableParent.k2StudioObjectName);
-			if(tableList.containsKey(table.ludbObjectName + "_" + tableParent.k2StudioObjectName)){
-				int tblCnt = tableList.get(table.ludbObjectName + "_" + tableParent.k2StudioObjectName);
-				tblCnt++;
-				tableID.append(tableID + (tblCnt + ""));
-				tableList.put(table.ludbObjectName + "_" + tableParent.k2StudioObjectName, tblCnt);
-			}else{
-				tableList.put(table.ludbObjectName + "_" + tableParent.k2StudioObjectName, 1);
-			}
+    private static void getTblLinks(LudbObject table, LudbObject tableParent, LUType lut, StringBuilder grSB, String IID, Map<String, Integer> tableList, Map<String, String> k2ObjInfo) {
+        Map<String, String> tblRelLis = new HashMap<>();
+        if (tableParent != null) {
+            StringBuilder tableID = new StringBuilder().append(table.ludbObjectName + "_" + tableParent.k2StudioObjectName);
+            if (tableList.containsKey(table.ludbObjectName + "_" + tableParent.k2StudioObjectName)) {
+                int tblCnt = tableList.get(table.ludbObjectName + "_" + tableParent.k2StudioObjectName);
+                tblCnt++;
+                tableID.append(tableID + (tblCnt + ""));
+                tableList.put(table.ludbObjectName + "_" + tableParent.k2StudioObjectName, tblCnt);
+            } else {
+                tableList.put(table.ludbObjectName + "_" + tableParent.k2StudioObjectName, 1);
+            }
 
-			StringBuilder popMapInfo = new StringBuilder();
-			List<LudbRelationInfo> childRelations = (List) ((Map) lut.ludbPhysicalRelations.get(tableParent.k2StudioObjectName)).get(table.k2StudioObjectName);
-			for (LudbRelationInfo chRel : childRelations) {
-				if(k2ObjInfo != null && k2ObjInfo.containsKey(chRel.to.get("populationObjectName"))){
-					String vals = k2ObjInfo.get(chRel.to.get("populationObjectName"));
-					Date syncTime = new Date(Long.parseLong(vals.split("@:@")[0]));
-					String lastSyncTime = formatter.format(syncTime);
-					popMapInfo.append("<br/>Population&nbsp;Name:" + chRel.to.get("populationObjectName") + "<br/>Population&nbsp;Last&nbsp;Sync&nbsp;Time:" + lastSyncTime.replaceAll(" ", "&nbsp;") + "<br/>Population&nbsp;Sync&nbsp;Duration:" + vals.split("@:@")[1]);
-				}else{
-					popMapInfo.append("<br/>Population&nbsp;Name:" + chRel.to.get("populationObjectName"));
-				}
-				if (tblRelLis.size() > 0) {
-					String linked_Columns = tblRelLis.get("linked_Columns");
-					tblRelLis.put("linked_Columns", linked_Columns + "<br/>" + tableParent.k2StudioObjectName + "." + chRel.from.get("column") + " = " + table.k2StudioObjectName + "." + chRel.to.get("column"));
-				} else {
-					tblRelLis.put("populatio_name", chRel.to.get("populationObjectName"));
-					tblRelLis.put("linked_Columns", tableParent.k2StudioObjectName + "." + chRel.from.get("column") + " = " + table.k2StudioObjectName + "." + chRel.to.get("column"));
-				}
-			}
+            StringBuilder popMapInfo = new StringBuilder();
+            List<LudbRelationInfo> childRelations = (List) ((Map) lut.ludbPhysicalRelations.get(tableParent.k2StudioObjectName)).get(table.k2StudioObjectName);
+            for (LudbRelationInfo chRel : childRelations) {
+                if (k2ObjInfo != null && k2ObjInfo.containsKey(chRel.to.get("populationObjectName"))) {
+                    String vals = k2ObjInfo.get(chRel.to.get("populationObjectName"));
+                    Date syncTime = new Date(Long.parseLong(vals.split("@:@")[0]));
+                    String lastSyncTime = formatter.format(syncTime);
+                    popMapInfo.append("<br/>Population&nbsp;Name:" + chRel.to.get("populationObjectName") + "<br/>Population&nbsp;Last&nbsp;Sync&nbsp;Time:" + lastSyncTime.replaceAll(" ", "&nbsp;") + "<br/>Population&nbsp;Sync&nbsp;Duration:" + vals.split("@:@")[1]);
+                } else {
+                    popMapInfo.append("<br/>Population&nbsp;Name:" + chRel.to.get("populationObjectName"));
+                }
+                if (tblRelLis.size() > 0) {
+                    String linked_Columns = tblRelLis.get("linked_Columns");
+                    tblRelLis.put("linked_Columns", linked_Columns + "<br/>" + tableParent.k2StudioObjectName + "." + chRel.from.get("column") + " = " + table.k2StudioObjectName + "." + chRel.to.get("column"));
+                } else {
+                    tblRelLis.put("populatio_name", chRel.to.get("populationObjectName"));
+                    tblRelLis.put("linked_Columns", tableParent.k2StudioObjectName + "." + chRel.from.get("column") + " = " + table.k2StudioObjectName + "." + chRel.to.get("column"));
+                }
+            }
 
 
-			StringBuilder col = new StringBuilder();
-			StringBuilder tableSB = new StringBuilder().append("<thead><tr>");
-			String prefix = "";
-			for (LudbColumn luCol : table.ludbColumnMap.values()) {
-				col.append(prefix + "\"" + luCol.getName() + "\"");
-				prefix = ",";
-				tableSB.append("<th>" + luCol.getName() + "</th>");
-			}
-			tableSB.append("</tr></thead>");
-			String tableDataRS = "";
-			if (IID != null && !"".equals(IID)) {
-				tableDataRS = getTableData(tableSB, "select " + col.toString() + " from " + table.ludbObjectName + " where exists (select 1 from " + tableParent.k2StudioObjectName + " where " + tblRelLis.get("linked_Columns") + ")");
-			}
+            StringBuilder col = new StringBuilder();
+            StringBuilder tableSB = new StringBuilder().append("<thead><tr>");
+            String prefix = "";
+            for (LudbColumn luCol : table.ludbColumnMap.values()) {
+                col.append(prefix + "\"" + luCol.getName() + "\"");
+                prefix = ",";
+                tableSB.append("<th>" + luCol.getName() + "</th>");
+            }
+            tableSB.append("</tr></thead>");
+            String tableDataRS = "";
+            if (IID != null && !"".equals(IID)) {
+                tableDataRS = getTableData(tableSB, "select " + col.toString() + " from " + table.ludbObjectName + " where exists (select 1 from " + tableParent.k2StudioObjectName + " where " + tblRelLis.get("linked_Columns") + ")");
+            }
 
-			grSB.append("<div align=\"middle\" class=\"PARENT_TABLE\"><div id=\"" + tableID + "\" class=\"TABLE\"><p class=\"serif\">" + table.k2StudioObjectName + "<br/>" + tblRelLis.get("linked_Columns").replace(" ", "&nbsp;") + popMapInfo.toString() + "</p><div  id=\"" + tableID + "_TableData" + "\" style=\"display: none;\"> <div><table id=\"table_class\">" + tableDataRS + "</table></div></div><script>var tableID = document.getElementById('" + tableID + "');tableID.onclick = function() {    var x = document.getElementById(\"" + tableID + "_TableData\");  if (x.style.display == \"none\" || x.style.display == '') {    x.style.display = \"block\";  } else {    x.style.display = \"none\";  }};</script></div>");
+            grSB.append("<div align=\"middle\" class=\"PARENT_TABLE\"><div id=\"" + tableID + "\" class=\"TABLE\"><p class=\"serif\">" + table.k2StudioObjectName + "<br/>" + tblRelLis.get("linked_Columns").replace(" ", "&nbsp;") + popMapInfo.toString() + "</p><div  id=\"" + tableID + "_TableData" + "\" style=\"display: none;\"> <div><table id=\"table_class\">" + tableDataRS + "</table></div></div><script>var tableID = document.getElementById('" + tableID + "');tableID.onclick = function() {    var x = document.getElementById(\"" + tableID + "_TableData\");  if (x.style.display == \"none\" || x.style.display == '') {    x.style.display = \"block\";  } else {    x.style.display = \"none\";  }};</script></div>");
 
-		} else {
-			StringBuilder col = new StringBuilder();
-			StringBuilder tableSB = new StringBuilder().append("<thead><tr>");
-			String prefix = "";
-			for (LudbColumn luCol : table.ludbColumnMap.values()) {
-				col.append(prefix + "\"" + luCol.getName() + "\"");
-				prefix = ",";
-				tableSB.append("<th>" + luCol.getName() + "</th>");
-			}
-			tableSB.append("</tr></thead>");
-			String tableDataRS = "";
-			if (IID != null && !"".equals(IID)) {
-				tableDataRS = getTableData(tableSB, "select " + col.toString() + " from " + table.ludbObjectName);
-			}
-			grSB.append("<div  id=\"" + table.ludbObjectName + "TableData" + "\" style=\"display: none;\"><div><table id=\"table_class\">" + tableDataRS + "</table></div></div><script>var tableID = document.getElementById('" + table.ludbObjectName + "');tableID.onclick = function() {    var x = document.getElementById(\"" + table.ludbObjectName + "TableData\");  if (x.style.display == \"none\" || x.style.display == '') {    x.style.display = \"block\";  } else {    x.style.display = \"none\";  }};</script></div>");
+        } else {
+            StringBuilder col = new StringBuilder();
+            StringBuilder tableSB = new StringBuilder().append("<thead><tr>");
+            String prefix = "";
+            for (LudbColumn luCol : table.ludbColumnMap.values()) {
+                col.append(prefix + "\"" + luCol.getName() + "\"");
+                prefix = ",";
+                tableSB.append("<th>" + luCol.getName() + "</th>");
+            }
+            tableSB.append("</tr></thead>");
+            String tableDataRS = "";
+            if (IID != null && !"".equals(IID)) {
+                tableDataRS = getTableData(tableSB, "select " + col.toString() + " from " + table.ludbObjectName);
+            }
 
-		}
-	}
+            String popMapInfo = "";
+            List<TablePopulation> tblPop = LUTypeFactoryImpl.getInstance().getTypeByName("DVD").getPopulationCollection();
+            String rtTblPopName = "";
+            for (TablePopulation tb : tblPop) {
+                if (table.ludbObjectName.toUpperCase().equals(tb.getTableObject().ludbObjectName))
+                    rtTblPopName = tb.getPopulationName();
+            }
 
-	private static String getTableData(StringBuilder tableSB, String sql) {
-		tableSB.append("<tbody>");
-		ResultSetWrapper rs = null;
-		try {
-			rs = DBQuery("fabric", sql, null);
-			for (Object[] row : rs) {
-				tableSB.append("<tr>");
-				for (Object val : row) {
-					tableSB.append("<td>" + (val + "").replace("\n", "<br>").replace("\r", "<br>").replace(" ", "&nbsp;") + "</td>");
-				}
-				tableSB.append("</tr>");
+            if (k2ObjInfo != null) {
+                String vals = k2ObjInfo.get(rtTblPopName);
+                Date syncTime = new Date(Long.parseLong(vals.split("@:@")[0]));
+                String lastSyncTime = formatter.format(syncTime);
+                popMapInfo = "<br/>Population&nbsp;Name:" + rtTblPopName + "<br/>Population&nbsp;Last&nbsp;Sync&nbsp;Time:" + lastSyncTime.replaceAll(" ", "&nbsp;") + "<br/>Population&nbsp;Sync&nbsp;Duration:" + vals.split("@:@")[1];
+            }else{
+                popMapInfo = "<br/>Population&nbsp;Name:" + rtTblPopName;
+            }
 
-			}
-		} catch (SQLException e) {
-			log.error("wsGetLUGraph", e);
-		} finally {
-			if (rs != null) {
-				try {
-					rs.closeStmt();
-				} catch (SQLException e) {
-					log.error("wsGetLUGraph", e);
-				}
-			}
-		}
-		tableSB.append("</tbody>");
-		return tableSB.toString();
-	}
+            grSB.append(popMapInfo + "</p><div  id=\"" + table.ludbObjectName + "TableData" + "\" style=\"display: none;\"><div><table id=\"table_class\">" + tableDataRS + "</table></div></div><script>var tableID = document.getElementById('" + table.ludbObjectName + "');tableID.onclick = function() {    var x = document.getElementById(\"" + table.ludbObjectName + "TableData\");  if (x.style.display == \"none\" || x.style.display == '') {    x.style.display = \"block\";  } else {    x.style.display = \"none\";  }};</script></div>");
 
-	private static Map<String, String> get_k2_objects_info(Map<String, String> k2ObjInfo, String LuName) {
-		ResultSetWrapper rs = null;
-		try {
-			rs = DBQuery("fabric", "SELECT object_name, end_sync_time, time_to_populate_in_sec FROM " + LuName + "._k2_objects_info", null);
-			for (Object[] row : rs) {
-				k2ObjInfo.put(row[0] + "", row[1] + "@:@" + row[2]);
-			}
-		} catch (SQLException e) {
-			log.error("wsGetLUGraph", e);
-		} finally {
-			if (rs != null) {
-				try {
-					rs.closeStmt();
-				} catch (SQLException e) {
-					log.error("wsGetLUGraph", e);
-				}
-			}
-		}
-		return k2ObjInfo;
-	}
+        }
+    }
 
-	
-	
+    private static String getTableData(StringBuilder tableSB, String sql) {
+        tableSB.append("<tbody>");
+        ResultSetWrapper rs = null;
+        try {
+            rs = DBQuery("fabric", sql, null);
+            for (Object[] row : rs) {
+                tableSB.append("<tr>");
+                for (Object val : row) {
+                    tableSB.append("<td>" + (val + "").replace("\n", "<br>").replace("\r", "<br>").replace(" ", "&nbsp;") + "</td>");
+                }
+                tableSB.append("</tr>");
 
-	
+            }
+        } catch (SQLException e) {
+            log.error("wsGetLUGraph", e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.closeStmt();
+                } catch (SQLException e) {
+                    log.error("wsGetLUGraph", e);
+                }
+            }
+        }
+        tableSB.append("</tbody>");
+        return tableSB.toString();
+    }
+
+    private static Map<String, String> get_k2_objects_info(Map<String, String> k2ObjInfo, String LuName) {
+        ResultSetWrapper rs = null;
+        try {
+            rs = DBQuery("fabric", "SELECT object_name, end_sync_time, time_to_populate_in_sec FROM " + LuName + "._k2_objects_info", null);
+            for (Object[] row : rs) {
+                k2ObjInfo.put(row[0] + "", row[1] + "@:@" + row[2]);
+            }
+        } catch (SQLException e) {
+            log.error("wsGetLUGraph", e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.closeStmt();
+                } catch (SQLException e) {
+                    log.error("wsGetLUGraph", e);
+                }
+            }
+        }
+        return k2ObjInfo;
+    }
+
+
 }
