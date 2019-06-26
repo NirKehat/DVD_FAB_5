@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_index_ref</ID>
+  <PopulationObjectName>query_index_ref</PopulationObjectName>
+  <TableName>ref_address_indexed</TableName>
+  <RootItemID>f_12</RootItemID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <InputArguments />
+  <ItemsList>
+    <Item xsi:type="FunctionDiagramItemDataSave" id="f_12" name="fnCreIndexTable" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnCreIndexTable.k2function.xml">
+      <InputsList />
+      <OutputsList>
+        <Output id="fo_12.0" name="address_id" />
+        <Output id="fo_12.1" name="address_indexed" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="15" fromNodeOrder="0" fromItemID="f_12" fromColID="fo_12.0" toItemID="tbl_ref_address_indexed" toColID="tblCol_848a8deccfe94ebda2fb244a5d8dbf52" />
+    <Link partId="16" fromNodeOrder="0" fromItemID="f_12" fromColID="fo_12.1" toItemID="tbl_ref_address_indexed" toColID="tblCol_4318e555110646ba8549e0a6562c689e" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="ref_address_indexed.query_index_ref.k2tablePop.xml" lastPartID="22">
+      <TableNode partID="0" name="ref_address_indexed" pos="403.5415 30" width="309.7826" />
+      <FunctionMapNode id="0" R0="1" R1="2" partID="12" topLabel="fnCreIndexTable (12)" pos="54 32.0000038" size="158.90448 49.2369728" isRoot="true">
+        <KFunction>{"Name":"fnCreIndexTable","ID":"f_12","Category":"Root","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[],"outputParams":[{"Name":"address_id","ID":"fo_12.0","Index":0,"DataType":"Long","Comment":""},{"Name":"address_indexed","ID":"fo_12.1","Index":1,"DataType":"String","Comment":""}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link partID="15" from="1" to="3" pointsArr="212.90448 53.1276054 222.90448 53.1276054 393.5415 61.0364571 403.5415 61.0364571" fromNodePartID="12" fromNodeColumnName="address_id" toNodePartID="0" toNodeColumnName="address_id" />
+      <Link partID="16" from="2" to="4" pointsArr="212.90448 65.20052 222.90448 65.20052 393.5415 73.109375 403.5415 73.109375" fromNodePartID="12" fromNodeColumnName="address_indexed" toNodePartID="0" toNodeColumnName="address_indexed" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>STORE</Name>
+  <ID>tbl_STORE</ID>
+  <Columns>
+    <Column name="STORE_ID" id="tblCol_7c4ab2a434a54b5da1830fde3ef448f8" index="0" datatype="Integer" mandatory="true" />
+    <Column name="MANAGER_STAFF_ID" id="tblCol_b2987a34a9444d71846616dac76a9f2f" index="1" datatype="Integer" mandatory="true" />
+    <Column name="ADDRESS_ID" id="tblCol_53d9869c5c1c4f75967a48a4680ace43" index="2" datatype="Integer" mandatory="true" />
+    <Column name="LAST_UPDATE" id="tblCol_6fd2503c660646dfa833155cf83de9a9" index="3" datatype="Text" mandatory="true" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+</TableObject>

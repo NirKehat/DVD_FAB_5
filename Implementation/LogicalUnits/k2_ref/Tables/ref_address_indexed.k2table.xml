@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>ref_address_indexed</Name>
+  <ID>tbl_ref_address_indexed</ID>
+  <Columns>
+    <Column name="address_id" id="tblCol_848a8deccfe94ebda2fb244a5d8dbf52" index="0" datatype="Integer" mandatory="true" />
+    <Column name="address_indexed" id="tblCol_4318e555110646ba8549e0a6562c689e" index="1" datatype="Text" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" instanceOnly="true" columnsIdsList="tblCol_4318e555110646ba8549e0a6562c689e" />
+  </IndexesList>
+  <EnrichmentList />
+  <LazyDataUpdate syncMethod="None" performEvery="1.00:00:00" syncWaitTimeout="60">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
+</TableObject>
