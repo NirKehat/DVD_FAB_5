@@ -42,6 +42,59 @@ public class Logic extends WebServiceUserCode {
 		return response;
 	}
 
+
+	@out(name = "rs", type = Object.class, desc = "")
+	public static Object wsRunGraphitMultipleTime() throws Exception {
+		StringBuilder sb = new StringBuilder();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		String i_graphit_file = "TestGraph.graphit";
+		String i_format = "json";
+		
+		DBExecute("fabric", "get DVD.1", null);
+		Map<String, Object> i_params = new HashMap<>();
+		i_params.put("date", formatter.format(date));
+		
+		Map<String, Object> params = null;
+		if(i_params != null)params = (Map<String, Object>) i_params;
+		
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		OutputStreamWriter osw = new OutputStreamWriter(baos);
+		try {
+			GraphitPool.Entry entry = getLuType().graphitPool().get(i_graphit_file);
+			Graphit graphit = entry.get();
+			if("json".equalsIgnoreCase(i_format)){
+				graphit.run(params, Serializer.Type.JSON, osw);
+			}else {
+				graphit.run(params, Serializer.Type.XML, osw);
+			}
+		}finally {
+			if (osw != null) osw.close();
+			if (baos != null) baos.close();
+		}
+		sb.append(baos.toString());
+		DBExecute("fabric", "get DVD.2", null);
+		
+		baos = new ByteArrayOutputStream();
+		osw = new OutputStreamWriter(baos);
+		try {
+			GraphitPool.Entry entry = getLuType().graphitPool().get(i_graphit_file);
+			Graphit graphit = entry.get();
+			if("json".equalsIgnoreCase(i_format)){
+				graphit.run(params, Serializer.Type.JSON, osw);
+			}else {
+				graphit.run(params, Serializer.Type.XML, osw);
+			}
+		}finally {
+			if (osw != null) osw.close();
+			if (baos != null) baos.close();
+		}
+		
+		sb.append("SECOND GET DATA - " + baos.toString());
+		
+		return sb.toString();
+	}
+
 	
 	
 
