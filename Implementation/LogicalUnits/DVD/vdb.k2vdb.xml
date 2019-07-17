@@ -9,6 +9,7 @@
     <Table>film</Table>
     <Table>inventory</Table>
     <Table>LU_IC_CHECKS_RS</Table>
+    <Table>M_rental</Table>
     <Table>rental</Table>
     <Table>staff</Table>
     <Table>staff_list</Table>
@@ -33,6 +34,11 @@
     <TableProperties name="LU_IC_CHECKS_RS">
       <Populations>
         <Population id="query_lu_ic_checks_rs" name="query_lu_ic_checks_rs" order="2" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="M_rental">
+      <Populations>
+        <Population id="query_public_rental" name="query_public_rental" order="2" disabled="false" enrichment="false" />
       </Populations>
     </TableProperties>
     <TableProperties name="rental">
@@ -93,6 +99,10 @@
       <From tableType="TableObject" table="customer" column="customer_id" columnId="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
       <To tableType="TableObject" table="rental" populationObjectName="query_public_rental" column="customer_id" columnId="fi_41.0" />
     </Relation>
+    <Relation>
+      <From tableType="TableObject" table="customer" column="customer_id" columnId="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
+      <To tableType="TableObject" table="M_rental" populationObjectName="query_public_rental" column="rental_id" columnId="queryCol_0" />
+    </Relation>
   </DatabaseRelations>
   <PreVCsSqlScript />
   <PostVCsSqlScript />
@@ -100,14 +110,15 @@
   <LudbProperties />
   <DiagramGraph>
     <Graph version="5.3.2.0" name="vdb.k2vdb.xml">
-      <Node name="customer" pos="11 264" size="257 137.546936" listGroupSize="250 100" viewType="Table" />
-      <Node name="staff_list" pos="917 589" size="257 137.546753" listGroupSize="250 100" viewType="Table" />
-      <Node name="store" pos="313 464" size="257 136" listGroupSize="250 100" viewType="Table" />
-      <Node name="inventory" pos="615 414" size="257 136" listGroupSize="250 100" viewType="Table" />
-      <Node name="film" pos="917 389" size="257 137.546936" listGroupSize="250 100" viewType="Table" />
-      <Node name="staff" pos="615 614" size="257 137.546753" listGroupSize="250 100" viewType="Table" />
+      <Node name="customer" pos="11 289" size="257 137.546936" listGroupSize="250 100" viewType="Table" />
+      <Node name="staff_list" pos="917 789" size="257 137.546753" listGroupSize="250 100" viewType="Table" />
+      <Node name="store" pos="313 664" size="257 136" listGroupSize="250 100" viewType="Table" />
+      <Node name="inventory" pos="615 614" size="257 136" listGroupSize="250 100" viewType="Table" />
+      <Node name="film" pos="917 589" size="257 137.546936" listGroupSize="250 100" viewType="Table" />
+      <Node name="staff" pos="615 814" size="257 137.546753" listGroupSize="250 100" viewType="Table" />
       <Node name="LU_IC_CHECKS_RS" pos="313 14" size="257 136" listGroupSize="250 100" viewType="Table" />
-      <Node name="rental" pos="676 199" size="257 137.5469" listGroupSize="250 100" viewType="Table" />
+      <Node name="rental" pos="313 214" size="257 137.5469" listGroupSize="250 100" viewType="Table" />
+      <Node name="M_rental" pos="313 414" size="257 137.54686" listGroupSize="250 100" viewType="Table" />
     </Graph>
   </DiagramGraph>
 </VirtualDB>
