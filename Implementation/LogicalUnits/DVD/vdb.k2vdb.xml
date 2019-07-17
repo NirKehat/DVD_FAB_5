@@ -1,33 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<VirtualDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="5.1.0.18">
+<VirtualDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="5.3.2.0">
   <Name>vdb</Name>
   <RootView>customer</RootView>
   <LuLazyDataUpdate syncMethod="None" performEvery="1.00:00:00" />
+  <IidFinderProp />
   <Tables>
-    <Table>rental</Table>
     <Table>customer</Table>
+    <Table>film</Table>
+    <Table>inventory</Table>
+    <Table>LU_IC_CHECKS_RS</Table>
     <Table>payment</Table>
+    <Table>staff</Table>
     <Table>staff_list</Table>
     <Table>store</Table>
-    <Table>inventory</Table>
-    <Table>film</Table>
-    <Table>staff</Table>
-    <Table>LU_IC_CHECKS_RS</Table>
   </Tables>
   <TablesProperties>
-    <TableProperties name="rental">
-      <Populations>
-        <Population id="query_public_rental" name="query_public_rental" order="2" disabled="false" enrichment="false" />
-      </Populations>
-    </TableProperties>
     <TableProperties name="customer">
       <Populations>
         <Population id="query_public_customer" name="query_public_customer" order="1" disabled="false" enrichment="false" />
       </Populations>
     </TableProperties>
+    <TableProperties name="film">
+      <Populations>
+        <Population id="query_public_film" name="query_public_film" order="4" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="inventory">
+      <Populations>
+        <Population id="query_public_inventory" name="query_public_inventory" order="3" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="LU_IC_CHECKS_RS">
+      <Populations>
+        <Population id="query_lu_ic_checks_rs" name="query_lu_ic_checks_rs" order="2" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
     <TableProperties name="payment">
       <Populations>
         <Population id="query_public_payment" name="query_public_payment" order="3" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="staff">
+      <Populations>
+        <Population id="query_public_staff" name="query_public_staff" order="3" disabled="false" enrichment="false" />
       </Populations>
     </TableProperties>
     <TableProperties name="staff_list">
@@ -40,26 +55,6 @@
         <Population id="query_public_store" name="query_public_store" order="2" disabled="false" enrichment="false" />
       </Populations>
     </TableProperties>
-    <TableProperties name="inventory">
-      <Populations>
-        <Population id="query_public_inventory" name="query_public_inventory" order="3" disabled="false" enrichment="false" />
-      </Populations>
-    </TableProperties>
-    <TableProperties name="film">
-      <Populations>
-        <Population id="query_public_film" name="query_public_film" order="4" disabled="false" enrichment="false" />
-      </Populations>
-    </TableProperties>
-    <TableProperties name="staff">
-      <Populations>
-        <Population id="query_public_staff" name="query_public_staff" order="3" disabled="false" enrichment="false" />
-      </Populations>
-    </TableProperties>
-    <TableProperties name="LU_IC_CHECKS_RS">
-      <Populations>
-        <Population id="query_lu_ic_checks_rs" name="query_lu_ic_checks_rs" order="2" disabled="false" enrichment="false" />
-      </Populations>
-    </TableProperties>
   </TablesProperties>
   <EnrichmentsOrderList>
     <Item order="1" active="true" name="LU_IC_CHECKS_RS" columnName="fnExecuteIcChecks" type="Table" />
@@ -70,35 +65,31 @@
   </ReferencesList>
   <Relations />
   <DatabaseRelations>
-    <Relation id="560">
-      <From tableType="TableObject" table="customer" column="customer_id" columnId="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
-      <To tableType="TableObject" table="rental" populationObjectName="query_public_rental" column="customer_id" columnId="fi_41.0" />
-    </Relation>
-    <Relation id="11994">
+    <Relation>
       <From tableType="TableObject" table="customer" column="customer_id" columnId="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
       <To tableType="TableObject" table="payment" populationObjectName="query_public_payment" column="customer_id" columnId="fi_41.0" />
     </Relation>
-    <Relation id="12025">
+    <Relation>
       <From tableType="TableObject" table="customer" column="store_id" columnId="tblCol_a990fb87b0a747e48987db199636e1bc" />
       <To tableType="TableObject" table="store" populationObjectName="query_public_store" column="store_id" columnId="fi_36.0" />
     </Relation>
-    <Relation id="12037">
+    <Relation>
       <From tableType="TableObject" table="store" column="store_id" columnId="tblCol_e8744feb5b41466881cc4720ac5a80f7" />
       <To tableType="TableObject" table="inventory" populationObjectName="query_public_inventory" column="store_id" columnId="queryCol_2" />
     </Relation>
-    <Relation id="12038">
+    <Relation>
       <From tableType="TableObject" table="staff" column="staff_id" columnId="tblCol_af2dd3469a6c4cc19155fb288e2f7bb2" />
       <To tableType="TableObject" table="staff_list" populationObjectName="query_public_staff_list" column="id" columnId="queryCol_0" />
     </Relation>
-    <Relation id="12093">
+    <Relation>
       <From tableType="TableObject" table="store" column="store_id" columnId="tblCol_e8744feb5b41466881cc4720ac5a80f7" />
       <To tableType="TableObject" table="staff" populationObjectName="query_public_staff" column="store_id" columnId="queryCol_5" />
     </Relation>
-    <Relation id="12094">
+    <Relation>
       <From tableType="TableObject" table="inventory" column="film_id" columnId="tblCol_cc93252cbd2a4cf1be3d4f62d69c7d5e" />
       <To tableType="TableObject" table="film" populationObjectName="query_public_film" column="film_id" columnId="queryCol_0" />
     </Relation>
-    <Relation id="15369">
+    <Relation>
       <From tableType="TableObject" table="customer" column="customer_id" columnId="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
       <To tableType="TableObject" table="LU_IC_CHECKS_RS" populationObjectName="query_lu_ic_checks_rs" column="IID" columnId="fi_8.0" />
     </Relation>
@@ -108,42 +99,15 @@
   <Indexes />
   <LudbProperties />
   <DiagramGraph>
-    <Graph version="5.1.0.18" name="vdb.k2vdb.xml" lastPartID="15843">
-      <Node id="0" partID="500" name="rental" isRootView="false" pos="313 12.5" size="257 139" listGroupSize="250 103" viewType="Table">
-        <TableProperties>{"TableName":"rental","TablePopulationPropertiesList":[{"ID":"query_public_rental","Name":"query_public_rental","Order":2,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
-      </Node>
-      <Node id="1" partID="519" name="customer" isRootView="true" pos="11 289" size="257 137.546936" listGroupSize="250 100" viewType="Table">
-        <TableProperties>{"TableName":"customer","TablePopulationPropertiesList":[{"ID":"query_public_customer","Name":"query_public_customer","Order":1,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
-      </Node>
-      <Node id="2" partID="11703" name="payment" isRootView="false" pos="313 214" size="257 136" listGroupSize="250 100" viewType="Table">
-        <TableProperties>{"TableName":"payment","TablePopulationPropertiesList":[{"ID":"query_public_payment","Name":"query_public_payment","Order":3,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
-      </Node>
-      <Node id="3" partID="11995" name="staff_list" isRootView="false" pos="917 789" size="257 137.546753" listGroupSize="250 100" viewType="Table">
-        <TableProperties>{"TableName":"staff_list","TablePopulationPropertiesList":[{"ID":"query_public_staff_list","Name":"query_public_staff_list","Order":4,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
-      </Node>
-      <Node id="4" partID="12014" name="store" isRootView="false" pos="313 664" size="257 136" listGroupSize="250 100" viewType="Table">
-        <TableProperties>{"TableName":"store","TablePopulationPropertiesList":[{"ID":"query_public_store","Name":"query_public_store","Order":2,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
-      </Node>
-      <Node id="5" partID="12026" name="inventory" isRootView="false" pos="615 614" size="257 136" listGroupSize="250 100" viewType="Table">
-        <TableProperties>{"TableName":"inventory","TablePopulationPropertiesList":[{"ID":"query_public_inventory","Name":"query_public_inventory","Order":3,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
-      </Node>
-      <Node id="6" partID="12039" name="film" isRootView="false" pos="917 589" size="257 137.546753" listGroupSize="250 100" viewType="Table">
-        <TableProperties>{"TableName":"film","TablePopulationPropertiesList":[{"ID":"query_public_film","Name":"query_public_film","Order":4,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
-      </Node>
-      <Node id="7" partID="12068" name="staff" isRootView="false" pos="615 814" size="257 137.546753" listGroupSize="250 100" viewType="Table">
-        <TableProperties>{"TableName":"staff","TablePopulationPropertiesList":[{"ID":"query_public_staff","Name":"query_public_staff","Order":3,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
-      </Node>
-      <Node id="8" partID="15317" name="LU_IC_CHECKS_RS" isRootView="false" pos="313 414" size="257 136" listGroupSize="250 100" viewType="Table">
-        <TableProperties>{"TableName":"LU_IC_CHECKS_RS","TablePopulationPropertiesList":[{"ID":"query_lu_ic_checks_rs","Name":"query_lu_ic_checks_rs","Order":2,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
-      </Node>
-      <Link from="9" to="10" partID="560" linkType="Database" pointsArr="268 334.545563 278 334.545563 303 106.319008 313 106.319008" fromNodePartID="519" fromNodeColumnName="customer_id" toNodePartID="500" toNodeColumnName="customer_id" toNodePopulationObjectName="query_public_rental" />
-      <Link from="9" to="11" partID="11994" linkType="Database" pointsArr="268 334.545563 278 334.545563 303 259.5456 313 259.5456" fromNodePartID="519" fromNodeColumnName="customer_id" toNodePartID="11703" toNodeColumnName="customer_id" toNodePopulationObjectName="query_public_payment" />
-      <Link from="12" to="13" partID="12025" linkType="Database" pointsArr="268 350.636719 278 350.636719 303 709.5456 313 709.5456" fromNodePartID="519" fromNodeColumnName="store_id" toNodePartID="12014" toNodeColumnName="store_id" toNodePopulationObjectName="query_public_store" />
-      <Link from="14" to="15" partID="12037" linkType="Database" pointsArr="570 709.5456 580 709.5456 605 691.727844 615 691.727844" fromNodePartID="12014" fromNodeColumnName="store_id" toNodePartID="12026" toNodeColumnName="store_id" toNodePopulationObjectName="query_public_inventory" />
-      <Link from="16" to="17" partID="12038" linkType="Database" pointsArr="872 859.5456 882 859.5456 907 850.6367 917 850.6367" fromNodePartID="12068" fromNodeColumnName="staff_id" toNodePartID="11995" toNodeColumnName="id" toNodePopulationObjectName="query_public_staff_list" />
-      <Link from="14" to="18" partID="12093" linkType="Database" pointsArr="570 709.5456 580 709.5456 605 940.0012 615 940.0012" fromNodePartID="12014" fromNodeColumnName="store_id" toNodePartID="12068" toNodeColumnName="store_id" toNodePopulationObjectName="query_public_staff" />
-      <Link from="19" to="20" partID="12094" linkType="Database" pointsArr="872 675.6367 882 675.6367 907 634.5456 917 634.5456" fromNodePartID="12026" fromNodeColumnName="film_id" toNodePartID="12039" toNodeColumnName="film_id" toNodePopulationObjectName="query_public_film" />
-      <Link from="9" to="21" partID="15369" linkType="Database" pointsArr="268 334.545563 278 334.545563 303 459.545563 313 459.545563" fromNodePartID="519" fromNodeColumnName="customer_id" toNodePartID="15317" toNodeColumnName="IID" toNodePopulationObjectName="query_lu_ic_checks_rs" />
+    <Graph version="5.3.2.0" name="vdb.k2vdb.xml">
+      <Node name="customer" pos="11 289" size="257 137.546936" listGroupSize="250 100" viewType="Table" />
+      <Node name="payment" pos="313 214" size="257 136" listGroupSize="250 100" viewType="Table" />
+      <Node name="staff_list" pos="917 789" size="257 137.546753" listGroupSize="250 100" viewType="Table" />
+      <Node name="store" pos="313 664" size="257 136" listGroupSize="250 100" viewType="Table" />
+      <Node name="inventory" pos="615 614" size="257 136" listGroupSize="250 100" viewType="Table" />
+      <Node name="film" pos="917 589" size="257 137.546753" listGroupSize="250 100" viewType="Table" />
+      <Node name="staff" pos="615 814" size="257 137.546753" listGroupSize="250 100" viewType="Table" />
+      <Node name="LU_IC_CHECKS_RS" pos="313 414" size="257 136" listGroupSize="250 100" viewType="Table" />
     </Graph>
   </DiagramGraph>
 </VirtualDB>
