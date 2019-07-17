@@ -9,7 +9,6 @@
     <Table>film</Table>
     <Table>inventory</Table>
     <Table>LU_IC_CHECKS_RS</Table>
-    <Table>payment</Table>
     <Table>staff</Table>
     <Table>staff_list</Table>
     <Table>store</Table>
@@ -33,11 +32,6 @@
     <TableProperties name="LU_IC_CHECKS_RS">
       <Populations>
         <Population id="query_lu_ic_checks_rs" name="query_lu_ic_checks_rs" order="2" disabled="false" enrichment="false" />
-      </Populations>
-    </TableProperties>
-    <TableProperties name="payment">
-      <Populations>
-        <Population id="query_public_payment" name="query_public_payment" order="3" disabled="false" enrichment="false" />
       </Populations>
     </TableProperties>
     <TableProperties name="staff">
@@ -65,10 +59,6 @@
   </ReferencesList>
   <Relations />
   <DatabaseRelations>
-    <Relation>
-      <From tableType="TableObject" table="customer" column="customer_id" columnId="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
-      <To tableType="TableObject" table="payment" populationObjectName="query_public_payment" column="customer_id" columnId="fi_41.0" />
-    </Relation>
     <Relation>
       <From tableType="TableObject" table="customer" column="store_id" columnId="tblCol_a990fb87b0a747e48987db199636e1bc" />
       <To tableType="TableObject" table="store" populationObjectName="query_public_store" column="store_id" columnId="fi_36.0" />
@@ -101,7 +91,6 @@
   <DiagramGraph>
     <Graph version="5.3.2.0" name="vdb.k2vdb.xml">
       <Node name="customer" pos="11 289" size="257 137.546936" listGroupSize="250 100" viewType="Table" />
-      <Node name="payment" pos="313 214" size="257 136" listGroupSize="250 100" viewType="Table" />
       <Node name="staff_list" pos="917 789" size="257 137.546753" listGroupSize="250 100" viewType="Table" />
       <Node name="store" pos="313 664" size="257 136" listGroupSize="250 100" viewType="Table" />
       <Node name="inventory" pos="615 614" size="257 136" listGroupSize="250 100" viewType="Table" />
