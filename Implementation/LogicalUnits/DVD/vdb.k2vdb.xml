@@ -10,6 +10,7 @@
     <Table>inventory</Table>
     <Table>LU_IC_CHECKS_RS</Table>
     <Table>payment</Table>
+    <Table>rental</Table>
     <Table>staff</Table>
     <Table>staff_list</Table>
     <Table>store</Table>
@@ -38,6 +39,11 @@
     <TableProperties name="payment">
       <Populations>
         <Population id="query_public_payment" name="query_public_payment" order="3" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="rental">
+      <Populations>
+        <Population id="query_public_rental" name="query_public_rental" order="2" disabled="false" enrichment="false" />
       </Populations>
     </TableProperties>
     <TableProperties name="staff">
@@ -93,6 +99,10 @@
       <From tableType="TableObject" table="customer" column="customer_id" columnId="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
       <To tableType="TableObject" table="LU_IC_CHECKS_RS" populationObjectName="query_lu_ic_checks_rs" column="IID" columnId="fi_8.0" />
     </Relation>
+    <Relation>
+      <From tableType="TableObject" table="customer" column="customer_id" columnId="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
+      <To tableType="TableObject" table="rental" populationObjectName="query_public_rental" column="customer_id" columnId="fi_41.0" />
+    </Relation>
   </DatabaseRelations>
   <PreVCsSqlScript />
   <PostVCsSqlScript />
@@ -108,6 +118,7 @@
       <Node name="film" pos="917 589" size="257 137.546753" listGroupSize="250 100" viewType="Table" />
       <Node name="staff" pos="615 814" size="257 137.546753" listGroupSize="250 100" viewType="Table" />
       <Node name="LU_IC_CHECKS_RS" pos="313 414" size="257 136" listGroupSize="250 100" viewType="Table" />
+      <Node name="rental" pos="333 31" size="257 137.54686" listGroupSize="250 100" viewType="Table" />
     </Graph>
   </DiagramGraph>
 </VirtualDB>
