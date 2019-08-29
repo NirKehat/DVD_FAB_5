@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>service</Name>
+  <ID>service</ID>
+  <Version>5.3.2.0</Version>
+  <SerializationName>service</SerializationName>
+  <Columns>
+    <Column name="_ID" id="tblCol_d5d317f1c73d4e09ad83d60a7a988056" index="0" datatype="Text" mandatory="true" serializationType="None" />
+    <Column name="_PID" id="tblCol_9044d14765fa41c29a82eeec4fc454f8" index="1" datatype="Text" mandatory="true" serializationType="None" />
+    <Column name="serviceName" id="tblCol_569e256fc4104fe485ddfd5cbbb2c4bf" index="2" datatype="Text" mandatory="true" serializationName="serviceName">
+      <Comment />
+    </Column>
+    <Column name="serviceId" id="tblCol_81c168aced404555acb4935eaaf96136" index="3" datatype="Integer" mandatory="true" serializationName="serviceId">
+      <Comment />
+    </Column>
+    <Column name="serviceVersion" id="tblCol_f8b5b773e259448c8d81d3da7bd4408c" index="4" datatype="Real" mandatory="true" serializationName="serviceVersion">
+      <Comment />
+    </Column>
+    <Column name="parentServiceId" id="tblCol_f7d08201923f4b1db4cb9af8ef7b8466" index="5" datatype="Integer" mandatory="true" serializationName="parentServiceId">
+      <Comment />
+    </Column>
+    <Column name="parentServiceVersion" id="tblCol_49a913b969f043b693790eb794b1eb75" index="6" datatype="Real" mandatory="true" serializationName="parentServiceVersion">
+      <Comment />
+    </Column>
+    <Column name="parentServiceName" id="tblCol_6fdc250e7c754b58b8e54b24f0656290" index="7" datatype="Text" mandatory="true" serializationName="parentServiceName">
+      <Comment />
+    </Column>
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+</TableObject>

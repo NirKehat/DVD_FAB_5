@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>pop_services</ID>
+  <PopulationObjectName>pop_services</PopulationObjectName>
+  <TableName>service</TableName>
+  <RootItemID>f_11</RootItemID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <IidFinderProp />
+  <InputArguments>
+    <Arg name="_ID" id="fi_11.0" dataType="String" index="0" />
+    <Arg name="_PID" id="fi_11.1" dataType="String" index="1" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="FunctionDiagramItemDataSave" id="f_11" name="fnPop_service" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPop_service.k2function.xml">
+      <InputsList>
+        <Input id="fi_11.0" name="_ID" />
+        <Input id="fi_11.1" name="_PID" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_11.0" name="_ID" />
+        <Output id="fo_11.1" name="_PID" />
+        <Output id="fo_11.2" name="serviceName" />
+        <Output id="fo_11.3" name="serviceId" />
+        <Output id="fo_11.4" name="serviceVersion" />
+        <Output id="fo_11.5" name="parentServiceId" />
+        <Output id="fo_11.6" name="parentServiceVersion" />
+        <Output id="fo_11.7" name="parentServiceName" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="22" fromNodeOrder="0" fromItemID="f_11" fromColID="fo_11.0" toItemID="service" toColID="tblCol_d5d317f1c73d4e09ad83d60a7a988056" />
+    <Link partId="23" fromNodeOrder="0" fromItemID="f_11" fromColID="fo_11.1" toItemID="service" toColID="tblCol_9044d14765fa41c29a82eeec4fc454f8" />
+    <Link partId="24" fromNodeOrder="0" fromItemID="f_11" fromColID="fo_11.2" toItemID="service" toColID="tblCol_569e256fc4104fe485ddfd5cbbb2c4bf" />
+    <Link partId="25" fromNodeOrder="0" fromItemID="f_11" fromColID="fo_11.3" toItemID="service" toColID="tblCol_81c168aced404555acb4935eaaf96136" />
+    <Link partId="26" fromNodeOrder="0" fromItemID="f_11" fromColID="fo_11.4" toItemID="service" toColID="tblCol_f8b5b773e259448c8d81d3da7bd4408c" />
+    <Link partId="27" fromNodeOrder="0" fromItemID="f_11" fromColID="fo_11.5" toItemID="service" toColID="tblCol_f7d08201923f4b1db4cb9af8ef7b8466" />
+    <Link partId="28" fromNodeOrder="0" fromItemID="f_11" fromColID="fo_11.6" toItemID="service" toColID="tblCol_49a913b969f043b693790eb794b1eb75" />
+    <Link partId="29" fromNodeOrder="0" fromItemID="f_11" fromColID="fo_11.7" toItemID="service" toColID="tblCol_6fdc250e7c754b58b8e54b24f0656290" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="service.pop_services.k2tablePop.xml" lastPartID="29">
+      <TableNode partID="0" name="service" pos="288.34314 0.671890259" width="309.324158" />
+      <FunctionMapNode id="0" L0="1" L1="2" R0="3" R1="4" R2="5" R3="6" R4="7" R5="8" R6="9" R7="10" partID="11" topLabel="fnPop_service (11)" pos="10.0000076 10.1627693" size="158.343124 121.674461" isRoot="true">
+        <KFunction>{"Name":"fnPop_service","ID":"f_11","Category":"Root","Version":"5.3.2.0","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"_ID","ID":"fi_11.0","Index":0,"DataType":"String"},{"Name":"_PID","ID":"fi_11.1","Index":1,"DataType":"String"}],"outputParams":[{"Name":"_ID","ID":"fo_11.0","Index":0,"DataType":"String"},{"Name":"_PID","ID":"fo_11.1","Index":1,"DataType":"String"},{"Name":"serviceName","ID":"fo_11.2","Index":2,"DataType":"String"},{"Name":"serviceId","ID":"fo_11.3","Index":3,"DataType":"Long"},{"Name":"serviceVersion","ID":"fo_11.4","Index":4,"DataType":"Double"},{"Name":"parentServiceId","ID":"fo_11.5","Index":5,"DataType":"Long"},{"Name":"parentServiceVersion","ID":"fo_11.6","Index":6,"DataType":"Double"},{"Name":"parentServiceName","ID":"fo_11.7","Index":7,"DataType":"String"}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link partID="22" from="3" to="11" pointsArr="168.34314 31.29037 178.34314 31.29037 218.34314 31 238.34314 31 278.34314 31.7083435 288.34314 31.7083435" fromNodePartID="11" fromNodeColumnName="_ID" toNodePartID="0" toNodeColumnName="_ID" />
+      <Link partID="23" from="4" to="12" pointsArr="168.34314 43.36329 178.34314 43.36329 218.34314 43 238.34314 43 278.34314 43.7812576 288.34314 43.7812576" fromNodePartID="11" fromNodeColumnName="_PID" toNodePartID="0" toNodeColumnName="_PID" />
+      <Link partID="24" from="5" to="13" pointsArr="168.34314 55.436203 178.34314 55.436203 218.34314 55 238.34314 55 278.34314 55.85417 288.34314 55.85417" fromNodePartID="11" fromNodeColumnName="serviceName" toNodePartID="0" toNodeColumnName="serviceName" />
+      <Link partID="25" from="6" to="14" pointsArr="168.34314 67.50912 178.34314 67.50912 218.34314 68 238.34314 68 278.34314 67.92709 288.34314 67.92709" fromNodePartID="11" fromNodeColumnName="serviceId" toNodePartID="0" toNodeColumnName="serviceId" />
+      <Link partID="26" from="7" to="15" pointsArr="168.34314 79.58203 178.34314 79.58203 218.34314 80 238.34314 80 278.34314 80 288.34314 80" fromNodePartID="11" fromNodeColumnName="serviceVersion" toNodePartID="0" toNodeColumnName="serviceVersion" />
+      <Link partID="27" from="8" to="16" pointsArr="168.34314 91.6549454 178.34314 91.6549454 218.34314 92 238.34314 92 278.34314 92.07292 288.34314 92.07292" fromNodePartID="11" fromNodeColumnName="parentServiceId" toNodePartID="0" toNodeColumnName="parentServiceId" />
+      <Link partID="28" from="9" to="17" pointsArr="168.34314 103.727867 178.34314 103.727867 218.34314 104 238.34314 104 278.34314 104.145844 288.34314 104.145844" fromNodePartID="11" fromNodeColumnName="parentServiceVersion" toNodePartID="0" toNodeColumnName="parentServiceVersion" />
+      <Link partID="29" from="10" to="18" pointsArr="168.34314 115.800789 178.34314 115.800789 218.34314 116 238.34314 116 278.34314 116.218765 288.34314 116.218765" fromNodePartID="11" fromNodeColumnName="parentServiceName" toNodePartID="0" toNodeColumnName="parentServiceName" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>configTypes</Name>
+  <ID>configTypes</ID>
+  <Version>5.3.2.0</Version>
+  <SerializationName>configTypes</SerializationName>
+  <Columns>
+    <Column name="_PID" id="tblCol_dba66b3be3554249a6341acd6b67ed01" index="0" datatype="Text" mandatory="true" serializationType="None" />
+    <Column name="configType" id="tblCol_0082143837784897a396193a6cd7df42" index="1" datatype="Text" mandatory="true" serializationName="configType">
+      <Comment />
+    </Column>
+    <Column name="configTypeValue" id="tblCol_8b14eb5599f74bcdac41bd6968454d07" index="2" datatype="Integer" mandatory="true" serializationName="configTypeValue">
+      <Comment />
+    </Column>
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+</TableObject>

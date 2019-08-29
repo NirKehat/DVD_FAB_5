@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="4.0.4.2">
+  <Name>par_sync_iid_from_xml</Name>
+  <MapType>ParserMap</MapType>
+  <RootItemID>f_1</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <TargetsList>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>par_xml_to_lu</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item id="f_1" name="fnRtParXml" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnRtParXml.k2function.xml">
+          <InputsList>
+            <Input id="fi_1.0" name="i_file" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_1.0" name="iid" />
+            <Output id="fo_1.1" name="xml_file_name" />
+            <Output id="fo_1.2" name="xml_file_content" />
+            <Output id="fo_1.3" name="xml_file_parse_time" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_par_xml_to_lu" name="par_xml_to_lu" nodeOrder="1" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="par_sync_iid_from_xml">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_73e98a079a2e4fcd9d5b42b75e6766bd" name="iid" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_fe7d14dcb8034cdb9be2637bf7730348" name="xml_file_name" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_6c040944cd88476ca74e3e352510cdd3" name="xml_file_content" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_bd403d5b12874ccf88a9d2d014b8c1c1" name="xml_file_parse_time" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn />
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_73e98a079a2e4fcd9d5b42b75e6766bd" name="iid" pkType="Partition_Key" />
+            <RecordTypePkColumn id="rtCol_bd403d5b12874ccf88a9d2d014b8c1c1" name="xml_file_parse_time" pkType="Clustering_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="17" fromNodeOrder="0" fromItemID="f_1" fromColID="fo_1.0" toItemID="rt_par_xml_to_lu" toColID="rtCol_73e98a079a2e4fcd9d5b42b75e6766bd" />
+        <Link partId="18" fromNodeOrder="0" fromItemID="f_1" fromColID="fo_1.1" toItemID="rt_par_xml_to_lu" toColID="rtCol_fe7d14dcb8034cdb9be2637bf7730348" />
+        <Link partId="19" fromNodeOrder="0" fromItemID="f_1" fromColID="fo_1.2" toItemID="rt_par_xml_to_lu" toColID="rtCol_6c040944cd88476ca74e3e352510cdd3" />
+        <Link partId="20" fromNodeOrder="0" fromItemID="f_1" fromColID="fo_1.3" toItemID="rt_par_xml_to_lu" toColID="rtCol_bd403d5b12874ccf88a9d2d014b8c1c1" />
+      </LinksList>
+      <ParserMapRecordType id="rt_par_xml_to_lu" name="par_xml_to_lu" parentParser="par_sync_iid_from_xml">
+        <Active xsi:nil="true" />
+        <RecordTypeKeyColumn />
+        <Columns>
+          <Column id="rtCol_73e98a079a2e4fcd9d5b42b75e6766bd" name="iid" index="0">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_fe7d14dcb8034cdb9be2637bf7730348" name="xml_file_name" index="1">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_6c040944cd88476ca74e3e352510cdd3" name="xml_file_content" index="2">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_bd403d5b12874ccf88a9d2d014b8c1c1" name="xml_file_parse_time" index="3">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_73e98a079a2e4fcd9d5b42b75e6766bd" name="iid" pkType="Partition_Key" />
+          <PkColumn id="rtCol_bd403d5b12874ccf88a9d2d014b8c1c1" name="xml_file_parse_time" pkType="Clustering_Key" />
+        </PkColumns>
+      </ParserMapRecordType>
+    </Target>
+  </TargetsList>
+  <DiagramGraph>
+    <Graph name="par_sync_iid_from_xml.k2parserMap.xml" lastPartID="65" mapType="ParserMap" logicalUnitNodeType="Full_Hierarchy">
+      <ParserRecordTypeTargetNode partID="0" name="par_xml_to_lu" pos="224.503357 21.9635429" size="312.997864 98.29166" parserName="par_sync_iid_from_xml" isTargetNode="true" isRoot="false" />
+      <FunctionMapNode id="0" L0="1" R0="2" R1="3" R2="4" R3="5" partID="1" topLabel="fnRtParXml (1)" pos="9.823635 27.4544258" size="129.854034 73.38281" isRoot="true">
+        <KFunction>{"Name":"fnRtParXml","ID":"f_1","Category":"XML","Version":"4.0.4.2","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"i_file","ID":"fi_1.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"iid","ID":"fo_1.0","Index":0,"DataType":"String","Comment":""},{"Name":"xml_file_name","ID":"fo_1.1","Index":1,"DataType":"String"},{"Name":"xml_file_content","ID":"fo_1.2","Index":2,"DataType":"String"},{"Name":"xml_file_parse_time","ID":"fo_1.3","Index":3,"DataType":"String"}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link from="2" to="6" partID="17" pointsArr="139.677673 48.5820274 149.677673 48.5820274 214.503357 52.9999962 224.503357 52.9999962" fromNodePartID="1" fromNodeColumnName="iid" toNodePartID="0" toNodeColumnName="iid" />
+      <Link from="3" to="7" partID="18" pointsArr="139.677673 60.6549454 149.677673 60.6549454 214.503357 65.0729141 224.503357 65.0729141" fromNodePartID="1" fromNodeColumnName="xml_file_name" toNodePartID="0" toNodeColumnName="xml_file_name" />
+      <Link from="4" to="8" partID="19" pointsArr="139.677673 72.72786 149.677673 72.72786 214.503357 77.14583 224.503357 77.14583" fromNodePartID="1" fromNodeColumnName="xml_file_content" toNodePartID="0" toNodeColumnName="xml_file_content" />
+      <Link from="5" to="9" partID="20" pointsArr="139.677673 84.80077 149.677673 84.80077 214.503357 89.21874 224.503357 89.21874" fromNodePartID="1" fromNodeColumnName="xml_file_parse_time" toNodePartID="0" toNodeColumnName="xml_file_parse_time" />
+    </Graph>
+  </DiagramGraph>
+  <Active>true</Active>
+  <syncEvery>00:00:00</syncEvery>
+  <InterfaceName>int_iid_xml_files</InterfaceName>
+  <DeleteResource>true</DeleteResource>
+</ParserMap>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>featureEndDate</Name>
+  <ID>featureEndDate</ID>
+  <Version>5.3.2.0</Version>
+  <SerializationName>featureEndDate</SerializationName>
+  <Columns>
+    <Column name="_PID" id="tblCol_4f6963df011e40d195a52aea1a45254e" index="0" datatype="Text" mandatory="true" serializationType="None" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+</TableObject>

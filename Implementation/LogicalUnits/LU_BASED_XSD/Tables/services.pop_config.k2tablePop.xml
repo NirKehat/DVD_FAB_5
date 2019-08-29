@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>pop_config</ID>
+  <PopulationObjectName>pop_config</PopulationObjectName>
+  <TableName>services</TableName>
+  <RootItemID>f_5</RootItemID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <IidFinderProp />
+  <InputArguments>
+    <Arg name="_ID" id="fi_5.0" dataType="String" index="0" />
+    <Arg name="_PID" id="fi_5.1" dataType="String" index="1" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="FunctionDiagramItemDataSave" id="f_5" name="fnPop_services" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPop_services.k2function.xml">
+      <InputsList>
+        <Input id="fi_5.0" name="_ID" />
+        <Input id="fi_5.1" name="_PID" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_5.0" name="_ID" />
+        <Output id="fo_5.1" name="_PID" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="10" fromNodeOrder="0" fromItemID="f_5" fromColID="fo_5.0" toItemID="services" toColID="tblCol_361e849e37ca479293e7a0d030a8ba3f" />
+    <Link partId="11" fromNodeOrder="0" fromItemID="f_5" fromColID="fo_5.1" toItemID="services" toColID="tblCol_52090f2d31794978ab70232dfa2d5247" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="services.pop_config.k2tablePop.xml" lastPartID="11">
+      <TableNode partID="0" name="services" pos="287.924072 0.8906288" width="309.324158" />
+      <FunctionMapNode id="0" L0="1" L1="2" R0="3" R1="4" partID="5" topLabel="fnPop_services (5)" pos="10.0000076 10.3815136" size="157.924057 49.2369728" isRoot="true">
+        <KFunction>{"Name":"fnPop_services","ID":"f_5","Category":"Root","Version":"5.3.2.0","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"_ID","ID":"fi_5.0","Index":0,"DataType":"String"},{"Name":"_PID","ID":"fi_5.1","Index":1,"DataType":"String"}],"outputParams":[{"Name":"_ID","ID":"fo_5.0","Index":0,"DataType":"String"},{"Name":"_PID","ID":"fo_5.1","Index":1,"DataType":"String"}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link partID="10" from="3" to="5" pointsArr="167.924057 31.5091152 177.924057 31.5091152 217.924072 32 237.924072 32 277.924072 31.9270859 287.924072 31.9270859" fromNodePartID="5" fromNodeColumnName="_ID" toNodePartID="0" toNodeColumnName="_ID" />
+      <Link partID="11" from="4" to="6" pointsArr="167.924057 43.58203 177.924057 43.58203 217.924072 44 237.924072 44 277.924072 44.0000038 287.924072 44.0000038" fromNodePartID="5" fromNodeColumnName="_PID" toNodePartID="0" toNodeColumnName="_PID" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

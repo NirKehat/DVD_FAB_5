@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>services</Name>
+  <ID>services</ID>
+  <Version>5.3.2.0</Version>
+  <SerializationName>services</SerializationName>
+  <Columns>
+    <Column name="_ID" id="tblCol_361e849e37ca479293e7a0d030a8ba3f" index="0" datatype="Text" mandatory="true" serializationType="None" />
+    <Column name="_PID" id="tblCol_52090f2d31794978ab70232dfa2d5247" index="1" datatype="Text" mandatory="true" serializationType="None" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+</TableObject>

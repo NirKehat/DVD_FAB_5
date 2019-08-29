@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>pop_variation</ID>
+  <PopulationObjectName>pop_variation</PopulationObjectName>
+  <TableName>displayValue</TableName>
+  <RootItemID>f_4</RootItemID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <IidFinderProp />
+  <InputArguments>
+    <Arg name="_PID" id="fi_4.0" dataType="String" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="FunctionDiagramItemDataSave" id="f_4" name="fnPop_displayValue" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPop_displayValue.k2function.xml">
+      <InputsList>
+        <Input id="fi_4.0" name="_PID" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_4.0" name="_PID" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="7" fromNodeOrder="0" fromItemID="f_4" fromColID="fo_4.0" toItemID="displayValue" toColID="tblCol_553bb7b43f6b452a8a922eabb8fbfe09" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="displayValue.pop_variation.k2tablePop.xml" lastPartID="7">
+      <TableNode partID="0" name="displayValue" pos="277.816772 0.9270859" width="309.324158" />
+      <FunctionMapNode id="0" L0="1" R0="2" partID="4" topLabel="fnPop_displayValue (4)" pos="10 6.45442772" size="147.816772 45.0911446" isRoot="true">
+        <KFunction>{"Name":"fnPop_displayValue","ID":"f_4","Category":"Root","Version":"5.3.2.0","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"_PID","ID":"fi_4.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"_PID","ID":"fo_4.0","Index":0,"DataType":"String"}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link partID="7" from="2" to="3" pointsArr="157.816772 31.54557 167.816772 31.54557 267.816772 31.9635429 277.816772 31.9635429" fromNodePartID="4" fromNodeColumnName="_PID" toNodePartID="0" toNodeColumnName="_PID" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

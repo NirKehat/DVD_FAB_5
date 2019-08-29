@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VirtualDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="5.3.2.0">
+  <Name>vdb</Name>
+  <RootView>XML_ROOT_TBL</RootView>
+  <LuLazyDataUpdate syncMethod="None" performEvery="1.00:00:00" />
+  <IidFinderProp />
+  <Tables>
+    <Table>config</Table>
+    <Table>configTypes</Table>
+    <Table>feature</Table>
+    <Table>service</Table>
+    <Table>services</Table>
+    <Table>variation</Table>
+    <Table>XML_ROOT_TBL</Table>
+  </Tables>
+  <TablesProperties>
+    <TableProperties name="config">
+      <Populations>
+        <Population id="pop_config" name="pop_config" order="2" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="configTypes">
+      <Populations>
+        <Population id="pop_config" name="pop_config" order="3" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="feature">
+      <Populations>
+        <Population id="pop_service" name="pop_service" order="5" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="service">
+      <Populations>
+        <Population id="pop_services" name="pop_services" order="4" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="services">
+      <Populations>
+        <Population id="pop_config" name="pop_config" order="3" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="variation">
+      <Populations>
+        <Population id="pop_feature" name="pop_feature" order="6" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="XML_ROOT_TBL">
+      <Populations>
+        <Population id="query_xml_root_tbl" name="query_xml_root_tbl" order="1" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+  </TablesProperties>
+  <EnrichmentsOrderList />
+  <ReferencesList />
+  <Relations />
+  <DatabaseRelations>
+    <Relation>
+      <From tableType="TableObject" table="config" column="_ID" columnId="tblCol_10a2b74f698a4861a78047d9cc9e0d18" />
+      <To tableType="TableObject" table="configTypes" populationObjectName="pop_config" column="_PID" columnId="fi_6.0" />
+    </Relation>
+    <Relation>
+      <From tableType="TableObject" table="config" column="_ID" columnId="tblCol_10a2b74f698a4861a78047d9cc9e0d18" />
+      <To tableType="TableObject" table="services" populationObjectName="pop_config" column="_PID" columnId="fi_5.1" />
+    </Relation>
+    <Relation>
+      <From tableType="TableObject" table="services" column="_ID" columnId="tblCol_361e849e37ca479293e7a0d030a8ba3f" />
+      <To tableType="TableObject" table="service" populationObjectName="pop_services" column="_PID" columnId="fi_11.1" />
+    </Relation>
+    <Relation>
+      <From tableType="TableObject" table="service" column="_ID" columnId="tblCol_d5d317f1c73d4e09ad83d60a7a988056" />
+      <To tableType="TableObject" table="feature" populationObjectName="pop_service" column="_PID" columnId="fi_11.1" />
+    </Relation>
+    <Relation>
+      <From tableType="TableObject" table="feature" column="_ID" columnId="tblCol_f2812ec4dab34bc6b4695a6ca93c10d5" />
+      <To tableType="TableObject" table="variation" populationObjectName="pop_feature" column="_PID" columnId="fi_17.0" />
+    </Relation>
+    <Relation>
+      <From tableType="TableObject" table="XML_ROOT_TBL" column="iid" columnId="tblCol_067130fbb6164755931d7916700489b9" />
+      <To tableType="TableObject" table="config" populationObjectName="pop_config" column="_ID" columnId="fi_4.0" />
+    </Relation>
+  </DatabaseRelations>
+  <PreVCsSqlScript />
+  <PostVCsSqlScript />
+  <Indexes />
+  <LudbProperties />
+  <DiagramGraph>
+    <Graph version="5.3.2.0" name="vdb.k2vdb.xml">
+      <Node name="config" pos="313 114" size="257 136" listGroupSize="250 100" viewType="Table" />
+      <Node name="configTypes" pos="615 14" size="257 136" listGroupSize="250 100" viewType="Table" />
+      <Node name="services" pos="615 214" size="257 136" listGroupSize="250 100" viewType="Table" />
+      <Node name="service" pos="917 189" size="257 137.5469" listGroupSize="250 100" viewType="Table" />
+      <Node name="feature" pos="1219 164" size="257 137.546875" listGroupSize="250 100" viewType="Table" />
+      <Node name="variation" pos="1521 214" size="257 137.5469" listGroupSize="250 100" viewType="Table" />
+      <Node name="XML_ROOT_TBL" pos="11 114" size="257 136" listGroupSize="250 100" viewType="Table" />
+    </Graph>
+  </DiagramGraph>
+</VirtualDB>

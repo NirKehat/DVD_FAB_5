@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>feature</Name>
+  <ID>feature</ID>
+  <Version>5.3.2.0</Version>
+  <SerializationName>feature</SerializationName>
+  <Columns>
+    <Column name="_ID" id="tblCol_f2812ec4dab34bc6b4695a6ca93c10d5" index="0" datatype="Text" mandatory="true" serializationType="None" />
+    <Column name="_PID" id="tblCol_e7cc7d9e3f1c4d61bd743b6413695ab4" index="1" datatype="Text" mandatory="true" serializationType="None" />
+    <Column name="featureId" id="tblCol_812cd08c802941bf8922d2def34162a8" index="2" datatype="Integer" mandatory="true" serializationName="featureId">
+      <Comment />
+    </Column>
+    <Column name="featureVersion" id="tblCol_9276dd89126948aaa870c08c97c868b8" index="3" datatype="Real" mandatory="true" serializationName="featureVersion">
+      <Comment />
+    </Column>
+    <Column name="featureShortName" id="tblCol_4edcc48c5708439dbc0d100dee8c14d8" index="4" datatype="Text" mandatory="true" serializationName="featureShortName">
+      <Comment />
+    </Column>
+    <Column name="featureChoiceType" id="tblCol_74d4bfd2ad764b82a402f23c72fce176" index="5" datatype="Text" mandatory="true" serializationName="featureChoiceType">
+      <Comment />
+    </Column>
+    <Column name="featureStartDate" id="tblCol_ee4832e717c44773b357ba6e774ad77e" index="6" datatype="Text" mandatory="true" serializationName="featureStartDate">
+      <Comment />
+    </Column>
+    <Column name="featureLastUpdateDate" id="tblCol_32f4f3b9f99a4975bcc93fbf8dc99b9c" index="7" datatype="Text" mandatory="true" serializationName="featureLastUpdateDate">
+      <Comment />
+    </Column>
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+</TableObject>

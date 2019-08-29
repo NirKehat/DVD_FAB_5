@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>pop_config</ID>
+  <PopulationObjectName>pop_config</PopulationObjectName>
+  <TableName>configTypes</TableName>
+  <RootItemID>f_6</RootItemID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <IidFinderProp />
+  <InputArguments>
+    <Arg name="_PID" id="fi_6.0" dataType="String" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="FunctionDiagramItemDataSave" id="f_6" name="fnPop_configTypes" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPop_configTypes.k2function.xml">
+      <InputsList>
+        <Input id="fi_6.0" name="_PID" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_6.0" name="_PID" />
+        <Output id="fo_6.1" name="configType" />
+        <Output id="fo_6.2" name="configTypeValue" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="11" fromNodeOrder="0" fromItemID="f_6" fromColID="fo_6.0" toItemID="configTypes" toColID="tblCol_dba66b3be3554249a6341acd6b67ed01" />
+    <Link partId="12" fromNodeOrder="0" fromItemID="f_6" fromColID="fo_6.1" toItemID="configTypes" toColID="tblCol_0082143837784897a396193a6cd7df42" />
+    <Link partId="13" fromNodeOrder="0" fromItemID="f_6" fromColID="fo_6.2" toItemID="configTypes" toColID="tblCol_8b14eb5599f74bcdac41bd6968454d07" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="configTypes.pop_config.k2tablePop.xml" lastPartID="13">
+      <TableNode partID="0" name="configTypes" pos="279.059448 0.854167938" width="309.324158" />
+      <FunctionMapNode id="0" L0="1" R0="2" R1="3" R2="4" partID="6" topLabel="fnPop_configTypes (6)" pos="10.0000229 10.3450546" size="149.0594 61.30989" isRoot="true">
+        <KFunction>{"Name":"fnPop_configTypes","ID":"f_6","Category":"Root","Version":"5.3.2.0","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"_PID","ID":"fi_6.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"_PID","ID":"fo_6.0","Index":0,"DataType":"String"},{"Name":"configType","ID":"fo_6.1","Index":1,"DataType":"String"},{"Name":"configTypeValue","ID":"fo_6.2","Index":2,"DataType":"Long"}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link partID="11" from="2" to="5" pointsArr="159.059433 31.4726543 169.059433 31.4726543 209.059448 31 229.059448 31 269.059448 31.8906269 279.059448 31.8906269" fromNodePartID="6" fromNodeColumnName="_PID" toNodePartID="0" toNodeColumnName="_PID" />
+      <Link partID="12" from="3" to="6" pointsArr="159.059433 43.54557 169.059433 43.54557 209.059448 44 229.059448 44 269.059448 43.9635429 279.059448 43.9635429" fromNodePartID="6" fromNodeColumnName="configType" toNodePartID="0" toNodeColumnName="configType" />
+      <Link partID="13" from="4" to="7" pointsArr="159.059433 55.6184845 169.059433 55.6184845 209.059448 56 229.059448 56 269.059448 56.0364571 279.059448 56.0364571" fromNodePartID="6" fromNodeColumnName="configTypeValue" toNodePartID="0" toNodeColumnName="configTypeValue" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

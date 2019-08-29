@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>pop_feature</ID>
+  <PopulationObjectName>pop_feature</PopulationObjectName>
+  <TableName>variation</TableName>
+  <RootItemID>f_17</RootItemID>
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+  <SimpleObject>false</SimpleObject>
+  <IidFinderProp />
+  <InputArguments>
+    <Arg name="_PID" id="fi_17.0" dataType="String" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="FunctionDiagramItemDataSave" id="f_17" name="fnPop_variation" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPop_variation.k2function.xml">
+      <InputsList>
+        <Input id="fi_17.0" name="_PID" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_17.0" name="_PID" />
+        <Output id="fo_17.1" name="variationId" />
+        <Output id="fo_17.2" name="variationValue" />
+        <Output id="fo_17.3" name="variationStartDate" />
+        <Output id="fo_17.4" name="variationEndDate" />
+        <Output id="fo_17.5" name="variationType" />
+        <Output id="fo_17.6" name="fundId" />
+        <Output id="fo_17.7" name="fundName" />
+        <Output id="fo_17.8" name="moneySourceType" />
+        <Output id="fo_17.9" name="moneySourceName" />
+        <Output id="fo_17.10" name="investmentExtTicker" />
+        <Output id="fo_17.11" name="investmentShortName" />
+        <Output id="fo_17.12" name="variationLastUpdateDate" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="35" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.0" toItemID="variation" toColID="tblCol_87a7cab9df4b4b9687fae6a3987ee26c" />
+    <Link partId="36" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.1" toItemID="variation" toColID="tblCol_c718d58578344cd5bf75d366c0aaeb22" />
+    <Link partId="37" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.2" toItemID="variation" toColID="tblCol_d3dc5161658443369a6ae48814b694b9" />
+    <Link partId="38" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.3" toItemID="variation" toColID="tblCol_dea1a7d67a914b3291c49488b9cd24ae" />
+    <Link partId="39" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.4" toItemID="variation" toColID="tblCol_dbfda249570a43e5bebaddceed64ba18" />
+    <Link partId="40" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.5" toItemID="variation" toColID="tblCol_042fd6e596ff4ec0b32bcefe41ebf503" />
+    <Link partId="41" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.6" toItemID="variation" toColID="tblCol_45976b0633b9400e8372758788ed89fb" />
+    <Link partId="42" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.7" toItemID="variation" toColID="tblCol_873d431da11b4add81adb1a0d88f45f4" />
+    <Link partId="43" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.8" toItemID="variation" toColID="tblCol_a12a9ee0bca043bda998d5b70b80cfd1" />
+    <Link partId="44" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.9" toItemID="variation" toColID="tblCol_cfd507f4f0534bcfa153259f2916f99a" />
+    <Link partId="45" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.10" toItemID="variation" toColID="tblCol_626da404ee0d40db883e8019c564eaa6" />
+    <Link partId="46" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.11" toItemID="variation" toColID="tblCol_842c808230b54045bfb77dbf37e82074" />
+    <Link partId="47" fromNodeOrder="0" fromItemID="f_17" fromColID="fo_17.12" toItemID="variation" toColID="tblCol_1d478bdfd004456781c90151f10b0418" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+  <DiagramGraph>
+    <Graph name="variation.pop_feature.k2tablePop.xml" lastPartID="257">
+      <TableNode partID="0" name="variation" pos="278.0266 0.453132629" width="309.324219" />
+      <FunctionMapNode id="0" L0="1" R0="2" R1="3" R2="4" R3="5" R4="6" R5="7" R6="8" R7="9" R8="10" R9="11" R10="12" R11="13" R12="14" partID="17" topLabel="fnPop_variation (17)" pos="9.996608 10.4527845" size="148.033417 193.266037" isRoot="true">
+        <KFunction>{"Name":"fnPop_variation","ID":"f_17","Category":"Root","Version":"5.3.2.0","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Language":1,"IsRootFunction":true,"inputParams":[{"Name":"_PID","ID":"fi_17.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"_PID","ID":"fo_17.0","Index":0,"DataType":"String","Comment":""},{"Name":"variationId","ID":"fo_17.1","Index":1,"DataType":"Long","Comment":""},{"Name":"variationValue","ID":"fo_17.2","Index":2,"DataType":"String","Comment":""},{"Name":"variationStartDate","ID":"fo_17.3","Index":3,"DataType":"String","Comment":""},{"Name":"variationEndDate","ID":"fo_17.4","Index":4,"DataType":"String","Comment":""},{"Name":"variationType","ID":"fo_17.5","Index":5,"DataType":"String","Comment":""},{"Name":"fundId","ID":"fo_17.6","Index":6,"DataType":"String","Comment":""},{"Name":"fundName","ID":"fo_17.7","Index":7,"DataType":"String","Comment":""},{"Name":"moneySourceType","ID":"fo_17.8","Index":8,"DataType":"String","Comment":""},{"Name":"moneySourceName","ID":"fo_17.9","Index":9,"DataType":"String","Comment":""},{"Name":"investmentExtTicker","ID":"fo_17.10","Index":10,"DataType":"String","Comment":""},{"Name":"investmentShortName","ID":"fo_17.11","Index":11,"DataType":"String","Comment":""},{"Name":"variationLastUpdateDate","ID":"fo_17.12","Index":12,"DataType":"String","Comment":""}],"HideMethodInUi":false}</KFunction>
+      </FunctionMapNode>
+      <Link partID="35" from="2" to="15" pointsArr="158.030029 37.193882 168.030029 37.193882 268.0266 31.48959 278.0266 31.48959" fromNodePartID="17" fromNodeColumnName="_PID" toNodePartID="0" toNodeColumnName="_PID" />
+      <Link partID="36" from="3" to="16" pointsArr="158.030029 49.2667961 168.030029 49.2667961 268.0266 43.5625076 278.0266 43.5625076" fromNodePartID="17" fromNodeColumnName="variationId" toNodePartID="0" toNodeColumnName="variationId" />
+      <Link partID="37" from="4" to="17" pointsArr="158.030029 61.33971 168.030029 61.33971 268.0266 55.63542 278.0266 55.63542" fromNodePartID="17" fromNodeColumnName="variationValue" toNodePartID="0" toNodeColumnName="variationValue" />
+      <Link partID="38" from="5" to="18" pointsArr="158.030029 73.41263 168.030029 73.41263 268.0266 67.7083359 278.0266 67.7083359" fromNodePartID="17" fromNodeColumnName="variationStartDate" toNodePartID="0" toNodeColumnName="variationStartDate" />
+      <Link partID="39" from="6" to="19" pointsArr="158.030029 85.48554 168.030029 85.48554 268.0266 79.78125 278.0266 79.78125" fromNodePartID="17" fromNodeColumnName="variationEndDate" toNodePartID="0" toNodeColumnName="variationEndDate" />
+      <Link partID="40" from="7" to="20" pointsArr="158.030029 97.55846 168.030029 97.55846 268.0266 91.8541641 278.0266 91.8541641" fromNodePartID="17" fromNodeColumnName="variationType" toNodePartID="0" toNodeColumnName="variationType" />
+      <Link partID="41" from="8" to="21" pointsArr="158.030029 109.631378 168.030029 109.631378 268.0266 103.927086 278.0266 103.927086" fromNodePartID="17" fromNodeColumnName="fundId" toNodePartID="0" toNodeColumnName="fundId" />
+      <Link partID="42" from="9" to="22" pointsArr="158.030029 121.7043 168.030029 121.7043 268.0266 116.000008 278.0266 116.000008" fromNodePartID="17" fromNodeColumnName="fundName" toNodePartID="0" toNodeColumnName="fundName" />
+      <Link partID="43" from="10" to="23" pointsArr="158.030029 133.777222 168.030029 133.777222 268.0266 128.072937 278.0266 128.072937" fromNodePartID="17" fromNodeColumnName="moneySourceType" toNodePartID="0" toNodeColumnName="moneySourceType" />
+      <Link partID="44" from="11" to="24" pointsArr="158.030029 145.850143 168.030029 145.850143 268.0266 140.145844 278.0266 140.145844" fromNodePartID="17" fromNodeColumnName="moneySourceName" toNodePartID="0" toNodeColumnName="moneySourceName" />
+      <Link partID="45" from="12" to="25" pointsArr="158.030029 157.923065 168.030029 157.923065 268.0266 152.218781 278.0266 152.218781" fromNodePartID="17" fromNodeColumnName="investmentExtTicker" toNodePartID="0" toNodeColumnName="investmentExtTicker" />
+      <Link partID="46" from="13" to="26" pointsArr="158.030029 169.995972 168.030029 169.995972 268.0266 164.291687 278.0266 164.291687" fromNodePartID="17" fromNodeColumnName="investmentShortName" toNodePartID="0" toNodeColumnName="investmentShortName" />
+      <Link partID="47" from="14" to="27" pointsArr="158.030029 182.068878 168.030029 182.068878 268.0266 176.3646 278.0266 176.3646" fromNodePartID="17" fromNodeColumnName="variationLastUpdateDate" toNodePartID="0" toNodeColumnName="variationLastUpdateDate" />
+    </Graph>
+  </DiagramGraph>
+</TablePopulationObject>

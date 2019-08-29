@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>variation</Name>
+  <ID>variation</ID>
+  <Version>5.3.2.0</Version>
+  <SerializationName>variation</SerializationName>
+  <Columns>
+    <Column name="_PID" id="tblCol_87a7cab9df4b4b9687fae6a3987ee26c" index="0" datatype="Text" mandatory="true" serializationType="None" />
+    <Column name="variationId" id="tblCol_c718d58578344cd5bf75d366c0aaeb22" index="1" datatype="Integer" serializationName="variationId">
+      <Comment />
+    </Column>
+    <Column name="variationValue" id="tblCol_d3dc5161658443369a6ae48814b694b9" index="2" datatype="Text" serializationName="variationValue">
+      <Comment />
+    </Column>
+    <Column name="variationStartDate" id="tblCol_dea1a7d67a914b3291c49488b9cd24ae" index="3" datatype="Text" serializationName="variationStartDate">
+      <Comment />
+    </Column>
+    <Column name="variationEndDate" id="tblCol_dbfda249570a43e5bebaddceed64ba18" index="4" datatype="Text" serializationName="variationEndDate">
+      <Comment />
+    </Column>
+    <Column name="variationType" id="tblCol_042fd6e596ff4ec0b32bcefe41ebf503" index="5" datatype="Text" serializationName="variationType">
+      <Comment />
+    </Column>
+    <Column name="fundId" id="tblCol_45976b0633b9400e8372758788ed89fb" index="6" datatype="Text" serializationName="fundId">
+      <Comment />
+    </Column>
+    <Column name="fundName" id="tblCol_873d431da11b4add81adb1a0d88f45f4" index="7" datatype="Text" serializationName="fundName">
+      <Comment />
+    </Column>
+    <Column name="moneySourceType" id="tblCol_a12a9ee0bca043bda998d5b70b80cfd1" index="8" datatype="Text" serializationName="moneySourceType">
+      <Comment />
+    </Column>
+    <Column name="moneySourceName" id="tblCol_cfd507f4f0534bcfa153259f2916f99a" index="9" datatype="Text" serializationName="moneySourceName">
+      <Comment />
+    </Column>
+    <Column name="investmentExtTicker" id="tblCol_626da404ee0d40db883e8019c564eaa6" index="10" datatype="Text" serializationName="investmentExtTicker">
+      <Comment />
+    </Column>
+    <Column name="investmentShortName" id="tblCol_842c808230b54045bfb77dbf37e82074" index="11" datatype="Text" serializationName="investmentShortName">
+      <Comment />
+    </Column>
+    <Column name="variationLastUpdateDate" id="tblCol_1d478bdfd004456781c90151f10b0418" index="12" datatype="Text" serializationName="variationLastUpdateDate">
+      <Comment />
+    </Column>
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>false</TruncateBeforeSync>
+  </LazyDataUpdate>
+</TableObject>
