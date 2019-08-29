@@ -19,6 +19,7 @@ import com.k2view.cdbms.shared.logging.LogEntry.*;
 import com.k2view.cdbms.func.oracle.OracleToDate;
 import com.k2view.cdbms.func.oracle.OracleRownum;
 import com.k2view.cdbms.usercode.lu.DVD.*;
+import com.k2view.fabric.session.FabricSession;
 
 import static com.k2view.cdbms.shared.utils.UserCodeDescribe.FunctionType.*;
 import static com.k2view.cdbms.shared.user.ProductFunctions.*;
